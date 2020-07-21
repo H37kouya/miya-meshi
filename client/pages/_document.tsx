@@ -9,7 +9,6 @@ class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <title>Create Next My App</title>
           <link rel="icon" href="/favicon.ico" />
           {/* <link rel="manifest" href="/manifest.json" /> */}
         </Head>

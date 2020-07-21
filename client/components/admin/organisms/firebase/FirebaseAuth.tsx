@@ -19,7 +19,7 @@ const firebaseAuthConfig: firebaseui.auth.Config = {
             requireDisplayName: false,
         },
     ],
-    signInSuccessUrl: '/',
+    signInSuccessUrl: '/admin',
     credentialHelper: 'none',
     callbacks: {
         signInSuccessWithAuthResult: async ({ user }, redirectUrl) => {
