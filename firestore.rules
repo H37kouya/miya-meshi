@@ -1,8 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /shops/{document=**} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner() {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
+      }
+
+      allow write: if isSignedIn() && isOwner()
+      allow read
     }
   }
 }
