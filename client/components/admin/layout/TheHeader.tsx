@@ -9,8 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            flexGrow: 1,
+        appBar: {
+            zIndex: theme.zIndex.drawer + 1,
         },
         menuButton: {
             marginRight: theme.spacing(2),
@@ -21,13 +21,14 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const Header = (): JSX.Element => {
+
+const Header = ({ onClick }): JSX.Element => {
     const classes = useStyles();
 
     return (
-        <AppBar position="static">
+        <AppBar position="fixed" className={classes.appBar}>
             <Toolbar variant="dense">
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={onClick()}>
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
