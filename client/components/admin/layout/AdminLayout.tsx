@@ -48,7 +48,6 @@ const Layout = ({ children }): JSX.Element => {
             return;
         }
 
-        console.log(open)
         setState(open);
     }
 
