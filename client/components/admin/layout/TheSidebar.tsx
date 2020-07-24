@@ -9,6 +9,21 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
+import StoreIcon from '@material-ui/icons/Store';
+import Link from 'next/link'
+
+interface SidebarItem {
+  href: string
+  text: string
+  icon: JSX.Element
+}
+
+const SidebarItemList = (): SidebarItem[] => [
+  { href: '/admin', text: 'Home', icon: <HomeIcon /> },
+  { href: '/admin/shops', text: 'Shop', icon: <StoreIcon /> },
+  { href: '/admin/signin', text: 'ログイン', icon: <HomeIcon /> },
+]
 
 const drawerWidth = 240;
 
@@ -55,11 +70,13 @@ const Sidebar = ({ open, onOpen, onClose }): JSX.Element => {
         <Toolbar />
         <div className={classes.drawerContainer}>
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                </ListItem>
+                {SidebarItemList().map((item) => (
+                  <Link href={item.href} key={item.text}>
+                    <ListItem button component="a" href={item.href}>
+                      <ListItemIcon>{item.icon}</ListItemIcon>
+                      <ListItemText primary={item.text} />
+                    </ListItem>
+                  </Link>
                 ))}
             </List>
             <Divider />
