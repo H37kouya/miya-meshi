@@ -62,7 +62,7 @@ const nuxtConfig: Configuration = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/device',
-    '@nuxtjs/firebase',
+    // '@nuxtjs/firebase',
     '@nuxtjs/pwa'
   ],
   /*
@@ -113,6 +113,7 @@ const nuxtConfig: Configuration = {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    extractCSS: true
   }
 }
 
