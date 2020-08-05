@@ -38,6 +38,7 @@ const nuxtConfig: Configuration = {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '@/plugins/composition-api'
   ],
   /*
   ** Auto import components
@@ -51,6 +52,7 @@ const nuxtConfig: Configuration = {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/style-resources',
     '@nuxtjs/vuetify'
   ],
   /*
@@ -59,6 +61,8 @@ const nuxtConfig: Configuration = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/device',
+    '@nuxtjs/firebase',
     '@nuxtjs/pwa'
   ],
   /*
@@ -66,6 +70,23 @@ const nuxtConfig: Configuration = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {},
+  firebase: {
+    // options
+    config: {
+      // apiKey: '<apiKey>',
+      // authDomain: '<authDomain>',
+      // databaseURL: '<databaseURL>',
+      // projectId: '<projectId>',
+      // storageBucket: '<storageBucket>',
+      // messagingSenderId: '<messagingSenderId>',
+      // appId: '<appId>',
+      // measurementId: '<measurementId>'
+    }
+  },
+  styleResources: {
+    // your settings here
+    scss: ['~/assets/variables.scss']
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -86,9 +107,6 @@ const nuxtConfig: Configuration = {
         }
       }
     }
-  },
-  storybook: {
-    // Options
   },
   /*
   ** Build configuration
