@@ -26,6 +26,9 @@
     "types": [
       "@types/node",
       "@nuxt/types",
+      "@nuxtjs/axios",
+      "@nuxtjs/device",
+      "@nuxtjs/firebase",
       "jest",
       "vuetify"
     ]

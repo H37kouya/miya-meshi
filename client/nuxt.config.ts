@@ -1,12 +1,13 @@
 import { Configuration } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
+import { FirebaseConfiguration } from '@nuxtjs/firebase'
 
 const nuxtConfig: Configuration = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'universal',
+  mode: 'spa',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -45,6 +46,12 @@ const nuxtConfig: Configuration = {
   ** See https://nuxtjs.org/api/configuration-components
   */
   components: true,
+
+  router: {
+    middleware: [
+      'admin'
+    ]
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -81,7 +88,7 @@ const nuxtConfig: Configuration = {
       messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
       appId: process.env.FIREBASE_APP_ID,
       measurementId: process.env.FIREBASE_MEASUREMENT_ID
-    },
+    } as FirebaseConfiguration,
     services: {
       auth: true, // Just as example. Can be any other service.
       analytics: true,
@@ -99,7 +106,7 @@ const nuxtConfig: Configuration = {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
