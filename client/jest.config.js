@@ -16,7 +16,7 @@ module.exports = {
     '.*\\.(vue)$': 'vue-jest'
   },
   setupFilesAfterEnv: [
-    '<rootDir>/test/setup.js'
+    '<rootDir>/test/setup.ts'
   ],
   collectCoverage: true,
   collectCoverageFrom: [
