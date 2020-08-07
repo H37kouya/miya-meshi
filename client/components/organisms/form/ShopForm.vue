@@ -137,6 +137,17 @@ export default defineComponent({
 
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : undefined
+      state.shop.description = newVal ? newVal.description :undefined
+      state.shop.intro = newVal ? newVal.intro : undefined
+      state.shop.facebookLink = newVal ? newVal.facebookLink : undefined
+      state.shop.homepageLink = newVal ? newVal.homepageLink : undefined
+      state.shop.instaLink = newVal ? newVal.instaLink : undefined
+      state.shop.lineLink = newVal ? newVal.lineLink : undefined
+      state.shop.twitterLink = newVal ? newVal.twitterLink : undefined
+      state.shop.uberEatsLink = newVal ? newVal.uberEatsLink : undefined
+      state.shop.youtubeLink = newVal ? newVal.youtubeLink : undefined
+      state.shop.priority = newVal ? newVal.priority : 1
+      state.shop.public = newVal ? newVal.public : false
     })
 
     const onSubmit = () => context.emit('submit', state.shop)

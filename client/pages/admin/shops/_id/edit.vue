@@ -7,7 +7,7 @@
     <v-row>
       <ShopForm
         :shop="state.shop"
-        @submit="createShop"
+        @submit="editShop"
       />
     </v-row>
   </v-container>
@@ -17,6 +17,7 @@
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
+import {removeUndefinedFromObject} from "~/src/utils/Object";
 
 const getShop = async (context: SetupContext, id: string) => {
   return await context.root.$fireStore.collection('shops').doc(id).get()
@@ -30,7 +31,7 @@ const firestoreDocDataToShop = (
   return {
     type: SHOP_TYPE,
     id: doc.id,
-    name: docData ? docData.name : undefined
+    ...docData
   } as Shop
 }
 
@@ -45,9 +46,10 @@ export default defineComponent({
       const shopDoc = await getShop(context, context.root.$route.params.id)
       return firestoreDocDataToShop(shopDoc)
     }
-    const createShop = async (shop: ShopFormState) => {
-      await context.root.$fireStore.collection('shops').add({
-        name: shop.name
+    const editShop = async (shop: ShopFormState['shop']) => {
+      await context.root.$fireStore.collection('shops').doc(state.shop.id).update({
+        ...removeUndefinedFromObject(shop),
+        updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
       })
 
       return await context.root.$router.push('/admin/shops')
@@ -59,7 +61,7 @@ export default defineComponent({
 
     return {
       state,
-      createShop
+      editShop
     }
   }
 })

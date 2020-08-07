@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, reactive, SetupContext, onMounted, computed} from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 
 const getShop = async (context: SetupContext, id: string) => {
@@ -24,14 +24,14 @@ const getShop = async (context: SetupContext, id: string) => {
 }
 
 const firestoreDocDataToShop = (
-  doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>|firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>
+  doc: firebase.firestore.QueryDocumentSnapshot|firebase.firestore.DocumentSnapshot
 ) => {
   const docData = doc.data()
 
   return {
     type: SHOP_TYPE,
     id: doc.id,
-    name: docData ? docData.name : undefined
+    ...docData
   } as Shop
 }
 
