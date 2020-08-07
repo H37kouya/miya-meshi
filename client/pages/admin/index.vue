@@ -3,6 +3,10 @@
     <h1>認証TOPページ</h1>
 
     <h2>ログイン済み</h2>
+
+    <v-btn to="/admin/shops">
+      Go To Shop List
+    </v-btn>
   </v-container>
 </template>
 
