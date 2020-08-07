@@ -4,6 +4,10 @@
       Go To Shop List
     </v-btn>
 
+    <v-btn :to="`/admin/shops/${id}/edit`">
+      Edit Shop
+    </v-btn>
+
     <div>
       {{ state.shop.id }}
       {{ state.shop.name }}
@@ -12,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, onServerPrefetch } from '@vue/composition-api'
+import {defineComponent, reactive, SetupContext, onMounted, computed} from '@vue/composition-api'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 
 const getShop = async (context: SetupContext, id: string) => {
@@ -37,12 +41,15 @@ export default defineComponent({
       shop: {} as Shop
     })
 
-    onServerPrefetch(async () => {
+    onMounted(async () => {
       const shopDoc = await getShop(context, context.root.$route.params.id)
       state.shop = firestoreDocDataToShop(shopDoc)
     })
 
+    const id = computed(() => context.root.$route.params.id)
+
     return {
+      id,
       state
     }
   }
