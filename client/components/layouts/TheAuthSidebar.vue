@@ -39,13 +39,18 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Top Page',
+          title: 'トップページ',
           to: '/admin'
         },
         {
           icon: 'mdi-store',
-          title: 'Shop List',
+          title: '店舗一覧',
           to: '/admin/shops'
+        },
+        {
+          icon: 'mdi-store',
+          title: '新規店舗追加',
+          to: '/admin/shops/create'
         }
       ]
     }
