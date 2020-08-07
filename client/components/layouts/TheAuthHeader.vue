@@ -1,0 +1,37 @@
+<template>
+  <v-app-bar
+    app
+    clipped-left
+    fixed
+  >
+    <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+
+    <nuxt-link to="/" class="black--text text-decoration-none">
+      <v-toolbar-title v-text="getTitle" />
+    </nuxt-link>
+  </v-app-bar>
+</template>
+
+<script>
+export default {
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    drawer: {
+      get () {
+        return this.value
+      },
+      set (newVal) {
+        return this.$emit('input', newVal)
+      }
+    },
+
+    getTitle: () => 'みや飯応援隊'
+  }
+}
+</script>

@@ -24,6 +24,8 @@ import { removeUndefinedFromObject } from '@/src/utils/Object'
 export default defineComponent({
   middleware: 'admin-auth',
 
+  layout: 'auth',
+
   setup (_: unknown, context: SetupContext) {
     const createShop = async (shop: ShopFormState['shop']) => {
       const addData = {

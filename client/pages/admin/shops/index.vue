@@ -65,6 +65,8 @@ const firestoreDocDataToShop = (doc: firebase.firestore.QueryDocumentSnapshot<fi
 export default defineComponent({
   middleware: 'admin-auth',
 
+  layout: 'auth',
+
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       shops: [] as Shop[]

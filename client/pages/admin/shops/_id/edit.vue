@@ -38,6 +38,8 @@ const firestoreDocDataToShop = (
 export default defineComponent({
   middleware: 'admin-auth',
 
+  layout: 'auth',
+
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       shop: { type: SHOP_TYPE } as Shop

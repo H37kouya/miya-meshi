@@ -14,6 +14,8 @@
 import { defineComponent, reactive, SetupContext } from '@vue/composition-api'
 
 export default defineComponent({
-  middleware: 'admin-auth'
+  middleware: 'admin-auth',
+
+  layout: 'auth'
 })
 </script>
