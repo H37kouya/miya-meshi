@@ -1,8 +1,14 @@
 <template>
-  <div>
-    {{ state.shop.id }}
-    {{ state.shop.name }}
-  </div>
+  <v-container>
+    <v-btn to="/admin/shops">
+      Go To Shop List
+    </v-btn>
+
+    <div>
+      {{ state.shop.id }}
+      {{ state.shop.name }}
+    </div>
+  </v-container>
 </template>
 
 <script lang="ts">

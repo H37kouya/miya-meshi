@@ -4,6 +4,10 @@
 
     <h2>ログイン済み</h2>
 
+    <v-btn to="/admin/shops/create">
+      Create Shop
+    </v-btn>
+
     <v-list>
       <template v-for="(shop, key) in state.shops">
         <v-list-item :key="key" :to="`/admin/shops/${shop.id}`">
