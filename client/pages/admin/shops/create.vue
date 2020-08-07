@@ -1,14 +1,18 @@
 <template>
   <v-container>
-    <v-btn to="/admin/shops">
-      Go To Shop List
-    </v-btn>
+    <v-row class="mb-4" justify="space-between">
+      <h1>新規店舗追加</h1>
 
-    <div>
+      <v-btn to="/admin/shops">
+        Go To Shop List
+      </v-btn>
+    </v-row>
+
+    <v-row>
       <ShopForm
         @submit="createShop"
       />
-    </div>
+    </v-row>
   </v-container>
 </template>
 
@@ -20,7 +24,7 @@ export default defineComponent({
   middleware: 'admin-auth',
 
   setup (_: unknown, context: SetupContext) {
-    const createShop = async (shop: ShopFormState) => {
+    const createShop = async ({ shop }: ShopFormState) => {
       await context.root.$fireStore.collection('shops').add({
         name: shop.name
       })

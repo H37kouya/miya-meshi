@@ -1,11 +1,10 @@
 <template>
-  <v-text-field
+  <v-textarea
     v-model="model"
     :counter="counter"
     :label="label"
     :maxlength="maxLength"
     outlined
-    required
   />
 </template>
 
@@ -16,7 +15,7 @@ import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value: Shop['name']
+  value: Shop['description']
 }
 
 export default defineComponent({
@@ -29,11 +28,11 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = ShopJa.NAME
-    const MAX_LENGTH = 50
+    const label = ShopJa.DESCRIPTION
+    const MAX_LENGTH = 1000
 
     const counter = computed(() => {
-      const uCounter = useCounter(model.value, MAX_LENGTH, 0.8)
+      const uCounter = useCounter(model.value, MAX_LENGTH, 0.9)
       return uCounter.counter
     })
 

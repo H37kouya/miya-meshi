@@ -1,8 +1,85 @@
 <template>
   <v-form @submit.prevent="onSubmit">
-    <ShopNameTextField
-      v-model="state.shop.name"
+    <v-row>
+      <v-col cols="8">
+        <ShopNameTextField
+          v-model="state.shop.name"
+        />
+      </v-col>
+
+      <v-col cols="4">
+        <ShopPrioritySlider
+          v-model="state.shop.priority"
+        />
+      </v-col>
+    </v-row>
+
+    <ShopIntroTextField
+      v-model="state.shop.intro"
     />
+
+    <ShopDescriptionTextArea
+      v-model="state.shop.description"
+    />
+
+    <p>リンク一覧</p>
+    <v-row>
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.facebookLink"
+          :label="ShopJa.FACEBOOK_LINK"
+          prepend-inner-icon="mdi-facebook"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.instaLink"
+          :label="ShopJa.INSTA_LINK"
+          prepend-inner-icon="mdi-instagram"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.twitterLink"
+          :label="ShopJa.TWITTER_LINK"
+          prepend-inner-icon="mdi-twitter"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.homepageLink"
+          :label="ShopJa.HOMEPAGE_LINK"
+          prepend-inner-icon="mdi-home-circle"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.lineLink"
+          :label="ShopJa.LINE_LINK"
+          prepend-inner-icon="mdi-alpha-l-box-outline"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.uberEatsLink"
+          :label="ShopJa.UBER_EATS_LINK"
+          prepend-inner-icon="mdi-alpha-u-box-outline"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <LinkTextField
+          v-model="state.shop.youtubeLink"
+          :label="ShopJa.YOUTUBE_LINK"
+          prepend-inner-icon="mdi-youtube"
+        />
+      </v-col>
+    </v-row>
 
     <v-btn type="submit" color="primary">
       追加
@@ -11,8 +88,8 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted, reactive, SetupContext, watch} from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { Shop, ShopJa } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
 
@@ -33,7 +110,17 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const state = reactive<ShopFormState>({
       shop: {
-        name: undefined
+        name: undefined,
+        description: undefined,
+        intro: undefined,
+        facebookLink: undefined,
+        homepageLink: undefined,
+        instaLink: undefined,
+        lineLink: undefined,
+        twitterLink: undefined,
+        uberEatsLink: undefined,
+        youtubeLink: undefined,
+        priority: 1
       }
     })
 
@@ -45,6 +132,7 @@ export default defineComponent({
 
     return {
       state,
+      ShopJa,
       onSubmit
     }
   }

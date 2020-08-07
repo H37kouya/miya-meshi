@@ -4,12 +4,12 @@
       Go To Shop List
     </v-btn>
 
-    <div>
+    <v-row>
       <ShopForm
         :shop="state.shop"
         @submit="createShop"
       />
-    </div>
+    </v-row>
   </v-container>
 </template>
 

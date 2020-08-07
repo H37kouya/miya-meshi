@@ -5,7 +5,6 @@
     :label="label"
     :maxlength="maxLength"
     outlined
-    required
   />
 </template>
 
@@ -16,7 +15,7 @@ import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value: Shop['name']
+  value: Shop['intro']
 }
 
 export default defineComponent({
@@ -29,7 +28,7 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = ShopJa.NAME
+    const label = ShopJa.INTRO
     const MAX_LENGTH = 50
 
     const counter = computed(() => {

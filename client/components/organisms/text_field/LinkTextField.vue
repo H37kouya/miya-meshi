@@ -1,22 +1,21 @@
 <template>
   <v-text-field
     v-model="model"
-    :counter="counter"
     :label="label"
-    :maxlength="maxLength"
+    :prepend-inner-icon="prependInnerIcon"
     outlined
-    required
   />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop, ShopJa } from '@/src/types/Shop'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value: Shop['name']
+  value?: string,
+  label?: string
+  prependInnerIcon?: string
 }
 
 export default defineComponent({
@@ -24,13 +23,22 @@ export default defineComponent({
     value: {
       type: String,
       default: undefined
+    },
+
+    label: {
+      type: String,
+      default: 'リンク'
+    },
+
+    prependInnerIcon: {
+      type: String,
+      default: undefined
     }
   },
 
-  setup (props: Props, context: SetupContext) {
+  setup(props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = ShopJa.NAME
-    const MAX_LENGTH = 50
+    const MAX_LENGTH = 255
 
     const counter = computed(() => {
       const uCounter = useCounter(model.value, MAX_LENGTH, 0.8)
@@ -39,7 +47,6 @@ export default defineComponent({
 
     return {
       counter,
-      label,
       maxLength: MAX_LENGTH,
       model
     }
