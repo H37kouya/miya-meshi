@@ -25,7 +25,7 @@ const firestoreDocDataToShop = (
 }
 
 export default defineComponent({
-  setup(props: any, context: SetupContext) {
+  setup (_: unknown, context: SetupContext) {
     const state = reactive({
       shop: {} as Shop
     })

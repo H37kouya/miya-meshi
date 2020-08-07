@@ -30,7 +30,7 @@ type State = {
 export default defineComponent({
   middleware: 'admin-guest',
 
-  setup (props: any, context: SetupContext) {
+  setup (_: unknown, context: SetupContext) {
     const state = reactive<State>({
       email: 'sample@example.com',
       password: 'Hello!'
