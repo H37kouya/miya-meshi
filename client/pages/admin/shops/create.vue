@@ -5,45 +5,31 @@
     </v-btn>
 
     <div>
-      <v-form @submit.prevent="createShop">
-        <v-text-field
-          v-model="state.shop.name"
-          label="店名"
-        />
-
-        <v-btn type="submit" color="primary">
-          追加
-        </v-btn>
-      </v-form>
+      <ShopForm
+        @submit="createShop"
+      />
     </div>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@vue/composition-api'
+import { ShopFormState } from '~/src/types/ShopFormState'
 
 export default defineComponent({
   middleware: 'admin-auth',
 
   setup (_: unknown, context: SetupContext) {
-    const state = reactive({
-      shop: {
-        name: null as string|null,
-        public: false
-      }
-    })
-
-    const createShop = async () => {
+    const createShop = async (shop: ShopFormState) => {
       await context.root.$fireStore.collection('shops').add({
-        name: state.shop.name
+        name: shop.name
       })
 
       return await context.root.$router.push('/admin/shops')
     }
 
     return {
-      createShop,
-      state
+      createShop
     }
   }
 })

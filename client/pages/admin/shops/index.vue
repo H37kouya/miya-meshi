@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import {Shop, SHOP_TYPE} from '@/src/types/Shop'
 
 const getShopList = async (context: SetupContext) => {
   return await context.root.$fireStore.collection('shops').get()
@@ -29,6 +29,7 @@ const getShopList = async (context: SetupContext) => {
 const firestoreDocDataToShop = (doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>) => {
   const docData = doc.data()
   return {
+    type: SHOP_TYPE,
     id: doc.id,
     name: docData.name
   } as Shop

@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, onMounted } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { defineComponent, reactive, SetupContext, onServerPrefetch } from '@vue/composition-api'
+import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 
 const getShop = async (context: SetupContext, id: string) => {
   return await context.root.$fireStore.collection('shops').doc(id).get()
@@ -25,6 +25,7 @@ const firestoreDocDataToShop = (
   const docData = doc.data()
 
   return {
+    type: SHOP_TYPE,
     id: doc.id,
     name: docData ? docData.name : undefined
   } as Shop
@@ -36,7 +37,7 @@ export default defineComponent({
       shop: {} as Shop
     })
 
-    onMounted(async () => {
+    onServerPrefetch(async () => {
       const shopDoc = await getShop(context, context.root.$route.params.id)
       state.shop = firestoreDocDataToShop(shopDoc)
     })
