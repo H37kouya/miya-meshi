@@ -12,6 +12,7 @@ export type ShopFormState = {
     twitterLink: Shop['twitterLink'],
     uberEatsLink: Shop['uberEatsLink'],
     youtubeLink: Shop['youtubeLink'],
-    priority: Shop['priority']
+    priority: Shop['priority'],
+    public: Shop['public']
   }
 }

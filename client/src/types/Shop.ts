@@ -14,7 +14,7 @@ export type Shop = {
   uberEatsLink?: string,
   youtubeLink?: string,
   priority: number,
-  public?: boolean,
+  public: boolean,
   createdAt?: Date,
   deletedAt?: Date,
   updatedAt?: Date

@@ -1,6 +1,16 @@
 <template>
   <v-form @submit.prevent="onSubmit">
     <v-row>
+      <v-col cols="12">
+        <v-switch
+          v-model="state.shop.public"
+          :label="state.shop.public ? '公開' : '非公開'"
+          class="mt-0"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col cols="8">
         <ShopNameTextField
           v-model="state.shop.name"
@@ -120,7 +130,8 @@ export default defineComponent({
         twitterLink: undefined,
         uberEatsLink: undefined,
         youtubeLink: undefined,
-        priority: 1
+        priority: 1,
+        public: false
       }
     })
 
