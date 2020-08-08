@@ -1,9 +1,14 @@
+// Shop: 店舗型
 export type Shop = {
   type: ShopType,
   id: string,
   name?: string,
   description?: string,
   intro?: string,
+  postal?: string,
+  address?: string,
+  buildingName?: string,
+  tel?: string|number,
   imageLink?: string,
   subImageLink?: string[],
   facebookLink?: string,
@@ -15,9 +20,9 @@ export type Shop = {
   youtubeLink?: string,
   priority: number,
   public: boolean,
-  createdAt?: Date,
-  deletedAt?: Date,
-  updatedAt?: Date
+  createdAt?: Date|Object,
+  deletedAt?: Date|Object,
+  updatedAt?: Date|Object
 }
 
 type ShopType = 'shop'
