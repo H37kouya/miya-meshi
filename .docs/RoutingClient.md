@@ -14,8 +14,9 @@
 | `/admin/shops/{shopid}`       | Each Shop Info            | Shop Info can be deleted. |
 | `/admin/shops/{shopid}/edit`  | Can be Edited Shop Info   |         |
 | `/admin/menus`                | All shop Menu list        |         |
-| `/admin/menus/create`         | Create new Shop Info      |         |
-| `/admin/menus/{menuid}/edit`  | Each Shop Info            | Shop Info can be deleted. |
+| `/admin/menus/create`         | Create new Menu Info      |         |
+| `/admin/menus/{menuid}`       | Each Menu Info            | Shop Info can be deleted. |
+| `/admin/menus/{menuid}/edit`  | Can be Edited Menu Info   |         |
 | `/admin/ad`                   | All Ad list               |         |
 | `/admin/ad/new`               | Create new Ad Info        |         |
 | `/admin/ad/{id}`              | Each Ad Info              | Ad Info can be deleted. |
