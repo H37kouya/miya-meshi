@@ -1,8 +1,14 @@
 <template>
   <v-container>
-    <v-btn to="/admin/shops">
-      Go To Shop List
-    </v-btn>
+    <v-row justify="space-between">
+      <AdminMainText>
+        店舗編集
+      </AdminMainText>
+
+      <v-btn to="/admin/shops">
+        店舗一覧へ戻る
+      </v-btn>
+    </v-row>
 
     <v-row>
       <ShopForm
@@ -17,6 +23,7 @@
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
+import { MetaInfo } from 'vue-meta'
 import { removeUndefinedFromObject } from '~/src/utils/Object'
 
 const getShop = async (context: SetupContext, id: string) => {
@@ -64,6 +71,12 @@ export default defineComponent({
     return {
       state,
       editShop
+    }
+  },
+
+  head (): MetaInfo {
+    return {
+      title: '店舗編集'
     }
   }
 })

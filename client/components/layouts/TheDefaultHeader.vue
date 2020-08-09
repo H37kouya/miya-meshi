@@ -29,7 +29,7 @@ export default {
       }
     },
 
-    getTitle: () => 'みや飯応援隊'
+    getTitle: () => 'みやメシ応援隊'
   }
 }
 </script>

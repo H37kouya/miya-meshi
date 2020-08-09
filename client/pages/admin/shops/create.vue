@@ -1,7 +1,9 @@
 <template>
   <v-container>
     <v-row class="mb-4" justify="space-between">
-      <h1>新規店舗追加</h1>
+      <AdminMainText>
+        新規店舗追加
+      </AdminMainText>
 
       <v-btn to="/admin/shops">
         Go To Shop List
@@ -20,6 +22,7 @@
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { MetaInfo } from 'vue-meta'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -41,6 +44,12 @@ export default defineComponent({
 
     return {
       createShop
+    }
+  },
+
+  head (): MetaInfo {
+    return {
+      title: '新規店舗作成'
     }
   }
 })
