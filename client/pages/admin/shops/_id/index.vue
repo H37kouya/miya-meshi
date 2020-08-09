@@ -12,6 +12,18 @@
       {{ state.shop.id }}
       {{ state.shop.name }}
     </div>
+
+    <v-row justify="center" class="mt-4">
+      <v-col cols="6" md="3">
+        <CardButton
+          to="/"
+          color="green lighten-4"
+          text="メニュー追加"
+          text-color="grey"
+          icon="mdi-home"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
