@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop, ShopJa } from '@/src/types/Shop'
+import { Shop, ShopJa, ShopMaxStringSize } from '@/src/types/Shop'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
@@ -30,7 +30,7 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
     const label = ShopJa.NAME
-    const MAX_LENGTH = 50
+    const MAX_LENGTH = ShopMaxStringSize.NAME
 
     const counter = computed(() => {
       const uCounter = useCounter(model.value, MAX_LENGTH, 0.8)

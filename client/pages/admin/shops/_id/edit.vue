@@ -17,7 +17,7 @@
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import {removeUndefinedFromObject} from "~/src/utils/Object";
+import { removeUndefinedFromObject } from '~/src/utils/Object'
 
 const getShop = async (context: SetupContext, id: string) => {
   return await context.root.$fireStore.collection('shops').doc(id).get()

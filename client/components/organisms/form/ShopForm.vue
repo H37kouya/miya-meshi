@@ -24,16 +24,59 @@
       </v-col>
     </v-row>
 
-    <ShopIntroTextField
-      v-model="state.shop.intro"
-    />
-
-    <ShopDescriptionTextArea
-      v-model="state.shop.description"
-    />
-
-    <p>リンク一覧</p>
     <v-row>
+      <v-col cols="12">
+        <p>店舗紹介文</p>
+      </v-col>
+
+      <v-col cols="12">
+        <ShopIntroTextField
+          v-model="state.shop.intro"
+        />
+      </v-col>
+
+      <v-col cols="12">
+        <ShopDescriptionTextArea
+          v-model="state.shop.description"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <p>お問い合わせ</p>
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <TelTextField
+          v-model="state.shop.tel"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <PostalTextField
+          v-model="state.shop.postal"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <AddressTextField
+          v-model="state.shop.address"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <BuildingNameTextField
+          v-model="state.shop.buildingName"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <p>リンク一覧</p>
+      </v-col>
+
       <v-col cols="12" sm="6">
         <LinkTextField
           v-model="state.shop.facebookLink"
@@ -131,13 +174,17 @@ export default defineComponent({
         uberEatsLink: undefined,
         youtubeLink: undefined,
         priority: 1,
-        public: false
+        public: false,
+        address: '栃木県宇都宮市',
+        buildingName: undefined,
+        postal: '321-',
+        tel: '028-'
       }
     })
 
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : undefined
-      state.shop.description = newVal ? newVal.description :undefined
+      state.shop.description = newVal ? newVal.description : undefined
       state.shop.intro = newVal ? newVal.intro : undefined
       state.shop.facebookLink = newVal ? newVal.facebookLink : undefined
       state.shop.homepageLink = newVal ? newVal.homepageLink : undefined
@@ -148,6 +195,10 @@ export default defineComponent({
       state.shop.youtubeLink = newVal ? newVal.youtubeLink : undefined
       state.shop.priority = newVal ? newVal.priority : 1
       state.shop.public = newVal ? newVal.public : false
+      state.shop.address = newVal ? newVal.address : '栃木県宇都宮市'
+      state.shop.buildingName = newVal ? newVal.buildingName : undefined
+      state.shop.postal = newVal ? newVal.postal : '321-'
+      state.shop.tel = newVal ? newVal.tel : '028-'
     })
 
     const onSubmit = () => context.emit('submit', state.shop)

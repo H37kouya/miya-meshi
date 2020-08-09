@@ -13,6 +13,10 @@ export type ShopFormState = {
     uberEatsLink: Shop['uberEatsLink'],
     youtubeLink: Shop['youtubeLink'],
     priority: Shop['priority'],
-    public: Shop['public']
+    public: Shop['public'],
+    tel: Shop['tel'],
+    address: Shop['address'],
+    buildingName: Shop['buildingName'],
+    postal: Shop['postal']
   }
 }

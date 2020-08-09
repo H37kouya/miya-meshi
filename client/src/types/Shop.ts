@@ -5,7 +5,7 @@ export type Shop = {
   name?: string,
   description?: string,
   intro?: string,
-  postal?: string,
+  postal?: string|number,
   address?: string,
   buildingName?: string,
   tel?: string|number,
@@ -29,6 +29,7 @@ type ShopType = 'shop'
 
 export const SHOP_TYPE = 'shop'
 
+// ShopJa Shopの日本語名
 export enum ShopJa {
   ID = 'SHOP ID',
   NAME = '店名',
@@ -45,4 +46,17 @@ export enum ShopJa {
   YOUTUBE_LINK = 'YouTube',
   PRIORITY = '優先度',
   PUBLIC = '公開設定',
+  ADDRESS = '住所',
+  BUILDING_NAME = '建物名',
+  TEL = '電話番号',
+  POSTAL = '郵便番号'
+}
+
+// ShopMaxStringSize Shop型のstringの最大文字数
+export enum ShopMaxStringSize {
+  NAME = 50,
+  DESCRIPTION = 30,
+  INTRO = 1000,
+  ADDRESS = 100,
+  BUILDING_NAME = 255,
 }
