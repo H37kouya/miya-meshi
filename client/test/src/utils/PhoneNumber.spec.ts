@@ -15,8 +15,8 @@ describe('src/utils/PhoneNumber', () => {
       { message: '電話番号である', arg: '07640-00----0----00', expected: true },
       { message: '電話番号でない(市外局番のみ)', arg: '076', expected: false },
       { message: '電話番号でない', arg: '1234-56-7890', expected: false },
-      { message: '電話番号でない', arg: 'aaaa', expected: false },
-      { message: '電話番号でない', arg: 'あああ', expected: false },
+      { message: '電話番号でない', arg: 'a', expected: false },
+      { message: '電話番号でない', arg: 'あああ', expected: false }
     ] as testType[]
 
     testCases.forEach((testCase) => {
@@ -39,7 +39,7 @@ describe('src/utils/PhoneNumber', () => {
       { message: 'フォーマットできる', arg: '07640-00----0----00', expected: '076-400-0000' as PhoneNumber },
       { message: 'フォーマットできない(市外局番のみ)', arg: '076', expected: undefined },
       { message: 'フォーマットできない', arg: '1234-56-7890', expected: undefined },
-      { message: 'フォーマットできない', arg: 'aaaa', expected: undefined },
+      { message: 'フォーマットできない', arg: 'a', expected: undefined },
       { message: 'フォーマットできない', arg: 'あああ', expected: undefined }
     ] as testType[]
 
@@ -58,18 +58,18 @@ describe('src/utils/PhoneNumber', () => {
     }
 
     const testCases = [
-      { message: 'PhoneNumber型である', arg: '076-400-0000'  , expected: true },
+      { message: 'PhoneNumber型である', arg: '076-400-0000', expected: true },
       { message: 'PhoneNumber型でない', arg: '0764-00-0000' as PhoneNumber, expected: true },
       { message: 'PhoneNumber型でない', arg: '07640-00----0----00' as PhoneNumber, expected: true },
       { message: 'PhoneNumber型でない', arg: '076', expected: false },
       { message: 'PhoneNumber型でない', arg: '1234-56-7890', expected: false },
-      { message: 'PhoneNumber型でない', arg: 'aaaa', expected: false },
+      { message: 'PhoneNumber型でない', arg: 'a', expected: false },
       { message: 'PhoneNumber型でない', arg: 'あああ', expected: false },
       { message: 'PhoneNumber型でない', arg: 1234, expected: false },
       { message: 'PhoneNumber型でない', arg: true, expected: false },
       { message: 'PhoneNumber型でない', arg: [], expected: false },
       { message: 'PhoneNumber型でない', arg: {}, expected: false },
-      { message: 'PhoneNumber型でない', arg: { tel: '076-400-0000' as PhoneNumber }, expected: false },
+      { message: 'PhoneNumber型でない', arg: { tel: '076-400-0000' as PhoneNumber }, expected: false }
     ] as testType[]
 
     testCases.forEach((testCase) => {
