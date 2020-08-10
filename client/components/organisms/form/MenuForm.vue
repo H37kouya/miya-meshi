@@ -16,9 +16,12 @@
       </v-col>
     </v-row>
 
-    <p>テイクアウト可能かどうか</p>
     <v-row>
-      <v-col cols="4">
+      <v-col cols="12" md="4" class="d-flex flex-row">
+        <span class="pt-1 pr-2">
+          テイクアウト可能かどうか
+        </span>
+
         <v-switch
           v-model="state.menu.canTakeOut"
           :label="state.menu.canTakeOut ? '可能' : '不可能'"

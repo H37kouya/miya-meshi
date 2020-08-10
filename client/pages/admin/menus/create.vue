@@ -1,12 +1,18 @@
 <template>
   <v-container>
     <v-row class="mb-4" justify="space-between">
-      <AdminMainText>
-        新規メニュー追加
-      </AdminMainText>
+      <div>
+        <AdminMainText>
+          新規メニュー追加
+        </AdminMainText>
 
-      <v-btn to="/admin/shops">
-        Go To Shop List
+        <AdminMainText class="mt-2" :level="2">
+          {{ state.shop.name }}
+        </AdminMainText>
+      </div>
+
+      <v-btn :to="`/admin/shops/${state.shop.id}`">
+        店舗へ戻る
       </v-btn>
     </v-row>
 
@@ -21,10 +27,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
+import { Shop, SHOP_TYPE } from '@/src/types/Shop'
+
+const getShop = async (context: SetupContext, id: string) => {
+  return await context.root.$fireStore.collection('shops').doc(id).get()
+}
+
+const firestoreDocDataToShop = (
+  doc: firebase.firestore.QueryDocumentSnapshot|firebase.firestore.DocumentSnapshot
+) => {
+  const docData = doc.data()
+
+  return {
+    type: SHOP_TYPE,
+    id: doc.id,
+    ...docData
+  } as Shop
+}
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -32,8 +55,21 @@ export default defineComponent({
   layout: 'auth',
 
   setup (_: unknown, context: SetupContext) {
+    const state = reactive({
+      shop: {} as Shop
+    })
+
+    const shopID = context.root.$route.query.shopid as string|null
+
+    if (!shopID || shopID === 'undefined') {
+      return context.root.$nuxt.error({
+        statusCode: 404
+      })
+    }
+
     const createMenu = async (menus: MenuFormState['menu']) => {
       const addData = {
+        shopID,
         ...removeUndefinedFromObject(menus),
         createdAt: context.root.$fireStoreObj.FieldValue.serverTimestamp(),
         updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
@@ -44,7 +80,13 @@ export default defineComponent({
       return await context.root.$router.push('/admin/shops')
     }
 
+    onMounted(async () => {
+      const shopDoc = await getShop(context, shopID)
+      state.shop = firestoreDocDataToShop(shopDoc)
+    })
+
     return {
+      state,
       createMenu
     }
   },
