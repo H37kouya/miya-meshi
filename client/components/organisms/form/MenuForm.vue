@@ -104,7 +104,6 @@ export default defineComponent({
     })
 
     watch(() => props.menu, (newVal, _) => {
-      console.log(newVal)
       state.menu.name = newVal ? newVal.name : undefined
       state.menu.description = newVal ? newVal.description : undefined
       state.menu.intro = newVal ? newVal.intro : undefined

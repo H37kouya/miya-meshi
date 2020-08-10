@@ -49,15 +49,11 @@ export default defineComponent({
       id: computed(() => context.root.$route.params.id)
     })
 
-    const createMenu = async (menus: MenuFormState['menu']) => {
-      const addData = {
-        shopID: state.menu.shopID,
-        ...removeUndefinedFromObject(menus),
-        createdAt: context.root.$fireStoreObj.FieldValue.serverTimestamp(),
+    const createMenu = async (menu: MenuFormState['menu']) => {
+      await context.root.$fireStore.collection('menus').doc(state.menu.id).update({
+        ...removeUndefinedFromObject(menu),
         updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
-      } as firebase.firestore.DocumentData
-
-      await context.root.$fireStore.collection('menus').add(addData)
+      })
 
       return await context.root.$router.push('/admin/shops')
     }
