@@ -21,6 +21,28 @@ export const getMenuList = async (
 }
 
 /**
+ * ShopIDによって、Menu一覧を取得
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { string } shopID
+ */
+export const getMenuListByShopID = async (
+  $fireStore: firebase.firestore.Firestore,
+  shopID: string
+) => {
+  const list = await $fireStore
+    .collection(MENU_COLLECTION_NAME)
+    .where('shopID', '==', shopID)
+    .get()
+
+  const menus = [] as Menu[]
+  list.forEach((doc) => {
+    menus.push(firestoreDocDataToMenu(doc))
+  })
+  return menus
+}
+
+/**
  * Menuの取得
  *
  * @param { firebase.firestore.Firestore } $fireStore

@@ -81,7 +81,7 @@ type Props = {
 
 export default defineComponent({
   props: {
-    shop: {
+    menu: {
       default: undefined,
       validator (v) {
         return isMenu(v)
@@ -104,7 +104,15 @@ export default defineComponent({
     })
 
     watch(() => props.menu, (newVal, _) => {
+      console.log(newVal)
       state.menu.name = newVal ? newVal.name : undefined
+      state.menu.description = newVal ? newVal.description : undefined
+      state.menu.intro = newVal ? newVal.intro : undefined
+      state.menu.image = newVal ? newVal.image : undefined
+      state.menu.public = newVal ? newVal.public : true
+      state.menu.price = newVal ? newVal.price : 0
+      state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : false
+      state.menu.canTakeOut = newVal ? newVal.canTakeOut : false
     })
 
     const onSubmit = () => context.emit('submit', state.menu)
