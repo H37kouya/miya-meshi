@@ -14,6 +14,7 @@
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
+import { MenuFormState } from '@/src/types/MenuFormState'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -21,7 +22,7 @@ export default defineComponent({
   layout: 'auth',
 
   setup (_: unknown, context: SetupContext) {
-    const createMenu = async (menus: any) => {
+    const createMenu = async (menus: MenuFormState['menu']) => {
       const addData = {
         ...removeUndefinedFromObject(menus),
         createdAt: context.root.$fireStoreObj.FieldValue.serverTimestamp(),
