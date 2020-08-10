@@ -99,14 +99,14 @@ const nuxtConfig: Configuration = {
   },
   styleResources: {
     // your settings here
-    scss: ['~/assets/variables.scss']
+    scss: ['~/assets/scss/variables.scss']
   },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss/variables.scss'],
     theme: {
       dark: false,
       themes: {
