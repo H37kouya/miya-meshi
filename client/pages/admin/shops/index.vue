@@ -53,21 +53,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted } from '@vue/composition-api'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 import { MetaInfo } from 'vue-meta'
-
-const getShopList = async (context: SetupContext) => {
-  return await context.root.$fireStore.collection('shops').get()
-}
-
-const firestoreDocDataToShop = (doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>) => {
-  const docData = doc.data()
-  return {
-    type: SHOP_TYPE,
-    id: doc.id,
-    ...docData
-  } as Shop
-}
+import { Shop } from '@/src/types/Shop'
+import { getShopList } from '@/src/infra/firestore/Shop'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -80,10 +68,7 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const shopList = await getShopList(context)
-      shopList.forEach((shopDoc) => {
-        state.shops.push(firestoreDocDataToShop(shopDoc))
-      })
+      state.shops = await getShopList(context.root.$fireStore)
     })
 
     return {

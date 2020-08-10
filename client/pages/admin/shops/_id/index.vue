@@ -48,43 +48,10 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { Menu, MENU_TYPE } from '@/src/types/Menu'
-
-const getShop = async (context: SetupContext, id: string) => {
-  return await context.root.$fireStore.collection('shops').doc(id).get()
-}
-
-const getMenu = async (context: SetupContext, id: string) => {
-  const { docs } = await context.root.$fireStore.collection('menus').where('shopID', '==', id).get()
-  return docs
-}
-
-const firestoreDocDataToShop = (
-  doc: firebase.firestore.QueryDocumentSnapshot|firebase.firestore.DocumentSnapshot
-) => {
-  const docData = doc.data()
-
-  return {
-    type: SHOP_TYPE,
-    id: doc.id,
-    ...docData
-  } as Shop
-}
-
-const firestoreDocDataToMenus = (
-  docs: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>[]
-) => {
-  return docs.map((doc) => {
-    const docData = doc.data()
-
-    return {
-      type: MENU_TYPE,
-      id: doc.id,
-      ...docData
-    } as Menu
-  })
-}
+import { Shop } from '@/src/types/Shop'
+import { Menu } from '@/src/types/Menu'
+import { getShopByID } from '@/src/infra/firestore/Shop'
+import { getMenuList } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -99,11 +66,8 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const shopDoc = await getShop(context, state.id)
-      state.shop = firestoreDocDataToShop(shopDoc)
-
-      const menuDoc = await getMenu(context, state.id)
-      state.menus = firestoreDocDataToMenus(menuDoc)
+      state.shop = await getShopByID(context.root.$fireStore, state.id)
+      state.menus = await getMenuList(context.root.$fireStore)
     })
 
     return {
