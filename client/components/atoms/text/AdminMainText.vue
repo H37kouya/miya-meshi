@@ -20,7 +20,7 @@ export default defineComponent({
       type: Number,
       default: 1,
       validator (v?: number) {
-        return [1, 2, 3, 4, 5, 6].includes(v)
+        return v ? [1, 2, 3, 4, 5, 6].includes(v) : false
       }
     }
   }
