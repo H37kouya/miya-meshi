@@ -10,12 +10,12 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop, ShopJa } from '@/src/types/Shop'
+import { Menu, MenuJa, MenuMaxStringSize } from '@/src/types/Menu'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value: Shop['description']
+  value: Menu['intro']
 }
 
 export default defineComponent({
@@ -28,11 +28,11 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = ShopJa.DESCRIPTION
-    const MAX_LENGTH = 1000
+    const label = MenuJa.INTRO
+    const MAX_LENGTH = MenuMaxStringSize.INTRO
 
     const counter = computed(() => {
-      const uCounter = useCounter(model.value, MAX_LENGTH, 0.9)
+      const uCounter = useCounter(model.value, MAX_LENGTH, 0.8)
       return uCounter.counter
     })
 

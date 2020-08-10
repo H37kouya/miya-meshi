@@ -22,7 +22,7 @@ export const MENU_TYPE = 'menu' as MenuType
 
 export enum MenuJa {
   NAME = 'メニュー名',
-  DESCRITPION = '一言紹介',
+  DESCRIPTION = '一言紹介',
   INTRO = 'メニュー紹介',
   PRICE = '値段',
   IS_TAX_INCLUDED = '税込みかどうか',

@@ -4,9 +4,19 @@
       <AdminMainText>
         新規メニュー追加
       </AdminMainText>
+
+      <v-btn to="/admin/shops">
+        Go To Shop List
+      </v-btn>
     </v-row>
 
-    <v-row />
+    <v-row>
+      <v-col cols="12">
+        <MenuForm
+          @submit="createMenu"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
