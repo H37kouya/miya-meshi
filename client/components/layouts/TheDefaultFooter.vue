@@ -4,6 +4,10 @@
     absolute
     class="d-block pa-0"
   >
+    <div>
+      <SearchField />
+    </div>
+
     <div class="miya-meshi-container border-grey-top">
       <FooterMiyaMeshiField />
     </div>
