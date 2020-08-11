@@ -1,3 +1,12 @@
 .text-decoration-none {
   text-decoration: none;
 }
+
+.u-black--text {
+  color: $u-black !important;
+  caret-color: $u-black !important;
+}
+
+.max-width-350 {
+  max-width: 350px;
+}
