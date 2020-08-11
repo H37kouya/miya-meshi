@@ -4,6 +4,12 @@
     absolute
     class="d-block pa-0"
   >
+    <div class="recruitment d-flex align-center justify-center">
+      <a href="" class="white--text text-decoration-none">
+        このサイトに掲載希望の飲食店さんはこちら！
+      </a>
+    </div>
+
     <div>
       <SearchField />
     </div>
@@ -37,5 +43,12 @@
   background-color: #333;
   color: #fff;
   padding: 0 0.5rem;
+}
+
+.recruitment {
+  background-color: grey;
+  text-align: center;
+  height: 90px;
+  font-size: 1rem;
 }
 </style>
