@@ -1,21 +1,22 @@
 <template>
-  <v-textarea
+  <v-text-field
     v-model="model"
     :counter="counter"
     :label="label"
     :maxlength="maxLength"
     outlined
+    required
   />
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop, ShopJa } from '@/src/types/Shop'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
+import { Menu, MenuJa, MenuMaxStringSize } from '@/src/types/Menu'
 
 type Props = {
-  value: Shop['description']
+  value: Menu['name']
 }
 
 export default defineComponent({
@@ -28,11 +29,11 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = ShopJa.DESCRIPTION
-    const MAX_LENGTH = 1000
+    const label = MenuJa.NAME
+    const MAX_LENGTH = MenuMaxStringSize.NAME
 
     const counter = computed(() => {
-      const uCounter = useCounter(model.value, MAX_LENGTH, 0.9)
+      const uCounter = useCounter(model.value, MAX_LENGTH, 0.8)
       return uCounter.counter
     })
 

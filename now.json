@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "./client/nuxt.config.ts",
+      "use": "@nuxtjs/now-builder"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ export type Menu = {
   intro?: string,
   image?: string,
   price?: number,
+  public: boolean,
   isTaxIncluded?: boolean,
   canTakeOut?: boolean,
   createdAt?: Date|Object,
@@ -15,13 +16,13 @@ export type Menu = {
   deletedAt?: Date|Object
 }
 
-type MenuType = 'shop'
+type MenuType = 'menu'
 
-export const MENU_TYPE = 'shop' as MenuType
+export const MENU_TYPE = 'menu' as MenuType
 
 export enum MenuJa {
   NAME = 'メニュー名',
-  DESCRITPION = '一言紹介',
+  DESCRIPTION = '一言紹介',
   INTRO = 'メニュー紹介',
   PRICE = '値段',
   IS_TAX_INCLUDED = '税込みかどうか',

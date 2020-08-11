@@ -23,24 +23,9 @@
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
+import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { getShopByID } from '@/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
-import { removeUndefinedFromObject } from '~/src/utils/Object'
-
-const getShop = async (context: SetupContext, id: string) => {
-  return await context.root.$fireStore.collection('shops').doc(id).get()
-}
-
-const firestoreDocDataToShop = (
-  doc: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>|firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>
-) => {
-  const docData = doc.data()
-
-  return {
-    type: SHOP_TYPE,
-    id: doc.id,
-    ...docData
-  } as Shop
-}
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -51,10 +36,7 @@ export default defineComponent({
     const state = reactive({
       shop: { type: SHOP_TYPE } as Shop
     })
-    const fetchShop = async () => {
-      const shopDoc = await getShop(context, context.root.$route.params.id)
-      return firestoreDocDataToShop(shopDoc)
-    }
+
     const editShop = async (shop: ShopFormState['shop']) => {
       await context.root.$fireStore.collection('shops').doc(state.shop.id).update({
         ...removeUndefinedFromObject(shop),
@@ -65,7 +47,7 @@ export default defineComponent({
     }
 
     onMounted(async () => {
-      state.shop = await fetchShop()
+      state.shop = await getShopByID(context.root.$fireStore, context.root.$route.params.id)
     })
 
     return {

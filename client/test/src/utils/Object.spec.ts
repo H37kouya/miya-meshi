@@ -16,6 +16,8 @@ describe('utils/Object', () => {
       e: { e1: undefined, e2: 1 }
     }
 
-    expect(removeUndefinedFromObject(arg)).toEqual(expected)
+    it('undefinedのキーが削除されているか', () => {
+      expect(removeUndefinedFromObject(arg)).toEqual(expected)
+    })
   })
 })

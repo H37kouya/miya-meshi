@@ -1,22 +1,35 @@
 <template>
   <v-container>
-    <v-btn to="/admin/shops">
-      Go To Shop List
-    </v-btn>
-
-    <v-btn :to="`/admin/shops/${id}/edit`">
-      Edit Shop
-    </v-btn>
-
-    <div>
-      {{ state.shop.id }}
-      {{ state.shop.name }}
-    </div>
+    <v-row>
+      <AdminMainText>
+        {{ state.shop.name }}
+      </AdminMainText>
+    </v-row>
 
     <v-row justify="center" class="mt-4">
       <v-col cols="6" md="3">
         <CardButton
-          to="/"
+          to="/admin/shops"
+          color="purple lighten-4"
+          text="店舗一覧"
+          text-color="grey"
+          icon="mdi-home"
+        />
+      </v-col>
+
+      <v-col cols="6" md="3">
+        <CardButton
+          :to="`/admin/shops/${state.id}/edit`"
+          color="orange lighten-4"
+          text="店舗編集"
+          text-color="grey"
+          icon="mdi-home"
+        />
+      </v-col>
+
+      <v-col cols="6" md="3">
+        <CardButton
+          :to="`/admin/menus/create/?shopid=${state.id}`"
           color="green lighten-4"
           text="メニュー追加"
           text-color="grey"
@@ -24,28 +37,21 @@
         />
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <MenuListCard :menus="state.menus" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-
-const getShop = async (context: SetupContext, id: string) => {
-  return await context.root.$fireStore.collection('shops').doc(id).get()
-}
-
-const firestoreDocDataToShop = (
-  doc: firebase.firestore.QueryDocumentSnapshot|firebase.firestore.DocumentSnapshot
-) => {
-  const docData = doc.data()
-
-  return {
-    type: SHOP_TYPE,
-    id: doc.id,
-    ...docData
-  } as Shop
-}
+import { Shop } from '@/src/types/Shop'
+import { Menu } from '@/src/types/Menu'
+import { getShopByID } from '@/src/infra/firestore/Shop'
+import { getMenuList } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -54,18 +60,17 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
-      shop: {} as Shop
+      shop: {} as Shop,
+      menus: [] as Menu[],
+      id: computed(() => context.root.$route.params.id)
     })
 
     onMounted(async () => {
-      const shopDoc = await getShop(context, context.root.$route.params.id)
-      state.shop = firestoreDocDataToShop(shopDoc)
+      state.shop = await getShopByID(context.root.$fireStore, state.id)
+      state.menus = await getMenuList(context.root.$fireStore)
     })
 
-    const id = computed(() => context.root.$route.params.id)
-
     return {
-      id,
       state
     }
   }

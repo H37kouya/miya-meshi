@@ -1,13 +1,19 @@
 <template>
-  <v-app-bar
-    app
-    clipped-left
-    fixed
-  >
-    <nuxt-link to="/" class="black--text text-decoration-none">
-      <v-toolbar-title v-text="getTitle" />
-    </nuxt-link>
-  </v-app-bar>
+  <header>
+    <div style="width: 100%;" class="pos-relative">
+      <div class="top-image" />
+
+      <div class="news" />
+
+      <div class="text-right pt-4 px-4">
+        <small>運営: みやメシ応援隊 開発: U-lab</small>
+      </div>
+    </div>
+
+    <div>
+      <SearchField />
+    </div>
+  </header>
 </template>
 
 <script>
@@ -33,3 +39,21 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.top-image {
+  background-color: grey;
+  width: 100%;
+  height: 160px;
+}
+
+.news {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: darkgray;
+  width: 160px;
+  height: 120px;
+}
+</style>

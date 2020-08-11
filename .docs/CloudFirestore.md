@@ -47,6 +47,7 @@
 | intro           | `String`        |                    |
 | image           | `String`        | set Link           |
 | price           | `Number`        | 値段               |
+| public          | `Boolean`       | 公開設定            |
 | isTaxOIncluded  | `Boolean`       | 税込みかどうか      |
 | canTakeOut      | `Boolean`       | テイクアウト可能か  |
 | createdAt       | `DateTime`      | 作成日時           |

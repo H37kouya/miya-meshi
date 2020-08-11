@@ -8,13 +8,13 @@ describe('CompositionFunctions/utils/UseCounter', () => {
       maxLength?: number,
       magnification?: number
     },
-    expected: number|boolean
+    expected?: number
   }
 
   describe('デフォルト値の時', () => {
     const testCases = [
-      { message: '0のとき、falseが返ってくる', arg: { str: '' }, expected: false },
-      { message: '0のとき、falseが返ってくる', arg: { str: undefined }, expected: false }
+      { message: '0のとき、undefinedが返ってくる', arg: { str: '' }, expected: undefined },
+      { message: '0のとき、undefinedが返ってくる', arg: { str: undefined }, expected: undefined }
     ] as testType[]
 
     testCases.forEach((testCase) => {
@@ -28,10 +28,10 @@ describe('CompositionFunctions/utils/UseCounter', () => {
   describe('maxが50文字で倍率が0.8のとき', () => {
     const MAX = 50
     const testCases = [
-      { message: '0のとき、falseが返ってくる', arg: { str: '' }, expected: false },
-      { message: '0のとき、falseが返ってくる', arg: { str: undefined }, expected: false },
-      { message: '1文字の時、falseである', arg: { str: 'a' }, expected: false },
-      { message: '40文字の時、falseである', arg: { str: 'a'.repeat(40) }, expected: false },
+      { message: '0のとき、undefinedが返ってくる', arg: { str: '' }, expected: undefined },
+      { message: '0のとき、undefinedが返ってくる', arg: { str: undefined }, expected: undefined },
+      { message: '1文字の時、undefinedである', arg: { str: 'a' }, expected: undefined },
+      { message: '40文字の時、undefinedである', arg: { str: 'a'.repeat(40) }, expected: undefined },
       { message: '41文字の時、trueである', arg: { str: 'a'.repeat(41) }, expected: MAX },
       { message: '50文字の時、trueである', arg: { str: 'a'.repeat(MAX) }, expected: MAX }
     ] as testType[]
@@ -48,24 +48,24 @@ describe('CompositionFunctions/utils/UseCounter', () => {
     const MAX = 100
     const testCases = [
       {
-        message: '0のとき、falseが返ってくる',
+        message: '0のとき、undefinedが返ってくる',
         arg: { str: '' },
-        expected: false
+        expected: undefined
       },
       {
-        message: '0のとき、falseが返ってくる',
+        message: '0のとき、undefinedが返ってくる',
         arg: { str: undefined },
-        expected: false
+        expected: undefined
       },
       {
-        message: '1文字の時、falseである',
+        message: '1文字の時、undefinedである',
         arg: { str: 'a' },
-        expected: false
+        expected: undefined
       },
       {
-        message: '50文字の時、falseである',
+        message: '50文字の時、undefinedである',
         arg: { str: 'a'.repeat(50) },
-        expected: false
+        expected: undefined
       },
       {
         message: '51文字の時、falseである',

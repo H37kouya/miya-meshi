@@ -1,7 +1,7 @@
 <template>
   <component
     :is="`h${level}`"
-    class="admin-main-text"
+    class="default-main-text u-black--text text-center"
   >
     <slot />
   </component>
@@ -28,14 +28,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.admin-main-text {
-  color: $admin-text-color;
-  border-bottom: 0.1rem solid $admin-text-color;
-  line-height: 1.2;
-
-  &::after {
-    content: '';
-    padding-right: 2rem;
-  }
+.default-main-text {
+  font-size: 1.25rem;
+  font-weight: bolder;
+  padding: 0.5rem;
 }
 </style>

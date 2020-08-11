@@ -30,14 +30,14 @@
       </v-col>
 
       <v-col cols="12">
-        <ShopIntroTextField
-          v-model="state.shop.intro"
+        <ShopDescriptionTextField
+          v-model="state.shop.description"
         />
       </v-col>
 
       <v-col cols="12">
-        <ShopDescriptionTextArea
-          v-model="state.shop.description"
+        <ShopIntroTextarea
+          v-model="state.shop.intro"
         />
       </v-col>
     </v-row>

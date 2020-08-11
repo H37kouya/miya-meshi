@@ -1,3 +1,20 @@
 .text-decoration-none {
   text-decoration: none;
 }
+
+.u-black--text {
+  color: $u-black !important;
+  caret-color: $u-black !important;
+}
+
+.u-grey-background {
+  background-color: #797979;
+}
+
+.max-width-350 {
+  max-width: 350px;
+}
+
+.pos-relative {
+  position: relative;
+}

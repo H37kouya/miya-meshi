@@ -1,7 +1,6 @@
 <template>
   <v-text-field
     v-model="model"
-    :counter="counter"
     label="郵便番号"
     :maxlength="maxLength"
     outlined
@@ -9,10 +8,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { Shop, ShopJa } from '@/src/types/Shop'
-import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
   value?: Shop['postal']
@@ -31,13 +29,7 @@ export default defineComponent({
     const label = ShopJa.POSTAL
     const MAX_LENGTH = 8
 
-    const counter = computed(() => {
-      const uCounter = useCounter(model.value, MAX_LENGTH, 0.8)
-      return uCounter.counter
-    })
-
     return {
-      counter,
       label,
       maxLength: MAX_LENGTH,
       model
