@@ -5,6 +5,7 @@ export type ShopFormState = {
     name: Shop['name'],
     description: Shop['description'],
     intro: Shop['intro'],
+    imageLink: Shop['imageLink'],
     facebookLink: Shop['facebookLink'],
     homepageLink: Shop['homepageLink'],
     instaLink: Shop['instaLink'],
