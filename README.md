@@ -4,7 +4,11 @@
 
 ## Environment
 
-> Nuxt.js (on comopsition api) / TypeScript /FireBase
+> Nuxt.js (on comopsition api) / TypeScript / FireBase
+
+## テスト環境
+
+[テスト用サイト](https://miya-meshi.netlify.app/)
 
 ## Docs
 
