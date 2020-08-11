@@ -17,6 +17,16 @@
     <DefaultMainText>
       新着情報
     </DefaultMainText>
+
+    <v-container>
+      <v-row>
+        <template v-for="(news, key) in newsList">
+          <v-col :key="`news${key}`" cols="12" md="6">
+            <NewsField v-bind="news" />
+          </v-col>
+        </template>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -48,8 +58,32 @@ export default defineComponent({
       ]
     })
 
+    const newsList = computed(() => {
+      return [
+        {
+          href: 'https://github.com/H37kouya/miya-meshi',
+          src: '/sample_news.jpg',
+          text: '宇都宮にはたくさんテイクアウトすることができるお店があります。今回はその中でも、特にあまり知られていない知る人ぞ知る隠れ家店を紹介していきたいと思います。',
+          hashtag: [
+            '隠れ家',
+            'テイクアウト'
+          ]
+        },
+        {
+          href: 'https://github.com/H37kouya/miya-meshi',
+          src: '/sample_news.jpg',
+          text: 'カフェや喫茶店は、テイクアウトという形式を取りづらく日々厳しい状況に追い込まれています。そんな中でも必死に、カフェ&デザートという形でテイクアウトを始めたお店を紹介します。',
+          hashtag: [
+            '隠れ家',
+            'テイクアウト'
+          ]
+        }
+      ]
+    })
+
     return {
-      list
+      list,
+      newsList
     }
   }
 })
