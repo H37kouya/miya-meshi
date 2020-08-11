@@ -13,6 +13,10 @@
         </template>
       </v-row>
     </v-container>
+
+    <div>
+      <SearchButtonGroup />
+    </div>
   </div>
 </template>
 
