@@ -134,6 +134,16 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col>
+        <UploadImageFile
+          :path="`/shops/${uuid}`"
+          :past-image-link="state.shop.imageLink"
+          @input="(v) => state.shop.imageLink = v"
+        />
+      </v-col>
+    </v-row>
+
     <v-btn type="submit" color="primary">
       追加
     </v-btn>
@@ -142,9 +152,10 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Shop, ShopJa } from '@/src/types/Shop'
+import { Shop, ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
+import { createUUID } from '@/src/utils/String'
 
 type Props = {
   shop?: Shop
@@ -166,6 +177,7 @@ export default defineComponent({
         name: undefined,
         description: undefined,
         intro: undefined,
+        imageLink: DEFAULT_IMAGE,
         facebookLink: undefined,
         homepageLink: undefined,
         instaLink: undefined,
@@ -182,23 +194,26 @@ export default defineComponent({
       }
     })
 
+    const uuid = createUUID()
+
     watch(() => props.shop, (newVal, _) => {
-      state.shop.name = newVal ? newVal.name : undefined
-      state.shop.description = newVal ? newVal.description : undefined
-      state.shop.intro = newVal ? newVal.intro : undefined
-      state.shop.facebookLink = newVal ? newVal.facebookLink : undefined
-      state.shop.homepageLink = newVal ? newVal.homepageLink : undefined
-      state.shop.instaLink = newVal ? newVal.instaLink : undefined
-      state.shop.lineLink = newVal ? newVal.lineLink : undefined
-      state.shop.twitterLink = newVal ? newVal.twitterLink : undefined
-      state.shop.uberEatsLink = newVal ? newVal.uberEatsLink : undefined
-      state.shop.youtubeLink = newVal ? newVal.youtubeLink : undefined
-      state.shop.priority = newVal ? newVal.priority : 1
-      state.shop.public = newVal ? newVal.public : false
-      state.shop.address = newVal ? newVal.address : '栃木県宇都宮市'
-      state.shop.buildingName = newVal ? newVal.buildingName : undefined
-      state.shop.postal = newVal ? newVal.postal : '321-'
-      state.shop.tel = newVal ? newVal.tel : '028-'
+      state.shop.name = newVal ? newVal.name : state.shop.name
+      state.shop.description = newVal ? newVal.description : state.shop.description
+      state.shop.intro = newVal ? newVal.intro : state.shop.intro
+      state.shop.imageLink = newVal ? newVal.imageLink : state.shop.imageLink
+      state.shop.facebookLink = newVal ? newVal.facebookLink : state.shop.facebookLink
+      state.shop.homepageLink = newVal ? newVal.homepageLink : state.shop.homepageLink
+      state.shop.instaLink = newVal ? newVal.instaLink : state.shop.instaLink
+      state.shop.lineLink = newVal ? newVal.lineLink : state.shop.lineLink
+      state.shop.twitterLink = newVal ? newVal.twitterLink : state.shop.twitterLink
+      state.shop.uberEatsLink = newVal ? newVal.uberEatsLink : state.shop.uberEatsLink
+      state.shop.youtubeLink = newVal ? newVal.youtubeLink : state.shop.youtubeLink
+      state.shop.priority = newVal ? newVal.priority : state.shop.priority
+      state.shop.public = newVal ? newVal.public : state.shop.public
+      state.shop.address = newVal ? newVal.address : state.shop.address
+      state.shop.buildingName = newVal ? newVal.buildingName : state.shop.buildingName
+      state.shop.postal = newVal ? newVal.postal : state.shop.postal
+      state.shop.tel = newVal ? newVal.tel : state.shop.tel
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
@@ -206,6 +221,7 @@ export default defineComponent({
     return {
       state,
       ShopJa,
+      uuid,
       onSubmit
     }
   }

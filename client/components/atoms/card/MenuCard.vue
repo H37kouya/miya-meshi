@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
     <v-card v-bind="$attrs">
       <v-img :alt="alt" :src="src" />
     </v-card>
@@ -10,7 +10,7 @@
     <p class="price red--text mb-0">
       {{ priceDisplay }} 円 ({{ isTaxIncluded ? '税込' : '税抜' }})
     </p>
-  </div>
+  </component>
 </template>
 
 <script lang="ts">
@@ -21,6 +21,7 @@ type Props = {
   name: string,
   price: number,
   src: string,
+  to: string,
   isTaxIncluded: boolean
 }
 
@@ -39,6 +40,11 @@ export default defineComponent({
     price: {
       type: Number,
       default: 0
+    },
+
+    to: {
+      type: [String, Object],
+      default: undefined
     },
 
     src: {
@@ -65,6 +71,7 @@ export default defineComponent({
 <style lang="scss">
 .menu-name {
   font-size: 0.9rem;
+  word-break: break-all;
 }
 
 .price {

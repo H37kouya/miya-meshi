@@ -29,6 +29,8 @@ type ShopType = 'shop'
 
 export const SHOP_TYPE = 'shop'
 
+export const DEFAULT_IMAGE = '/no-image.png'
+
 // ShopJa Shopの日本語名
 export enum ShopJa {
   ID = 'SHOP ID',
