@@ -3,23 +3,23 @@
     <template v-slot:activator="{ on }">
       <v-btn color="primary" class="ma-5" large v-on="on">
         <v-icon>fas fa-image</v-icon>
-        サムネイルの設定
+        {{ label }}の設定
       </v-btn>
     </template>
     <v-card>
-      <v-card-title>サムネイルの設定</v-card-title>
+      <v-card-title>{{ label }}の設定</v-card-title>
       <v-divider />
       <v-progress-linear
         v-model="state.fileLoading"
         stream
       />
       <v-card-text style="height: 400px;">
-        <v-card-subtitle>現在のサムネイル</v-card-subtitle>
+        <v-card-subtitle>現在の{{ label }}</v-card-subtitle>
         <v-row>
           <v-col cols="4">
             <v-img
               :src="state.thumbnail"
-              alr="サムネイル"
+              :alr="label"
               width="200"
               height="200"
             />
@@ -37,12 +37,18 @@
 import { defineComponent, onMounted, reactive, SetupContext, watch } from '@vue/composition-api'
 
 type Props = {
+  label: string,
   path: string,
   pastImageLink: string
 }
 
 export default defineComponent({
   props: {
+    label: {
+      type: String,
+      default: 'サムネイル'
+    },
+
     path: {
       type: String,
       required: true

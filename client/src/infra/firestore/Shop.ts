@@ -7,11 +7,13 @@ const SHOP_COLLECTION_NAME = 'shops'
  * Shop一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
+ * @param { Number } limit
  */
 export const getShopList = async (
-  $fireStore: firebase.firestore.Firestore
+  $fireStore: firebase.firestore.Firestore,
+  limit: number = 12
 ) => {
-  const list = await $fireStore.collection(SHOP_COLLECTION_NAME).get()
+  const list = await $fireStore.collection(SHOP_COLLECTION_NAME).limit(limit).get()
 
   const shops = [] as Shop[]
   list.forEach((doc) => {

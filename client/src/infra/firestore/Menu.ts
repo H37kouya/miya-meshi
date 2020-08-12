@@ -7,11 +7,13 @@ const MENU_COLLECTION_NAME = 'menus'
  * Menu一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
+ * @param { Number } limit
  */
 export const getMenuList = async (
-  $fireStore: firebase.firestore.Firestore
+  $fireStore: firebase.firestore.Firestore,
+  limit: number = 12
 ) => {
-  const list = await $fireStore.collection(MENU_COLLECTION_NAME).get()
+  const list = await $fireStore.collection(MENU_COLLECTION_NAME).limit(limit).get()
 
   const menus = [] as Menu[]
   list.forEach((doc) => {
@@ -25,14 +27,17 @@ export const getMenuList = async (
  *
  * @param { firebase.firestore.Firestore } $fireStore
  * @param { string } shopID
+ * @param { Number } limit
  */
 export const getMenuListByShopID = async (
   $fireStore: firebase.firestore.Firestore,
-  shopID: string
+  shopID: string,
+  limit: number = 12
 ) => {
   const list = await $fireStore
     .collection(MENU_COLLECTION_NAME)
     .where('shopID', '==', shopID)
+    .limit(limit)
     .get()
 
   const menus = [] as Menu[]

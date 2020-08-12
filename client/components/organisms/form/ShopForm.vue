@@ -137,9 +137,20 @@
     <v-row>
       <v-col>
         <UploadImageFile
-          :path="`/shops/${uuid}`"
+          :path="`/shops/${uuid.image}`"
           :past-image-link="state.shop.imageLink"
           @input="(v) => state.shop.imageLink = v"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <UploadImageFile
+          :path="`/shops/${uuid.menuImage}`"
+          :past-image-link="state.shop.menuImageLink[0]"
+          label="メニュー画像"
+          @input="(v) => state.shop.menuImageLink[0] = v"
         />
       </v-col>
     </v-row>
@@ -178,6 +189,7 @@ export default defineComponent({
         description: undefined,
         intro: undefined,
         imageLink: DEFAULT_IMAGE,
+        menuImageLink: [DEFAULT_IMAGE],
         facebookLink: undefined,
         homepageLink: undefined,
         instaLink: undefined,
@@ -194,13 +206,17 @@ export default defineComponent({
       }
     })
 
-    const uuid = createUUID()
+    const uuid = {
+      image: createUUID(),
+      menuImage: createUUID()
+    }
 
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : state.shop.name
       state.shop.description = newVal ? newVal.description : state.shop.description
       state.shop.intro = newVal ? newVal.intro : state.shop.intro
       state.shop.imageLink = newVal ? newVal.imageLink : state.shop.imageLink
+      state.shop.menuImageLink = newVal ? newVal.menuImageLink : state.shop.menuImageLink
       state.shop.facebookLink = newVal ? newVal.facebookLink : state.shop.facebookLink
       state.shop.homepageLink = newVal ? newVal.homepageLink : state.shop.homepageLink
       state.shop.instaLink = newVal ? newVal.instaLink : state.shop.instaLink
