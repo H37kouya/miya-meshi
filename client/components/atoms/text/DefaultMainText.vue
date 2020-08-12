@@ -31,6 +31,6 @@ export default defineComponent({
 .default-main-text {
   font-size: 1.1rem;
   font-weight: bolder;
-  padding: 1rem;
+  padding: 1.25rem;
 }
 </style>

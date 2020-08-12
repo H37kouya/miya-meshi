@@ -6,7 +6,7 @@
 
     <div class="u-light-grey-background">
       <v-container>
-        <v-row justify="center">
+        <v-row justify="center" class="px-1">
           <template v-for="(menu, key) in list">
             <v-col :key="key" cols="4" md="3" class="px-1">
               <MenuCard v-bind="menu" />
@@ -22,7 +22,7 @@
 
     <v-row class="mx-0 mb-4" justify="center">
       <template v-for="(news, key) in newsList">
-        <v-col :key="`news${key}`" cols="12" sm="4" md="3" class="px-0 px-sm-2">
+        <v-col :key="`news${key}`" cols="12" sm="4" md="3" class="px-0 pt-0 px-sm-2">
           <NewsField v-bind="news" />
         </v-col>
       </template>

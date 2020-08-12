@@ -70,7 +70,7 @@ export default defineComponent({
 
 <style lang="scss">
 .menu-name {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   word-break: break-all;
   height: 2.75rem;
 }
