@@ -121,6 +121,10 @@ const nuxtConfig: Configuration = {
           handler: 'cacheFirst'
         },
         {
+          urlPattern: '^https://firebasestorage.googleapis.com/v0/b/(.*)',
+          handler: 'cacheFirst'
+        },
+        {
           urlPattern: '^https://cdnjs.cloudflare.com/(.*)',
           handler: 'cacheFirst'
         }
