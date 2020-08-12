@@ -41,7 +41,7 @@ jobs:
     - name: deploy to Firebase Hosting
       uses: w9jds/firebase-action@master
       with:
-        args: deploy
+        args: deploy --only hosting:production
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -52,4 +52,5 @@ jobs:
         FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
         FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
         FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
+        PROJECT_ID : 'production'
         TEST_ENV: false
