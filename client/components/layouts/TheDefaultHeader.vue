@@ -5,8 +5,8 @@
 
       <div class="news" />
 
-      <div class="text-right pt-4 px-4 developer-name">
-        <small>運営: みやメシ応援隊 開発: U-lab</small>
+      <div class="text-right pt-5 px-4 developer-name">
+        <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
       </div>
     </div>
 
@@ -49,7 +49,7 @@ export default {
 
 .news {
   position: absolute;
-  bottom: 10%;
+  bottom: 11%;
   left: 50%;
   transform: translateX(-50%);
   background-color: darkgray;
@@ -59,5 +59,9 @@ export default {
 
 .developer-name {
   color: #a7a7a7;
+}
+
+.developer-name-small {
+  font-size: 0.75rem;
 }
 </style>
