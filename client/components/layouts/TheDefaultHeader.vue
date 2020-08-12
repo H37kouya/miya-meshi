@@ -5,7 +5,7 @@
 
       <div class="news" />
 
-      <div class="text-right pt-4 px-4 u-black--text">
+      <div class="text-right pt-4 px-4 developer-name">
         <small>運営: みやメシ応援隊 開発: U-lab</small>
       </div>
     </div>
@@ -55,5 +55,9 @@ export default {
   background-color: darkgray;
   width: 160px;
   height: 120px;
+}
+
+.developer-name {
+  color: #a7a7a7;
 }
 </style>
