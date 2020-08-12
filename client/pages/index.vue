@@ -20,9 +20,9 @@
       新着情報
     </DefaultMainText>
 
-    <v-row class="mx-0 mb-4">
+    <v-row class="mx-0 mb-4" justify="center">
       <template v-for="(news, key) in newsList">
-        <v-col :key="`news${key}`" cols="12" sm="3" class="px-0">
+        <v-col :key="`news${key}`" cols="12" sm="4" md="3" class="px-0 px-sm-2">
           <NewsField v-bind="news" />
         </v-col>
       </template>

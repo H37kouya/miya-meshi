@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watch } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { isShop } from '@/src/utils/Shop'
 import { Shop } from '@/src/types/Shop'
 
@@ -59,7 +59,7 @@ export default defineComponent({
     }
   },
 
-  setup (props: Props, _) {
+  setup (props: Props, context: SetupContext) {
     const state = reactive({
       shops: props.shops as Shop[]
     })
