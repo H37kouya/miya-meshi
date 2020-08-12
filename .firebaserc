@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "miyameshi-test"
+    "default": "miyameshi-test",
+    "production": "miyameshi-bec8a"
   }
 }
