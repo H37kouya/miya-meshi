@@ -5,7 +5,7 @@
 
       <div class="news" />
 
-      <div class="text-right pt-4 px-4">
+      <div class="text-right pt-4 px-4 u-black--text">
         <small>運営: みやメシ応援隊 開発: U-lab</small>
       </div>
     </div>
