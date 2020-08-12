@@ -23,7 +23,12 @@ const nuxtConfig: Configuration = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
+      },
+      { name: 'robots', content: process.env.TEST_ENV ? 'noindex' : 'index' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -93,7 +98,7 @@ const nuxtConfig: Configuration = {
     services: {
       auth: true, // Just as example. Can be any other service.
       firestore: true,
-      analytics: true,
+      analytics: !process.env.TEST_ENV,
       storage: true
     }
   },
@@ -103,7 +108,8 @@ const nuxtConfig: Configuration = {
   */
   pwa: {
     meta: {
-      lang: undefined
+      lang: undefined,
+      description: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
     },
     workbox: {
       /* workbox options */
