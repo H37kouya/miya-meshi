@@ -1,7 +1,7 @@
 <template>
   <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
     <v-card v-bind="$attrs">
-      <v-img :alt="alt" :src="src" />
+      <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
     </v-card>
 
     <p class="mb-0 menu-name u-black--text">
@@ -72,6 +72,7 @@ export default defineComponent({
 .menu-name {
   font-size: 0.9rem;
   word-break: break-all;
+  height: 2.75rem;
 }
 
 .price {
