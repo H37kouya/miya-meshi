@@ -5,10 +5,10 @@
     </DefaultMainText>
 
     <div class="u-light-grey-background">
-      <v-container>
+      <v-container class="pb-2">
         <v-row justify="center" class="px-1">
           <template v-for="(menu, key) in list">
-            <v-col :key="key" cols="4" md="3" class="px-1">
+            <v-col :key="key" cols="4" md="3" class="px-1 py-1">
               <MenuCard v-bind="menu" />
             </v-col>
           </template>
