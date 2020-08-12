@@ -7,11 +7,13 @@
         max-width="100%"
       />
 
-      <p>{{ prefixName }}</p>
+      <div class="pl-4">
+        <p>{{ prefixName }}</p>
 
-      <h1 class="shop-heading">
-        {{ name }}
-      </h1>
+        <h1 class="shop-heading">
+          {{ name }}
+        </h1>
+      </div>
 
       <TelIcon class="tel-pos" large />
     </div>
@@ -59,7 +61,7 @@ export default defineComponent({
 }
 
 .shop-heading {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 </style>
