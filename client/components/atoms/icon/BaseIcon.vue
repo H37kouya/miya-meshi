@@ -1,6 +1,6 @@
 <template>
   <div class="btn-container" :class="{ 'selected': selected }" @click="onClick">
-    <v-icon large>
+    <v-icon style="line-height: 0; margin-top: 0.25rem;" size="30px">
       {{ icon }}
     </v-icon>
 
@@ -46,9 +46,9 @@ export default defineComponent({
   background-color: #ddd;
   border-radius: 50%;
   text-align: center;
-  width: 88px;
-  height: 88px;
-  padding: 0.75rem 0.25rem;
+  width: 60px;
+  height: 60px;
+  padding: 0.25rem 0.25rem;
   cursor: pointer;
 
   &:hover {
@@ -57,7 +57,8 @@ export default defineComponent({
 }
 
 .btn-text {
-  font-size: 0.7rem;
+  font-size: 0.35rem;
+  line-height: 0.5;
 }
 
 .selected {
