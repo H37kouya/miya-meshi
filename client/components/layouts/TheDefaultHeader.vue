@@ -4,7 +4,7 @@
       <div class="top-image" />
 
       <v-card class="news">
-        <v-img src="/miyameshi-ticket.jpg" />
+        <v-img src="/miyameshi-ticket.jpg" aspect-ratio="1.67" />
       </v-card>
 
       <div class="text-right pt-5 px-4 developer-name">
