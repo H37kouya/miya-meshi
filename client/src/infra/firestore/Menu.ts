@@ -4,6 +4,19 @@ import { Menu, MENU_TYPE } from '@/src/types/Menu'
 const MENU_COLLECTION_NAME = 'menus'
 
 /**
+ * Menuを削除する
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { string } id
+ */
+export const deleteMenu = async (
+  $fireStore: firebase.firestore.Firestore,
+  id: string
+) => {
+  await $fireStore.collection(MENU_COLLECTION_NAME).doc(id).delete()
+}
+
+/**
  * Menu一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
