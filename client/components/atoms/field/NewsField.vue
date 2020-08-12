@@ -1,7 +1,7 @@
 <template>
   <a :href="href" rel="noopener" target="_blank" class="text-decoration-none max-width-480">
     <div class="mb-2 pos-relative">
-      <v-img :src="src" :alt="alt" />
+      <v-img :src="src" :alt="alt" aspect-ratio="2" />
 
       <div class="news-badge">
         News
