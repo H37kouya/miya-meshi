@@ -29,7 +29,7 @@ export default defineComponent({
 
 <style lang="scss">
 .default-main-text {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: bolder;
   padding: 0.5rem;
 }

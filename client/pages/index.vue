@@ -4,10 +4,10 @@
       今週のおすすめ
     </DefaultMainText>
 
-    <v-container>
+    <v-container class="py-0">
       <v-row justify="center">
         <template v-for="(menu, key) in list">
-          <v-col :key="key" cols="4" md="3" class="px-1">
+          <v-col :key="key" cols="4" md="3" class="py-0 px-1">
             <MenuCard v-bind="menu" />
           </v-col>
         </template>
