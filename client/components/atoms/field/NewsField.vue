@@ -1,16 +1,18 @@
 <template>
-  <a :href="href" rel="noopener" target="_blank" class="text-decoration-none max-width-350">
-    <v-card class="mb-2 pos-relative">
+  <a :href="href" rel="noopener" target="_blank" class="text-decoration-none max-width-480">
+    <div class="mb-2 pos-relative">
       <v-img :src="src" :alt="alt" />
 
       <div class="news-badge">
         News
       </div>
-    </v-card>
+    </div>
 
-    <p class="u-black--text news-text mb-0">{{ text }}</p>
-    <div class="hashtags">
-      <span v-for="(tag, key) in hashtag" :key="key" class="hashtag mr-1">{{ tag }}</span>
+    <div class="px-4">
+      <p class="u-black--text news-text mb-0">{{ text }}</p>
+      <div class="hashtags">
+        <span v-for="(tag, key) in hashtag" :key="key" class="hashtag mr-1">{{ tag }}</span>
+      </div>
     </div>
   </a>
 </template>
@@ -56,15 +58,16 @@ export default defineComponent({
   padding: 0.5rem 1rem;
   background-color: #f2dc15;
   text-align: center;
+  color: #333;
 }
 
 .news-text {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .hashtag {
   color: #596cb2;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 
   &::before {
     content: '#';
