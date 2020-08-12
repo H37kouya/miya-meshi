@@ -20,6 +20,8 @@ type MenuType = 'menu'
 
 export const MENU_TYPE = 'menu' as MenuType
 
+export const DEFAULT_IMAGE = '/no-image.png'
+
 export enum MenuJa {
   NAME = 'メニュー名',
   DESCRIPTION = '一言紹介',

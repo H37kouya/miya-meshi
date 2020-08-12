@@ -63,6 +63,16 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col>
+        <UploadImageFile
+          :path="`/menus/${uuid}`"
+          :past-image-link="state.menu.image"
+          @input="(v) => state.menu.image = v"
+        />
+      </v-col>
+    </v-row>
+
     <v-btn type="submit" color="primary">
       追加
     </v-btn>
@@ -71,9 +81,10 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
+import { DEFAULT_IMAGE, Menu } from '@/src/types/Menu'
 import { MenuFormState } from '@/src/types/MenuFormState'
 import { isMenu } from '@/src/utils/Menu'
+import { createUUID } from '~/src/utils/String'
 
 type Props = {
   menu?: Menu
@@ -95,7 +106,7 @@ export default defineComponent({
         name: undefined,
         description: undefined,
         intro: undefined,
-        image: undefined,
+        image: DEFAULT_IMAGE,
         public: true,
         price: 0,
         isTaxIncluded: false,
@@ -103,21 +114,24 @@ export default defineComponent({
       }
     })
 
+    const uuid = createUUID()
+
     watch(() => props.menu, (newVal, _) => {
-      state.menu.name = newVal ? newVal.name : undefined
-      state.menu.description = newVal ? newVal.description : undefined
-      state.menu.intro = newVal ? newVal.intro : undefined
-      state.menu.image = newVal ? newVal.image : undefined
-      state.menu.public = newVal ? newVal.public : true
-      state.menu.price = newVal ? newVal.price : 0
-      state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : false
-      state.menu.canTakeOut = newVal ? newVal.canTakeOut : false
+      state.menu.name = newVal ? newVal.name : state.menu.name
+      state.menu.description = newVal ? newVal.description : state.menu.description
+      state.menu.intro = newVal ? newVal.intro : state.menu.intro
+      state.menu.image = newVal ? newVal.image : state.menu.image
+      state.menu.public = newVal ? newVal.public : state.menu.public
+      state.menu.price = newVal ? newVal.price : state.menu.price
+      state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
+      state.menu.canTakeOut = newVal ? newVal.canTakeOut : state.menu.canTakeOut
     })
 
     const onSubmit = () => context.emit('submit', state.menu)
 
     return {
       state,
+      uuid,
       onSubmit
     }
   }
