@@ -1,5 +1,5 @@
 <template>
-  <OrangeButton to="/shops">
+  <GreyButton to="/shops" v-bind="$attrs">
     検索する
-  </OrangeButton>
+  </GreyButton>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <GreenButton to="/">
+  <LightBlueButton to="/" v-bind="$attrs">
     トップページ
-  </GreenButton>
+  </LightBlueButton>
 </template>

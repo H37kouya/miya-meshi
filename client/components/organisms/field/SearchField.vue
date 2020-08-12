@@ -1,22 +1,24 @@
 <template>
   <div style="background-color: #f5f5f5;">
     <v-container class="max-width-350">
-      <div class="mb-2">
-        <SearchTextField />
-      </div>
+      <v-row justify="center">
+        <v-col cols="6" class="pa-2">
+          <ToTopPageButton width="100%" />
+        </v-col>
 
-      <div class="mb-2">
-        <v-btn outlined width="100%" small class="justify-end">
-          <span class="search-keyword">
-            キーワードから探す
-          </span>
-        </v-btn>
-      </div>
+        <v-col cols="6" class="pa-2">
+          <ToSearchKeywordButton width="100%" />
+        </v-col>
+      </v-row>
 
       <v-row justify="center">
-        <ToSearchShopButton class="mr-2" />
+        <v-col cols="6" class="pa-2">
+          <ToSearchShopButton width="100%" />
+        </v-col>
 
-        <ToSearchFoodButton />
+        <v-col cols="6" class="pa-2">
+          <ToSearchFoodButton width="100%" />
+        </v-col>
       </v-row>
     </v-container>
   </div>
