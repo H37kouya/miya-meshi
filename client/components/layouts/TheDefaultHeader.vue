@@ -3,7 +3,9 @@
     <div style="width: 100%;" class="pos-relative">
       <div class="top-image" />
 
-      <div class="news" />
+      <v-card class="news">
+        <v-img src="/miyameshi-ticket.jpg" />
+      </v-card>
 
       <div class="text-right pt-5 px-4 developer-name">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
@@ -53,8 +55,7 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   background-color: darkgray;
-  width: 160px;
-  height: 120px;
+  max-width: 200px;
 }
 
 .developer-name {
