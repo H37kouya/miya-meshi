@@ -72,6 +72,7 @@ export default defineComponent({
 .menu-name {
   font-size: 0.9rem;
   word-break: break-all;
+  height: 2.75rem;
 }
 
 .price {
