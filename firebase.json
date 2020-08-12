@@ -13,7 +13,7 @@
     ]
   },
   "hosting": {
-    "public": "public",
+    "public": "client/dist",
     "ignore": [
       "firebase.json",
       "**/.*",
