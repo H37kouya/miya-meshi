@@ -97,6 +97,37 @@ const nuxtConfig: Configuration = {
       storage: true
     }
   },
+  /*
+  ** pwa module configuration
+  ** https://pwa.nuxtjs.org/
+  */
+  pwa: {
+    meta: {
+      lang: undefined
+    },
+    workbox: {
+      /* workbox options */
+      runtimeCaching: [
+        {
+          urlPattern: '^https://cdn.jsdelivr.net/(.*)',
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: '^https://fonts.googleapis.com/(.*)',
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: '^https://fonts.gstatic.com/(.*)',
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: '^https://cdnjs.cloudflare.com/(.*)',
+          handler: 'cacheFirst'
+        }
+      ]
+    }
+  },
+
   styleResources: {
     // your settings here
     scss: ['~/assets/scss/variables.scss']
