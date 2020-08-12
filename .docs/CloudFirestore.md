@@ -13,6 +13,7 @@
 | intro              | `String`           |                    |
 | image              | `String`           | set Link           |
 | subimage           | `Array<String>`    | set Links          |
+| menuImage          | `String`           | Set Menu Image Link |
 | postal             | `String(xxx-xxxx)` | 郵便番号           |
 | address            | `String`           | 住所               |
 | buildingName       | `String`           | 建物名             |

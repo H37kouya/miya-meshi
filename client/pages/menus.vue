@@ -4,15 +4,7 @@
       食べ物から探す
     </DefaultMainText>
 
-    <v-container>
-      <v-row justify="center">
-        <template v-for="(menu, key) in state.menus">
-          <v-col :key="key" cols="4" md="3" class="px-1">
-            <MenuCard v-bind="menu" :src="menu.image" :to="`/shops/${menu.shopID}`" />
-          </v-col>
-        </template>
-      </v-row>
-    </v-container>
+    <DefaultMenuList :menus="state.menus" />
 
     <div>
       <SearchButtonGroup />

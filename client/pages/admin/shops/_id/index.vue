@@ -51,7 +51,7 @@ import { defineComponent, reactive, SetupContext, onMounted, computed } from '@v
 import { Shop } from '@/src/types/Shop'
 import { Menu } from '@/src/types/Menu'
 import { getShopByID } from '@/src/infra/firestore/Shop'
-import { getMenuList } from '@/src/infra/firestore/Menu'
+import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -67,7 +67,7 @@ export default defineComponent({
 
     onMounted(async () => {
       state.shop = await getShopByID(context.root.$fireStore, state.id)
-      state.menus = await getMenuList(context.root.$fireStore)
+      state.menus = await getMenuListByShopID(context.root.$fireStore, state.id)
     })
 
     return {

@@ -4,17 +4,7 @@
       今週のおすすめ
     </DefaultMainText>
 
-    <div class="u-light-grey-background">
-      <v-container class="pb-2">
-        <v-row justify="center" class="px-1">
-          <template v-for="(menu, key) in list">
-            <v-col :key="key" cols="4" md="3" class="px-1 py-1">
-              <MenuCard v-bind="menu" />
-            </v-col>
-          </template>
-        </v-row>
-      </v-container>
-    </div>
+    <DefaultMenuList :menus="state.menus" />
 
     <DefaultMainText>
       新着情報
@@ -31,31 +21,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { Menu } from '~/src/types/Menu'
+import { getMenuList } from '~/src/infra/firestore/Menu'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const list = computed(() => {
-      return [
-        {
-          name: 'ハンバーグ&チキン',
-          price: 976,
-          src: '/sample_niku.jpg',
-          isTaxIncluded: true
-        },
-        {
-          name: '三種のチーズ牛丼',
-          price: 1080,
-          src: '/sample_niku.jpg',
-          isTaxIncluded: false
-        },
-        {
-          name: 'とろける4種チーズのフォルマッジ',
-          price: 976,
-          src: '/sample_niku.jpg',
-          isTaxIncluded: true
-        }
-      ]
+    const state = reactive({
+      menus: [] as Menu[]
+    })
+
+    onMounted(async () => {
+      state.menus = await getMenuList(context.root.$fireStore, 3)
     })
 
     const newsList = computed(() => {
@@ -82,7 +59,7 @@ export default defineComponent({
     })
 
     return {
-      list,
+      state,
       newsList
     }
   }
