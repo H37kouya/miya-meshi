@@ -67,7 +67,7 @@ export default defineComponent({
 
     onMounted(async () => {
       state.shop = await getShopByID(context.root.$fireStore, state.id)
-      state.menus = await getMenuListByShopID(context.root.$fireStore, state.id)
+      state.menus = await getMenuListByShopID(context.root.$fireStore, state.id, 12, true)
     })
 
     return {

@@ -7,13 +7,21 @@ const SHOP_COLLECTION_NAME = 'shops'
  * Shop一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
- * @param { Number } limit
+ * @param { Number } limit 取得最大数
+ * @param { Boolean } admin 管理者かどうか
  */
 export const getShopList = async (
   $fireStore: firebase.firestore.Firestore,
-  limit: number = 12
+  limit: number = 12,
+  admin: boolean = false
 ) => {
-  const list = await $fireStore.collection(SHOP_COLLECTION_NAME).limit(limit).get()
+  const publicWhere: boolean[] = admin ? [true, false] : [true]
+
+  const list = await $fireStore
+    .collection(SHOP_COLLECTION_NAME)
+    .where('public', 'in', publicWhere)
+    .limit(limit)
+    .get()
 
   const shops = [] as Shop[]
   list.forEach((doc) => {
@@ -32,7 +40,10 @@ export const getShopByID = async (
   $fireStore: firebase.firestore.Firestore,
   id: string
 ) => {
-  const doc = await $fireStore.collection(SHOP_COLLECTION_NAME).doc(id).get()
+  const doc = await $fireStore
+    .collection(SHOP_COLLECTION_NAME)
+    .doc(id)
+    .get()
   return firestoreDocDataToShop(doc)
 }
 

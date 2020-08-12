@@ -33,6 +33,13 @@
         />
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-spacer />
+      <v-col>
+        <DeleteConfirmButton @click="onDelete" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -41,7 +48,7 @@ import { computed, defineComponent, onMounted, reactive, SetupContext } from '@v
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 import { Menu, MENU_TYPE } from '@/src/types/Menu'
 import { getShopByID } from '@/src/infra/firestore/Shop'
-import { getMenuByID } from '@/src/infra/firestore/Menu'
+import { deleteMenu, getMenuByID } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -60,7 +67,14 @@ export default defineComponent({
       state.shop = await getShopByID(context.root.$fireStore, state.menu.shopID)
     })
 
+    const onDelete = async () => {
+      await deleteMenu(context.root.$fireStore, state.id)
+
+      return context.root.$router.push(`/admin/shops/${state.shop.id}`)
+    }
+
     return {
+      onDelete,
       state
     }
   }
