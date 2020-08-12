@@ -4,30 +4,46 @@
 
     <div>
       <DefaultMainText :level="2">
+        当店のおすすめ
+      </DefaultMainText>
+
+      <div class="u-light-grey-background" />
+    </div>
+
+    <div>
+      <DefaultMainText :level="2">
         メニュー
       </DefaultMainText>
 
       <div class="u-light-grey-background">
         <v-container>
-          <v-row justify="center">
-            <template v-for="(menu, key) in state.menus">
-              <v-col :key="key" cols="4" md="3" class="px-1">
-                <MenuCard
-                  v-bind="menu"
-                  :src="menu.image || `/sample_niku.jpg`"
-                  :to="`/shops/${menu.shopID}`"
-                />
-              </v-col>
-            </template>
-          </v-row>
+          <div class="d-flex justify-center">
+            <v-card>
+              <v-img
+                :src="state.shop.menuImageLink ? state.shop.menuImageLink[0] : '/no-image.png'"
+                max-width="480px"
+                width="100%"
+              />
+            </v-card>
+          </div>
         </v-container>
       </div>
+    </div>
+
+    <div v-if="state.menus && state.menus.length > 0">
+      <DefaultMainText :level="2">
+        その他メニュー
+      </DefaultMainText>
+
+      <DefaultMenuList :menus="state.menus" />
     </div>
 
     <div>
       <DefaultMainText :level="2">
         お問い合わせ
       </DefaultMainText>
+
+      <div class="u-light-grey-background" />
     </div>
   </div>
 </template>

@@ -7,7 +7,7 @@
         <v-img src="/miyameshi-ticket.jpg" />
       </v-card>
 
-      <div class="text-right pt-5 px-4 developer-name">
+      <div class="text-right pt-6 px-4 developer-name">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
 
 .news {
   position: absolute;
-  bottom: 11%;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   background-color: darkgray;

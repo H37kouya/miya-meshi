@@ -4,7 +4,7 @@
       <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
     </v-card>
 
-    <p class="prefix u-black--text mb-0">
+    <p class="prefix u-black--text mb-0" :class="{ 'no-prefix': !prefixName }">
       {{ prefixName }}
     </p>
     <p class="mb-0 shop-name u-black--text">
@@ -37,8 +37,8 @@ export default defineComponent({
     },
 
     prefixName: {
-      type: Number,
-      default: 0
+      type: String,
+      default: undefined
     },
 
     to: {
@@ -49,14 +49,6 @@ export default defineComponent({
     src: {
       type: String,
       default: undefined
-    }
-  },
-
-  setup (props: Props, _) {
-    const priceDisplay = computed(() => props.price.toLocaleString())
-
-    return {
-      priceDisplay
     }
   }
 })
@@ -71,5 +63,12 @@ export default defineComponent({
 
 .prefix {
   font-size: 0.8rem;
+}
+
+.no-prefix {
+  &::before {
+    content: ' ';
+    padding: 0.5rem;
+  }
 }
 </style>
