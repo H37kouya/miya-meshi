@@ -18,7 +18,13 @@
         </ul>
 
         <div>
-          <v-btn icon class="mr-4" href="https://www.instagram.com/ulab_uu/" target="_blank" rel="noopener">
+          <v-btn
+            icon
+            class="mr-2"
+            href="https://www.instagram.com/ulab_uu/"
+            target="_blank"
+            rel="noopener"
+          >
             <v-icon color="white" large>
               mdi-instagram
             </v-icon>
@@ -41,4 +47,8 @@
 
 <style lang="scss" scoped>
 @import "footer_field";
+
+.footer-group-title {
+  font-size: 1.3rem;
+}
 </style>

@@ -4,10 +4,12 @@
       お店から探す
     </DefaultMainText>
 
-    <SearchButtonGroup
-      :btn-status="state.btnStatus"
-      @input="(v) => state.btnStatus = v"
-    />
+    <div class="u-light-grey-background pt-3">
+      <SearchButtonGroup
+        :btn-status="state.btnStatus"
+        @input="(v) => state.btnStatus = v"
+      />
+    </div>
 
     <DefaultShopList :shops="displayShops" />
   </div>
