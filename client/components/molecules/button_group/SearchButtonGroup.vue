@@ -1,38 +1,21 @@
 <template>
-  <div
-    class="search-button-container"
-    draggable="true"
-  >
+  <v-container class="py-0 max-width-480">
     <v-row justify="center">
-      <v-col cols="6" class="pa-1 px-3">
+      <v-col cols="3" class="px-2">
         <TakeoutIcon selected />
       </v-col>
 
-      <v-col cols="6" class="pa-1">
+      <v-col cols="3" class="px-2">
         <OpenBuzIcon />
       </v-col>
-    </v-row>
 
-    <v-row justify="center">
-      <v-col cols="6" class="pa-1 px-3">
+      <v-col cols="3" class="px-2">
         <NowLocationIcon />
       </v-col>
 
-      <v-col cols="6" class="pa-1">
+      <v-col cols="3" class="px-2">
         <AreaIcon />
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
-
-<style lang="scss" scoped>
-.search-button-container {
-  position: fixed;
-  right: 20px;
-  bottom: 50px;
-  background-color: #f3f3e2;
-  padding: 0.5rem;
-  border-radius: 10px;
-  max-width: 200px;
-}
-</style>
