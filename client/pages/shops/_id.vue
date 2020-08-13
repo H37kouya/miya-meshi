@@ -7,7 +7,15 @@
         当店のおすすめ
       </DefaultMainText>
 
-      <div class="u-light-grey-background" />
+      <div class="u-light-grey-background">
+        <v-container class="max-width-600">
+          <template v-for="menu in state.menus">
+            <div :key="menu.id" class="px-4 mb-4">
+              <ShopRecommendListItem :menu="menu" />
+            </div>
+          </template>
+        </v-container>
+      </div>
     </div>
 
     <div>

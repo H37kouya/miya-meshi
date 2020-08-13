@@ -56,7 +56,7 @@ export default defineComponent({
   top: 0;
   left: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #f2dc15;
+  background-color: #fef552;
   text-align: center;
   color: #333;
 }

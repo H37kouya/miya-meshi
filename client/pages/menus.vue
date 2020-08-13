@@ -4,11 +4,9 @@
       食べ物から探す
     </DefaultMainText>
 
-    <DefaultMenuList :menus="state.menus" />
+    <SearchButtonGroup />
 
-    <div>
-      <SearchButtonGroup />
-    </div>
+    <DefaultMenuList :menus="state.menus" />>
   </div>
 </template>
 
