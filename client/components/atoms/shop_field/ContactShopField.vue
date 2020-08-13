@@ -84,26 +84,39 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.contact-table {
-  border-spacing: 0;
-}
-
-.table-heading {
-  background-color: #fdf4d2;
-  border: 1px #d2d2d2 solid;
-  padding: 1rem 0.5rem;
-  width: 80px;
-  font-size: 0.9rem;
-}
-
 .table-value {
   padding: 1rem 0.5rem;
   width: 220px;
   font-size: 0.9rem;
   border: {
-    top: 1px #d2d2d2 solid;
     right: 1px #d2d2d2 solid;
     bottom: 1px #d2d2d2 solid;
   };
+}
+
+.table-heading {
+  background-color: #fdf4d2;
+  padding: 1rem 0.5rem;
+  width: 80px;
+  font-size: 0.9rem;
+  border: {
+    left: 1px #d2d2d2 solid;
+    right: 1px #d2d2d2 solid;
+    bottom: 1px #d2d2d2 solid;
+  }
+}
+
+.contact-table {
+  border-spacing: 0;
+
+  tr:first-of-type {
+    .table-heading {
+      border-top: 1px #d2d2d2 solid;
+    }
+
+    .table-value {
+      border-top: 1px #d2d2d2 solid;
+    }
+  }
 }
 </style>

@@ -39,10 +39,6 @@
     </div>
 
     <div v-if="state.menus && state.menus.length > 0">
-      <DefaultMainText :level="2">
-        その他メニュー
-      </DefaultMainText>
-
       <DefaultMenuList :menus="state.menus" />
     </div>
 
