@@ -66,6 +66,7 @@ export default defineComponent({
 .shop-prefix {
   color: #797979;
   font-size: 0.9rem;
+  min-height: 1rem;
 }
 
 .shop-heading {
