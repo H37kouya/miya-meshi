@@ -31,6 +31,7 @@
 | businessHourStart2 | `DateTime`         | 営業開始時間       |
 | businessHourEnd2   | `DateTime`         | 営業終了時間       |
 | canTakeOut         | `Boolean`          | テイクアウト可能か  |
+| keywords           | `Array<String>`    |                    |
 | createdAt          | `DateTime`         | 作成日時           |
 | deletedAt          | `DateTime`         | 削除日時           |
 | updatedAt          | `DateTime`         | 更新日時           |
@@ -53,6 +54,15 @@
 | canTakeOut      | `Boolean`       | テイクアウト可能か  |
 | createdAt       | `DateTime`      | 作成日時           |
 | deletedAt       | `DateTime`      | 削除日時           |
+| updatedAt       | `DateTime`      | 更新日時           |
+
+## Keyword
+
+| Column Name     | Type            | Explanation        |
+| --------------  | --------------- | ------------------ |
+| id              | `String`        | Shop Menu ID       |
+| name            | `String`        |                    |
+| createdAt       | `DateTime`      | 作成日時           |
 | updatedAt       | `DateTime`      | 更新日時           |
 
 ## User
