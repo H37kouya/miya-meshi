@@ -58,7 +58,10 @@ export default defineComponent({
       dialog: false
     })
 
-    const onClick = () => context.emit('click')
+    const onClick = () => {
+      state.dialog = false
+      return context.emit('click')
+    }
 
     return {
       state,

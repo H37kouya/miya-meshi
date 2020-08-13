@@ -51,6 +51,11 @@ export default {
           icon: 'mdi-store',
           title: '新規店舗追加',
           to: '/admin/shops/create'
+        },
+        {
+          icon: 'mdi-store',
+          title: 'キーワード一覧',
+          to: '/admin/keywords'
         }
       ]
     }
