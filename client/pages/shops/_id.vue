@@ -2,6 +2,12 @@
   <div class="mt-4">
     <HeaderShopField :src="state.shop.imageLink" :name="state.shop.name" />
 
+    <div class="u-light-grey-background d-flex justify-center">
+      <div class="max-width-480">
+        <FiveOneAdField src="/circle-ad.png" href="https://uu-circle20.firebaseapp.com/" />
+      </div>
+    </div>
+
     <div>
       <DefaultMainText :level="2">
         当店のおすすめ

@@ -8,7 +8,7 @@
         aspect-ratio="1.78"
       />
 
-      <div class="pl-4">
+      <div class="pl-4 py-2">
         <p>{{ prefixName }}</p>
 
         <h1 class="shop-heading">
