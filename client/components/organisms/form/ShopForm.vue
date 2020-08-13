@@ -12,6 +12,9 @@
 
     <v-row>
       <v-col cols="8">
+        <ShopPrefixNameTextField
+          v-model="state.shop.prefixName"
+        />
         <ShopNameTextField
           v-model="state.shop.name"
         />
@@ -185,6 +188,7 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const state = reactive<ShopFormState>({
       shop: {
+        prefixName: undefined,
         name: undefined,
         description: undefined,
         intro: undefined,
@@ -213,6 +217,7 @@ export default defineComponent({
 
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : state.shop.name
+      state.shop.prefixName = newVal ? newVal.prefixName : state.shop.prefixName
       state.shop.description = newVal ? newVal.description : state.shop.description
       state.shop.intro = newVal ? newVal.intro : state.shop.intro
       state.shop.imageLink = newVal ? newVal.imageLink : state.shop.imageLink

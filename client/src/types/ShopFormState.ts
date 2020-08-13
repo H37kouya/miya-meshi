@@ -3,6 +3,7 @@ import { Shop } from './Shop'
 export type ShopFormState = {
   shop: {
     name: Shop['name'],
+    prefixName: Shop['prefixName'],
     description: Shop['description'],
     intro: Shop['intro'],
     imageLink: Shop['imageLink'],

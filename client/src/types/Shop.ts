@@ -2,6 +2,7 @@
 export type Shop = {
   type: ShopType,
   id: string,
+  prefixName?: string,
   name?: string,
   description?: string,
   intro?: string,
@@ -21,6 +22,11 @@ export type Shop = {
   youtubeLink?: string,
   priority: number,
   public: boolean,
+  businessHour1?: string,
+  businessHour2?: string,
+  parkingLot?: string,
+  regularHoliday?: string,
+  seat?: string,
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object
@@ -36,6 +42,7 @@ export const DEFAULT_IMAGE = '/no-image.png'
 export enum ShopJa {
   ID = 'SHOP ID',
   NAME = '店名',
+  PREFIX_NAME = '店舗肩書き',
   DESCRIPTION = 'お店紹介',
   INTRO = '一言紹介',
   IMAGE_LINK = '画像のリンク',
@@ -53,14 +60,23 @@ export enum ShopJa {
   ADDRESS = '住所',
   BUILDING_NAME = '建物名',
   TEL = '電話番号',
-  POSTAL = '郵便番号'
+  POSTAL = '郵便番号',
+  BUSINESS_HOUR = '営業時間',
+  PARKING_LOT = '駐車場',
+  REGULAR_HOLIDAY = '定休日',
+  SEAT = '座席'
 }
 
 // ShopMaxStringSize Shop型のstringの最大文字数
 export enum ShopMaxStringSize {
   NAME = 50,
+  PREFIX_NAME = 30,
   DESCRIPTION = 30,
   INTRO = 1000,
   ADDRESS = 100,
   BUILDING_NAME = 255,
+  BUSINESS_HOUR = 100,
+  PARKING_LOT = 50,
+  REGULAR_HOLIDAY = 50,
+  SEAT = 50
 }
