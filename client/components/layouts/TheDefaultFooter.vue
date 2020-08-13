@@ -5,7 +5,12 @@
     class="d-block pa-0"
   >
     <div class="recruitment d-flex align-center justify-center">
-      <a href="" class="white--text text-decoration-none w-100 pos-relative">
+      <a
+        href="https://forms.gle/gAknXAaCrfsr8UdA8"
+        class="white--text text-decoration-none w-100 pos-relative"
+        target="_blank"
+        rel="noopener"
+      >
         <span class="recruitment-text">このサイトに掲載希望の飲食店さんはこちら！</span>
         <v-img src="/tree-background.png" width="100%" max-height="90px" />
       </a>

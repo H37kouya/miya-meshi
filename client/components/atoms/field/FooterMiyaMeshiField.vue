@@ -18,7 +18,7 @@
         </ul>
 
         <div>
-          <v-btn icon class="mr-4" href="https://www.instagram.com/miyameshi_ouentai/" target="_blank" rel="noopener">
+          <v-btn icon class="mr-2" href="https://www.instagram.com/miyameshi_ouentai/" target="_blank" rel="noopener">
             <v-icon color="#333" large>
               mdi-instagram
             </v-icon>

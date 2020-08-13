@@ -4,21 +4,41 @@
       食べ物から探す
     </DefaultMainText>
 
-    <SearchButtonGroup />
+    <div class="u-light-grey-background pt-3">
+      <SearchButtonGroup
+        :btn-status="state.btnStatus"
+        @input="(v) => state.btnStatus = v"
+      />
+    </div>
 
-    <DefaultMenuList :menus="state.menus" />>
+    <DefaultMenuList :menus="displayMenus" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
 import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/src/types/Menu'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive({
-      menus: [] as Menu[]
+      menus: [] as Menu[],
+      btnStatus: {
+        area: false,
+        takeout: false,
+        openBuz: false,
+        nowLocation: false
+      } as BtnStatus
+    })
+
+    const displayMenus = computed(() => {
+      if (state.btnStatus.takeout) {
+        return state.menus.filter((menu: Menu) => menu.canTakeOut)
+      }
+
+      return state.menus
     })
 
     onMounted(async () => {
@@ -26,6 +46,7 @@ export default defineComponent({
     })
 
     return {
+      displayMenus,
       state
     }
   }

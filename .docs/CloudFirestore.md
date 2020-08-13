@@ -7,7 +7,7 @@
 | Column Name        | Type               | Explanation        |
 | ------------------ | ------------------ | ------------------ |
 | id                 | `String`           | Shop ID            |
-| prefix_name        | `String`           |                    |
+| prefixName         | `String`           |                    |
 | name               | `String`           |                    |
 | description        | `String`           | Short Intro        |
 | intro              | `String`           |                    |
@@ -26,10 +26,11 @@
 | ubereatsLink       | `String`           | Uber Eats          |
 | priority           | `Number`           | 優先度             |
 | public             | `Boolean`          | 公開設定           |
-| businessHourStart1 | `DateTime`         | 営業開始時間       |
-| businessHourEnd1   | `DateTime`         | 営業終了時間       |
-| businessHourStart2 | `DateTime`         | 営業開始時間       |
-| businessHourEnd2   | `DateTime`         | 営業終了時間       |
+| businessHour1      | `DateTime`         | 営業時間1          |
+| businessHour2      | `DateTime`         | 営業時間2          |
+| parkingLot         | `String`           | 駐車場             |
+| regularHoliday     | `String`           | 定休日             |
+| seat               | `String`           | 座席             |
 | canTakeOut         | `Boolean`          | テイクアウト可能か  |
 | keywords           | `Array<String>`    |                    |
 | createdAt          | `DateTime`         | 作成日時           |

@@ -109,6 +109,7 @@ const nuxtConfig: Configuration = {
   pwa: {
     meta: {
       lang: undefined,
+      name: 'みやメシ応援隊',
       description: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
     },
     workbox: {

@@ -12,6 +12,9 @@
 
     <v-row>
       <v-col cols="8">
+        <ShopPrefixNameTextField
+          v-model="state.shop.prefixName"
+        />
         <ShopNameTextField
           v-model="state.shop.name"
         />
@@ -38,6 +41,20 @@
       <v-col cols="12">
         <ShopIntroTextarea
           v-model="state.shop.intro"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12" md="4" class="d-flex flex-row">
+        <span class="pt-1 pr-2">
+          テイクアウト可能店舗かどうか
+        </span>
+
+        <v-switch
+          v-model="state.shop.canTakeOut"
+          :label="state.shop.canTakeOut ? '可能' : '不可能'"
+          class="mt-0"
         />
       </v-col>
     </v-row>
@@ -185,6 +202,7 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const state = reactive<ShopFormState>({
       shop: {
+        prefixName: undefined,
         name: undefined,
         description: undefined,
         intro: undefined,
@@ -201,8 +219,9 @@ export default defineComponent({
         public: false,
         address: '栃木県宇都宮市',
         buildingName: undefined,
-        postal: '321-',
-        tel: '028-'
+        postal: undefined,
+        tel: undefined,
+        canTakeout: true
       }
     })
 
@@ -213,6 +232,7 @@ export default defineComponent({
 
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : state.shop.name
+      state.shop.prefixName = newVal ? newVal.prefixName : state.shop.prefixName
       state.shop.description = newVal ? newVal.description : state.shop.description
       state.shop.intro = newVal ? newVal.intro : state.shop.intro
       state.shop.imageLink = newVal ? newVal.imageLink : state.shop.imageLink
@@ -230,6 +250,7 @@ export default defineComponent({
       state.shop.buildingName = newVal ? newVal.buildingName : state.shop.buildingName
       state.shop.postal = newVal ? newVal.postal : state.shop.postal
       state.shop.tel = newVal ? newVal.tel : state.shop.tel
+      state.shop.canTakeout = newVal ? newVal.canTakeout : state.shop.canTakeout
     })
 
     const onSubmit = () => context.emit('submit', state.shop)

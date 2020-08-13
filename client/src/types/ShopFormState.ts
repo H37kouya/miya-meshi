@@ -3,6 +3,7 @@ import { Shop } from './Shop'
 export type ShopFormState = {
   shop: {
     name: Shop['name'],
+    prefixName: Shop['prefixName'],
     description: Shop['description'],
     intro: Shop['intro'],
     imageLink: Shop['imageLink'],
@@ -19,6 +20,7 @@ export type ShopFormState = {
     tel: Shop['tel'],
     address: Shop['address'],
     buildingName: Shop['buildingName'],
-    postal: Shop['postal']
+    postal: Shop['postal'],
+    canTakeout: Shop['canTakeout']
   }
 }
