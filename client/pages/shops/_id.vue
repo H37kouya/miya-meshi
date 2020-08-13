@@ -1,6 +1,10 @@
 <template>
   <div class="mt-4">
-    <HeaderShopField :src="state.shop.imageLink" :name="state.shop.name" />
+    <HeaderShopField
+      :src="state.shop.imageLink"
+      :name="state.shop.name"
+      :prefix-name="state.shop.prefixName"
+    />
 
     <div class="u-light-grey-background d-flex justify-center">
       <div class="max-width-480">

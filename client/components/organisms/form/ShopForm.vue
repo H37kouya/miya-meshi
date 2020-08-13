@@ -87,6 +87,32 @@
           v-model="state.shop.buildingName"
         />
       </v-col>
+
+      <v-col cols="12" sm="6">
+        <BusinessHourShopTextField
+          v-model="state.shop.businessHour1"
+          :number="1"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <BusinessHourShopTextField
+          v-model="state.shop.businessHour2"
+          :number="2"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <RegularHolidayShopTextField
+          v-model="state.shop.regularHoliday"
+        />
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <SeatShopTextField
+          v-model="state.shop.seat"
+        />
+      </v-col>
     </v-row>
 
     <v-row>
@@ -221,7 +247,12 @@ export default defineComponent({
         buildingName: undefined,
         postal: undefined,
         tel: undefined,
-        canTakeout: true
+        canTakeout: true,
+        businessHour1: undefined,
+        businessHour2: undefined,
+        parkingLot: undefined,
+        regularHoliday: undefined,
+        seat: undefined
       }
     })
 
@@ -251,6 +282,11 @@ export default defineComponent({
       state.shop.postal = newVal ? newVal.postal : state.shop.postal
       state.shop.tel = newVal ? newVal.tel : state.shop.tel
       state.shop.canTakeout = newVal ? newVal.canTakeout : state.shop.canTakeout
+      state.shop.businessHour1 = newVal ? newVal.businessHour1 : state.shop.businessHour1
+      state.shop.businessHour2 = newVal ? newVal.businessHour2 : state.shop.businessHour2
+      state.shop.parkingLot = newVal ? newVal.parkingLot : state.shop.parkingLot
+      state.shop.regularHoliday = newVal ? newVal.regularHoliday : state.shop.regularHoliday
+      state.shop.seat = newVal ? newVal.seat : state.shop.seat
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
