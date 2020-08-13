@@ -19,3 +19,18 @@
     </v-row>
   </v-container>
 </template>
+
+<script lang="ts">
+import { defineComponent } from '@vue/composition-api'
+
+type Props = {
+  takeout: boolean,
+  openBuz: boolean,
+  nowLocation: boolean,
+  area: boolean
+}
+
+export default defineComponent({
+
+})
+</script>

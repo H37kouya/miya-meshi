@@ -5,6 +5,7 @@
         :src="src"
         width="480px"
         max-width="100%"
+        aspect-ratio="1.78"
       />
 
       <div class="pl-4">

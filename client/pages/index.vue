@@ -38,21 +38,21 @@ export default defineComponent({
     const newsList = computed(() => {
       return [
         {
-          href: 'https://github.com/H37kouya/miya-meshi',
-          src: '/sample_news.jpg',
-          text: '宇都宮にはたくさんテイクアウトすることができるお店があります。今回はその中でも、特にあまり知られていない知る人ぞ知る隠れ家店を紹介していきたいと思います。',
+          href: 'https://note.com/miyameshi_ouen/n/nf920b05d1ad2',
+          src: '/why_miyameshi-start.png',
+          text: '私たちがみやメシ応援隊を始めたわけ。私達には3年間何度も通った飲食店や、お世話になったバイト先がいくつもあります。しかし、昨今の状況でほぼすべてのお店が厳しい状況に陥っており、......',
           hashtag: [
-            '隠れ家',
-            'テイクアウト'
+            'みやメシ応援隊',
+            'note'
           ]
         },
         {
-          href: 'https://github.com/H37kouya/miya-meshi',
-          src: '/sample_news.jpg',
-          text: 'カフェや喫茶店は、テイクアウトという形式を取りづらく日々厳しい状況に追い込まれています。そんな中でも必死に、カフェ&デザートという形でテイクアウトを始めたお店を紹介します。',
+          href: 'https://note.com/miyameshi_ouen',
+          src: '/intro-miyamaeshi.jpg',
+          text: '#みやメシ応援隊｜宇都宮にあるテイクアウトできる飲食店を応援します📣｜noteにテイクアウトレポをたくさん載せていきます｜宇大生４人組｜#飲食店の灯りを消さない',
           hashtag: [
-            '隠れ家',
-            'テイクアウト'
+            'みやメシ応援隊',
+            '飲食店の灯りを消さない'
           ]
         }
       ]
