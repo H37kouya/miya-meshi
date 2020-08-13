@@ -9,12 +9,12 @@
       @input="(v) => state.btnStatus = v"
     />
 
-    <DefaultMenuList :menus="state.menus" />>
+    <DefaultMenuList :menus="displayMenus" />>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
 import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/src/types/Menu'
@@ -31,11 +31,20 @@ export default defineComponent({
       } as BtnStatus
     })
 
+    const displayMenus = computed(() => {
+      if (state.btnStatus.takeout) {
+        return state.menus.filter((menu: Menu) => menu.canTakeOut)
+      }
+
+      return state.menus
+    })
+
     onMounted(async () => {
       state.menus = await getMenuList(context.root.$fireStore)
     })
 
     return {
+      displayMenus,
       state
     }
   }

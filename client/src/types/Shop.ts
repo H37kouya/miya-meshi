@@ -27,6 +27,7 @@ export type Shop = {
   parkingLot?: string,
   regularHoliday?: string,
   seat?: string,
+  canTakeout: boolean,
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

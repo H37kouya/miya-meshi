@@ -46,6 +46,20 @@
     </v-row>
 
     <v-row>
+      <v-col cols="12" md="4" class="d-flex flex-row">
+        <span class="pt-1 pr-2">
+          テイクアウト可能店舗かどうか
+        </span>
+
+        <v-switch
+          v-model="state.shop.canTakeOut"
+          :label="state.shop.canTakeOut ? '可能' : '不可能'"
+          class="mt-0"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col cols="12">
         <p>お問い合わせ</p>
       </v-col>
@@ -205,8 +219,9 @@ export default defineComponent({
         public: false,
         address: '栃木県宇都宮市',
         buildingName: undefined,
-        postal: '321-',
-        tel: '028-'
+        postal: undefined,
+        tel: undefined,
+        canTakeout: true
       }
     })
 
@@ -235,6 +250,7 @@ export default defineComponent({
       state.shop.buildingName = newVal ? newVal.buildingName : state.shop.buildingName
       state.shop.postal = newVal ? newVal.postal : state.shop.postal
       state.shop.tel = newVal ? newVal.tel : state.shop.tel
+      state.shop.canTakeout = newVal ? newVal.canTakeout : state.shop.canTakeout
     })
 
     const onSubmit = () => context.emit('submit', state.shop)

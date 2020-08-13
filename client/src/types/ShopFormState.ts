@@ -20,6 +20,7 @@ export type ShopFormState = {
     tel: Shop['tel'],
     address: Shop['address'],
     buildingName: Shop['buildingName'],
-    postal: Shop['postal']
+    postal: Shop['postal'],
+    canTakeout: Shop['canTakeout']
   }
 }
