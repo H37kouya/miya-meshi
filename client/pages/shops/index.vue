@@ -4,6 +4,8 @@
       お店から探す
     </DefaultMainText>
 
+    <SearchButtonGroup />
+
     <DefaultShopList :shops="state.shops" />
   </div>
 </template>
