@@ -39,15 +39,40 @@ const convertToTableData = (shop: Shop): TableData[] => {
     } as TableData)
   }
 
-  tableData.push({
-    heading: '駐車場',
-    value: '8台+第二駐車場あり'
-  })
+  if (shop.businessHour1 || shop.businessHour2) {
+    if (shop.businessHour1 && shop.businessHour2) {
+      tableData.push({
+        heading: ShopJa.BUSINESS_HOUR,
+        value: `${shop.businessHour1}<br>${shop.businessHour2}`
+      })
+    } else {
+      tableData.push({
+        heading: ShopJa.BUSINESS_HOUR,
+        value: `${shop.businessHour1}`
+      })
+    }
+  }
 
-  tableData.push({
-    heading: '座席',
-    value: ''
-  })
+  if (shop.parkingLot) {
+    tableData.push({
+      heading: ShopJa.PARKING_LOT,
+      value: shop.parkingLot
+    })
+  }
+
+  if (shop.regularHoliday) {
+    tableData.push({
+      heading: ShopJa.REGULAR_HOLIDAY,
+      value: shop.regularHoliday
+    })
+  }
+
+  if (shop.seat) {
+    tableData.push({
+      heading: ShopJa.SEAT,
+      value: shop.seat
+    })
+  }
 
   return tableData
 }

@@ -15,7 +15,8 @@ import { useModel } from '~/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '~/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value: Shop['businessHour1']
+  value: Shop['businessHour1'],
+  number: number
 }
 
 export default defineComponent({
@@ -23,12 +24,17 @@ export default defineComponent({
     value: {
       type: String,
       default: undefined
+    },
+
+    number: {
+      type: Number,
+      default: 1
     }
   },
 
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = ShopJa.BUSINESS_HOUR
+    const label = `${ShopJa.BUSINESS_HOUR}${props.number}`
     const MAX_LENGTH = ShopMaxStringSize.BUSINESS_HOUR
 
     const counter = computed(() => {

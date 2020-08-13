@@ -9,7 +9,9 @@
       />
 
       <div class="pl-4 py-2">
-        <p>{{ prefixName }}</p>
+        <p class="mb-0 shop-prefix">
+          {{ prefixName }}
+        </p>
 
         <h1 class="shop-heading">
           {{ name }}
@@ -61,8 +63,14 @@ export default defineComponent({
   max-width: 100%;
 }
 
+.shop-prefix {
+  color: #797979;
+  font-size: 0.9rem;
+}
+
 .shop-heading {
-  font-size: 1rem;
+  color: #797979;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 </style>

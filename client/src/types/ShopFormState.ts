@@ -21,6 +21,11 @@ export type ShopFormState = {
     address: Shop['address'],
     buildingName: Shop['buildingName'],
     postal: Shop['postal'],
-    canTakeout: Shop['canTakeout']
+    canTakeout: Shop['canTakeout'],
+    businessHour1: Shop['businessHour1']
+    businessHour2: Shop['businessHour2']
+    parkingLot: Shop['parkingLot']
+    regularHoliday: Shop['regularHoliday']
+    seat: Shop['seat']
   }
 }
