@@ -20,7 +20,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext } from '@vue/composition-api'
-import { ActionTypes } from '@/store/auth'
 
 type State = {
   password: string,
@@ -38,9 +37,7 @@ export default defineComponent({
 
     const emailLogin = async () => {
       try {
-        await context.root.$store.dispatch(
-          `auth/${ActionTypes.EMAIL_LOGIN}`, { email: state.email, password: state.password }
-        )
+        await context.root.$fireAuth.signInWithEmailAndPassword(state.email, state.password)
 
         return await context.root.$router.push('/admin')
       } catch (e) {

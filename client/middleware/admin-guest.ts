@@ -1,9 +1,12 @@
 import { Middleware } from '@nuxt/types'
 
-const guestMiddleware: Middleware = ({ redirect, store: { state } }) => {
-  if (state.auth.uid) {
-    return redirect('/admin')
-  }
+const adminMiddleware: Middleware = ({ redirect, $fireAuth }) => {
+  // firebaseで認証情報を取得
+  $fireAuth.onAuthStateChanged((user) => {
+    if (user) {
+      return redirect('/admin')
+    }
+  })
 }
 
-export default guestMiddleware
+export default adminMiddleware

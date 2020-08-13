@@ -53,11 +53,6 @@ const nuxtConfig: Configuration = {
   */
   components: true,
 
-  router: {
-    middleware: [
-      'admin'
-    ]
-  },
   /*
   ** Nuxt.js dev-modules
   */
