@@ -51,7 +51,15 @@
         お問い合わせ
       </DefaultMainText>
 
-      <div class="u-light-grey-background" />
+      <div class="u-light-grey-background mb-4">
+        <v-container>
+          <v-row justify="center">
+            <v-col cols="12" class="d-flex justify-center">
+              <ContactShopField :shop="state.shop" />
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
     </div>
   </div>
 </template>
