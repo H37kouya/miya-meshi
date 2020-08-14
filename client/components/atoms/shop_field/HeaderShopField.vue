@@ -18,7 +18,7 @@
         </h1>
       </div>
 
-      <TelIcon class="tel-pos" large />
+      <TelIconButton class="tel-pos" large />
     </div>
   </div>
 </template>

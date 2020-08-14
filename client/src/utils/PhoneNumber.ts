@@ -7,7 +7,7 @@ import { PhoneNumber } from '@/src/types/PhoneNumber'
  * @param { any } v
  */
 export const validateTel = (v: any) => {
-  return /^[0０]/.test(v) && isValidNumber(v, 'JP');
+  return /^[0０]/.test(v) && isValidNumber(v, 'JP')
 }
 
 /**
@@ -29,6 +29,6 @@ export const formatTel = (v: any) => {
  *
  * @param { any } v
  */
-export const isPhoneNumber = (v: string): v is PhoneNumber => {
+export const isPhoneNumber = (v: any): v is PhoneNumber => {
   return validateTel(v)
 }

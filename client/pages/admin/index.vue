@@ -45,11 +45,11 @@
 
       <v-col cols="6" md="3">
         <CardButton
-          to="/shops"
+          to="/admin/keywords"
           color="indigo lighten-4"
-          text="店舗一覧"
+          text="キーワード一覧"
           text-color="grey"
-          icon="mdi-store"
+          icon="mdi-alpha-k-box-outline"
         />
       </v-col>
     </v-row>

@@ -2,15 +2,21 @@
   <v-form @submit.prevent="onSubmit">
     <v-row>
       <v-col cols="8">
-        <KeywordNameTextField
-          v-model="state.keyword.name"
-        />
+        <v-card outlined>
+          <v-card-text>
+            <KeywordNameTextField
+              v-model="state.keyword.name"
+            />
+
+            <div class="d-flex justify-end">
+              <v-btn type="submit" color="primary" large>
+                追加
+              </v-btn>
+            </div>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
-
-    <v-btn type="submit" color="primary">
-      追加
-    </v-btn>
   </v-form>
 </template>
 

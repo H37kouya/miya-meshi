@@ -53,7 +53,7 @@ export default {
           to: '/admin/shops/create'
         },
         {
-          icon: 'mdi-store',
+          icon: 'mdi-alpha-k-box-outline',
           title: 'キーワード一覧',
           to: '/admin/keywords'
         }
