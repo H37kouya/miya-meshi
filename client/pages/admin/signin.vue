@@ -1,20 +1,36 @@
 <template>
-  <v-container>
-    <h1>ログイン</h1>
+  <v-container class="max-width-480 mb-16">
+    <AdminMainText>
+      ログイン
+    </AdminMainText>
 
-    <v-form @submit.prevent="emailLogin">
-      <v-text-field
-        v-model="state.email"
-        label="email"
-      />
-      <v-text-field
-        v-model="state.password"
-        label="password"
-      />
-      <v-btn type="submit" color="primary">
-        ログイン
-      </v-btn>
-    </v-form>
+    <v-row justify="center">
+      <v-col cols="12">
+        <v-card width="480px">
+          <v-card-subtitle v-if="state.errorMessage" class="red--text">
+            {{ state.errorMessage }}
+          </v-card-subtitle>
+          <v-card-text>
+            <v-form @submit.prevent="emailLogin">
+              <v-text-field
+                v-model="state.email"
+                label="メールアドレス"
+              />
+
+              <PasswordTextField
+                v-model="state.password"
+              />
+
+              <div class="d-flex justify-end">
+                <v-btn type="submit" color="primary">
+                  ログイン
+                </v-btn>
+              </div>
+            </v-form>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -23,7 +39,8 @@ import { defineComponent, reactive, SetupContext } from '@vue/composition-api'
 
 type State = {
   password: string,
-  email: string
+  email: string,
+  errorMessage?: string
 }
 
 export default defineComponent({
@@ -31,16 +48,19 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive<State>({
-      email: 'sample@example.com',
-      password: 'Hello!'
+      email: '',
+      password: '',
+      errorMessage: undefined
     })
 
     const emailLogin = async () => {
+      state.errorMessage = undefined
       try {
         await context.root.$fireAuth.signInWithEmailAndPassword(state.email, state.password)
 
         return await context.root.$router.push('/admin')
       } catch (e) {
+        state.errorMessage = e.message
         console.error(e)
       }
     }
