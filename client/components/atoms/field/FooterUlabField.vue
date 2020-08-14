@@ -13,8 +13,18 @@
         </p>
 
         <ul class="d-flex link-inline-list border-black pa-0 mb-2">
-          <li><a href="" class="sentence link-inline-list-item white--text">U-labとは？</a></li>
-          <li><a href="" class="sentence link-inline-list-item white--text">U-labのHP</a></li>
+          <li>
+            <a
+              href="https://note.com/kazuma7/n/n75fb0175270d"
+              class="sentence link-inline-list-item white--text"
+            >U-labとは？</a>
+          </li>
+          <li>
+            <a
+              href="https://uu-circle20.firebaseapp.com/"
+              class="sentence link-inline-list-item white--text"
+            >宇大サークルビラ一覧</a>
+          </li>
         </ul>
 
         <div>
