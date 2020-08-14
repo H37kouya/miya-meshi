@@ -49,6 +49,6 @@
 @import "footer_field";
 
 .footer-group-title {
-  font-size: 1.3rem;
+  font-size: 1.75rem;
 }
 </style>
