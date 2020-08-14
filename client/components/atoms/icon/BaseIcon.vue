@@ -1,8 +1,10 @@
 <template>
-  <div class="btn-container" :class="{ 'selected': selected }" @click="onClick">
-    <v-icon large>
-      {{ icon }}
-    </v-icon>
+  <div class="btn-container">
+    <v-btn :color="selected ? '#ffa26d' : '#ddd'" fab @click="onClick">
+      <v-icon x-large>
+        {{ icon }}
+      </v-icon>
+    </v-btn>
 
     <br>
 
@@ -43,28 +45,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .btn-container {
-  background-color: #ddd;
-  border-radius: 50%;
   text-align: center;
-  width: 80px;
-  height: 80px;
-  padding: 0.5rem 0.25rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: rgba(darken(#ddd, 10%), 0.8);
-  }
+  width: 70px;
+  //height: 60px;
 }
 
 .btn-text {
   font-size: 0.6rem;
-}
-
-.selected {
-  background-color: #ffa26d;
-
-  &:hover {
-    background-color: rgba(darken(#ffa26d, 10%), 0.8);
-  }
 }
 </style>

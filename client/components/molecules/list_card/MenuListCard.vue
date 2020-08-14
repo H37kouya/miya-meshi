@@ -1,8 +1,16 @@
 <template>
   <v-card>
-    <v-card-title>
-      メニュー一覧
-    </v-card-title>
+    <div class="d-flex justify-space-between align-center">
+      <v-card-title>
+        メニュー一覧
+      </v-card-title>
+
+      <div class="pr-4">
+        <v-btn :to="`/admin/menus/create/?shopid=${shopid}`" color="light-green lighten-4">
+          新規メニュー追加
+        </v-btn>
+      </div>
+    </div>
 
     <v-list>
       <v-list-item v-for="(menu, key) in menus" :key="key" :to="`/admin/menus/${menu.id}`">
@@ -29,15 +37,24 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import { Menu } from '~/src/types/Menu'
+import { Shop } from '~/src/types/Shop'
 
 type Props = {
-  menu: Menu[]
+  menu: Menu[],
+  shopid: Shop['id']
 }
 
 export default defineComponent({
   props: {
-    menus: Array,
-    default: () => []
+    menus: {
+      type: Array,
+      default: () => []
+    },
+
+    shopid: {
+      type: String,
+      default: undefined
+    }
   }
 })
 </script>

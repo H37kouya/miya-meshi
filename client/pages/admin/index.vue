@@ -14,43 +14,19 @@
 
     <v-row justify="center" class="mt-4">
       <v-col cols="6" md="3">
-        <CardButton
-          to="/"
-          color="orange lighten-4"
-          text="メインページ"
-          text-color="grey"
-          icon="mdi-home"
-        />
+        <TopPageAdminButton />
       </v-col>
 
       <v-col cols="6" md="3">
-        <CardButton
-          to="/admin/shops"
-          color="purple lighten-4"
-          text="店舗一覧"
-          text-color="grey"
-          icon="mdi-store"
-        />
+        <ListShopAdminButton />
       </v-col>
 
       <v-col cols="6" md="3">
-        <CardButton
-          to="/admin/shops/create"
-          color="green lighten-4"
-          text="新規店舗作成"
-          text-color="grey"
-          icon="mdi-store"
-        />
+        <CreateShopAdminButton />
       </v-col>
 
       <v-col cols="6" md="3">
-        <CardButton
-          to="/admin/keywords"
-          color="indigo lighten-4"
-          text="キーワード一覧"
-          text-color="grey"
-          icon="mdi-alpha-k-box-outline"
-        />
+        <KeywordAdminButton />
       </v-col>
     </v-row>
   </v-container>
