@@ -1,12 +1,14 @@
 <template>
   <div class="d-flex justify-center header-shop w-100 u-black--text">
     <div class="pos-relative header-shop-wrapper">
-      <v-img
-        :src="src"
-        width="480px"
-        max-width="100%"
-        aspect-ratio="1.78"
-      />
+      <a :href="src" target="_blank" rel="noopener">
+        <v-img
+          :src="src"
+          width="480px"
+          max-width="100%"
+          aspect-ratio="1.78"
+        />
+      </a>
 
       <div class="pl-4 py-2">
         <p class="mb-0 shop-prefix">

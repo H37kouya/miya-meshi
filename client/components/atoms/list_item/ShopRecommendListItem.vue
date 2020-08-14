@@ -1,7 +1,7 @@
 <template>
   <v-row class="menu-item-container u-black--text" align="center">
     <v-col cols="3" class="px-2">
-      <v-card>
+      <v-card :href="state.menu.image" target="_blank" rel="noopener">
         <v-img :src="state.menu.image" aspect-ratio="1.2" />
       </v-card>
     </v-col>

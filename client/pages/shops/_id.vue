@@ -36,7 +36,11 @@
       <div class="u-light-grey-background">
         <v-container>
           <div class="d-flex justify-center">
-            <v-card>
+            <v-card
+              :href="state.shop.menuImageLink ? state.shop.menuImageLink[0] : '/no-image.png'"
+              target="_blank"
+              rel="noopener"
+            >
               <v-img
                 :src="state.shop.menuImageLink ? state.shop.menuImageLink[0] : '/no-image.png'"
                 max-width="480px"
