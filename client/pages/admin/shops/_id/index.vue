@@ -8,33 +8,15 @@
 
     <v-row justify="center" class="mt-4">
       <v-col cols="6" md="3">
-        <CardButton
-          to="/admin/shops"
-          color="purple lighten-4"
-          text="店舗一覧"
-          text-color="grey"
-          icon="mdi-home"
-        />
+        <ListShopAdminButton />
       </v-col>
 
       <v-col cols="6" md="3">
-        <CardButton
-          :to="`/admin/shops/${state.id}/edit`"
-          color="orange lighten-4"
-          text="店舗編集"
-          text-color="grey"
-          icon="mdi-home"
-        />
+        <EditShopAdminButton :shopid="state.id" />
       </v-col>
 
       <v-col cols="6" md="3">
-        <CardButton
-          :to="`/admin/menus/create/?shopid=${state.id}`"
-          color="green lighten-4"
-          text="メニュー追加"
-          text-color="grey"
-          icon="mdi-home"
-        />
+        <CreateMenuAdminButton :shopid="state.id" />
       </v-col>
     </v-row>
 
