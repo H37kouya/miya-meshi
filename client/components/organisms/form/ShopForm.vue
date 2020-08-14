@@ -1,206 +1,214 @@
 <template>
-  <v-form @submit.prevent="onSubmit">
-    <v-row>
-      <v-col cols="12">
-        <v-switch
-          v-model="state.shop.public"
-          :label="state.shop.public ? '公開' : '非公開'"
-          class="mt-0"
-        />
-      </v-col>
-    </v-row>
-
+  <v-form class="w-100" @submit.prevent="onSubmit">
     <v-row>
       <v-col cols="8">
-        <ShopPrefixNameTextField
-          v-model="state.shop.prefixName"
-        />
-        <ShopNameTextField
-          v-model="state.shop.name"
-        />
+        <v-card outlined>
+          <v-card-title>店舗について</v-card-title>
+
+          <v-card-text>
+            <ShopPrefixNameTextField
+              v-model="state.shop.prefixName"
+            />
+
+            <ShopNameTextField
+              v-model="state.shop.name"
+            />
+          </v-card-text>
+        </v-card>
       </v-col>
 
       <v-col cols="4">
-        <ShopPrioritySlider
-          v-model="state.shop.priority"
-        />
+        <v-card outlined>
+          <v-card-title>サイト設定</v-card-title>
+
+          <v-card-subtitle>店舗公開設定</v-card-subtitle>
+          <v-card-text class="pb-0">
+            <v-switch
+              v-model="state.shop.public"
+              :label="state.shop.public ? '公開' : '非公開'"
+              class="mt-0"
+            />
+          </v-card-text>
+
+          <v-card-subtitle>優先度</v-card-subtitle>
+          <v-card-text class="pb-3">
+            <ShopPrioritySlider
+              v-model="state.shop.priority"
+            />
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12">
-        <p>店舗紹介文</p>
-      </v-col>
+        <v-card outlined>
+          <v-card-title>店舗紹介</v-card-title>
 
-      <v-col cols="12">
-        <ShopDescriptionTextField
-          v-model="state.shop.description"
-        />
-      </v-col>
+          <div class="d-flex">
+            <v-col cols="8">
+              <v-card-text class="pb-0">
+                <ShopDescriptionTextField
+                  v-model="state.shop.description"
+                />
 
-      <v-col cols="12">
-        <ShopIntroTextarea
-          v-model="state.shop.intro"
-        />
-      </v-col>
-    </v-row>
+                <ShopIntroTextarea
+                  v-model="state.shop.intro"
+                />
+              </v-card-text>
 
-    <v-row>
-      <v-col cols="12" md="4" class="d-flex flex-row">
-        <span class="pt-1 pr-2">
-          テイクアウト可能店舗かどうか
-        </span>
+              <v-card-subtitle>
+                テイクアウト可能店舗かどうか
+              </v-card-subtitle>
 
-        <v-switch
-          v-model="state.shop.canTakeOut"
-          :label="state.shop.canTakeOut ? '可能' : '不可能'"
-          class="mt-0"
-        />
-      </v-col>
-    </v-row>
+              <v-card-text>
+                <v-switch
+                  v-model="state.shop.canTakeOut"
+                  :label="state.shop.canTakeOut ? '可能' : '不可能'"
+                  class="mt-0"
+                />
+              </v-card-text>
+            </v-col>
 
-    <v-row>
-      <v-col cols="12">
-        <p>お問い合わせ</p>
-      </v-col>
+            <v-col cols="4">
+              <v-card-text>
+                <BusinessHourShopTextField
+                  v-model="state.shop.businessHour1"
+                  :number="1"
+                />
 
-      <v-col cols="12" sm="6">
-        <TelTextField
-          v-model="state.shop.tel"
-        />
-      </v-col>
+                <BusinessHourShopTextField
+                  v-model="state.shop.businessHour2"
+                  :number="2"
+                />
 
-      <v-col cols="12" sm="6">
-        <PostalTextField
-          v-model="state.shop.postal"
-        />
-      </v-col>
+                <RegularHolidayShopTextField
+                  v-model="state.shop.regularHoliday"
+                />
 
-      <v-col cols="12" sm="6">
-        <AddressTextField
-          v-model="state.shop.address"
-        />
-      </v-col>
-
-      <v-col cols="12" sm="6">
-        <BuildingNameTextField
-          v-model="state.shop.buildingName"
-        />
-      </v-col>
-
-      <v-col cols="12" sm="6">
-        <BusinessHourShopTextField
-          v-model="state.shop.businessHour1"
-          :number="1"
-        />
-      </v-col>
-
-      <v-col cols="12" sm="6">
-        <BusinessHourShopTextField
-          v-model="state.shop.businessHour2"
-          :number="2"
-        />
-      </v-col>
-
-      <v-col cols="12" sm="6">
-        <RegularHolidayShopTextField
-          v-model="state.shop.regularHoliday"
-        />
-      </v-col>
-
-      <v-col cols="12" sm="6">
-        <SeatShopTextField
-          v-model="state.shop.seat"
-        />
+                <SeatShopTextField
+                  v-model="state.shop.seat"
+                />
+              </v-card-text>
+            </v-col>
+          </div>
+        </v-card>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12">
-        <p>リンク一覧</p>
-      </v-col>
+        <v-card outlined>
+          <v-card-title>お問い合わせ</v-card-title>
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.facebookLink"
-          :label="ShopJa.FACEBOOK_LINK"
-          prepend-inner-icon="mdi-facebook"
-        />
-      </v-col>
+          <v-card-text class="d-flex">
+            <v-col cols="8">
+              <TelTextField
+                v-model="state.shop.tel"
+              />
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.instaLink"
-          :label="ShopJa.INSTA_LINK"
-          prepend-inner-icon="mdi-instagram"
-        />
-      </v-col>
+              <PostalTextField
+                v-model="state.shop.postal"
+              />
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.twitterLink"
-          :label="ShopJa.TWITTER_LINK"
-          prepend-inner-icon="mdi-twitter"
-        />
-      </v-col>
+              <AddressTextField
+                v-model="state.shop.address"
+              />
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.homepageLink"
-          :label="ShopJa.HOMEPAGE_LINK"
-          prepend-inner-icon="mdi-home-circle"
-        />
+              <BuildingNameTextField
+                v-model="state.shop.buildingName"
+              />
+            </v-col>
+          </v-card-text>
+        </v-card>
       </v-col>
+    </v-row>
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.lineLink"
-          :label="ShopJa.LINE_LINK"
-          prepend-inner-icon="mdi-alpha-l-box-outline"
-        />
-      </v-col>
+    <v-row>
+      <v-col cols="12">
+        <v-card outlined>
+          <v-card-title>リンク一覧</v-card-title>
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.uberEatsLink"
-          :label="ShopJa.UBER_EATS_LINK"
-          prepend-inner-icon="mdi-alpha-u-box-outline"
-        />
-      </v-col>
+          <v-card-text class="d-flex">
+            <v-col cols="12" sm="6">
+              <LinkTextField
+                v-model="state.shop.facebookLink"
+                :label="ShopJa.FACEBOOK_LINK"
+                prepend-inner-icon="mdi-facebook"
+              />
 
-      <v-col cols="12" sm="6">
-        <LinkTextField
-          v-model="state.shop.youtubeLink"
-          :label="ShopJa.YOUTUBE_LINK"
-          prepend-inner-icon="mdi-youtube"
-        />
+              <LinkTextField
+                v-model="state.shop.instaLink"
+                :label="ShopJa.INSTA_LINK"
+                prepend-inner-icon="mdi-instagram"
+              />
+
+              <LinkTextField
+                v-model="state.shop.twitterLink"
+                :label="ShopJa.TWITTER_LINK"
+                prepend-inner-icon="mdi-twitter"
+              />
+
+              <LinkTextField
+                v-model="state.shop.uberEatsLink"
+                :label="ShopJa.UBER_EATS_LINK"
+                prepend-inner-icon="mdi-alpha-u-box-outline"
+              />
+            </v-col>
+
+            <v-col cols="12" sm="6">
+              <LinkTextField
+                v-model="state.shop.homepageLink"
+                :label="ShopJa.HOMEPAGE_LINK"
+                prepend-inner-icon="mdi-home-circle"
+              />
+
+              <LinkTextField
+                v-model="state.shop.lineLink"
+                :label="ShopJa.LINE_LINK"
+                prepend-inner-icon="mdi-alpha-l-box-outline"
+              />
+
+              <LinkTextField
+                v-model="state.shop.youtubeLink"
+                :label="ShopJa.YOUTUBE_LINK"
+                prepend-inner-icon="mdi-youtube"
+              />
+            </v-col>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <UploadImageFile
-          :path="`/shops/${uuid.image}`"
-          :past-image-link="state.shop.imageLink"
-          @input="(v) => state.shop.imageLink = v"
-        />
+        <v-card outlined>
+          <v-card-title>画像設定</v-card-title>
+          <v-card-subtitle>画像のアップロードをしたとき、このページの追加を必ず押してください。</v-card-subtitle>
+
+          <v-card-text>
+            <UploadImageFile
+              :path="`/shops/${uuid.image}`"
+              :past-image-link="state.shop.imageLink"
+              @input="(v) => state.shop.imageLink = v"
+            />
+
+            <UploadImageFile
+              :path="`/shops/${uuid.menuImage}`"
+              :past-image-link="state.shop.menuImageLink[0]"
+              label="メニュー画像"
+              @input="(v) => state.shop.menuImageLink[0] = v"
+            />
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col>
-        <UploadImageFile
-          :path="`/shops/${uuid.menuImage}`"
-          :past-image-link="state.shop.menuImageLink[0]"
-          label="メニュー画像"
-          @input="(v) => state.shop.menuImageLink[0] = v"
-        />
-      </v-col>
-    </v-row>
-
-    <v-btn type="submit" color="primary">
-      追加
-    </v-btn>
+    <div class="d-flex justify-end">
+      <v-btn type="submit" color="primary" x-large>
+        追加
+      </v-btn>
+    </div>
   </v-form>
 </template>
 

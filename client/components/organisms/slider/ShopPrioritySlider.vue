@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-subheader>{{ ShopJa.PRIORITY }}</v-subheader>
     <v-slider
       v-model="model"
       :max="5"
@@ -46,9 +45,9 @@ export default defineComponent({
     }
   },
 
-  setup(props: Props, context: SetupContext) {
-    const MAX = 5, MIN = 1
-    const {model} = useModel<Props>(props, context.emit)
+  setup (props: Props, context: SetupContext) {
+    const MAX = 5; const MIN = 1
+    const { model } = useModel<Props>(props, context.emit)
 
     const decrement = () => {
       if (MIN < model.value) {
