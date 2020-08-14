@@ -1,34 +1,30 @@
 <template>
-  <v-container class="py-0 max-width-480">
-    <v-row justify="center">
-      <v-col cols="3" class="px-2">
-        <TakeoutIcon
-          :selected="state.btnStatus.takeout"
-          @click="onInput('takeout')"
-        />
-      </v-col>
+  <v-container class="pl-8 py-0 pr-0 max-width-480 u-black--text">
+    <div class="d-flex justify-end align-center search-container py-2">
+      <p class="mb-0 pr-1 search-title text-right">
+        絞り込み
+      </p>
 
-      <v-col cols="3" class="px-2">
-        <OpenBuzIcon
-          :selected="state.btnStatus.openBuz"
-          @click="onInput('openBuz')"
-        />
-      </v-col>
+      <TakeoutIcon
+        :selected="state.btnStatus.takeout"
+        @click="onInput('takeout')"
+      />
+      <OpenBuzIcon
+        :selected="state.btnStatus.openBuz"
+        @click="onInput('openBuz')"
+      />
 
-      <v-col cols="3" class="px-2">
-        <NowLocationIcon
-          :selected="state.btnStatus.nowLocation"
-          @click="onInput('nowLocation')"
-        />
-      </v-col>
+      <NowLocationIcon
+        :selected="state.btnStatus.nowLocation"
+        @click="onInput('nowLocation')"
+      />
 
-      <v-col cols="3" class="px-2">
-        <AreaIcon
-          :selected="state.btnStatus.area"
-          @click="onInput('area')"
-        />
-      </v-col>
-    </v-row>
+      <AreaIcon
+        :selected="state.btnStatus.area"
+        @click="onInput('area')"
+      />
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -76,3 +72,19 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.search-container {
+  background-color: #f3f3e2;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.search-title {
+  font-size: 0.8rem;
+}
+
+.width-70 {
+  width: 70px;
+}
+</style>
