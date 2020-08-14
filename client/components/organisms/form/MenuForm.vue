@@ -138,7 +138,7 @@ export default defineComponent({
         public: true,
         price: 0,
         isTaxIncluded: false,
-        canTakeOut: false
+        canTakeOut: true
       }
     })
 
