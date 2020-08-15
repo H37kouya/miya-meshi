@@ -26,7 +26,7 @@ type Props = {
 
 export default defineComponent({
   props: {
-    menus: Object,
+    menus: Array,
     default: () => []
   },
 
