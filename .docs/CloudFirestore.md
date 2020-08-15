@@ -32,6 +32,7 @@
 | regularHoliday     | `String`           | 定休日             |
 | seat               | `String`           | 座席             |
 | canTakeOut         | `Boolean`          | テイクアウト可能か  |
+| priceRange         | `String`           | 価格帯             |
 | keywords           | `Array<String>`    |                    |
 | createdAt          | `DateTime`         | 作成日時           |
 | deletedAt          | `DateTime`         | 削除日時           |
@@ -74,3 +75,14 @@
 | --------------  | --------------- | ------------- |
 | id              | `String`        | ID = User ID  |
 | admin           | `Boolean`       | 管理者かどうか |
+
+## PriceRange
+
+> 価格帯
+
+| Column Name     | Type            | Explanation   |
+| --------------  | --------------- | ------------- |
+| id              | `String`        | PriceRange ID |
+| name            | `String`        |               |
+| createdAt       | `DateTime`      | 作成日時      |
+| updatedAt       | `DateTime`      | 更新日時      |

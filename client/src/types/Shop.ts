@@ -21,6 +21,7 @@ export type Shop = {
   uberEatsLink?: string,
   youtubeLink?: string,
   priority: number,
+  priceRange: string,
   public: boolean,
   businessHour1?: string,
   businessHour2?: string,
@@ -64,6 +65,7 @@ export enum ShopJa {
   POSTAL = '郵便番号',
   BUSINESS_HOUR = '営業時間',
   PARKING_LOT = '駐車場',
+  PRICE_RANGE = '価格帯',
   REGULAR_HOLIDAY = '定休日',
   SEAT = '座席'
 }
