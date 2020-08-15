@@ -30,11 +30,12 @@ export const getShopList = async (
 ) => {
   const publicWhere: boolean[] = admin ? [true, false] : [true]
 
-  const list = await $fireStore
+  const func = $fireStore
     .collection(SHOP_COLLECTION_NAME)
     .where('public', 'in', publicWhere)
-    .limit(limit)
-    .get()
+    .orderBy('priority', 'desc')
+
+  const list = limit > 0 ? await func.limit(limit).get() : await func.get()
 
   const shops = [] as Shop[]
   list.forEach((doc) => {

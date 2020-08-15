@@ -61,19 +61,12 @@ export const getMenuList = async (
 ) => {
   const publicWhere: boolean[] = admin ? [true, false] : [true]
 
-  let list
-  if (limit === 0) {
-    list = await $fireStore
-      .collection(MENU_COLLECTION_NAME)
-      .where('public', 'in', publicWhere)
-      .get()
-  } else {
-    list = await $fireStore
-      .collection(MENU_COLLECTION_NAME)
-      .where('public', 'in', publicWhere)
-      .limit(limit)
-      .get()
-  }
+  const func = $fireStore
+    .collection(MENU_COLLECTION_NAME)
+    .where('public', 'in', publicWhere)
+    .orderBy('priority', 'desc')
+
+  const list = limit > 0 ? await func.limit(limit).get() : await func.get()
 
   const menus = [] as Menu[]
   list.forEach((doc) => {
@@ -98,22 +91,13 @@ export const getMenuListByShopID = async (
 ) => {
   const publicWhere: boolean[] = admin ? [true, false] : [true]
 
-  let list
-  if (limit === 0) {
-    list = await $fireStore
-      .collection(MENU_COLLECTION_NAME)
-      .where('shopID', '==', shopID)
-      .where('public', 'in', publicWhere)
-      .limit(limit)
-      .get()
-  } else {
-    list = await $fireStore
-      .collection(MENU_COLLECTION_NAME)
-      .where('shopID', '==', shopID)
-      .where('public', 'in', publicWhere)
-      .limit(limit)
-      .get()
-  }
+  const func = $fireStore
+    .collection(MENU_COLLECTION_NAME)
+    .where('shopID', '==', shopID)
+    .where('public', 'in', publicWhere)
+    .orderBy('priority', 'desc')
+
+  const list = limit > 0 ? await func.limit(limit).get() : await func.get()
 
   const menus = [] as Menu[]
   list.forEach((doc) => {

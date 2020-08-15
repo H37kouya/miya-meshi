@@ -11,6 +11,7 @@ export type Menu = {
   public: boolean,
   isTaxIncluded?: boolean,
   canTakeOut?: boolean,
+  priority: number,
   createdAt?: Date|Object,
   updatedAt?: Date|Object,
   deletedAt?: Date|Object
@@ -27,6 +28,7 @@ export enum MenuJa {
   DESCRIPTION = '一言紹介',
   INTRO = 'メニュー紹介',
   PRICE = '値段',
+  PRIORITY = '優先度',
   IS_TAX_INCLUDED = '税込みかどうか',
   CAN_TAKEOUT = 'テイクアウトできるかどうか'
 }
