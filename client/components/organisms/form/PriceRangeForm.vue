@@ -8,6 +8,10 @@
               v-model="state.priceRange.name"
             />
 
+            <PriorityPriceRangeTextField
+              v-model="state.priceRange.priority"
+            />
+
             <div class="d-flex justify-end">
               <v-btn type="submit" color="primary" large>
                 追加
@@ -39,12 +43,14 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const state = reactive({
       priceRange: {
-        name: '' as PriceRange['name']
+        name: '' as PriceRange['name'],
+        priority: 10 as PriceRange['priority']
       }
     })
 
     watch(() => props.priceRange, (newVal, _) => {
       state.priceRange.name = newVal ? newVal.name : state.priceRange.name
+      state.priceRange.priority = newVal ? newVal.priority : state.priceRange.priority
     })
 
     const onSubmit = () => context.emit('submit', state.priceRange)

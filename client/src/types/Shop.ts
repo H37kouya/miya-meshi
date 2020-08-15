@@ -21,7 +21,7 @@ export type Shop = {
   uberEatsLink?: string,
   youtubeLink?: string,
   priority: number,
-  priceRange: string,
+  priceRange?: string,
   public: boolean,
   businessHour1?: string,
   businessHour2?: string,

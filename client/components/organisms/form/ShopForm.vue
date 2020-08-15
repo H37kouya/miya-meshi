@@ -67,6 +67,12 @@
                   :label="state.shop.canTakeOut ? '可能' : '不可能'"
                   class="mt-0"
                 />
+
+                <v-select
+                  v-model="state.shop.priceRange"
+                  :items="priceRangeListForSelect"
+                  label="価格帯"
+                />
               </v-card-text>
             </v-col>
 
@@ -213,14 +219,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { Shop, ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
 import { createUUID } from '@/src/utils/String'
+import { PriceRange } from '~/src/types/PriceRange'
 
 type Props = {
-  shop?: Shop
+  shop?: Shop,
+  priceRangeList: PriceRange[]
 }
 
 export default defineComponent({
@@ -230,6 +238,11 @@ export default defineComponent({
       validator (v) {
         return isShop(v)
       }
+    },
+
+    priceRangeList: {
+      type: Array,
+      default: []
     }
   },
 
@@ -250,6 +263,7 @@ export default defineComponent({
         uberEatsLink: undefined,
         youtubeLink: undefined,
         priority: 3,
+        priceRange: undefined,
         public: true,
         address: undefined,
         buildingName: undefined,
@@ -269,6 +283,10 @@ export default defineComponent({
       menuImage: createUUID()
     }
 
+    const priceRangeListForSelect = computed(() => {
+      return props.priceRangeList.map(priceRange => priceRange.name)
+    })
+
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : state.shop.name
       state.shop.prefixName = newVal ? newVal.prefixName : state.shop.prefixName
@@ -284,6 +302,7 @@ export default defineComponent({
       state.shop.uberEatsLink = newVal ? newVal.uberEatsLink : state.shop.uberEatsLink
       state.shop.youtubeLink = newVal ? newVal.youtubeLink : state.shop.youtubeLink
       state.shop.priority = newVal ? newVal.priority : state.shop.priority
+      state.shop.priceRange = newVal ? newVal.priceRange : state.shop.priceRange
       state.shop.public = newVal ? newVal.public : state.shop.public
       state.shop.address = newVal ? newVal.address : state.shop.address
       state.shop.buildingName = newVal ? newVal.buildingName : state.shop.buildingName
@@ -303,6 +322,7 @@ export default defineComponent({
       state,
       ShopJa,
       uuid,
+      priceRangeListForSelect,
       onSubmit
     }
   }

@@ -19,7 +19,7 @@ export const deletePriceRange = async (
 export const getPriceRangeList = async (
   $fireStore: firebase.firestore.Firestore
 ) => {
-  const list = await $fireStore.collection(PRICE_RANGE_COLLECTION_NAME).get()
+  const list = await $fireStore.collection(PRICE_RANGE_COLLECTION_NAME).orderBy('priority', 'desc').get()
 
   const priceRanges = [] as PriceRange[]
   list.forEach((doc) => {
