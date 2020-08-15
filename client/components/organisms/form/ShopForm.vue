@@ -6,11 +6,11 @@
           <v-card-title>店舗について</v-card-title>
 
           <v-card-text>
-            <ShopPrefixNameTextField
+            <PrefixNameShopTextField
               v-model="state.shop.prefixName"
             />
 
-            <ShopNameTextField
+            <NameShopTextField
               v-model="state.shop.name"
             />
           </v-card-text>
@@ -48,7 +48,7 @@
           <div class="d-flex">
             <v-col cols="8">
               <v-card-text class="pb-0">
-                <ShopDescriptionTextField
+                <DescriptionShopTextField
                   v-model="state.shop.description"
                 />
 
