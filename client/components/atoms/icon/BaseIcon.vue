@@ -3,8 +3,8 @@
     <span class="btn-text">{{ text }}</span>
     <br>
 
-    <v-btn :color="selected ? '#ffa26d' : '#ddd'" fab @click="onClick">
-      <v-icon x-large>
+    <v-btn :color="selected ? '#ffa26d' : '#eee'" fab :elevation="2" @click="onClick">
+      <v-icon x-large color="#222">
         {{ icon }}
       </v-icon>
     </v-btn>
