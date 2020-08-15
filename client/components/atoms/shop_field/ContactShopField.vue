@@ -8,7 +8,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" class="d-flex justify-center">
-            <ContactShopField :shop="state.shop" />
+            <ContactShopTable :shop="state.shop" />
           </v-col>
         </v-row>
       </v-container>
