@@ -1,7 +1,30 @@
 import firebase from 'firebase'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
+import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { ShopFormState } from '@/src/types/ShopFormState'
 
 const SHOP_COLLECTION_NAME = 'shops'
+
+/**
+ * Shopを追加する
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { typeof firebase.firestore } $fireStoreObj
+ * @param { ShopFormState['shop']|Shop } shop
+ */
+export const createShop = async (
+  $fireStore: firebase.firestore.Firestore,
+  $fireStoreObj: typeof firebase.firestore,
+  shop: ShopFormState['shop']|Shop
+) => {
+  const addData = {
+    ...removeUndefinedFromObject(shop),
+    createdAt: $fireStoreObj.FieldValue.serverTimestamp(),
+    updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
+  } as firebase.firestore.DocumentData
+
+  await $fireStore.collection(SHOP_COLLECTION_NAME).add(addData)
+}
 
 /**
  * Shopを削除する

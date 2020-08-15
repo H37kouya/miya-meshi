@@ -23,6 +23,8 @@ import { defineComponent, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
+import { createShop as createDBShop } from '@/src/infra/firestore/Shop'
+import { formatShopAddress } from '@/src/utils/Shop'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -31,13 +33,8 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const createShop = async (shop: ShopFormState['shop']) => {
-      const addData = {
-        ...removeUndefinedFromObject(shop),
-        createdAt: context.root.$fireStoreObj.FieldValue.serverTimestamp(),
-        updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
-      } as firebase.firestore.DocumentData
-
-      await context.root.$fireStore.collection('shops').add(addData)
+      shop.address = formatShopAddress(shop.address)
+      await createDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop)
 
       return await context.root.$router.push('/admin/shops')
     }
