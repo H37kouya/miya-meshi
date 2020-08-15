@@ -55,7 +55,7 @@ export default defineComponent({
         updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
       })
 
-      return await context.root.$router.push('/admin/shops')
+      return await context.root.$router.push(`/admin/shops/${state.menu.shopID}`)
     }
 
     onMounted(async () => {

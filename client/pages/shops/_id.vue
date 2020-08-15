@@ -89,8 +89,12 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      state.shop = await getShopByID(context.root.$fireStore, context.root.$route.params.id)
-      state.menus = await getMenuListByShopID(context.root.$fireStore, state.shop.id)
+      const [shop, menus] = await Promise.all([
+        getShopByID(context.root.$fireStore, context.root.$route.params.id),
+        getMenuListByShopID(context.root.$fireStore, context.root.$route.params.id)
+      ])
+      state.shop = shop
+      state.menus = menus
     })
 
     return {

@@ -62,7 +62,7 @@ export default defineComponent({
 
       await context.root.$fireStore.collection('menus').add(addData)
 
-      return await context.root.$router.push('/admin/shops')
+      return await context.root.$router.push(`/admin/shops/${shopID}`)
     }
 
     onMounted(async () => {

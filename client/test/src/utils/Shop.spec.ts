@@ -1,5 +1,5 @@
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { isShop } from '@/src/utils/Shop'
+import { formatShopAddress, isShop } from '@/src/utils/Shop'
 
 describe('utils/Shop', () => {
   describe('isShop', () => {
@@ -24,6 +24,27 @@ describe('utils/Shop', () => {
     testCases.forEach((testCase) => {
       it(testCase.message, () => {
         expect(isShop(testCase.arg)).toBe(testCase.expected)
+      })
+    })
+  })
+
+  describe('formatShopAddress', () => {
+    type testType = {
+      message: string,
+      arg?: string,
+      expected?: string
+    }
+
+    const testCases = [
+      { message: 'フォーマットできる', arg: '宇都宮市陽東', expected: '栃木県宇都宮市陽東' },
+      { message: 'フォーマットできる', arg: '栃木県宇都宮市陽東', expected: '栃木県宇都宮市陽東' },
+      { message: '適切ではない値はその値を返す', arg: 'あああ', expected: 'あああ' },
+      { message: 'undefinedはundefinedを返す', arg: undefined, expected: undefined }
+    ] as testType[]
+
+    testCases.forEach((testCase) => {
+      it(`${testCase.message} (${testCase.arg} → ${testCase.expected})}`, () => {
+        expect(formatShopAddress(testCase.arg)).toBe(testCase.expected)
       })
     })
   })

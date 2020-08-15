@@ -19,11 +19,19 @@
 
           <v-card-subtitle>店舗公開設定</v-card-subtitle>
 
-          <v-card-text>
+          <v-card-text class="pb-0">
             <v-switch
               v-model="state.menu.public"
               :label="state.menu.public ? '公開' : '非公開'"
               class="mt-0"
+            />
+          </v-card-text>
+
+          <v-card-subtitle>優先度</v-card-subtitle>
+
+          <v-card-text class="pb-3">
+            <ShopPrioritySlider
+              v-model="state.menu.priority"
             />
           </v-card-text>
         </v-card>
@@ -137,6 +145,7 @@ export default defineComponent({
         image: DEFAULT_IMAGE,
         public: true,
         price: 0,
+        priority: 3,
         isTaxIncluded: false,
         canTakeOut: true
       }
@@ -151,6 +160,7 @@ export default defineComponent({
       state.menu.image = newVal ? newVal.image : state.menu.image
       state.menu.public = newVal ? newVal.public : state.menu.public
       state.menu.price = newVal ? newVal.price : state.menu.price
+      state.menu.priority = newVal ? newVal.priority : state.menu.priority
       state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
       state.menu.canTakeOut = newVal ? newVal.canTakeOut : state.menu.canTakeOut
     })

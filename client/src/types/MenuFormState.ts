@@ -8,6 +8,7 @@ export type MenuFormState = {
     image: Menu['image'],
     price: Menu['price'],
     public: Menu['public'],
+    priority: Menu['priority'],
     isTaxIncluded: Menu['isTaxIncluded'],
     canTakeOut: Menu['canTakeOut']
   }
