@@ -6,6 +6,18 @@
       :prefix-name="state.shop.prefixName"
     />
 
+    <div class="u-light-grey-background d-flex justify-center py-2">
+      <div class="max-width-480 d-flex justify-center align-center px-4">
+        <v-img src="/miyameshi-mogumogu.png" max-width="45px" height="60px" class="mr-2" />
+
+        <v-card width="100%" height="80px" class="d-flex align-center">
+          <v-card-text class="pa-2">
+            {{ state.shop.description }}
+          </v-card-text>
+        </v-card>
+      </div>
+    </div>
+
     <div class="u-light-grey-background d-flex justify-center">
       <div class="max-width-480">
         <FiveOneAdField src="/circle-ad.png" href="https://uu-circle20.firebaseapp.com/" />
@@ -51,7 +63,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { Menu } from '@/src/types/Menu'
@@ -64,7 +76,7 @@ export default defineComponent({
       menus: [] as Menu[]
     })
 
-    onMounted(async () => {
+    watchEffect(async () => {
       const [shop, menus] = await Promise.all([
         getShopByID(context.root.$fireStore, context.root.$route.params.id),
         getMenuListByShopID(context.root.$fireStore, context.root.$route.params.id)
