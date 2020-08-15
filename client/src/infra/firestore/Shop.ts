@@ -39,6 +39,20 @@ export const deleteShop = async (
   await $fireStore.collection(SHOP_COLLECTION_NAME).doc(id).delete()
 }
 
+export const editShop = async (
+  $fireStore: firebase.firestore.Firestore,
+  $fireStoreObj: typeof firebase.firestore,
+  shop: ShopFormState['shop']|Shop,
+  shopID: Shop['id']
+) => {
+  const updateData = {
+    ...removeUndefinedFromObject(shop),
+    updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
+  }
+
+  await $fireStore.collection(SHOP_COLLECTION_NAME).doc(shopID).update(updateData)
+}
+
 /**
  * Shop一覧を取得
  *
