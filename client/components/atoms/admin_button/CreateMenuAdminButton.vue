@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop.ts'
+import { Shop } from '@/src/types/Shop'
 
 type Props = {
   shopid: Shop['id']

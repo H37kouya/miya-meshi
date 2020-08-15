@@ -13,19 +13,7 @@
     </div>
 
     <div>
-      <DefaultMainText :level="2">
-        当店のおすすめ
-      </DefaultMainText>
-
-      <div class="u-light-grey-background">
-        <v-container class="max-width-600 py-4">
-          <template v-for="(menu, key) in state.menus">
-            <div :key="menu.id" class="px-4" :class="{ 'mb-4': state.menus.length - 1 !== key }">
-              <ShopRecommendListItem :menu="menu" />
-            </div>
-          </template>
-        </v-container>
-      </div>
+      <RecommendShopField :menus="state.menus" />
     </div>
 
     <div>
@@ -57,19 +45,7 @@
     </div>
 
     <div>
-      <DefaultMainText :level="2">
-        お問い合わせ
-      </DefaultMainText>
-
-      <div class="u-light-grey-background mb-4">
-        <v-container>
-          <v-row justify="center">
-            <v-col cols="12" class="d-flex justify-center">
-              <ContactShopField :shop="state.shop" />
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
+      <ContactShopField :shop="state.shop" />
     </div>
   </div>
 </template>

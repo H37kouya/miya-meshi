@@ -56,7 +56,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "footer_field";
+@import "components/atoms/footer_field/footer_field";
 
 .footer-group-title {
   font-size: 1.75rem;
