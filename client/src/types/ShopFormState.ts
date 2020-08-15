@@ -15,6 +15,8 @@ export type ShopFormState = {
     twitterLink: Shop['twitterLink'],
     uberEatsLink: Shop['uberEatsLink'],
     youtubeLink: Shop['youtubeLink'],
+    instaShopLink: Shop['instaShopLink'],
+    instaNumber: Shop['instaNumber'],
     priority: Shop['priority'],
     priceRange: Shop['priceRange'],
     public: Shop['public'],
