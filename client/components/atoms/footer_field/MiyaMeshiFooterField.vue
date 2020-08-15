@@ -40,5 +40,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import "footer_field";
+@import "components/atoms/footer_field/footer_field";
 </style>

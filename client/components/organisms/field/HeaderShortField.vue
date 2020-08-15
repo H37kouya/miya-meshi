@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%;">
+  <div class="w-100">
     <div class="top-image" />
 
     <div class="text-right px-4 developer-name">

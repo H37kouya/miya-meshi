@@ -4,16 +4,8 @@
     absolute
     class="d-block pa-0"
   >
-    <div class="recruitment d-flex align-center justify-center">
-      <a
-        href="https://forms.gle/gAknXAaCrfsr8UdA8"
-        class="white--text text-decoration-none w-100 pos-relative"
-        target="_blank"
-        rel="noopener"
-      >
-        <span class="recruitment-text">このサイトに掲載希望の飲食店さんはこちら！</span>
-        <v-img src="/tree-background.png" width="100%" max-height="90px" />
-      </a>
+    <div>
+      <RecruitmentFooterField />
     </div>
 
     <div>
@@ -21,13 +13,13 @@
     </div>
 
     <div class="miya-meshi-container border-grey-top">
-      <FooterMiyaMeshiField />
+      <MiyaMeshiFooterField />
     </div>
 
     <div class="ulab-container">
-      <FooterUlabField />
+      <UlabFooterField />
 
-      <FooterCopylight />
+      <CopylightFooterField />
     </div>
   </v-footer>
 </template>
@@ -49,20 +41,5 @@
   background-color: #333;
   color: #fff;
   padding: 0 0.5rem;
-}
-
-.recruitment {
-  background-color: grey;
-  text-align: center;
-  height: 90px;
-  font-size: 1rem;
-}
-
-.recruitment-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
 }
 </style>
