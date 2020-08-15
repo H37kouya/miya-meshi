@@ -4,6 +4,19 @@ import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 const SHOP_COLLECTION_NAME = 'shops'
 
 /**
+ * Shopを削除する
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { string } id
+ */
+export const deleteShop = async (
+  $fireStore: firebase.firestore.Firestore,
+  id: string
+) => {
+  await $fireStore.collection(SHOP_COLLECTION_NAME).doc(id).delete()
+}
+
+/**
  * Shop一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore

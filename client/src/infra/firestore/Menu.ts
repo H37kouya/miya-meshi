@@ -17,6 +17,37 @@ export const deleteMenu = async (
 }
 
 /**
+ * 複数のMenuをまとめて削除する
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { string[] } ids
+ */
+export const deleteMultipleMenu = async (
+  $fireStore: firebase.firestore.Firestore,
+  ids: string[]
+) => {
+  // 並列処理のためのPromiseを用意
+  const promises = ids.map(id => deleteMenu($fireStore, id))
+
+  await Promise.all(promises)
+}
+
+/**
+ * ShopIDによって、Menuを削除する
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { string } id
+ */
+export const deleteMenuByShopID = async (
+  $fireStore: firebase.firestore.Firestore,
+  id: string
+) => {
+  const menus = await getMenuListByShopID($fireStore, id, 0, true)
+  const ids = menus.map(map => map.id)
+  await deleteMultipleMenu($fireStore, ids)
+}
+
+/**
  * Menu一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
@@ -30,11 +61,19 @@ export const getMenuList = async (
 ) => {
   const publicWhere: boolean[] = admin ? [true, false] : [true]
 
-  const list = await $fireStore
-    .collection(MENU_COLLECTION_NAME)
-    .where('public', 'in', publicWhere)
-    .limit(limit)
-    .get()
+  let list
+  if (limit === 0) {
+    list = await $fireStore
+      .collection(MENU_COLLECTION_NAME)
+      .where('public', 'in', publicWhere)
+      .get()
+  } else {
+    list = await $fireStore
+      .collection(MENU_COLLECTION_NAME)
+      .where('public', 'in', publicWhere)
+      .limit(limit)
+      .get()
+  }
 
   const menus = [] as Menu[]
   list.forEach((doc) => {
@@ -59,12 +98,22 @@ export const getMenuListByShopID = async (
 ) => {
   const publicWhere: boolean[] = admin ? [true, false] : [true]
 
-  const list = await $fireStore
-    .collection(MENU_COLLECTION_NAME)
-    .where('shopID', '==', shopID)
-    .where('public', 'in', publicWhere)
-    .limit(limit)
-    .get()
+  let list
+  if (limit === 0) {
+    list = await $fireStore
+      .collection(MENU_COLLECTION_NAME)
+      .where('shopID', '==', shopID)
+      .where('public', 'in', publicWhere)
+      .limit(limit)
+      .get()
+  } else {
+    list = await $fireStore
+      .collection(MENU_COLLECTION_NAME)
+      .where('shopID', '==', shopID)
+      .where('public', 'in', publicWhere)
+      .limit(limit)
+      .get()
+  }
 
   const menus = [] as Menu[]
   list.forEach((doc) => {
