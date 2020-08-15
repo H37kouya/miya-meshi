@@ -1,14 +1,13 @@
 <template>
   <div class="btn-container">
-    <v-btn :color="selected ? '#ffa26d' : '#ddd'" fab @click="onClick">
-      <v-icon x-large>
+    <span class="btn-text">{{ text }}</span>
+    <br>
+
+    <v-btn :color="selected ? '#ffa26d' : '#eee'" fab :elevation="2" @click="onClick">
+      <v-icon x-large color="#222">
         {{ icon }}
       </v-icon>
     </v-btn>
-
-    <br>
-
-    <span class="btn-text">{{ text }}</span>
   </div>
 </template>
 

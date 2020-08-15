@@ -12,6 +12,7 @@
 
     <v-row>
       <ShopForm
+        :price-range-list="state.priceRangeList"
         @submit="createShop"
       />
     </v-row>
@@ -19,12 +20,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { createShop as createDBShop } from '@/src/infra/firestore/Shop'
 import { formatShopAddress } from '@/src/utils/Shop'
+import { PriceRange } from '@/src/types/PriceRange'
+import { getPriceRangeList } from '@/src/infra/firestore/PriceRange'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -32,6 +34,10 @@ export default defineComponent({
   layout: 'auth',
 
   setup (_: unknown, context: SetupContext) {
+    const state = reactive({
+      priceRangeList: [] as PriceRange[]
+    })
+
     const createShop = async (shop: ShopFormState['shop']) => {
       shop.address = formatShopAddress(shop.address)
       await createDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop)
@@ -39,7 +45,12 @@ export default defineComponent({
       return await context.root.$router.push('/admin/shops')
     }
 
+    onMounted(async () => {
+      state.priceRangeList = await getPriceRangeList(context.root.$fireStore)
+    })
+
     return {
+      state,
       createShop
     }
   },

@@ -39,5 +39,18 @@ service cloud.firestore {
       allow write: if isSignedIn() && isOwner()
       allow read
     }
+
+    match /priceRanges/{document=**} {
+    	function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner() {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.admin == true;
+      }
+
+      allow write: if isSignedIn() && isOwner()
+      allow read
+    }
   }
 }

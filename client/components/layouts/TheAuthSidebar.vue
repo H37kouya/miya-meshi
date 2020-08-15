@@ -56,6 +56,11 @@ export default {
           icon: 'mdi-alpha-k-box-outline',
           title: 'キーワード一覧',
           to: '/admin/keywords'
+        },
+        {
+          icon: 'mdi-cash',
+          title: '価格帯一覧',
+          to: '/admin/price-ranges'
         }
       ]
     }
