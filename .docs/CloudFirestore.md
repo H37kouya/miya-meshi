@@ -34,6 +34,8 @@
 | canTakeOut         | `Boolean`          | テイクアウト可能か  |
 | priceRange         | `String`           | 価格帯             |
 | keywords           | `Array<String>`    |                    |
+| instaNumber        | `Number`           | インスタの番号      |
+| instaShopLink      | `String`           | インスタの店舗のリンク |
 | createdAt          | `DateTime`         | 作成日時           |
 | deletedAt          | `DateTime`         | 削除日時           |
 | updatedAt          | `DateTime`         | 更新日時           |

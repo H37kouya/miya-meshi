@@ -29,6 +29,8 @@ export type Shop = {
   regularHoliday?: string,
   seat?: string,
   canTakeout: boolean,
+  instaShopLink?: string,
+  instaNumber?: number,
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object
@@ -57,6 +59,8 @@ export enum ShopJa {
   HOMEPAGE_LINK = 'ホームページ',
   UBER_EATS_LINK = 'UberEats',
   YOUTUBE_LINK = 'YouTube',
+  INSTA_NUMBER = 'インスタで紹介している番号',
+  INSTA_SHOP_LINK = 'インスタで紹介しているリンク',
   PRIORITY = '優先度',
   PUBLIC = '公開設定',
   ADDRESS = '住所',

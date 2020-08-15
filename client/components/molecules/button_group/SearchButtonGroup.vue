@@ -23,7 +23,6 @@
         :selected="state.btnStatus.area"
         @click="onInput('area')"
       />
-      </v-row>
     </div>
   </v-container>
 </template>

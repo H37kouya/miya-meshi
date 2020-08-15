@@ -103,12 +103,12 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12">
+      <v-col cols="8">
         <v-card outlined>
           <v-card-title>お問い合わせ</v-card-title>
 
           <v-card-text class="d-flex">
-            <v-col cols="8">
+            <v-col cols="12">
               <TelTextField
                 v-model="state.shop.tel"
               />
@@ -125,6 +125,27 @@
                 v-model="state.shop.buildingName"
               />
             </v-col>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="4">
+        <v-card outlined>
+          <v-card-title>みやメシ応援隊のインスタ</v-card-title>
+
+          <v-card-text>
+            <v-text-field
+              v-model="state.shop.instaNumber"
+              :label="ShopJa.INSTA_NUMBER"
+              type="number"
+              prefix="No."
+              outlined
+            />
+
+            <LinkTextField
+              v-model="state.shop.instaShopLink"
+              :label="ShopJa.INSTA_SHOP_LINK"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -270,6 +291,8 @@ export default defineComponent({
         postal: undefined,
         tel: undefined,
         canTakeout: true,
+        instaNumber: 0,
+        instaShopLink: undefined,
         businessHour1: undefined,
         businessHour2: undefined,
         parkingLot: undefined,
@@ -314,6 +337,8 @@ export default defineComponent({
       state.shop.parkingLot = newVal ? newVal.parkingLot : state.shop.parkingLot
       state.shop.regularHoliday = newVal ? newVal.regularHoliday : state.shop.regularHoliday
       state.shop.seat = newVal ? newVal.seat : state.shop.seat
+      state.shop.instaNumber = newVal ? newVal.instaNumber : state.shop.instaNumber
+      state.shop.instaShopLink = newVal ? newVal.instaShopLink : state.shop.instaShopLink
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
