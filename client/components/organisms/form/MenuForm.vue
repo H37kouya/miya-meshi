@@ -6,7 +6,7 @@
           <v-card-title>店舗について</v-card-title>
 
           <v-card-text>
-            <MenuNameTextField
+            <NameMenuTextField
               v-model="state.menu.name"
             />
           </v-card-text>
@@ -78,7 +78,7 @@
               class="mt-0"
             />
 
-            <MenuDescriptionTextField
+            <DescriptionMenuTextField
               v-model="state.menu.description"
             />
 
