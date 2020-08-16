@@ -10,8 +10,13 @@
       </v-btn>
     </v-row>
 
+    <v-row justify="center">
+      <v-col cols="3">
+        <AddressRelationAreaAdminCard />
+      </v-col>
+    </v-row>
+
     <div>
-      <!-- TODO: 住所 → エリア選択 -->
       <!-- TODO: エリア → 住所複数選択 -->
       <AdminAreaListCard :areas="state.areas" />
     </div>

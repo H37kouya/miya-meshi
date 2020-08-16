@@ -21,8 +21,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { isShop } from '@/src/utils/Shop'
-import { Shop } from '@/src/types/Shop'
 import { Area } from '@/src/types/Area'
 
 type Props = {
@@ -33,9 +31,7 @@ export default defineComponent({
   props: {
     areas: {
       type: Array,
-      validator (arr: any[]): arr is Shop[] {
-        return arr.every(v => isShop(v))
-      }
+      default: () => []
     }
   },
 
