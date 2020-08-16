@@ -29,7 +29,7 @@
     </div>
 
     <v-row class="mt-4">
-      <v-col v-for="(address, key) in filterAddresses" :key="key" cols="3">
+      <v-col v-for="(address, key) in addresses" :key="key" cols="3">
         <p class="mb-0">
           <ruby>
             <rb>{{ address.obj.name }}</rb>
@@ -56,13 +56,77 @@ import AddressJson from '@/assets/json/Utsunomiya-tiku.json'
 import { Area } from '~/src/types/Area'
 import { editArea, getAreaList } from '~/src/infra/firestore/Area'
 
+const addressForView = (areas: Area[], hira: string[]) => {
+  const array = AddressJson.data
+
+  const filterArray = array.filter((obj: any) => hira.includes(obj.yomi.slice(0, 1)))
+
+  return filterArray.map((obj) => {
+    for (const area of areas) {
+      if (area.addresses.includes(obj.name)) {
+        return {
+          area,
+          obj
+        }
+      }
+    }
+
+    return {
+      area: {} as Area,
+      obj
+    }
+  })
+}
+
+const hiraganaObj = [
+  {
+    name: 'あ行',
+    arg: ['あ', 'い', 'う', 'え', 'お']
+  },
+  {
+    name: 'か行',
+    arg: ['か', 'き', 'く', 'け', 'こ']
+  },
+  {
+    name: 'さ行',
+    arg: ['さ', 'し', 'す', 'せ', 'そ']
+  },
+  {
+    name: 'た行',
+    arg: ['た', 'ち', 'つ', 'て', 'と']
+  },
+  {
+    name: 'な行',
+    arg: ['な', 'に', 'ぬ', 'ね', 'の']
+  },
+  {
+    name: 'は行',
+    arg: ['は', 'ひ', 'ふ', 'へ', 'ほ']
+  },
+  {
+    name: 'ま行',
+    arg: ['ま', 'み', 'む', 'め', 'も']
+  },
+  {
+    name: 'や行',
+    arg: ['や', 'ゆ', 'よ']
+  },
+  {
+    name: 'ら行',
+    arg: ['ら', 'り', 'る', 'れ', 'ろ']
+  },
+  {
+    name: 'わ行',
+    arg: ['わ', 'を']
+  }
+] as { name: string, arg: string[] }[]
+
 export default defineComponent({
   middleware: 'admin-auth',
 
   layout: 'auth',
 
   setup (_, context: SetupContext) {
-    const addressJson = AddressJson
     const state = reactive({
       areas: [] as Area[],
       hira: ['あ', 'い', 'う', 'え', 'お'] as string[]
@@ -72,31 +136,12 @@ export default defineComponent({
       state.areas = await getAreaList(context.root.$fireStore)
     })
 
-    const addresses = computed(() => {
-      const array = addressJson.data
-      return array.map((obj) => {
-        for (const area of state.areas) {
-          if (area.addresses.includes(obj.name)) {
-            return {
-              area,
-              obj
-            }
-          }
-        }
+    const addresses = computed(() => addressForView(state.areas, state.hira))
 
-        return {
-          area: {} as Area,
-          obj
-        }
-      })
-    })
-
-    const select = computed(() => state.areas.map((area: Area) => {
-      return {
-        value: area.id,
-        text: area.name
-      }
-    }))
+    const select = computed(() => state.areas.map((area: Area) => ({
+      value: area.id,
+      text: area.name
+    })))
 
     const pushArea = (event: string, name: string) => {
       for (const beforeArea of state.areas) {
@@ -111,52 +156,7 @@ export default defineComponent({
 
     const selectHiragana = (arg: string[]) => state.hira = arg
 
-    const filterAddresses = computed(() =>
-      addresses.value.filter((address: any) => state.hira.includes(address.obj.yomi.slice(0, 1))
-      ))
-
-    const hiragana = [
-      {
-        name: 'あ行',
-        arg: ['あ', 'い', 'う', 'え', 'お']
-      },
-      {
-        name: 'か行',
-        arg: ['か', 'き', 'く', 'け', 'こ']
-      },
-      {
-        name: 'さ行',
-        arg: ['さ', 'し', 'す', 'せ', 'そ']
-      },
-      {
-        name: 'た行',
-        arg: ['た', 'ち', 'つ', 'て', 'と']
-      },
-      {
-        name: 'な行',
-        arg: ['な', 'に', 'ぬ', 'ね', 'の']
-      },
-      {
-        name: 'は行',
-        arg: ['は', 'ひ', 'ふ', 'へ', 'ほ']
-      },
-      {
-        name: 'ま行',
-        arg: ['ま', 'み', 'む', 'め', 'も']
-      },
-      {
-        name: 'や行',
-        arg: ['や', 'ゆ', 'よ']
-      },
-      {
-        name: 'ら行',
-        arg: ['ら', 'り', 'る', 'れ', 'ろ']
-      },
-      {
-        name: 'わ行',
-        arg: ['わ', 'を']
-      }
-    ] as { name: string, arg: string[] }[]
+    const hiragana = hiraganaObj
 
     const complete = async () => {
       const promise = []
@@ -174,7 +174,6 @@ export default defineComponent({
       pushArea,
       hiragana,
       select,
-      filterAddresses,
       selectHiragana,
       state
     }
