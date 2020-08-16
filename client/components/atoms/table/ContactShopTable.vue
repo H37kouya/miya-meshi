@@ -6,7 +6,17 @@
           {{ data.heading }}
         </th>
         <td class="table-value text-center">
-          {{ data.value }}
+          <template v-if="data.valueType === 'array'">
+            <p v-for="(str, key) in data.value" :key="key" class="mb-0">
+              {{ str }}
+            </p>
+          </template>
+
+          <template v-else>
+            <p class="mb-0">
+              {{ data.value }}
+            </p>
+          </template>
         </td>
       </tr>
     </template>
@@ -19,7 +29,8 @@ import { Shop, ShopJa } from '@/src/types/Shop'
 
 type TableData = {
   heading: string,
-  value: string|number
+  valueType?: 'array'
+  value: string|number|string[]
 }
 const convertToTableData = (shop: Shop): TableData[] => {
   const tableData = [] as TableData[]
@@ -43,7 +54,11 @@ const convertToTableData = (shop: Shop): TableData[] => {
     if (shop.businessHour1 && shop.businessHour2) {
       tableData.push({
         heading: ShopJa.BUSINESS_HOUR,
-        value: `${shop.businessHour1}<br>${shop.businessHour2}`
+        valueType: 'array',
+        value: [
+          shop.businessHour1,
+          shop.businessHour2
+        ]
       })
     } else {
       tableData.push({
@@ -71,6 +86,13 @@ const convertToTableData = (shop: Shop): TableData[] => {
     tableData.push({
       heading: ShopJa.SEAT,
       value: shop.seat
+    })
+  }
+
+  if (shop.priceRange) {
+    tableData.push({
+      heading: ShopJa.PRICE_RANGE,
+      value: shop.priceRange
     })
   }
 
