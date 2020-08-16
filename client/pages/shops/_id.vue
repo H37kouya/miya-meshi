@@ -11,7 +11,7 @@
         <v-img src="/miyameshi-mogumogu.png" max-width="45px" height="60px" class="mr-2" />
 
         <v-card width="100%" height="80px" class="d-flex align-center">
-          <v-card-text class="pa-2">
+          <v-card-text class="pa-2 max-text-height-3">
             {{ state.shop.description }}
           </v-card-text>
         </v-card>
