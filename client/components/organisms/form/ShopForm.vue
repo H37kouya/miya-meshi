@@ -1,7 +1,7 @@
 <template>
   <v-form class="w-100" @submit.prevent="onSubmit">
     <v-row>
-      <v-col cols="8">
+      <v-col cols="12" sm="8">
         <v-card outlined>
           <v-card-title>店舗について</v-card-title>
 
@@ -17,7 +17,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="4">
+      <v-col cols="12" sm="4">
         <v-card outlined>
           <v-card-title>サイト設定</v-card-title>
 
@@ -46,7 +46,7 @@
           <v-card-title>店舗紹介</v-card-title>
 
           <div class="d-flex">
-            <v-col cols="8">
+            <v-col cols="12" sm="8">
               <v-card-text class="pb-0">
                 <DescriptionShopTextField
                   v-model="state.shop.description"
@@ -76,7 +76,7 @@
               </v-card-text>
             </v-col>
 
-            <v-col cols="4">
+            <v-col cols="12" sm="4">
               <v-card-text>
                 <BusinessHourShopTextField
                   v-model="state.shop.businessHour1"
@@ -103,7 +103,7 @@
     </v-row>
 
     <v-row>
-      <v-col cols="8">
+      <v-col cols="12" sm="8">
         <v-card outlined>
           <v-card-title>お問い合わせ</v-card-title>
 
@@ -129,7 +129,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="4">
+      <v-col cols="12" sm="4">
         <v-card outlined>
           <v-card-title>みやメシ応援隊のインスタ</v-card-title>
 
@@ -156,52 +156,54 @@
         <v-card outlined>
           <v-card-title>リンク一覧</v-card-title>
 
-          <v-card-text class="d-flex">
-            <v-col cols="12" sm="6">
-              <LinkTextField
-                v-model="state.shop.facebookLink"
-                :label="ShopJa.FACEBOOK_LINK"
-                prepend-inner-icon="mdi-facebook"
-              />
+          <v-card-text>
+            <v-row>
+              <v-col cols="12" sm="6" class="pb-0 pb-sm-3">
+                <LinkTextField
+                  v-model="state.shop.facebookLink"
+                  :label="ShopJa.FACEBOOK_LINK"
+                  prepend-inner-icon="mdi-facebook"
+                />
 
-              <LinkTextField
-                v-model="state.shop.instaLink"
-                :label="ShopJa.INSTA_LINK"
-                prepend-inner-icon="mdi-instagram"
-              />
+                <LinkTextField
+                  v-model="state.shop.instaLink"
+                  :label="ShopJa.INSTA_LINK"
+                  prepend-inner-icon="mdi-instagram"
+                />
 
-              <LinkTextField
-                v-model="state.shop.twitterLink"
-                :label="ShopJa.TWITTER_LINK"
-                prepend-inner-icon="mdi-twitter"
-              />
+                <LinkTextField
+                  v-model="state.shop.twitterLink"
+                  :label="ShopJa.TWITTER_LINK"
+                  prepend-inner-icon="mdi-twitter"
+                />
 
-              <LinkTextField
-                v-model="state.shop.uberEatsLink"
-                :label="ShopJa.UBER_EATS_LINK"
-                prepend-inner-icon="mdi-alpha-u-box-outline"
-              />
-            </v-col>
+                <LinkTextField
+                  v-model="state.shop.uberEatsLink"
+                  :label="ShopJa.UBER_EATS_LINK"
+                  prepend-inner-icon="mdi-alpha-u-box-outline"
+                />
+              </v-col>
 
-            <v-col cols="12" sm="6">
-              <LinkTextField
-                v-model="state.shop.homepageLink"
-                :label="ShopJa.HOMEPAGE_LINK"
-                prepend-inner-icon="mdi-home-circle"
-              />
+              <v-col cols="12" sm="6" class="pt-0 pt-sm-3">
+                <LinkTextField
+                  v-model="state.shop.homepageLink"
+                  :label="ShopJa.HOMEPAGE_LINK"
+                  prepend-inner-icon="mdi-home-circle"
+                />
 
-              <LinkTextField
-                v-model="state.shop.lineLink"
-                :label="ShopJa.LINE_LINK"
-                prepend-inner-icon="mdi-alpha-l-box-outline"
-              />
+                <LinkTextField
+                  v-model="state.shop.lineLink"
+                  :label="ShopJa.LINE_LINK"
+                  prepend-inner-icon="mdi-alpha-l-box-outline"
+                />
 
-              <LinkTextField
-                v-model="state.shop.youtubeLink"
-                :label="ShopJa.YOUTUBE_LINK"
-                prepend-inner-icon="mdi-youtube"
-              />
-            </v-col>
+                <LinkTextField
+                  v-model="state.shop.youtubeLink"
+                  :label="ShopJa.YOUTUBE_LINK"
+                  prepend-inner-icon="mdi-youtube"
+                />
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-card>
       </v-col>

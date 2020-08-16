@@ -1,7 +1,7 @@
 <template>
   <v-form class="w-100" @submit.prevent="onSubmit">
     <v-row>
-      <v-col cols="8">
+      <v-col cols="12" sm="8">
         <v-card outlined>
           <v-card-title>店舗について</v-card-title>
 
@@ -13,7 +13,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="4">
+      <v-col cols="12" sm="4">
         <v-card outlined>
           <v-card-title>サイト設定</v-card-title>
 
@@ -44,7 +44,7 @@
           <v-card-title>値段設定</v-card-title>
 
           <v-card-text class="d-flex align-center">
-            <v-col cols="4">
+            <v-col cols="8" sm="4">
               <PriceTextField
                 v-model="state.menu.price"
               />

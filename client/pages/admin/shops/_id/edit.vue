@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 import { editShop as editDBShop, getShopByID } from '@/src/infra/firestore/Shop'
@@ -49,9 +49,13 @@ export default defineComponent({
       return await context.root.$router.push('/admin/shops')
     }
 
-    onMounted(async () => {
-      state.shop = await getShopByID(context.root.$fireStore, context.root.$route.params.id)
-      state.priceRangeList = await getPriceRangeList(context.root.$fireStore)
+    watchEffect(async () => {
+      const [shop, priceRangeList] = await Promise.all([
+        getShopByID(context.root.$fireStore, context.root.$route.params.id),
+        getPriceRangeList(context.root.$fireStore)
+      ])
+      state.shop = shop
+      state.priceRangeList = priceRangeList
     })
 
     return {
