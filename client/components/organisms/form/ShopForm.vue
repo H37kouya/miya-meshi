@@ -45,8 +45,8 @@
         <v-card outlined>
           <v-card-title>店舗紹介</v-card-title>
 
-          <div class="d-flex">
-            <v-col cols="12" sm="8">
+          <v-row>
+            <v-col cols="12" sm="8" class="mb-0 mb-sm-3">
               <v-card-text class="pb-0">
                 <DescriptionShopTextField
                   v-model="state.shop.description"
@@ -76,7 +76,7 @@
               </v-card-text>
             </v-col>
 
-            <v-col cols="12" sm="4">
+            <v-col cols="12" sm="4" class="mt-0 mt-sm-3">
               <v-card-text>
                 <BusinessHourShopTextField
                   v-model="state.shop.businessHour1"
@@ -97,7 +97,7 @@
                 />
               </v-card-text>
             </v-col>
-          </div>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>

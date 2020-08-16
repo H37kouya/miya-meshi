@@ -5,7 +5,7 @@
         店舗編集
       </AdminMainText>
 
-      <v-btn to="/admin/shops">
+      <v-btn to="/admin/shops" color="purple lighten-4">
         店舗一覧へ戻る
       </v-btn>
     </v-row>
