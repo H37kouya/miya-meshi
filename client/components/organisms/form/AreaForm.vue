@@ -47,6 +47,7 @@ export default defineComponent({
 
     watch(() => props.area, (newVal, _) => {
       state.area.name = newVal ? newVal.name : state.area.name
+      state.area.addresses = newVal ? newVal.addresses : state.area.addresses
     })
 
     const onSubmit = () => context.emit('submit', state.area)
