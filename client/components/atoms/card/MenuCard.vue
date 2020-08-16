@@ -4,7 +4,7 @@
       <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
     </v-card>
 
-    <p class="mb-0 menu-name u-black--text">
+    <p class="mb-0 menu-name u-black--text max-text-height-2">
       {{ name }}
     </p>
     <p class="price red--text mb-0">

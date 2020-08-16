@@ -78,7 +78,7 @@ export enum ShopJa {
 export enum ShopMaxStringSize {
   NAME = 50,
   PREFIX_NAME = 30,
-  DESCRIPTION = 30,
+  DESCRIPTION = 50,
   INTRO = 1000,
   ADDRESS = 100,
   BUILDING_NAME = 255,

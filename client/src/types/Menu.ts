@@ -36,6 +36,6 @@ export enum MenuJa {
 // MenuMaxStringSize Menu型のstringの最大文字数
 export enum MenuMaxStringSize {
   NAME = 50,
-  DESCRIPTION = 30,
+  DESCRIPTION = 50,
   INTRO = 1000,
 }

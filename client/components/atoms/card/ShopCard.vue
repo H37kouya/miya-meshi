@@ -7,7 +7,7 @@
     <p class="prefix u-black--text mb-0" :class="{ 'no-prefix': !prefixName }">
       {{ prefixName }}
     </p>
-    <p class="mb-0 shop-name u-black--text">
+    <p class="mb-0 shop-name u-black--text max-text-height-2">
       {{ name }}
     </p>
   </component>
