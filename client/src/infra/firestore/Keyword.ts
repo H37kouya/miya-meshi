@@ -1,6 +1,5 @@
 import firebase from 'firebase'
 import { Keyword, KEYWORD_TYPE } from '@/src/types/Keyword'
-import { firestoreDocDataToMenu } from '~/src/infra/firestore/Menu'
 
 const KEYWORDS_COLLECTION_NAME = 'keywords'
 

@@ -61,6 +61,11 @@ export default {
           icon: 'mdi-cash',
           title: '価格帯一覧',
           to: '/admin/price-ranges'
+        },
+        {
+          icon: 'mdi-map',
+          title: 'エリア一覧',
+          to: '/admin/area'
         }
       ]
     }

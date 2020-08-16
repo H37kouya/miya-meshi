@@ -1,6 +1,7 @@
 import { Configuration } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
-import { FirebaseConfiguration } from '@nuxtjs/firebase'
+import { FirebaseModuleConfiguration } from '@nuxtjs/firebase'
+import { AxiosOptions } from '@nuxtjs/axios'
 
 const nuxtConfig: Configuration = {
   /*
@@ -77,7 +78,11 @@ const nuxtConfig: Configuration = {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {} as AxiosOptions,
+  /*
+  ** Firebase module configuration
+  ** See https://firebase.nuxtjs.org/
+  */
   firebase: {
     // options
     config: {
@@ -89,7 +94,7 @@ const nuxtConfig: Configuration = {
       messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
       appId: process.env.FIREBASE_APP_ID,
       measurementId: process.env.FIREBASE_MEASUREMENT_ID
-    } as FirebaseConfiguration,
+    },
     services: {
       auth: true, // Just as example. Can be any other service.
       firestore: {
@@ -97,9 +102,10 @@ const nuxtConfig: Configuration = {
         preload: true
       },
       analytics: !process.env.TEST_ENV,
-      storage: true
+      storage: true,
+      performance: true
     }
-  },
+  } as FirebaseModuleConfiguration,
   /*
   ** pwa module configuration
   ** https://pwa.nuxtjs.org/
