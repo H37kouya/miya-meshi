@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-between">
       <AdminMainText>
-        キーワード追加
+        キーワード編集
       </AdminMainText>
 
       <v-btn to="/admin/keywords" color="success">
