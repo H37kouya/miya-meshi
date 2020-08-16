@@ -21,8 +21,8 @@
     </v-row>
 
     <v-row justify="end">
-      <v-col cols="1">
-        <DeleteConfirmButton text="店舗を削除する" @click="onDelete" />
+      <v-col cols="4" sm="1">
+        <DeleteConfirmButton text="店舗削除" @click="onDelete" />
       </v-col>
     </v-row>
 
