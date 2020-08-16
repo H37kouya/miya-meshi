@@ -34,9 +34,8 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-spacer />
-      <v-col>
+    <v-row justify="end">
+      <v-col cols="4" sm="1">
         <DeleteConfirmButton @click="onDelete" />
       </v-col>
     </v-row>
