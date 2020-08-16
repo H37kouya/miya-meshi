@@ -1,6 +1,7 @@
 import { Configuration } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 import { FirebaseModuleConfiguration } from '@nuxtjs/firebase'
+import { AxiosOptions } from '@nuxtjs/axios'
 
 const nuxtConfig: Configuration = {
   /*
@@ -77,7 +78,11 @@ const nuxtConfig: Configuration = {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {} as AxiosOptions,
+  /*
+  ** Firebase module configuration
+  ** See https://firebase.nuxtjs.org/
+  */
   firebase: {
     // options
     config: {
