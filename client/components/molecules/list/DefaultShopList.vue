@@ -2,9 +2,19 @@
   <div class="u-light-grey-background">
     <v-container class="pb-2">
       <v-row justify="center" class="px-1">
-        <template v-for="(shop, key) in state.shops">
-          <v-col :key="key" cols="4" md="3" class="px-1 py-1">
-            <ShopCard v-bind="shop" :to="`/shops/${shop.id}`" :src="shop.imageLink" />
+        <template v-if="state.shops.length > 0">
+          <template v-for="(shop, key) in state.shops">
+            <v-col :key="key" cols="4" md="3" class="px-1 py-1">
+              <ShopCard v-bind="shop" :to="`/shops/${shop.id}`" :src="shop.imageLink" />
+            </v-col>
+          </template>
+        </template>
+
+        <template v-else>
+          <v-col>
+            <p class="mb-0 text-center">
+              条件に見合うお店が見つかりませんでした。
+            </p>
           </v-col>
         </template>
       </v-row>
