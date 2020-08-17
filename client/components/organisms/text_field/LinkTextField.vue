@@ -2,6 +2,7 @@
   <v-text-field
     v-model="model"
     :label="label"
+    :rules="[rules.url]"
     :prepend-inner-icon="prependInnerIcon"
     outlined
   />
@@ -11,6 +12,7 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
+import { isURL } from '~/src/utils/URL'
 
 type Props = {
   value?: string,
@@ -36,7 +38,7 @@ export default defineComponent({
     }
   },
 
-  setup(props: Props, context: SetupContext) {
+  setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
     const MAX_LENGTH = 255
 
@@ -45,8 +47,19 @@ export default defineComponent({
       return uCounter.counter
     })
 
+    const rules = {
+      url: (v?: string) => {
+        if (!v) {
+          return
+        }
+
+        return isURL(v) || '正しいURLの形式ではありません'
+      }
+    }
+
     return {
       counter,
+      rules,
       maxLength: MAX_LENGTH,
       model
     }
