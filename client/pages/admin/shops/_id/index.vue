@@ -28,7 +28,7 @@
 
     <v-row>
       <v-col cols="12">
-        <MenuListCard :shopid="state.shop.id" :menus="state.menus" />
+        <AdminMenuListCard :shopid="state.shop.id" :menus="state.menus" />
       </v-col>
     </v-row>
   </v-container>

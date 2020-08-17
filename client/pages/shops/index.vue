@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
 import { getShopList } from '@/src/infra/firestore/Shop'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
@@ -41,7 +41,7 @@ export default defineComponent({
       return state.shops
     })
 
-    onMounted(async () => {
+    watchEffect(async () => {
       state.shops = await getShopList(context.root.$fireStore)
     })
 
