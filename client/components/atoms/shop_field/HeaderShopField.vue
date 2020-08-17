@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-center header-shop w-100 u-black--text">
+  <div class="d-flex justify-center header-shop w-100">
     <div class="pos-relative header-shop-wrapper">
       <a :href="src" target="_blank" rel="noopener">
         <v-img

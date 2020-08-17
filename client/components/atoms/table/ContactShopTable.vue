@@ -1,5 +1,5 @@
 <template>
-  <table class="contact-table u-black--text">
+  <table class="contact-table">
     <template v-for="(data, key) in tableData">
       <tr :key="key">
         <th class="table-heading text-center">

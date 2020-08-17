@@ -1,7 +1,7 @@
 <template>
   <component
     :is="`h${level}`"
-    class="default-main-text u-black--text text-center"
+    class="default-main-text text-center"
   >
     <slot />
   </component>

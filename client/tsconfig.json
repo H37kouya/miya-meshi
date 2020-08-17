@@ -32,7 +32,8 @@
       "@nuxtjs/device",
       "@nuxtjs/firebase",
       "jest",
-      "vuetify"
+      "vuetify",
+      "@nuxtjs/vuetify"
     ]
   },
   "exclude": [
