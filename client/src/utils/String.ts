@@ -34,3 +34,14 @@ export const zenkakuToHankaku = (str: string) => {
  */
 export const hankakuKatakanaToZenkakuKatakana = (str: string) =>
   hankakuKatakanaToZenkakuKatakanaLib(str)
+
+/**
+ * 正しい郵便番号であるか
+ *
+ * @param {string|number|undefined} v
+ */
+export const isPostal = (v?: string|number) => {
+  const postalRegex = /^\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}$/
+  const testVal: string = isString(v) ? v : String(v)
+  return postalRegex.test(testVal)
+}

@@ -12,7 +12,7 @@
 
     <v-row>
       <v-col cols="12">
-        <ShopListCard :shops="state.shops" />
+        <AdminShopListCard :shops="state.shops" />
       </v-col>
     </v-row>
   </v-container>
