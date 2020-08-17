@@ -6,7 +6,7 @@
           開発
         </p>
         <p class="mb-0 sentence">
-          宇都宮大学を拠点にするデジタルラボ
+          地域に根差すテクノロジー集団
         </p>
         <p class="footer-group-title">
           U-lab
