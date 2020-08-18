@@ -11,7 +11,7 @@
       />
     </div>
 
-    <DefaultShopList :shops="displayShops" />
+    <DefaultShopList :shops="displayShops" :max-item="state.shops.length" />
   </div>
 </template>
 

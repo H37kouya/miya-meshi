@@ -11,7 +11,7 @@
       />
     </div>
 
-    <DefaultMenuList :menus="displayMenus" />
+    <DefaultMenuList :menus="displayMenus" :max-item="state.menus.length" />
   </div>
 </template>
 

@@ -1,6 +1,12 @@
 <template>
   <div class="u-light-grey-background">
     <v-container class="pb-2">
+      <div class="text-right">
+        <p class="mb-1 display-count">
+          <span class="red--text">{{ state.shops.length }}件</span>表示中/全{{ maxItem }}件中
+        </p>
+      </div>
+
       <v-row justify="center" class="px-1">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
@@ -27,13 +33,19 @@ import { defineComponent, reactive, SetupContext, watch } from '@vue/composition
 import { Shop } from '@/src/types/Shop'
 
 type Props = {
-  shops: Shop[]
+  shops: Shop[],
+  maxItem: number
 }
 export default defineComponent({
   props: {
     shops: {
       type: Array,
       default: () => []
+    },
+
+    maxItem: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -52,3 +64,7 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+@import "defaultList";
+</style>
