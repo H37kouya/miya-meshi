@@ -62,7 +62,7 @@ export default defineComponent({
 .tel-pos {
   position: absolute;
   bottom: 0;
-  right: 1rem;
+  right: 1.5rem;
   transform: translateY(-45%);
 }
 
