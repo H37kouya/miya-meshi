@@ -32,9 +32,9 @@
       </div>
     </div>
 
-    <div>
-      <ContactShopField :shop="state.shop" />
-    </div>
+    <StoryShopField v-if="state.shop.intro" :text="state.shop.intro" :src="state.shop.imageLink" />
+
+    <ContactShopField :shop="state.shop" />
   </div>
 </template>
 

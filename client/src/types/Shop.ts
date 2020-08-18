@@ -48,7 +48,7 @@ export enum ShopJa {
   NAME = '店名',
   PREFIX_NAME = '店舗肩書き',
   DESCRIPTION = '一言紹介',
-  INTRO = '店舗紹介文(長文可)',
+  INTRO = 'ストーリー(店舗紹介文)',
   IMAGE_LINK = '画像のリンク',
   SUB_IMAGE_LINK = 'サブ画像のリンク',
   MENU_IMAGE_LINK = 'メニュー画像のリンク',

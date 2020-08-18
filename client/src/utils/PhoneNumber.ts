@@ -13,7 +13,7 @@ export const validateTel = (v: any) => {
 /**
  * 電話番号をフォーマットする
  *
- * @param { any } value
+ * @param { any } v
  * @return { ?PhoneNumber }
  */
 export const formatTel = (v: any) => {
