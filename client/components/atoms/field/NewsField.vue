@@ -3,7 +3,7 @@
     <div class="mb-2 pos-relative">
       <v-img :src="src" :alt="alt" aspect-ratio="1.78" />
 
-      <div class="news-badge">
+      <div class="news-badge u-black--text">
         News
       </div>
     </div>
@@ -14,11 +14,23 @@
         <span v-for="(tag, key) in hashtag" :key="key" class="hashtag mr-1">{{ tag }}</span>
       </div>
     </div>
+
+    <div class="text-right">
+      <span class="read-continue">続きを見る</span>
+    </div>
   </a>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+
+type Props = {
+  alt?: string,
+  href?: string,
+  hashtag: string[],
+  src?: string,
+  text?: string
+}
 
 export default defineComponent({
   props: {
@@ -58,7 +70,6 @@ export default defineComponent({
   padding: 0.5rem 1rem;
   background-color: #fef552;
   text-align: center;
-  color: #333;
 }
 
 .news-text {
@@ -71,6 +82,14 @@ export default defineComponent({
 
   &::before {
     content: '#';
+  }
+}
+
+.read-continue {
+  font-size: 0.8rem;
+
+  &::after {
+    content: '→';
   }
 }
 </style>

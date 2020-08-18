@@ -38,6 +38,11 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 
+type Props = {
+  src: string,
+  prefixName: string,
+  name: string
+}
 export default defineComponent({
   props: {
     src: {

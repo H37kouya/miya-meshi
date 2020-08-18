@@ -30,7 +30,7 @@ export default defineComponent({
     default: () => []
   },
 
-  setup (props: Props, context: SetupContext) {
+  setup (props: Props, _: SetupContext) {
     const state = reactive({
       menus: [] as Menu[]
     })
