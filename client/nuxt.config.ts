@@ -142,6 +142,10 @@ const nuxtConfig: Configuration = {
         {
           urlPattern: '^https://cdnjs.cloudflare.com/(.*)',
           handler: 'cacheFirst'
+        },
+        {
+          urlPattern: '^https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress/?lat=(.*)&lon=(.*)',
+          handler: 'cacheFirst'
         }
       ]
     }

@@ -6,7 +6,7 @@
       target="_blank"
       rel="noopener"
     >
-      <span class="recruitment-text">このサイトに掲載希望の飲食店さんはこちら！</span>
+      <span class="recruitment-text">このサイトに掲載希望の<br>飲食店さんはこちら！</span>
       <v-img src="/tree-background.png" width="100%" max-height="90px" />
     </a>
   </div>

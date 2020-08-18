@@ -17,8 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Menu } from '@/src/types/Menu'
+
+type State = {
+  menus: Menu[]
+}
 
 type Props = {
   menus: Menu[]
@@ -30,13 +34,13 @@ export default defineComponent({
     default: () => []
   },
 
-  setup (props: Props, context: SetupContext) {
-    const state = reactive({
+  setup (props: Props, _: SetupContext) {
+    const state = reactive<State>({
       menus: [] as Menu[]
     })
 
-    watch(() => props.menus, (newVal, _) => {
-      state.menus = newVal
+    watchEffect(() => {
+      state.menus = props.menus
     })
 
     return {

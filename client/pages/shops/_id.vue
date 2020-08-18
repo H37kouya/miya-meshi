@@ -6,16 +6,8 @@
       :prefix-name="state.shop.prefixName"
     />
 
-    <div class="u-light-grey-background d-flex justify-center py-4">
-      <div class="max-width-480 d-flex justify-center align-center px-4">
-        <v-img src="/miyameshi-mogumogu.png" max-width="45px" height="60px" class="mr-2" />
-
-        <v-card width="100%" height="80px" rounded="lg" class="d-flex align-center">
-          <v-card-text class="pa-2 max-text-height-3">
-            {{ state.shop.description }}
-          </v-card-text>
-        </v-card>
-      </div>
+    <div v-if="state.shop.description">
+      <DescriptionShopField :description="state.shop.description" />
     </div>
 
     <div class="u-light-grey-background d-flex justify-center">
@@ -33,45 +25,34 @@
         メニュー
       </DefaultMainText>
 
-      <div class="u-light-grey-background">
-        <v-container>
-          <div class="d-flex justify-center">
-            <v-card
-              :href="state.shop.menuImageLink ? state.shop.menuImageLink[0] : '/no-image.png'"
-              target="_blank"
-              rel="noopener"
-            >
-              <v-img
-                :src="state.shop.menuImageLink ? state.shop.menuImageLink[0] : '/no-image.png'"
-                max-width="480px"
-                width="100%"
-              />
-            </v-card>
-          </div>
-        </v-container>
+      <MenuImageShopField v-if="menuImage" :src="menuImage" />
+
+      <div v-if="state.menus && state.menus.length > 0">
+        <DefaultMenuList :menus="state.menus" />
       </div>
     </div>
 
-    <div v-if="state.menus && state.menus.length > 0">
-      <DefaultMenuList :menus="state.menus" />
-    </div>
+    <StoryShopField v-if="state.shop.intro" :text="state.shop.intro" :src="state.shop.imageLink" />
 
-    <div>
-      <ContactShopField :shop="state.shop" />
-    </div>
+    <ContactShopField :shop="state.shop" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { Menu } from '@/src/types/Menu'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
 
+type State = {
+  shop: Shop,
+  menus: Menu[]
+}
+
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const state = reactive({
+    const state = reactive<State>({
       shop: {} as Shop,
       menus: [] as Menu[]
     })
@@ -85,8 +66,17 @@ export default defineComponent({
       state.menus = menus
     })
 
+    const menuImage = computed(() => {
+      if (!state.shop.menuImageLink) {
+        return undefined
+      }
+
+      return state.shop.menuImageLink[0]
+    })
+
     return {
-      state
+      state,
+      menuImage
     }
   }
 })

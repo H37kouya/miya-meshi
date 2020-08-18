@@ -25,7 +25,7 @@
           {{ prefixName }}
         </p>
 
-        <h1 class="shop-heading">
+        <h1 class="shop-heading max-text-height-1">
           {{ name }}
         </h1>
       </div>
@@ -38,6 +38,11 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 
+type Props = {
+  src: string,
+  prefixName: string,
+  name: string
+}
 export default defineComponent({
   props: {
     src: {
@@ -62,7 +67,7 @@ export default defineComponent({
 .tel-pos {
   position: absolute;
   bottom: 0;
-  right: 1.5rem;
+  right: 2.5rem;
   transform: translateY(-45%);
 }
 
@@ -76,14 +81,12 @@ export default defineComponent({
 }
 
 .shop-prefix {
-  color: #797979;
   font-size: 0.9rem;
   min-height: 1rem;
 }
 
 .shop-heading {
-  color: #797979;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 </style>

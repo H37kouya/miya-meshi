@@ -1,7 +1,7 @@
 <template>
   <div>
     <DefaultMainText :level="2">
-      お問い合わせ
+      店舗情報
     </DefaultMainText>
 
     <div class="u-light-grey-background mb-4">
