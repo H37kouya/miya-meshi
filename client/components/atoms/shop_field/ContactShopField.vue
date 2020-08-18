@@ -49,13 +49,15 @@ enum snsImage {
   instagram = '/instagram.png',
   line = '/line.png',
   twitter = '/twitter.png',
-  youtube = '/youtube.png'
+  youtube = '/youtube.png',
+  uberEats = '/UberEats_Badge_Vertical.png'
 }
 
 const shopToSnsLinks = (shop: Shop): SnsLink[] => {
   const snsLinks = [] as SnsLink[]
   shop.instaLink && snsLinks.push({ name: 'instagram', href: shop.instaLink, src: snsImage.instagram })
   shop.twitterLink && snsLinks.push({ name: 'twitter', href: shop.twitterLink, src: snsImage.twitter })
+  shop.uberEatsLink && snsLinks.push({ name: 'uberEats', href: shop.uberEatsLink, src: snsImage.uberEats })
   shop.homepageLink && snsLinks.push({ name: 'homepage', href: shop.homepageLink, src: snsImage.hp })
   shop.facebookLink && snsLinks.push({ name: 'facebook', href: shop.facebookLink, src: snsImage.facebook })
   shop.lineLink && snsLinks.push({ name: 'line', href: shop.lineLink, src: snsImage.line })

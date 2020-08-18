@@ -2,6 +2,12 @@
   <div class="u-light-grey-background">
     <v-container class="pt-3 pb-2">
       <template v-if="!state.loading">
+        <div v-if="maxItem > 0" class="text-right">
+          <p class="mb-1 display-count">
+            <span class="red--text">{{ state.menus.length }}件</span>表示中/全{{ maxItem }}件中
+          </p>
+        </div>
+
         <v-row justify="center" class="px-1">
           <template v-if="state.menus.length > 0">
             <template v-for="(menu, key) in state.menus">
@@ -36,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watch, watchEffect } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Menu } from '@/src/types/Menu'
 
 type State = {
@@ -45,13 +51,19 @@ type State = {
 }
 
 type Props = {
-  menus: Menu[]
+  menus: Menu[],
+  maxItem: number
 }
 export default defineComponent({
   props: {
     menus: {
       type: Array,
       default: () => []
+    },
+
+    maxItem: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -72,3 +84,7 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+@import "defaultList";
+</style>
