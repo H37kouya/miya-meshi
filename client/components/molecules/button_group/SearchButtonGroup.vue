@@ -1,6 +1,6 @@
 <template>
   <v-container class="pl-6 py-0 pr-0 max-width-480">
-    <div class="d-flex justify-end align-center search-container py-2 pr-2">
+    <div class="d-flex justify-end align-center search-container py-1 pr-2">
       <p class="mb-0 pl-1 pr-2 search-title text-right">
         絞り込み
       </p>
