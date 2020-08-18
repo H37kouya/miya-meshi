@@ -6,7 +6,7 @@
     color="#329f17"
     fab
   >
-    <v-icon color="white">
+    <v-icon color="white" large>
       mdi-phone-in-talk-outline
     </v-icon>
   </v-btn>
