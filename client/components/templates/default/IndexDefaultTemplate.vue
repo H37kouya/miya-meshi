@@ -1,6 +1,24 @@
 <template>
   <div>
     <DefaultMainText>
+      インスタからのおすすめ
+    </DefaultMainText>
+
+    <DefaultMenuList :menus="state.menus" justify="center" />
+
+    <div class="u-light-grey-background pb-2">
+      <div class="d-flex justify-center">
+        <v-container class="text-right">
+          <p class="mb-0">
+            <nuxt-link to="/shops" class="miya-meshi-books">
+              みやメシ図鑑
+            </nuxt-link>
+          </p>
+        </v-container>
+      </div>
+    </div>
+
+    <DefaultMainText>
       今週のおすすめ
     </DefaultMainText>
 
@@ -74,3 +92,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.miya-meshi-books {
+  font-size: 0.8rem;
+
+  &::after {
+    content: '→';
+  }
+}
+</style>

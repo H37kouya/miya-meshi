@@ -1,6 +1,6 @@
 <template>
   <v-container class="max-width-480">
-    <v-row justify="center" no-gutters class="keyword-row">
+    <v-row no-gutters class="keyword-row">
       <template v-for="area in areas">
         <v-col
           :key="area.id"
