@@ -1,0 +1,26 @@
+
+$border: 1px solid #333;
+
+.keyword-row {
+  border-top: $border;
+}
+
+.keyword-box {
+  border-left: $border;
+  border-bottom: $border;
+  background-color: #fff;
+  font-size: 0.9rem;
+
+  &:nth-child(3n) {
+    border-right: $border;
+  }
+}
+
+.selected {
+  background-color: rgb(255, 154, 97);
+}
+
+.other-keyword {
+  color: #6a6a6a;
+  font-size: 0.65rem;
+}

@@ -31,6 +31,12 @@
       </div>
 
       <TelIconButton class="tel-pos" large />
+
+      <v-btn to="/shops" color="#fff" class="back-pos" fab>
+        <v-icon large>
+          mdi-keyboard-backspace
+        </v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -88,5 +94,12 @@ export default defineComponent({
 .shop-heading {
   font-size: 1.25rem;
   font-weight: 500;
+}
+
+.back-pos {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  opacity: 0.8;
 }
 </style>

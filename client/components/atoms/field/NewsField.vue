@@ -77,10 +77,10 @@ export default defineComponent({
   position: absolute;
   top: 0;
   left: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
   background-color: $news-color;
   text-align: center;
-  width: 70px;
+  width: 50px;
 
   &::after {
     content: '';
@@ -89,8 +89,8 @@ export default defineComponent({
     top: 100%;
     height: 0;
     width: 0;
-    border-left: 35px solid $news-color;
-    border-right: 35px solid $news-color;
+    border-left: 25px solid $news-color;
+    border-right: 25px solid $news-color;
     border-bottom: 10px solid transparent;
   }
 }
