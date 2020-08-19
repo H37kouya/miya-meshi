@@ -56,7 +56,7 @@ export default defineComponent({
 
 <style lang="scss">
 .shop-name {
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   word-break: break-all;
   height: 2.75rem;
 }

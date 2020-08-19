@@ -75,8 +75,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .search-container {
   background-color: #f3f3e2;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .search-title {

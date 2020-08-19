@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="width: 100%;" class="pos-relative">
-      <div class="top-image" />
+      <v-img src="/miyameshi-header.jpg" width="100%" height="160px" />
 
       <v-card class="news">
         <v-img src="/miyameshi-ticket.jpg" />
