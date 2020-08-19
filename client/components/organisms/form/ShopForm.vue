@@ -124,6 +124,32 @@
               <BuildingNameTextField
                 v-model="state.shop.buildingName"
               />
+
+              <v-btn color="primary" class="mb-2" @click="onGetAddress">
+                住所から緯度経度を取得
+              </v-btn>
+
+              <v-row>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model.number="state.shop.latitude"
+                    :label="ShopJa.LATITUDE"
+                    outlined
+                    type="number"
+                    step="0.0001"
+                  />
+                </v-col>
+
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model.number="state.shop.longitude"
+                    :label="ShopJa.LONGITUDE"
+                    type="number"
+                    step="0.0001"
+                    outlined
+                  />
+                </v-col>
+              </v-row>
             </v-col>
           </v-card-text>
         </v-card>
@@ -248,6 +274,7 @@ import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
 import { createUUID } from '@/src/utils/String'
 import { PriceRange } from '~/src/types/PriceRange'
+import { getLongitudeAndLatitudeByAddress } from '~/src/infra/geolocation/Geolocation'
 
 type Props = {
   shop?: Shop,
@@ -299,7 +326,9 @@ export default defineComponent({
         businessHour2: undefined,
         parkingLot: undefined,
         regularHoliday: undefined,
-        seat: undefined
+        seat: undefined,
+        latitude: 0,
+        longitude: 0
       }
     })
 
@@ -311,6 +340,23 @@ export default defineComponent({
     const priceRangeListForSelect = computed(() => {
       return props.priceRangeList.map(priceRange => priceRange.name)
     })
+
+    const onGetAddress = async () => {
+      if (!state.shop.address) {
+        return alert('住所を入力してください')
+      }
+
+      const data = await getLongitudeAndLatitudeByAddress(state.shop.address)
+
+      if (!data) {
+        return alert('住所から緯度経度を取得できませんでした')
+      }
+
+      const { latitude, longitude } = data
+
+      state.shop.latitude = latitude
+      state.shop.longitude = longitude
+    }
 
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : state.shop.name
@@ -341,6 +387,8 @@ export default defineComponent({
       state.shop.seat = newVal ? newVal.seat : state.shop.seat
       state.shop.instaNumber = newVal ? newVal.instaNumber : state.shop.instaNumber
       state.shop.instaShopLink = newVal ? newVal.instaShopLink : state.shop.instaShopLink
+      state.shop.latitude = newVal ? newVal.latitude : state.shop.latitude
+      state.shop.longitude = newVal ? newVal.longitude : state.shop.longitude
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
@@ -350,6 +398,7 @@ export default defineComponent({
       ShopJa,
       uuid,
       priceRangeListForSelect,
+      onGetAddress,
       onSubmit
     }
   }

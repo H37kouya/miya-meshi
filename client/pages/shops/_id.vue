@@ -36,8 +36,8 @@
 
     <ContactShopField :shop="state.shop" />
 
-    <div class="d-flex justify-center mb-4">
-      <Map />
+    <div v-if="state.shop.latitude && state.shop.longitude" class="d-flex justify-center mb-4">
+      <Map :latitude="state.shop.latitude" :longitude="state.shop.longitude" />
     </div>
   </div>
 </template>

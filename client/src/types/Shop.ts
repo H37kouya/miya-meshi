@@ -31,6 +31,8 @@ export type Shop = {
   canTakeout: boolean,
   instaShopLink?: string,
   instaNumber?: number,
+  latitude?: number,
+  longitude?: number,
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object
@@ -71,6 +73,8 @@ export enum ShopJa {
   PARKING_LOT = '駐車場',
   PRICE_RANGE = '価格帯',
   REGULAR_HOLIDAY = '定休日',
+  LATITUDE = '緯度',
+  LONGITUDE = '経度',
   SEAT = '座席'
 }
 
