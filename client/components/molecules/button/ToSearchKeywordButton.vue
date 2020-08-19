@@ -1,5 +1,5 @@
 <template>
-  <GreyButton to="/shops" v-bind="$attrs">
+  <GreyButton to="/keywords" v-bind="$attrs">
     検索
   </GreyButton>
 </template>
