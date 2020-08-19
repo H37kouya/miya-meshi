@@ -17,7 +17,8 @@ const LONG_ROUTES = [
 const MEDIUM_ROUTES = [
   '/shops',
   '/menus',
-  '/keywords'
+  '/keywords',
+  '/keywords/detail'
 ]
 
 export default defineComponent({
