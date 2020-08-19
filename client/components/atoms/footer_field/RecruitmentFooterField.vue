@@ -7,7 +7,7 @@
       rel="noopener"
     >
       <span class="recruitment-text">このサイトに掲載希望の<br>飲食店さんはこちら！</span>
-      <v-img src="/tree-background.png" width="100%" max-height="90px" />
+      <v-img src="/rock-background.png" width="100%" max-height="90px" />
     </a>
   </div>
 </template>

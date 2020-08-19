@@ -32,7 +32,7 @@
 
       <TelIconButton class="tel-pos" large />
 
-      <v-btn to="/shops" color="rgba(255, 255, 255, 0.8)" class="back-pos" fab>
+      <v-btn to="/shops" color="#fff" class="back-pos" fab>
         <v-icon large>
           mdi-keyboard-backspace
         </v-icon>
@@ -100,5 +100,6 @@ export default defineComponent({
   position: absolute;
   top: 1rem;
   left: 1rem;
+  opacity: 0.8;
 }
 </style>

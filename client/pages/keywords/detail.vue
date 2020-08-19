@@ -42,8 +42,8 @@
           </div>
 
           <div class="mt-4">
-            <v-btn color="#ffa26d" large>
-              検索
+            <v-btn color="#ffa26d" large to="/shops">
+              検索(未実装)
             </v-btn>
           </div>
         </v-container>
