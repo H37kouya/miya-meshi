@@ -4,7 +4,7 @@
       今週のおすすめ
     </DefaultMainText>
 
-    <DefaultMenuList :menus="state.menus" />
+    <DefaultMenuList :menus="state.menus" justify="center" />
 
     <DefaultMainText>
       新着情報
@@ -13,7 +13,13 @@
     <v-row class="mx-0 mb-4" justify="center">
       <template v-for="(news, key) in state.newsList">
         <v-col :key="`news${key}`" cols="12" sm="4" md="3" class="px-0 pt-0 px-sm-2">
-          <NewsField v-bind="news" />
+          <NewsField
+            :alt="news.hashtags[0]"
+            :href="news.href"
+            :hashtags="news.hashtags"
+            :src="news.src"
+            :text="news.text"
+          />
         </v-col>
       </template>
     </v-row>
@@ -48,7 +54,7 @@ export default defineComponent({
     }
   },
 
-  setup (props: Props, context: SetupContext) {
+  setup (props: Props, _: SetupContext) {
     const state = reactive<State>({
       menus: props.menus,
       newsList: props.newsList

@@ -46,7 +46,8 @@ const nuxtConfig: Configuration = {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/composition-api'
+    '@/plugins/composition-api',
+    '@/plugins/leaflet'
   ],
   /*
   ** Auto import components

@@ -11,7 +11,7 @@
     <div class="px-4">
       <p class="u-black--text news-text mb-0">{{ text }}</p>
       <div class="hashtags">
-        <span v-for="(tag, key) in hashtag" :key="key" class="hashtag mr-1">{{ tag }}</span>
+        <span v-for="(tag, key) in hashtags" :key="key" class="hashtag mr-1">{{ tag }}</span>
       </div>
 
       <div class="text-right">
@@ -28,7 +28,7 @@ import { defineComponent } from '@vue/composition-api'
 type Props = {
   alt?: string,
   href?: string,
-  hashtag: string[],
+  hashtags: string[],
   src?: string,
   text?: string
 }
@@ -45,7 +45,7 @@ export default defineComponent({
       default: undefined
     },
 
-    hashtag: {
+    hashtags: {
       type: Array,
       default: () => []
     },
@@ -65,19 +65,34 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .image-field {
-  $border: 1px solid #797979;
+  $border: 1px solid lighten(#797979, 20%);
 
   border-top: $border;
   border-bottom: $border;
 }
 
 .news-badge {
+  $news-color: #fef552;
+
   position: absolute;
   top: 0;
   left: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #fef552;
+  background-color: $news-color;
   text-align: center;
+  width: 70px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    height: 0;
+    width: 0;
+    border-left: 35px solid $news-color;
+    border-right: 35px solid $news-color;
+    border-bottom: 10px solid transparent;
+  }
 }
 
 .news-text {

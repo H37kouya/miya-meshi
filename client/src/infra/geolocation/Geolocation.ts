@@ -1,6 +1,7 @@
 import { GSI } from '@/assets/json/muni-tochigi'
 import axios from 'axios'
-const baseApiURL = 'https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress'
+const baseApiURLReverse = 'https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress'
+const baseApiURLForAddress = 'https://msearch.gsi.go.jp/address-search/AddressSearch'
 
 // 緯度経度の許容値
 enum MAX_MIN_LOCATION {
@@ -32,7 +33,7 @@ export const getAddressByLongitudeAndLatitude = async (
     MAX_MIN_LOCATION.MIN_LONGITUDE < longitude && longitude < MAX_MIN_LOCATION.MAX_LONGITUDE &&
     MAX_MIN_LOCATION.MIN_LATITUDE < latitude && latitude < MAX_MIN_LOCATION.MAX_LATITUDE
   ) {
-    const apiURL = `${baseApiURL}/?lat=${latitude}&lon=${longitude}`
+    const apiURL = `${baseApiURLReverse}/?lat=${latitude}&lon=${longitude}`
 
     const { data } : any = await axios(apiURL)
     if (data.results.muniCd.substring(0, 2) !== '09') {
@@ -52,4 +53,36 @@ export const getAddressByLongitudeAndLatitude = async (
   }
 
   return undefined
+}
+
+/**
+ * 住所から緯度経度を取得する
+ *
+ * @param { string } address
+ */
+export const getLongitudeAndLatitudeByAddress = async (address: string) => {
+  const apiURL = `${baseApiURLForAddress}/?q=${address}`
+  type axiosReturn = {
+    'geometry': {
+      'coordinates': [number, number],
+      'type': 'Point'
+    },
+    'type': 'Feature',
+    'properties': {
+      'addressCode': string,
+      'title': string
+    }
+  } []
+
+  const { data } = await axios.get<axiosReturn>(apiURL)
+  if (data && data.length === 0) {
+    return undefined
+  }
+
+  const [longitude, latitude] = data[0].geometry.coordinates
+
+  return {
+    latitude,
+    longitude
+  }
 }

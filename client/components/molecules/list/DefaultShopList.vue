@@ -7,7 +7,7 @@
         </p>
       </div>
 
-      <v-row justify="center" class="px-1">
+      <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
             <v-col :key="key" cols="4" md="3" class="px-1 py-1">
@@ -46,10 +46,15 @@ export default defineComponent({
     maxItem: {
       type: Number,
       default: 0
+    },
+
+    justify: {
+      type: String,
+      default: 'start'
     }
   },
 
-  setup (props: Props, context: SetupContext) {
+  setup (props: Props, _: SetupContext) {
     const state = reactive({
       shops: props.shops
     })
