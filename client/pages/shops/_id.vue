@@ -35,6 +35,10 @@
     <StoryShopField v-if="state.shop.intro" :text="state.shop.intro" :src="state.shop.imageLink" />
 
     <ContactShopField :shop="state.shop" />
+
+    <div class="d-flex justify-center mb-4">
+      <Map />
+    </div>
   </div>
 </template>
 
