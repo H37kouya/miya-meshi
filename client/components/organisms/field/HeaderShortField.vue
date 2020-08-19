@@ -1,6 +1,6 @@
 <template>
   <div class="w-100">
-    <div class="top-image" />
+    <v-img src="/miyameshi-header.jpg" width="100%" height="160px" />
 
     <div class="text-right px-4 developer-name">
       <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
