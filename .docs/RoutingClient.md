@@ -17,6 +17,10 @@
 | `/admin/menus/create`         | Create new Menu Info      |         |
 | `/admin/menus/{menuid}`       | Each Menu Info            | Shop Info can be deleted. |
 | `/admin/menus/{menuid}/edit`  | Can be Edited Menu Info   |         |
+| `/admin/area`                 | All Area list             |         |
+| `/admin/area/relation`        | Area And Address Linking  |         |
+| `/admin/area/create`          | Create new Area Info      |         |
+| `/admin/area/{areaid}/edit`   | Can be Edited Area Info   |         |
 | `/admin/ad`                   | All Ad list               |         |
 | `/admin/ad/new`               | Create new Ad Info        |         |
 | `/admin/ad/{id}`              | Each Ad Info              | Ad Info can be deleted. |

@@ -1,7 +1,6 @@
 <template>
   <v-card
-    :color="color"
-    :to="to"
+    v-bind="$attrs"
     class="d-flex align-center justify-center"
     height="120px"
     link
@@ -37,11 +36,6 @@ type Props = {
 
 export default defineComponent({
   props: {
-    color: {
-      type: String,
-      default: undefined
-    },
-
     icon: {
       type: String,
       default: undefined
@@ -58,11 +52,6 @@ export default defineComponent({
       validator (v: string) {
         return ['white', 'grey'].includes(v)
       }
-    },
-
-    to: {
-      type: [String, Object],
-      default: undefined
     }
   }
 })

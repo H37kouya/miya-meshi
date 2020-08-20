@@ -85,6 +85,28 @@
             <MenuIntroTextarea
               v-model="state.menu.intro"
             />
+
+            <v-row>
+              <v-col cols="6">
+                <v-select
+                  v-model="state.menu.dishes"
+                  :items="dishesListForSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="料理選択"
+                  multiple
+                />
+              </v-col>
+
+              <v-col cols="6">
+                <v-select
+                  v-model="state.menu.keywords"
+                  :items="keywordsListForSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="キーワード選択"
+                  multiple
+                />
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-card>
       </v-col>
@@ -116,18 +138,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { DEFAULT_IMAGE, Menu } from '@/src/types/Menu'
 import { MenuFormState } from '@/src/types/MenuFormState'
 import { isMenu } from '@/src/utils/Menu'
 import { createUUID } from '~/src/utils/String'
+import { Dish } from '~/src/types/Dish'
+import { Keyword } from '~/src/types/Keyword'
 
 type Props = {
+  dishes: Dish[],
+  keywords: Keyword[],
   menu?: Menu
 }
 
 export default defineComponent({
   props: {
+    dishes: {
+      type: Array,
+      default: []
+    },
+
+    keywords: {
+      type: Array,
+      default: []
+    },
+
     menu: {
       default: undefined,
       validator (v) {
@@ -144,6 +180,8 @@ export default defineComponent({
         intro: undefined,
         image: DEFAULT_IMAGE,
         public: true,
+        dishes: [] as string[],
+        keywords: [] as string[],
         price: 0,
         priority: 3,
         isTaxIncluded: false,
@@ -163,11 +201,23 @@ export default defineComponent({
       state.menu.priority = newVal ? newVal.priority : state.menu.priority
       state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
       state.menu.canTakeOut = newVal ? newVal.canTakeOut : state.menu.canTakeOut
+      state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
+      state.menu.keywords = newVal ? newVal.keywords : state.menu.keywords
+    })
+
+    const dishesListForSelect = computed(() => {
+      return props.dishes.map(dish => dish.name)
+    })
+
+    const keywordsListForSelect = computed(() => {
+      return props.keywords.map(keyword => keyword.name)
     })
 
     const onSubmit = () => context.emit('submit', state.menu)
 
     return {
+      dishesListForSelect,
+      keywordsListForSelect,
       state,
       uuid,
       onSubmit

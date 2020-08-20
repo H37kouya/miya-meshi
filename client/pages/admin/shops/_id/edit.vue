@@ -12,7 +12,9 @@
 
     <v-row>
       <ShopForm
+        :dishes="state.dishes"
         :shop="state.shop"
+        :keywords="state.keywords"
         :price-range-list="state.priceRangeList"
         @submit="editShop"
       />
@@ -29,6 +31,10 @@ import { MetaInfo } from 'vue-meta'
 import { formatShopAddress } from '~/src/utils/Shop'
 import { getPriceRangeList } from '~/src/infra/firestore/PriceRange'
 import { PriceRange } from '~/src/types/PriceRange'
+import { Dish } from '~/src/types/Dish'
+import { getDishList } from '~/src/infra/firestore/Dish'
+import { getKeywordList } from '~/src/infra/firestore/Keyword'
+import { Keyword } from '~/src/types/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -37,7 +43,9 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
+      dishes: [] as Dish[],
       shop: { type: SHOP_TYPE } as Shop,
+      keywords: [] as Keyword[],
       priceRangeList: [] as PriceRange[]
     })
 
@@ -50,12 +58,16 @@ export default defineComponent({
     }
 
     watchEffect(async () => {
-      const [shop, priceRangeList] = await Promise.all([
+      const [dishes, shop, priceRangeList, keywords] = await Promise.all([
+        getDishList(context.root.$fireStore),
         getShopByID(context.root.$fireStore, context.root.$route.params.id),
-        getPriceRangeList(context.root.$fireStore)
+        getPriceRangeList(context.root.$fireStore),
+        getKeywordList(context.root.$fireStore)
       ])
       state.shop = shop
       state.priceRangeList = priceRangeList
+      state.dishes = dishes
+      state.keywords = keywords
     })
 
     return {

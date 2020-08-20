@@ -19,7 +19,9 @@
     <v-row>
       <v-col cols="12">
         <MenuForm
+          :dishes="state.dishes"
           :menu="state.menu"
+          :keywords="state.keywords"
           @submit="createMenu"
         />
       </v-col>
@@ -28,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
@@ -36,6 +38,10 @@ import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { Menu, MENU_TYPE } from '@/src/types/Menu'
 import { getMenuByID } from '@/src/infra/firestore/Menu'
+import { getDishList } from '~/src/infra/firestore/Dish'
+import { getKeywordList } from '~/src/infra/firestore/Keyword'
+import { Dish } from '~/src/types/Dish'
+import { Keyword } from '~/src/types/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -46,6 +52,8 @@ export default defineComponent({
     const state = reactive({
       shop: { type: SHOP_TYPE } as Shop,
       menu: { type: MENU_TYPE } as Menu,
+      dishes: [] as Dish[],
+      keywords: [] as Keyword[],
       id: computed(() => context.root.$route.params.id)
     })
 
@@ -58,9 +66,16 @@ export default defineComponent({
       return await context.root.$router.push(`/admin/shops/${state.menu.shopID}`)
     }
 
-    onMounted(async () => {
+    watchEffect(async () => {
       state.menu = await getMenuByID(context.root.$fireStore, state.id)
-      state.shop = await getShopByID(context.root.$fireStore, state.menu.shopID)
+      const [shop, dishes, keywords] = await Promise.all([
+        getShopByID(context.root.$fireStore, state.menu.shopID),
+        getDishList(context.root.$fireStore),
+        getKeywordList(context.root.$fireStore)
+      ])
+      state.shop = shop
+      state.dishes = dishes
+      state.keywords = keywords
     })
 
     return {

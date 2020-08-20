@@ -4,6 +4,8 @@ export type MenuFormState = {
   menu: {
     name: Menu['name'],
     description: Menu['description'],
+    dishes: Menu['dishes'],
+    keywords: Menu['keywords'],
     intro: Menu['intro'],
     image: Menu['image'],
     price: Menu['price'],
