@@ -63,6 +63,11 @@ export default {
           to: '/admin/price-ranges'
         },
         {
+          icon: 'mdi-food',
+          title: '料理一覧',
+          to: '/admin/dishes'
+        },
+        {
           icon: 'mdi-map',
           title: 'エリア一覧',
           to: '/admin/area'
