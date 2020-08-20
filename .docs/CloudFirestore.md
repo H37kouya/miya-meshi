@@ -33,7 +33,8 @@
 | seat               | `String`           | 座席             |
 | canTakeOut         | `Boolean`          | テイクアウト可能か  |
 | priceRange         | `String`           | 価格帯             |
-| keywords           | `Array<String>`    |                    |
+| dishes             | `Array<String>`    | 料理一覧            |
+| keywords           | `Array<String>`    | キーワード一覧      |
 | instaNumber        | `Number`           | インスタの番号      |
 | instaShopLink      | `String`           | インスタの店舗のリンク |
 | createdAt          | `DateTime`         | 作成日時           |

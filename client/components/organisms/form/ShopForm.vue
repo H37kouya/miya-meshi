@@ -95,6 +95,22 @@
                 <SeatShopTextField
                   v-model="state.shop.seat"
                 />
+
+                <v-select
+                  v-model="state.shop.dishes"
+                  :items="dishesListForSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="料理選択"
+                  multiple
+                />
+
+                <v-select
+                  v-model="state.shop.keywords"
+                  :items="keywordsListForSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="キーワード選択"
+                  multiple
+                />
               </v-card-text>
             </v-col>
           </v-row>
@@ -282,18 +298,32 @@ import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/c
 import { Shop, ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
-import { createUUID, kanji2num, zenkakuToHankaku } from '@/src/utils/String'
-import { PriceRange } from '~/src/types/PriceRange'
-import { getLongitudeAndLatitudeByAddress } from '~/src/infra/geolocation/Geolocation'
-import { getAddressByPostal } from '~/src/infra/postal/Postal'
+import { createUUID } from '@/src/utils/String'
+import { PriceRange } from '@/src/types/PriceRange'
+import { getLongitudeAndLatitudeByAddress } from '@/src/infra/geolocation/Geolocation'
+import { getAddressByPostal } from '@/src/infra/postal/Postal'
+import { Dish } from '@/src/types/Dish'
+import { Keyword } from '@/src/types/Keyword'
 
 type Props = {
   shop?: Shop,
+  dishes: Dish[],
+  keywords: Keyword[],
   priceRangeList: PriceRange[]
 }
 
 export default defineComponent({
   props: {
+    dishes: {
+      type: Array,
+      default: []
+    },
+
+    keywords: {
+      type: Array,
+      default: []
+    },
+
     shop: {
       default: undefined,
       validator (v) {
@@ -338,6 +368,8 @@ export default defineComponent({
         parkingLot: undefined,
         regularHoliday: undefined,
         seat: undefined,
+        dishes: [] as string[],
+        keywords: [] as string[],
         latitude: 0,
         longitude: 0
       }
@@ -350,6 +382,14 @@ export default defineComponent({
 
     const priceRangeListForSelect = computed(() => {
       return props.priceRangeList.map(priceRange => priceRange.name)
+    })
+
+    const dishesListForSelect = computed(() => {
+      return props.dishes.map(dish => dish.name)
+    })
+
+    const keywordsListForSelect = computed(() => {
+      return props.keywords.map(keyword => keyword.name)
     })
 
     const onGetAddress = async () => {
@@ -412,14 +452,18 @@ export default defineComponent({
       state.shop.instaShopLink = newVal ? newVal.instaShopLink : state.shop.instaShopLink
       state.shop.latitude = newVal ? newVal.latitude : state.shop.latitude
       state.shop.longitude = newVal ? newVal.longitude : state.shop.longitude
+      state.shop.dishes = newVal ? newVal.dishes : state.shop.dishes
+      state.shop.keywords = newVal ? newVal.keywords : state.shop.keywords
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
 
     return {
+      dishesListForSelect,
       state,
       ShopJa,
       uuid,
+      keywordsListForSelect,
       priceRangeListForSelect,
       onGetAddress,
       onGetAddressByPostal,

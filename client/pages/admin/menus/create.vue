@@ -19,6 +19,8 @@
     <v-row>
       <v-col cols="12">
         <MenuForm
+          :dishes="state.dishes"
+          :keywords="state.keywords"
           @submit="createMenu"
         />
       </v-col>
@@ -27,12 +29,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
 import { Shop } from '@/src/types/Shop'
 import { getShopByID } from '@/src/infra/firestore/Shop'
+import { getDishList } from '~/src/infra/firestore/Dish'
+import { getPriceRangeList } from '~/src/infra/firestore/PriceRange'
+import { getKeywordList } from '~/src/infra/firestore/Keyword'
+import { Dish } from '~/src/types/Dish'
+import { Keyword } from '~/src/types/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -41,7 +48,9 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
-      shop: {} as Shop
+      shop: {} as Shop,
+      dishes: [] as Dish[],
+      keywords: [] as Keyword[]
     })
 
     const shopID = context.root.$route.query.shopid as string|null
@@ -65,8 +74,15 @@ export default defineComponent({
       return await context.root.$router.push(`/admin/shops/${shopID}`)
     }
 
-    onMounted(async () => {
-      state.shop = await getShopByID(context.root.$fireStore, shopID)
+    watchEffect(async () => {
+      const [shop, dishes, keywords] = await Promise.all([
+        getShopByID(context.root.$fireStore, shopID),
+        getDishList(context.root.$fireStore),
+        getKeywordList(context.root.$fireStore)
+      ])
+      state.shop = shop
+      state.dishes = dishes
+      state.keywords = keywords
     })
 
     return {

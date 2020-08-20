@@ -12,6 +12,8 @@ export type Menu = {
   isTaxIncluded?: boolean,
   canTakeOut?: boolean,
   priority: number,
+  dishes: string[],
+  keywords: string[],
   createdAt?: Date|Object,
   updatedAt?: Date|Object,
   deletedAt?: Date|Object

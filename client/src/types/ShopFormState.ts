@@ -31,6 +31,8 @@ export type ShopFormState = {
     regularHoliday: Shop['regularHoliday']
     seat: Shop['seat'],
     latitude: Shop['latitude'],
-    longitude: Shop['longitude']
+    longitude: Shop['longitude'],
+    dishes: Shop['dishes'],
+    keywords: Shop['keywords']
   }
 }

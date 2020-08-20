@@ -33,6 +33,8 @@ export type Shop = {
   instaNumber?: number,
   latitude?: number,
   longitude?: number,
+  keywords: string[],
+  dishes?: string[],
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object
