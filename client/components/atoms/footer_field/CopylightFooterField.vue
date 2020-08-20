@@ -1,5 +1,5 @@
 <template>
-  <v-container class="max-width-350">
+  <v-container class="max-width-350 pt-0 pb-1">
     <div class="text-center copyright">
       <small class="copyright-small"><span>&copy; {{ new Date().getFullYear() }} U-lab</span></small>
     </div>
