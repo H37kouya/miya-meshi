@@ -20,6 +20,8 @@ import { computed, defineComponent, reactive, SetupContext, watchEffect } from '
 import { Shop } from '@/src/types/Shop'
 import { getShopList } from '@/src/infra/firestore/Shop'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
+import { ActionType } from '~/store/areas'
+import { Area } from '~/src/types/Area'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
@@ -34,15 +36,55 @@ export default defineComponent({
     })
 
     const displayShops = computed(() => {
+      if (state.btnStatus.takeout && state.btnStatus.nowLocation) {
+        return state.shops.filter((shop: Shop) => {
+          if (!shop.canTakeout || !shop.address || !nowArea.value) {
+            return false
+          }
+
+          for (const address of nowArea.value.addresses) {
+            if (shop.address.includes(address)) {
+              return true
+            }
+          }
+
+          return false
+        })
+      }
+
       if (state.btnStatus.takeout) {
         return state.shops.filter((shop: Shop) => shop.canTakeout)
+      }
+
+      if (state.btnStatus.nowLocation) {
+        return state.shops.filter((shop: Shop) => {
+          if (!shop.address || !nowArea.value) {
+            return false
+          }
+
+          for (const address of nowArea.value.addresses) {
+            if (shop.address.includes(address)) {
+              return true
+            }
+          }
+
+          return false
+        })
       }
 
       return state.shops
     })
 
+    const nowArea = computed(() => {
+      return context.root.$store.getters['areas/nowArea'] as Area|undefined
+    })
+
     watchEffect(async () => {
       state.shops = await getShopList(context.root.$fireStore)
+    })
+
+    watchEffect(async () => {
+      await context.root.$store.dispatch(`areas/${ActionType.FETCH_AREAS}`)
     })
 
     return {

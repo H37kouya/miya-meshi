@@ -45,3 +45,20 @@ export const isPostal = (v?: string|number) => {
   const testVal: string = isString(v) ? v : String(v)
   return postalRegex.test(testVal)
 }
+
+/**
+ * 漢数字を半角数字に変換する
+ *
+ * @param { string } str
+ */
+export const kanji2num = (str: string) => {
+  const kanjiNum = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '〇']
+  const num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+
+  for (let i = 0; i < num.length; i++) {
+    const reg = new RegExp(kanjiNum[i], 'g')
+    str = str.replace(reg, num[i])
+  }
+
+  return str
+}

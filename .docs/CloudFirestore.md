@@ -24,7 +24,7 @@
 | lineLink           | `String`           | Line               |
 | homepageLink       | `String`           | Home Page          |
 | ubereatsLink       | `String`           | Uber Eats          |
-| priority           | `Number`           | 優先度             |
+| priority           | `Number`           | 優先度(表示順)      |
 | public             | `Boolean`          | 公開設定           |
 | businessHour1      | `DateTime`         | 営業時間1          |
 | businessHour2      | `DateTime`         | 営業時間2          |
@@ -40,13 +40,13 @@
 | deletedAt          | `DateTime`         | 削除日時           |
 | updatedAt          | `DateTime`         | 更新日時           |
 
-## Shop Menu
+## Menus
 
 > 店舗メニューテーブル
 
 | Column Name     | Type            | Explanation        |
 | --------------  | --------------- | ------------------ |
-| id              | `String`        | Shop Menu ID       |
+| id              | `String`        | Menu ID            |
 | shopID          | `String`        | Shop ID            |
 | name            | `String`        |                    |
 | description     | `String`        | Short Intro        |
@@ -66,6 +66,7 @@
 | --------------  | --------------- | ------------------ |
 | id              | `String`        | Shop Menu ID       |
 | name            | `String`        |                    |
+| priority        | `Number`        | 優先度(表示順)      |
 | createdAt       | `DateTime`      | 作成日時           |
 | updatedAt       | `DateTime`      | 更新日時           |
 
@@ -86,5 +87,18 @@
 | --------------  | --------------- | ------------- |
 | id              | `String`        | PriceRange ID |
 | name            | `String`        |               |
+| priority        | `Number`        | 優先度(表示順) |
 | createdAt       | `DateTime`      | 作成日時      |
 | updatedAt       | `DateTime`      | 更新日時      |
+
+## Dishes
+
+> 料理一覧
+
+| Column Name     | Type            | Explanation   |
+| --------------  | --------------- | ------------- |
+| id              | `String`        | PriceRange ID |
+| name            | `String`        |               |
+| priority        | `Number`        | 優先度(表示順) |
+| createdAt       | `DateTime`      | 作成日時       |
+| updatedAt       | `DateTime`      | 更新日時       |

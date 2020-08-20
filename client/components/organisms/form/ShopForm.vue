@@ -113,9 +113,19 @@
                 v-model="state.shop.tel"
               />
 
-              <PostalTextField
-                v-model="state.shop.postal"
-              />
+              <v-row>
+                <v-col cols="8">
+                  <PostalTextField
+                    v-model="state.shop.postal"
+                  />
+                </v-col>
+
+                <v-col cols="4">
+                  <v-btn color="primary" large @click="onGetAddressByPostal">
+                    住所検索
+                  </v-btn>
+                </v-col>
+              </v-row>
 
               <AddressTextField
                 v-model="state.shop.address"
@@ -272,9 +282,10 @@ import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/c
 import { Shop, ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
-import { createUUID } from '@/src/utils/String'
+import { createUUID, kanji2num, zenkakuToHankaku } from '@/src/utils/String'
 import { PriceRange } from '~/src/types/PriceRange'
 import { getLongitudeAndLatitudeByAddress } from '~/src/infra/geolocation/Geolocation'
+import { getAddressByPostal } from '~/src/infra/postal/Postal'
 
 type Props = {
   shop?: Shop,
@@ -358,6 +369,18 @@ export default defineComponent({
       state.shop.longitude = longitude
     }
 
+    const onGetAddressByPostal = async () => {
+      if (!state.shop.postal) {
+        return alert('郵便番号を入力してください')
+      }
+
+      const address = await getAddressByPostal(state.shop.postal)
+      if (!address) {
+        return alert('郵便番号から住所を取得できませんでした')
+      }
+      state.shop.address = address
+    }
+
     watch(() => props.shop, (newVal, _) => {
       state.shop.name = newVal ? newVal.name : state.shop.name
       state.shop.prefixName = newVal ? newVal.prefixName : state.shop.prefixName
@@ -399,6 +422,7 @@ export default defineComponent({
       uuid,
       priceRangeListForSelect,
       onGetAddress,
+      onGetAddressByPostal,
       onSubmit
     }
   }

@@ -42,8 +42,8 @@
           </div>
 
           <div class="mt-4">
-            <v-btn color="#ffa26d" large to="/shops">
-              検索(未実装)
+            <v-btn color="#ffa26d" large :to="to">
+              検索
             </v-btn>
           </div>
         </v-container>
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { getAreaList } from '@/src/infra/firestore/Area'
 import { Area } from '@/src/types/Area'
 
@@ -89,10 +89,20 @@ export default defineComponent({
       }
     }
 
+    const to = computed(() => {
+      return {
+        path: '/search',
+        query: {
+          areas: state.areaSelectedID
+        }
+      }
+    })
+
     return {
       onAreaClick,
       onTimeClick,
       times,
+      to,
       state
     }
   }

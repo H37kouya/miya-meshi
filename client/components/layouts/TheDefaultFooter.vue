@@ -18,7 +18,9 @@
 
     <div class="ulab-container">
       <UlabFooterField />
+    </div>
 
+    <div class="copyright-container">
       <CopylightFooterField />
     </div>
   </v-footer>
@@ -41,5 +43,10 @@
   background-color: #333;
   color: #fff;
   padding: 0 0.5rem;
+}
+
+.copyright-container {
+  border-top: 1px #e1e1e1 solid;
+  background-color: #333;
 }
 </style>

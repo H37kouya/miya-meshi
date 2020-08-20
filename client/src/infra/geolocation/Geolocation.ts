@@ -1,5 +1,6 @@
 import { GSI } from '@/assets/json/muni-tochigi'
 import axios from 'axios'
+import { kanji2num } from '~/src/utils/String'
 const baseApiURLReverse = 'https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress'
 const baseApiURLForAddress = 'https://msearch.gsi.go.jp/address-search/AddressSearch'
 
@@ -48,7 +49,7 @@ export const getAddressByLongitudeAndLatitude = async (
       muniCd: data.results.muniCd,
       pre: arr[1],
       city: arr[3],
-      address: data.results.lv01Nm
+      address: kanji2num(data.results.lv01Nm)
     } as GeoLocation
   }
 

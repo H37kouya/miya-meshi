@@ -2,6 +2,7 @@ import firebase from 'firebase'
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { ShopFormState } from '@/src/types/ShopFormState'
+import { formatShopAddress, formatShopPostal } from '~/src/utils/Shop'
 
 const SHOP_COLLECTION_NAME = 'shops'
 
@@ -17,6 +18,9 @@ export const createShop = async (
   $fireStoreObj: typeof firebase.firestore,
   shop: ShopFormState['shop']|Shop
 ) => {
+  shop.address = formatShopAddress(shop.address)
+  shop.postal = formatShopPostal(shop.postal)
+
   const addData = {
     ...removeUndefinedFromObject(shop),
     createdAt: $fireStoreObj.FieldValue.serverTimestamp(),
