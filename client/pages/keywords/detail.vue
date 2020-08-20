@@ -5,6 +5,14 @@
     </DefaultMainText>
 
     <div class="u-light-grey-background">
+      <v-container class="max-width-480">
+        <p class="mb-0">
+          <nuxt-link to="/keywords" class="to-keyword">
+            検索に戻る
+          </nuxt-link>
+        </p>
+      </v-container>
+
       <div class="d-flex justify-center py-2">
         <v-container class="max-width-480 text-center">
           <p class="detail-text">
@@ -112,5 +120,14 @@ export default defineComponent({
 <style lang="scss" scoped>
 .detail-text {
   font-size: 0.8rem;
+}
+
+.to-keyword {
+  font-size: 0.8rem;
+  text-decoration: none;
+
+  &::before {
+    content: '←';
+  }
 }
 </style>

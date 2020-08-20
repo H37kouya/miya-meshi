@@ -5,6 +5,14 @@
     </DefaultMainText>
 
     <div class="u-light-grey-background pt-3">
+      <v-container>
+        <p class="mb-0">
+          <nuxt-link to="/keywords/detail" class="to-detail-search">
+            詳細検索に戻る
+          </nuxt-link>
+        </p>
+      </v-container>
+
       <SearchButtonGroup
         :btn-status="state.btnStatus"
         @input="(v) => state.btnStatus = v"
@@ -16,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watch, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
 import { Area } from '@/src/types/Area'
 import { getAreaList } from '@/src/infra/firestore/Area'
@@ -96,3 +104,14 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+.to-detail-search {
+  font-size: 0.8rem;
+  text-decoration: none;
+
+  &::before {
+    content: '←';
+  }
+}
+</style>

@@ -12,7 +12,7 @@
       </div>
     </v-row>
 
-    <v-row justify="center" class="mt-4">
+    <v-row class="mt-4">
       <v-col cols="6" md="3">
         <TopPageAdminButton />
       </v-col>
@@ -27,6 +27,14 @@
 
       <v-col cols="6" md="3">
         <KeywordAdminButton />
+      </v-col>
+
+      <v-col cols="6" sm="3">
+        <AreaAdminButton />
+      </v-col>
+
+      <v-col cols="6" md="3">
+        <MiyaMeshiInstaAdminButton />
       </v-col>
     </v-row>
   </v-container>
