@@ -1,4 +1,5 @@
 import { Area } from '@/src/types/Area'
+import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import { getAreaList } from '~/src/infra/firestore/Area'
 import { GeoLocation } from '~/src/infra/geolocation/Geolocation'
 
@@ -46,8 +47,8 @@ export enum ActionType {
   FETCH_AREAS = 'FETCH_AREAS'
 }
 
-export const actions = {
-  [ActionType.COMPUTED_NOW_LOCATION] ({ commit, getters, rootGetters }: { commit: any, getters: Getters, rootGetters: any }) {
+export const actions: ActionTree<any, State> = {
+  [ActionType.COMPUTED_NOW_LOCATION] ({ commit, getters, rootGetters }) {
     if (getters.canComputedNowArea) {
       const nowAddress = rootGetters['geolocation/location'] as GeoLocation
       const area = getters.areas.find((area: Area) => {
@@ -58,7 +59,7 @@ export const actions = {
     }
   },
 
-  async [ActionType.FETCH_AREAS] ({ commit, dispatch, getters }: { commit: any, dispatch, getters: Getters }) {
+  async [ActionType.FETCH_AREAS] ({ commit, dispatch, getters }) {
     if (getters.shouldFetchAreas) {
       const areas = await getAreaList(this.$fireStore)
       commit(MutationType.SET_AREAS, areas)

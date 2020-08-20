@@ -1,5 +1,5 @@
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { kanji2num, zenkakuToHankaku } from '~/src/utils/String'
+import { isString, kanji2num, zenkakuToHankaku } from '~/src/utils/String'
 
 /**
  * Shop型かどうか
@@ -38,5 +38,7 @@ export const formatShopPostal = (postal: Shop['postal']): Shop['postal'] => {
     return undefined
   }
 
-  return zenkakuToHankaku(postal)
+  const str = isString(postal) ? postal : String(postal)
+
+  return zenkakuToHankaku(str)
 }

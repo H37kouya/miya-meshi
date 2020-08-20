@@ -36,9 +36,9 @@ export default defineComponent({
     })
 
     const displayShops = computed(() => {
-      if (state.btnStatus.takeout && state.btnStatus.nowLocation && nowArea.value) {
+      if (state.btnStatus.takeout && state.btnStatus.nowLocation) {
         return state.shops.filter((shop: Shop) => {
-          if (!shop.canTakeout || !shop.address) {
+          if (!shop.canTakeout || !shop.address || !nowArea.value) {
             return false
           }
 
@@ -56,9 +56,9 @@ export default defineComponent({
         return state.shops.filter((shop: Shop) => shop.canTakeout)
       }
 
-      if (state.btnStatus.nowLocation && nowArea.value) {
+      if (state.btnStatus.nowLocation) {
         return state.shops.filter((shop: Shop) => {
-          if (!shop.address) {
+          if (!shop.address || !nowArea.value) {
             return false
           }
 

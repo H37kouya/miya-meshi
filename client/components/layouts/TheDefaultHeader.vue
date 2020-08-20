@@ -18,7 +18,8 @@ const MEDIUM_ROUTES = [
   '/shops',
   '/menus',
   '/keywords',
-  '/keywords/detail'
+  '/keywords/detail',
+  '/search'
 ]
 
 export default defineComponent({
