@@ -14,7 +14,7 @@ export const state = (): State => ({
   error: undefined
 })
 
-type Getters = {
+export type Getters = {
   latitude: State['latitude'],
   longitude: State['longitude'],
   location: State['location'],
@@ -53,7 +53,8 @@ export const mutations = {
 }
 
 export enum ActionType {
-  FETCH_LOCATION = 'FETCH_LOCATION'
+  FETCH_LOCATION = 'FETCH_LOCATION',
+  GET_NOW_ADDRESS = 'GET_NOW_ADDRESS'
 }
 
 export const actions = {
@@ -81,5 +82,9 @@ export const actions = {
         }
       )
     }
+  },
+
+  [ActionType.GET_NOW_ADDRESS] ({ getters }: { getters: Getters }) {
+    return getters.location
   }
 }
