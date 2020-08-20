@@ -39,7 +39,6 @@ export default defineComponent({
     })
 
     const createShop = async (shop: ShopFormState['shop']) => {
-      shop.address = formatShopAddress(shop.address)
       await createDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop)
 
       return await context.root.$router.push('/admin/shops')

@@ -1,4 +1,5 @@
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
+import { kanji2num, zenkakuToHankaku } from '~/src/utils/String'
 
 /**
  * Shop型かどうか
@@ -19,6 +20,8 @@ export const formatShopAddress = (address: Shop['address']): Shop['address'] => 
     return undefined
   }
 
+  address = kanji2num(zenkakuToHankaku(address))
+
   if (address.startsWith('栃木県')) {
     return address
   }
@@ -28,4 +31,12 @@ export const formatShopAddress = (address: Shop['address']): Shop['address'] => 
   }
 
   return address
+}
+
+export const formatShopPostal = (postal: Shop['postal']): Shop['postal'] => {
+  if (!postal) {
+    return undefined
+  }
+
+  return zenkakuToHankaku(postal)
 }
