@@ -11,12 +11,12 @@
       />
     </div>
 
-    <DefaultMenuList :menus="displayMenus" :max-item="state.menus.length" />
+    <DefaultMenuList :menus="displayMenus" :max-item="menus.length" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
 import { Menu } from '@/src/types/Menu'
 import { MetaInfo } from 'vue-meta'
@@ -45,6 +45,7 @@ export default defineComponent({
 
     return {
       displayMenus,
+      menus,
       state
     }
   },
