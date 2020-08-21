@@ -1,5 +1,5 @@
 <template>
-  <IndexDefaultTemplate :insta-shops="state.instaShops" :menus="state.menus" :news-list="newsList" />
+  <IndexDefaultTemplate :insta-shops="instaShops" :menus="state.menus" :news-list="newsList" />
 </template>
 
 <script lang="ts">
@@ -8,22 +8,20 @@ import NewsList from '@/assets/json/NewsList.json'
 import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/src/types/Menu'
 import { News } from '@/src/types/News'
-import { Shop } from '@/src/types/Shop'
-import { getShopListByInstaNumber } from '@/src/infra/firestore/Shop'
+import { useInstaShopForTopPage } from '~/src/CompositonFunctions/shops/UseInstaShopForTopPage'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive({
-      menus: [] as Menu[],
-      instaShops: [] as Shop[]
+      menus: [] as Menu[]
     })
 
+    const { instaShops } = useInstaShopForTopPage(context.root)
+
     watchEffect(async () => {
-      const [shops, menus] = await Promise.all([
-        getShopListByInstaNumber(context.root.$fireStore, 6),
+      const [menus] = await Promise.all([
         getMenuList(context.root.$fireStore, 3)
       ])
-      state.instaShops = shops
       state.menus = menus
     })
 
@@ -31,6 +29,7 @@ export default defineComponent({
 
     return {
       state,
+      instaShops,
       newsList
     }
   }

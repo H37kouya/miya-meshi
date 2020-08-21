@@ -16,6 +16,7 @@ export type Getters = {
   shops: State['shops'],
   instaShops: State['instaShops'],
   canComputedInstaShopsFromStoreShops: boolean,
+  isAlreadyFetchInstaShops: boolean,
   shouldFetchShops: boolean,
   shouldFetchInstaShops: boolean
 }
@@ -24,6 +25,7 @@ export const getters = {
   shops: (state: State) => state.shops,
   instaShops: (state: State) => state.instaShops,
   canComputedInstaShopsFromStoreShops: (state: State) => state.shops.length > 0,
+  isAlreadyFetchInstaShops: (state: State) => state.instaShops.length > 0,
   shouldFetchShops: (state: State) => state.shops.length === 0,
   shouldFetchInstaShops: (state: State) => state.instaShops.length === 0
 }
