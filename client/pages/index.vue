@@ -1,35 +1,22 @@
 <template>
-  <IndexDefaultTemplate :insta-shops="instaShops" :menus="state.menus" :news-list="newsList" />
+  <IndexDefaultTemplate :insta-shops="instaShops" :menus="menus" :news-list="newsList" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import NewsList from '@/assets/json/NewsList.json'
-import { getMenuList } from '@/src/infra/firestore/Menu'
-import { Menu } from '@/src/types/Menu'
-import { News } from '@/src/types/News'
-import { useInstaShopForTopPage } from '~/src/CompositonFunctions/shops/UseInstaShopForTopPage'
+import { defineComponent, SetupContext } from '@vue/composition-api'
+import { useInstaShopForTopPage } from '@/src/CompositonFunctions/shops/UseInstaShopForTopPage'
+import { useNews } from '@/src/CompositonFunctions/news/UseNews'
+import { useMenu } from '@/src/CompositonFunctions/menus/UseMenu'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const state = reactive({
-      menus: [] as Menu[]
-    })
-
     const { instaShops } = useInstaShopForTopPage(context.root)
-
-    watchEffect(async () => {
-      const [menus] = await Promise.all([
-        getMenuList(context.root.$fireStore, 3)
-      ])
-      state.menus = menus
-    })
-
-    const newsList = computed(() => NewsList.data as News[])
+    const { menus } = useMenu(context.root)
+    const { newsList } = useNews()
 
     return {
-      state,
       instaShops,
+      menus,
       newsList
     }
   }

@@ -18,14 +18,13 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
-import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/src/types/Menu'
 import { MetaInfo } from 'vue-meta'
+import { useMenu } from '@/src/CompositonFunctions/menus/UseMenu'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive({
-      menus: [] as Menu[],
       btnStatus: {
         area: false,
         takeout: false,
@@ -34,16 +33,14 @@ export default defineComponent({
       } as BtnStatus
     })
 
+    const { menus } = useMenu(context.root)
+
     const displayMenus = computed(() => {
       if (state.btnStatus.takeout) {
-        return state.menus.filter((menu: Menu) => menu.canTakeOut)
+        return menus.value.filter((menu: Menu) => menu.canTakeOut)
       }
 
-      return state.menus
-    })
-
-    watchEffect(async () => {
-      state.menus = await getMenuList(context.root.$fireStore)
+      return menus.value
     })
 
     return {
