@@ -110,8 +110,8 @@ export const getShopListByInstaNumber = async (
   const func = $fireStore
     .collection(SHOP_COLLECTION_NAME)
     .where('public', 'in', publicWhere)
-    .orderBy('priority', 'desc')
-    .orderBy('instaNumber', 'asc')
+    .orderBy('instaNumber', 'desc')
+    .where('instaNumber', '>', 0)
 
   const list = limit > 0 ? await func.limit(limit).get() : await func.get()
 

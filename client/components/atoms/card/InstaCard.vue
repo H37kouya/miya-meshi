@@ -1,7 +1,19 @@
 <template>
   <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-    <v-card v-bind="$attrs">
+    <v-card v-bind="$attrs" class="pos-relative">
       <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
+
+      <template v-if="instaNumber">
+        <div class="triangle" />
+        <div class="triangle-text">
+          <p class="mb-0 triangle-prefix">
+            No.
+          </p>
+          <p class="mb-0 triangle-number">
+            {{ instaNumber }}
+          </p>
+        </div>
+      </template>
     </v-card>
 
     <p class="prefix u-black--text mb-0" :class="{ 'no-prefix': !prefixName }">
@@ -28,6 +40,11 @@ export default defineComponent({
   props: {
     alt: {
       type: String,
+      default: undefined
+    },
+
+    instaNumber: {
+      type: Number,
       default: undefined
     },
 
@@ -70,5 +87,32 @@ export default defineComponent({
     content: ' ';
     padding: 0.5rem;
   }
+}
+
+.triangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 50px solid #fef552;
+  border-bottom: 50px solid transparent;
+}
+
+.triangle-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.triangle-prefix {
+  font-size: 0.7rem;
+  line-height: 1.1;
+  padding-left: 1px;
+}
+
+.triangle-number {
+  font-size: 1rem;
+  font-weight: bolder;
+  line-height: 1.1;
+  margin-top: -0.15rem;
 }
 </style>

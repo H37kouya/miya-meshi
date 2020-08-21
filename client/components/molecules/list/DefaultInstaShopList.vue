@@ -11,7 +11,14 @@
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
             <v-col :key="key" cols="4" md="3" class="px-1 py-1">
-              <ShopCard v-bind="shop" :to="`/shops/${shop.id}`" :src="shop.imageLink" />
+              <InstaCard
+                :alt="shop.name"
+                :prefix-name="shop.prefixName"
+                :name="shop.name"
+                :to="`/shops/${shop.id}`"
+                :src="shop.imageLink"
+                :insta-number="shop.instaNumber"
+              />
             </v-col>
           </template>
         </template>
