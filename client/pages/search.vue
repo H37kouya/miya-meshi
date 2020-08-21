@@ -1,7 +1,7 @@
 <template>
   <div>
-    <DefaultMainText>
-      詳細検索
+    <DefaultMainText id="result_detail_search">
+      詳細検索結果
     </DefaultMainText>
 
     <div class="u-light-grey-background pt-3">

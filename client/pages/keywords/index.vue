@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DefaultMainText>
+    <DefaultMainText id="search_title">
       検索
     </DefaultMainText>
 

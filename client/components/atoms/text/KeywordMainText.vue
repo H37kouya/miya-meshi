@@ -1,5 +1,5 @@
 <template>
-  <component :is="`h${level}`" class="keyword-main-text">
+  <component :is="`h${level}`" class="keyword-main-text" v-bind="$attrs">
     <slot />
   </component>
 </template>

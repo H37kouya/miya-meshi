@@ -2,6 +2,7 @@
   <component
     :is="`h${level}`"
     class="admin-main-text"
+    v-bind="$attrs"
   >
     <slot />
   </component>

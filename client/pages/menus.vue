@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DefaultMainText>
+    <DefaultMainText id="search_by_menus">
       食べ物から探す
     </DefaultMainText>
 
