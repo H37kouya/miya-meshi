@@ -14,7 +14,7 @@
         <v-container class="text-right pt-0">
           <p class="mb-0">
             <nuxt-link to="/insta" class="miya-meshi-books">
-              みやメシ図鑑
+              もっとみる
             </nuxt-link>
           </p>
         </v-container>

@@ -19,7 +19,8 @@ const MEDIUM_ROUTES = [
   '/menus',
   '/keywords',
   '/keywords/detail',
-  '/search'
+  '/search',
+  '/insta'
 ]
 
 export default defineComponent({
