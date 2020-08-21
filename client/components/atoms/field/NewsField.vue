@@ -80,7 +80,8 @@ export default defineComponent({
   padding: 0.5rem 0;
   background-color: $news-color;
   text-align: center;
-  width: 50px;
+  width: 44px;
+  font-size: 0.9rem;
 
   &::after {
     content: '';
@@ -89,8 +90,8 @@ export default defineComponent({
     top: 100%;
     height: 0;
     width: 0;
-    border-left: 25px solid $news-color;
-    border-right: 25px solid $news-color;
+    border-left: 22px solid $news-color;
+    border-right: 22px solid $news-color;
     border-bottom: 10px solid transparent;
   }
 }

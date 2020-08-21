@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DefaultMainText>
+    <DefaultMainText id="miyameshi_pictures">
       みやメシ図鑑
     </DefaultMainText>
 

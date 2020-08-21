@@ -1,14 +1,17 @@
 <template>
   <div>
-    <DefaultMainText>
-      インスタからのおすすめ
+    <DefaultMainText id="recommend_for_instagram">
+      <div class="d-flex align-center justify-center">
+        <v-icon>mdi-instagram</v-icon>
+        <span>インスタからのおすすめ</span>
+      </div>
     </DefaultMainText>
 
     <DefaultInstaShopList :shops="instaShops" />
 
     <div class="u-light-grey-background pb-2">
       <div class="d-flex justify-center">
-        <v-container class="text-right">
+        <v-container class="text-right pt-0">
           <p class="mb-0">
             <nuxt-link to="/insta" class="miya-meshi-books">
               みやメシ図鑑
@@ -18,13 +21,13 @@
       </div>
     </div>
 
-    <DefaultMainText>
+    <DefaultMainText id="recommend_for_weekend" :level="2">
       今週のおすすめ
     </DefaultMainText>
 
     <DefaultMenuList :menus="menus" justify="center" />
 
-    <DefaultMainText>
+    <DefaultMainText id="news" :level="2">
       新着情報
     </DefaultMainText>
 

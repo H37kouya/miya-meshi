@@ -2,6 +2,7 @@
   <component
     :is="`h${level}`"
     class="default-main-text text-center"
+    v-bind="$attrs"
   >
     <slot />
   </component>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DefaultMainText>
+    <DefaultMainText id="search_title">
       検索
     </DefaultMainText>
 
@@ -9,6 +9,12 @@
         <v-row justify="center">
           <v-col cols="12" class="d-flex justify-center">
             <div class="max-width-480">
+              <p>
+                <nuxt-link to="/" class="to-top-page">
+                  トップページへ
+                </nuxt-link>
+              </p>
+
               <div class="mb-2">
                 <p class="mb-0 search-title">
                   フリーワード検索
@@ -71,5 +77,14 @@ export default defineComponent({
 
 .search-detail {
   font-size: 0.9rem;
+}
+
+.to-top-page {
+  font-size: 0.8rem;
+  text-decoration: none;
+
+  &::before {
+    content: '←';
+  }
 }
 </style>
