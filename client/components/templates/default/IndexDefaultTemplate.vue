@@ -1,7 +1,10 @@
 <template>
   <div>
     <DefaultMainText id="recommend_for_instagram">
-      インスタからのおすすめ
+      <div class="d-flex align-center justify-center">
+        <v-icon>mdi-instagram</v-icon>
+        <span>インスタからのおすすめ</span>
+      </div>
     </DefaultMainText>
 
     <DefaultInstaShopList :shops="instaShops" />
