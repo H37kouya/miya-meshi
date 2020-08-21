@@ -35,7 +35,7 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      state.shops = await getShopList(context.root.$fireStore, 12, true)
+      state.shops = await getShopList(context.root.$fireStore, 0, true)
     })
 
     return {
