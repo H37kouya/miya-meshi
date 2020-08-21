@@ -11,23 +11,21 @@
       />
     </div>
 
-    <DefaultShopList :shops="displayShops" :max-item="state.shops.length" />
+    <DefaultShopList :shops="displayShops" :max-item="shops.length" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
-import { getShopList } from '@/src/infra/firestore/Shop'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
 import { MetaInfo } from 'vue-meta'
-import { ActionType } from '~/store/areas'
-import { Area } from '~/src/types/Area'
+import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
+import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive({
-      shops: [] as Shop[],
       btnStatus: {
         area: false,
         takeout: false,
@@ -36,9 +34,13 @@ export default defineComponent({
       } as BtnStatus
     })
 
+    const { nowArea } = useArea(context.root)
+
+    const { shops } = useShop(context.root)
+
     const displayShops = computed(() => {
       if (state.btnStatus.takeout && state.btnStatus.nowLocation) {
-        return state.shops.filter((shop: Shop) => {
+        return shops.value.filter((shop: Shop) => {
           if (!shop.canTakeout || !shop.address || !nowArea.value) {
             return false
           }
@@ -54,11 +56,11 @@ export default defineComponent({
       }
 
       if (state.btnStatus.takeout) {
-        return state.shops.filter((shop: Shop) => shop.canTakeout)
+        return shops.value.filter((shop: Shop) => shop.canTakeout)
       }
 
       if (state.btnStatus.nowLocation) {
-        return state.shops.filter((shop: Shop) => {
+        return shops.value.filter((shop: Shop) => {
           if (!shop.address || !nowArea.value) {
             return false
           }
@@ -73,22 +75,11 @@ export default defineComponent({
         })
       }
 
-      return state.shops
-    })
-
-    const nowArea = computed(() => {
-      return context.root.$store.getters['areas/nowArea'] as Area|undefined
-    })
-
-    watchEffect(async () => {
-      state.shops = await getShopList(context.root.$fireStore, 0)
-    })
-
-    watchEffect(async () => {
-      await context.root.$store.dispatch(`areas/${ActionType.FETCH_AREAS}`)
+      return shops.value
     })
 
     return {
+      shops,
       displayShops,
       state
     }

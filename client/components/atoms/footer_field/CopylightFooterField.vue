@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
 .copyright {
-  color: #a7a7a7;
+  color: #969696;
 }
 
 .copyright-small {
