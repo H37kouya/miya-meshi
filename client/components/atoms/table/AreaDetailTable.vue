@@ -6,10 +6,10 @@
           :key="area.id"
           :class="{ 'selected': selectedIds.find((aID) => area.id === aID ) }"
           cols="4"
-          class="px-0 py-2 text-center keyword-box"
+          class="pa-1 keyword-box d-flex justify-center align-center"
           @click="onClick(area.id)"
         >
-          {{ area.name }}
+          <div>{{ area.name }}</div>
         </v-col>
       </template>
     </v-row>

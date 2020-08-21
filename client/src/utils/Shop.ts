@@ -1,5 +1,6 @@
 import { Shop, SHOP_TYPE } from '@/src/types/Shop'
 import { isString, kanji2num, zenkakuToHankaku } from '~/src/utils/String'
+import { Area } from '@/src/types/Area'
 
 /**
  * Shop型かどうか
@@ -41,4 +42,24 @@ export const formatShopPostal = (postal: Shop['postal']): Shop['postal'] => {
   const str = isString(postal) ? postal : String(postal)
 
   return zenkakuToHankaku(str)
+}
+
+/**
+ * Shopのエリアを取得する
+ *
+ * @param { Shop } shop
+ * @param { Area[] } areas
+ */
+export const getShopArea = (shop: Shop, areas: Area[]): Area|undefined => {
+  if (!shop.address) {
+    return undefined
+  }
+
+  for (const area of areas) {
+    if (area.addresses.includes(shop.address)) {
+      return area
+    }
+  }
+
+  return undefined
 }

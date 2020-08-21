@@ -46,7 +46,7 @@
 }
 
 .copyright-container {
-  border-top: 1px #e1e1e1 solid;
+  border-top: 1px #a7a7a7 solid;
   background-color: #333;
 }
 </style>

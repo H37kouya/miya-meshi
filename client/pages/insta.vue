@@ -1,7 +1,7 @@
 <template>
   <div>
     <DefaultMainText id="miyameshi_pictures">
-      みやメシ図鑑
+      インスタからのおすすめ
     </DefaultMainText>
 
     <div class="u-light-grey-background">

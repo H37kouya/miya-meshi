@@ -8,8 +8,9 @@ $border: 1px solid #333;
   border-right: $border;
   border-bottom: $border;
   background-color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
+  height: 50px;
 
   &:nth-child(3n-2) {
     border-left: $border;

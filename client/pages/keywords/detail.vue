@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DefaultMainText>
+    <DefaultMainText id="search_detail">
       詳細検索
     </DefaultMainText>
 
@@ -20,7 +20,7 @@
           </p>
 
           <div class="d-flex justify-center">
-            <KeywordMainText :level="2">
+            <KeywordMainText id="search_by_area" :level="2">
               地域
             </KeywordMainText>
           </div>
@@ -34,13 +34,13 @@
           </div>
 
           <div class="d-flex justify-center">
-            <KeywordMainText :level="2">
+            <KeywordMainText id="search_by_food" :level="2">
               料理
             </KeywordMainText>
           </div>
 
           <div class="d-flex justify-center">
-            <KeywordMainText :level="2">
+            <KeywordMainText id="search_by_time" :level="2">
               時間帯
             </KeywordMainText>
           </div>
