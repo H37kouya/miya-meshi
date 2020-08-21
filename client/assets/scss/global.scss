@@ -55,3 +55,11 @@
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+
+.left-arrow::before {
+  content: '←';
+}
+
+.right-arrow::before {
+  content: '→';
+}

@@ -6,7 +6,7 @@
           :key="key"
           :class="{ 'selected': selectedTimes.find((name) => time === name ) }"
           cols="4"
-          class="px-0 py-2 text-center keyword-box"
+          class="pa-1 text-center keyword-box d-flex justify-center align-center"
           @click="onClick(time)"
         >
           {{ time }}
