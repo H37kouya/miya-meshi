@@ -16,10 +16,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
 import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/src/types/Menu'
+import { MetaInfo } from 'vue-meta'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
@@ -49,6 +50,13 @@ export default defineComponent({
       displayMenus,
       state
     }
-  }
+  },
+
+  head: (): MetaInfo => ({
+    title: 'メニューから探す',
+    meta: [
+      { property: 'og:type', content: 'article' }
+    ]
+  })
 })
 </script>

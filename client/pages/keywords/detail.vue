@@ -64,6 +64,7 @@
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { getAreaList } from '@/src/infra/firestore/Area'
 import { Area } from '@/src/types/Area'
+import { MetaInfo } from 'vue-meta'
 
 const times = ['朝', '昼', '夜']
 
@@ -113,7 +114,14 @@ export default defineComponent({
       to,
       state
     }
-  }
+  },
+
+  head: (): MetaInfo => ({
+    title: '詳細検索',
+    meta: [
+      { property: 'og:type', content: 'article' }
+    ]
+  })
 })
 </script>
 

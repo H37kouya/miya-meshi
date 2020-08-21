@@ -35,7 +35,10 @@ const nuxtConfig: Configuration = {
         name: 'description',
         content: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
       },
-      { name: 'robots', content: process.env.TEST_ENV ? 'noindex' : 'index' }
+      { name: 'robots', content: process.env.TEST_ENV ? 'noindex' : 'index' },
+      { name: 'og:description', content: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます' },
+      { name: 'og:site_name', content: 'みやメシ応援隊' },
+      { name: 'twitter:site', content: '@miyameshiouen' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

@@ -43,6 +43,14 @@ export const deleteShop = async (
   await $fireStore.collection(SHOP_COLLECTION_NAME).doc(id).delete()
 }
 
+/**
+ * 店舗を編集する
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { typeof firebase.firestore } $fireStoreObj
+ * @param shop
+ * @param { Shop['id] } shopID
+ */
 export const editShop = async (
   $fireStore: firebase.firestore.Firestore,
   $fireStoreObj: typeof firebase.firestore,
@@ -75,6 +83,35 @@ export const getShopList = async (
     .collection(SHOP_COLLECTION_NAME)
     .where('public', 'in', publicWhere)
     .orderBy('priority', 'desc')
+
+  const list = limit > 0 ? await func.limit(limit).get() : await func.get()
+
+  const shops = [] as Shop[]
+  list.forEach((doc) => {
+    shops.push(firestoreDocDataToShop(doc))
+  })
+  return shops
+}
+
+/**
+ * Shop一覧を取得
+ *
+ * @param { firebase.firestore.Firestore } $fireStore
+ * @param { Number } limit 取得最大数
+ * @param { Boolean } admin 管理者かどうか
+ */
+export const getShopListByInstaNumber = async (
+  $fireStore: firebase.firestore.Firestore,
+  limit: number = 12,
+  admin: boolean = false
+) => {
+  const publicWhere: boolean[] = admin ? [true, false] : [true]
+
+  const func = $fireStore
+    .collection(SHOP_COLLECTION_NAME)
+    .where('public', 'in', publicWhere)
+    .orderBy('instaNumber', 'desc')
+    .where('instaNumber', '>', 0)
 
   const list = limit > 0 ? await func.limit(limit).get() : await func.get()
 

@@ -20,6 +20,7 @@ import { computed, defineComponent, reactive, SetupContext, watchEffect } from '
 import { Shop } from '@/src/types/Shop'
 import { getShopList } from '@/src/infra/firestore/Shop'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
+import { MetaInfo } from 'vue-meta'
 import { ActionType } from '~/store/areas'
 import { Area } from '~/src/types/Area'
 
@@ -91,6 +92,13 @@ export default defineComponent({
       displayShops,
       state
     }
-  }
+  },
+
+  head: (): MetaInfo => ({
+    title: 'お店から探す',
+    meta: [
+      { property: 'og:type', content: 'article' }
+    ]
+  })
 })
 </script>

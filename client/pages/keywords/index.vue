@@ -52,8 +52,16 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { MetaInfo } from 'vue-meta'
 
-export default defineComponent({})
+export default defineComponent({
+  head: (): MetaInfo => ({
+    title: '検索',
+    meta: [
+      { property: 'og:type', content: 'article' }
+    ]
+  })
+})
 </script>
 
 <style lang="scss" scoped>

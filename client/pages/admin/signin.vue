@@ -36,6 +36,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext } from '@vue/composition-api'
+import { MetaInfo } from 'vue-meta'
 
 type State = {
   password: string,
@@ -69,6 +70,13 @@ export default defineComponent({
       state,
       emailLogin
     }
-  }
+  },
+
+  head: (): MetaInfo => ({
+    title: 'ログイン',
+    meta: [
+      { property: 'og:type', content: 'article' }
+    ]
+  })
 })
 </script>

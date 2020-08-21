@@ -187,7 +187,7 @@
 
           <v-card-text>
             <v-text-field
-              v-model="state.shop.instaNumber"
+              v-model.number="state.shop.instaNumber"
               :label="ShopJa.INSTA_NUMBER"
               type="number"
               prefix="No."
