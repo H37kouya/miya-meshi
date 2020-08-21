@@ -62,3 +62,14 @@ export const kanji2num = (str: string) => {
 
   return str
 }
+
+/**
+ * 文字列を0で埋める
+ *
+ * @param { string|number } v
+ * @param { number } max
+ */
+export const zeroFill = (v: string|number, max: number = 3) => {
+  const str = isString(v) ? v : String(v)
+  return (`${'0'.repeat(max)}${str}`).slice(-max)
+}

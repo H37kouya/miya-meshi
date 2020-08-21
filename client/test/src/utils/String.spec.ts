@@ -1,4 +1,4 @@
-import { hankakuKatakanaToZenkakuKatakana, isString, zenkakuToHankaku } from '@/src/utils/String'
+import { hankakuKatakanaToZenkakuKatakana, isString, zenkakuToHankaku, zeroFill } from '@/src/utils/String'
 
 describe('utils/String', () => {
   describe('isString', () => {
@@ -65,6 +65,40 @@ describe('utils/String', () => {
     testCases.forEach((testCase) => {
       it(`${testCase.message} (${testCase.arg} → ${testCase.expected})`, () => {
         expect(hankakuKatakanaToZenkakuKatakana(testCase.arg)).toBe(testCase.expected)
+      })
+    })
+  })
+
+  describe('zeroFill', () => {
+    type testType = {
+      message: string,
+      arg: {
+        v: string|number,
+        max: number
+      },
+      expected: string
+    }
+
+    const testCases = [
+      { message: '最大桁数3桁のとき、0で埋められる', arg: { v: 1, max: 3 }, expected: '001' },
+      { message: '最大桁数3桁のとき、0で埋められる', arg: { v: '1', max: 3 }, expected: '001' },
+      { message: '最大桁数3桁のとき、0で埋められる', arg: { v: 10, max: 3 }, expected: '010' },
+      { message: '最大桁数3桁のとき、0で埋められる', arg: { v: '10', max: 3 }, expected: '010' },
+      { message: '最大桁数3桁のとき、0で埋められる', arg: { v: 100, max: 3 }, expected: '100' },
+      { message: '最大桁数3桁のとき、0で埋められる', arg: { v: '100', max: 3 }, expected: '100' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: 1, max: 4 }, expected: '0001' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: '1', max: 4 }, expected: '0001' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: 10, max: 4 }, expected: '0010' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: '10', max: 4 }, expected: '0010' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: 100, max: 4 }, expected: '0100' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: '100', max: 4 }, expected: '0100' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: 1000, max: 4 }, expected: '1000' },
+      { message: '最大桁数4桁のとき、0で埋められる', arg: { v: '1000', max: 4 }, expected: '1000' }
+    ] as testType[]
+
+    testCases.forEach((testCase) => {
+      it(`${testCase.message} (${testCase.arg.v} → ${testCase.expected})`, () => {
+        expect(zeroFill(testCase.arg.v, testCase.arg.max)).toBe(testCase.expected)
       })
     })
   })

@@ -10,7 +10,7 @@
             No.
           </p>
           <p class="mb-0 triangle-number">
-            {{ instaNumber }}
+            {{ displayNumber }}
           </p>
         </div>
       </template>
@@ -26,10 +26,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from '@vue/composition-api'
+import { zeroFill } from '~/src/utils/String'
 
 type Props = {
   alt: string,
+  instaNumber: number,
   name: string,
   prefixName: number,
   src: string,
@@ -66,6 +68,14 @@ export default defineComponent({
     src: {
       type: String,
       default: undefined
+    }
+  },
+
+  setup (props: Props, _) {
+    const displayNumber = computed(() => zeroFill(props.instaNumber))
+
+    return {
+      displayNumber
     }
   }
 })
