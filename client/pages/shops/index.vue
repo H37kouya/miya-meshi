@@ -23,6 +23,7 @@ import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup
 import { MetaInfo } from 'vue-meta'
 import { ActionType } from '~/store/areas'
 import { Area } from '~/src/types/Area'
+import { useArea } from '~/src/CompositonFunctions/areas/UseArea'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
@@ -76,16 +77,10 @@ export default defineComponent({
       return state.shops
     })
 
-    const nowArea = computed(() => {
-      return context.root.$store.getters['areas/nowArea'] as Area|undefined
-    })
+    const { nowArea } = useArea(context.root)
 
     watchEffect(async () => {
       state.shops = await getShopList(context.root.$fireStore, 0)
-    })
-
-    watchEffect(async () => {
-      await context.root.$store.dispatch(`areas/${ActionType.FETCH_AREAS}`)
     })
 
     return {

@@ -27,7 +27,7 @@
 
           <div>
             <AreaDetailTable
-              :areas="state.areas"
+              :areas="areas"
               :selected-ids="state.areaSelectedID"
               @click="onAreaClick"
             />
@@ -61,24 +61,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { getAreaList } from '@/src/infra/firestore/Area'
-import { Area } from '@/src/types/Area'
+import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
+import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 
 const times = ['朝', '昼', '夜']
 
 export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive({
-      areas: [] as Area[],
       areaSelectedID: [] as string[],
       timeSelectedName: [] as string[]
     })
 
-    watchEffect(async () => {
-      state.areas = await getAreaList(context.root.$fireStore)
-    })
+    const { areas } = useArea(context.root)
 
     const onAreaClick = (id: string) => {
       const areaID = state.areaSelectedID.find((aID: string) => id === aID)
@@ -108,6 +104,7 @@ export default defineComponent({
     })
 
     return {
+      areas,
       onAreaClick,
       onTimeClick,
       times,
