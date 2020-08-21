@@ -14,8 +14,8 @@
               </v-icon>
               {{ shop.name }}
             </v-list-item-title>
-            <v-list-item-subtitle v-if="shop.intro" class="pl-4">
-              {{ shop.intro }}
+            <v-list-item-subtitle v-if="shop.description" class="pl-4">
+              {{ shop.description }}
             </v-list-item-subtitle>
           </v-list-item-content>
 
