@@ -10,7 +10,7 @@
       <div class="d-flex justify-center">
         <v-container class="text-right">
           <p class="mb-0">
-            <nuxt-link to="/shops" class="miya-meshi-books">
+            <nuxt-link to="/insta" class="miya-meshi-books">
               みやメシ図鑑
             </nuxt-link>
           </p>
