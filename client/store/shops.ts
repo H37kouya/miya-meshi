@@ -64,6 +64,14 @@ export const actions: ActionTree<any, State> = {
     if (getters.canComputedInstaShopsFromStoreShops) {
       const storeShops = getters.shops
       const shops = storeShops.filter((shop: Shop) => shop.instaNumber && shop.instaNumber > 0)
+      // 配列を逆順で並べる
+      shops.sort((shopA: Shop, shopB: Shop) => {
+        if (shopA.instaNumber && shopB.instaNumber) {
+          return shopA.instaNumber > shopB.instaNumber ? -1 : 1
+        }
+
+        return -1
+      })
       commit(MutationType.SET_INSTA_SHOPS, shops)
       return
     }

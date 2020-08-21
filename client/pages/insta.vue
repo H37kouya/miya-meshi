@@ -22,43 +22,39 @@
       </v-container>
     </div>
 
-    <DefaultInstaShopList :shops="filterShops" :max-item="state.shops.length" />
+    <DefaultInstaShopList :shops="filterShops" :max-item="instaShops.length" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
-import { getShopListByInstaNumber } from '@/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
+import { useInstaShop } from '@/src/CompositonFunctions/shops/UseInstaShop'
 
 type State = {
-  shops: Shop[],
   selectedNumber: number[]
 }
 export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive<State>({
-      shops: [] as Shop[],
       selectedNumber: [] as number[]
     })
 
-    watchEffect(async () => {
-      state.shops = await getShopListByInstaNumber(context.root.$fireStore, 0)
-    })
+    const { instaShops } = useInstaShop(context.root)
 
     const selectItems = computed(() => {
-      return state.shops.map((shop: Shop) => shop.instaNumber)
+      return instaShops.value.map((shop: Shop) => shop.instaNumber)
     })
 
     const filterShops = computed(() => {
       if (state.selectedNumber.length === 0) {
-        return state.shops
+        return instaShops.value
       }
 
       const selected = state.selectedNumber.map(v => Number(v))
 
-      return state.shops.filter((shop: Shop) => {
+      return instaShops.value.filter((shop: Shop) => {
         if (!shop.instaNumber) {
           return false
         }
@@ -68,6 +64,7 @@ export default defineComponent({
     })
 
     return {
+      instaShops,
       selectItems,
       filterShops,
       state
