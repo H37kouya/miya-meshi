@@ -15,11 +15,17 @@ export const state = (): State => ({
 export type Getters = {
   shops: State['shops'],
   instaShops: State['instaShops'],
+  canComputedInstaShopsFromStoreShops: boolean,
+  shouldFetchShops: boolean,
+  shouldFetchInstaShops: boolean
 }
 
 export const getters = {
   shops: (state: State) => state.shops,
-  instaShops: (state: State) => state.instaShops
+  instaShops: (state: State) => state.instaShops,
+  canComputedInstaShopsFromStoreShops: (state: State) => state.shops.length > 0,
+  shouldFetchShops: (state: State) => state.shops.length === 0,
+  shouldFetchInstaShops: (state: State) => state.instaShops.length === 0
 }
 
 enum MutationType {
@@ -43,12 +49,25 @@ export enum ActionType {
 }
 
 export const actions: ActionTree<any, State> = {
-  async [ActionType.FETCH_SHOPS] ({ commit }) {
-    const shops = await getShopList(this.$fireStore, 0)
-    commit(MutationType.SET_SHOPS, shops)
+  async [ActionType.FETCH_SHOPS] ({ commit, getters }: { commit: any, getters: Getters }) {
+    if (getters.shouldFetchShops) {
+      const shops = await getShopList(this.$fireStore, 0)
+      commit(MutationType.SET_SHOPS, shops)
+    }
   },
 
-  async [ActionType.FETCH_INSTA_SHOPS] ({ commit }) {
+  async [ActionType.FETCH_INSTA_SHOPS] ({ commit, getters }: { commit: any, getters: Getters }) {
+    if (!getters.shouldFetchInstaShops) {
+      return
+    }
+
+    if (getters.canComputedInstaShopsFromStoreShops) {
+      const storeShops = getters.shops
+      const shops = storeShops.filter((shop: Shop) => shop.instaNumber && shop.instaNumber > 0)
+      commit(MutationType.SET_INSTA_SHOPS, shops)
+      return
+    }
+
     const shops = await getShopListByInstaNumber(this.$fireStore, 0)
     commit(MutationType.SET_INSTA_SHOPS, shops)
   }
