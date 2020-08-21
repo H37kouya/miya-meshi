@@ -31,6 +31,7 @@ import { getAreaList } from '@/src/infra/firestore/Area'
 import { isString } from '@/src/utils/String'
 import { getShopList } from '@/src/infra/firestore/Shop'
 import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
+import { MetaInfo } from 'vue-meta'
 
 type State = {
   areas: Area[],
@@ -101,7 +102,14 @@ export default defineComponent({
       state,
       filterShops
     }
-  }
+  },
+
+  head: (): MetaInfo => ({
+    title: '詳細検索',
+    meta: [
+      { property: 'og:type', content: 'article' }
+    ]
+  })
 })
 </script>
 
