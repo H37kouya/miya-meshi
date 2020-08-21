@@ -22,7 +22,7 @@
       </v-container>
     </div>
 
-    <DefaultShopList :shops="filterShops" :max-item="state.shops.length" />
+    <DefaultInstaShopList :shops="filterShops" :max-item="state.shops.length" />
   </div>
 </template>
 
