@@ -81,7 +81,7 @@ export default defineComponent({
     })
 
     watchEffect(async () => {
-      state.shops = await getShopList(context.root.$fireStore)
+      state.shops = await getShopList(context.root.$fireStore, 0)
     })
 
     watchEffect(async () => {
