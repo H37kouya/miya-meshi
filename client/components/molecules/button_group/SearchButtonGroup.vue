@@ -6,43 +6,30 @@
       </p>
 
       <TakeoutIcon
-        :selected="state.btnStatus.takeout"
-        @click="onInput('takeout')"
+        :selected="btnStatus.takeout"
+        @click="onInput('takeout', btnStatus)"
       />
       <OpenBuzIcon
-        :selected="state.btnStatus.openBuz"
-        @click="onInput('openBuz')"
+        :selected="btnStatus.openBuz"
+        @click="onInput('openBuz', btnStatus)"
       />
 
       <NowLocationIcon
-        :selected="state.btnStatus.nowLocation"
-        @click="onInput('nowLocation')"
+        :selected="btnStatus.nowLocation"
+        @click="onInput('nowLocation', btnStatus)"
       />
 
       <TimeZoneIcon
-        :selected="state.btnStatus.timeZone"
-        @click="onInput('timeZone')"
+        :selected="btnStatus.timeZone"
+        @click="onInput('timeZone', btnStatus)"
       />
     </div>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-
-export type TimeZone = 'lunch'|'night'|false
-const timeZoneArr = [false, 'lunch', 'night'] as TimeZone[]
-
-export type BtnStatus = {
-  timeZone: TimeZone,
-  takeout: boolean,
-  openBuz: boolean,
-  nowLocation: boolean
-}
-
-type State = {
-  btnStatus: BtnStatus
-}
+import { defineComponent, SetupContext } from '@vue/composition-api'
+import { useBtnStatus, BtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
 
 type Props = {
   btnStatus: BtnStatus
@@ -57,30 +44,9 @@ export default defineComponent({
   },
 
   setup (props: Props, context: SetupContext) {
-    const state = reactive<State>({
-      btnStatus: props.btnStatus as BtnStatus
-    })
-
-    const onInput = (name: 'takeout'|'openBuz'|'nowLocation'|'timeZone') => {
-      const obj = Object.assign({}, props.btnStatus)
-      if (name === 'timeZone') {
-        const idx = timeZoneArr.findIndex((s: TimeZone) => s === obj[name])
-        if (idx === -1) {
-          console.error('不適切な値がありまｓ')
-        }
-        obj[name] = timeZoneArr[idx + 1 === timeZoneArr.length ? 0 : idx + 1]
-      } else {
-        obj[name] = !obj[name]
-      }
-      return context.emit('input', obj)
-    }
-
-    watchEffect(() => {
-      state.btnStatus = props.btnStatus
-    })
+    const { onInput } = useBtnStatus(context)
 
     return {
-      state,
       onInput
     }
   }

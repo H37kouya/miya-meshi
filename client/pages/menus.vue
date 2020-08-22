@@ -6,8 +6,8 @@
 
     <div class="u-light-grey-background pt-3">
       <SearchButtonGroup
-        :btn-status="state.btnStatus"
-        @input="(v) => state.btnStatus = v"
+        :btn-status="btnStatus"
+        @input="(v) => btnStatus = v"
       />
     </div>
 
@@ -16,27 +16,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
-import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
+import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { Menu } from '@/src/types/Menu'
 import { MetaInfo } from 'vue-meta'
 import { useMenu } from '@/src/CompositonFunctions/menus/UseMenu'
+import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const state = reactive({
-      btnStatus: {
-        timeZone: false,
-        takeout: false,
-        openBuz: false,
-        nowLocation: false
-      } as BtnStatus
-    })
+    const { btnStatus } = useBtnStatus(context)
 
     const { menus } = useMenu(context.root)
 
     const displayMenus = computed(() => {
-      if (state.btnStatus.takeout) {
+      if (btnStatus.value.takeout) {
         return menus.value.filter((menu: Menu) => menu.canTakeOut)
       }
 
@@ -44,9 +37,9 @@ export default defineComponent({
     })
 
     return {
+      btnStatus,
       displayMenus,
-      menus,
-      state
+      menus
     }
   },
 
