@@ -33,7 +33,7 @@ export default defineComponent({
         return 'mdi-weather-sunny'
       }
 
-      return 'mdi-weather-night'
+      return 'mdi-weather-night-partly-cloudy'
     })
 
     return {
