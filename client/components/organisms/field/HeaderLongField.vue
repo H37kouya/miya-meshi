@@ -1,7 +1,13 @@
 <template>
   <div>
     <div style="width: 100%;" class="pos-relative">
-      <v-img src="/miyameshi-top.png" width="100%" aspect-ratio="1.78" max-height="160px" />
+      <v-img
+        src="/miyameshi-top.png"
+        srcset="/miyameshi-top.webp"
+        width="100%"
+        aspect-ratio="1.78"
+        max-height="160px"
+      />
 
       <v-card class="news">
         <v-img src="/miyameshi-ticket.jpg" />

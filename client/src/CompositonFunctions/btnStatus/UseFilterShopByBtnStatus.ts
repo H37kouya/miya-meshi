@@ -15,7 +15,7 @@ export const useFilterShopByBtnStatus = (
 
     if (btnStatus.value.nowLocation) {
       lShops = lShops.filter((shop: Shop) => {
-        if (!shop.address || !nowArea) {
+        if (!shop.address || !nowArea.value) {
           return false
         }
 
