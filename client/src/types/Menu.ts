@@ -14,6 +14,7 @@ export type Menu = {
   priority: number,
   dishes: string[],
   keywords: string[],
+  timeZone?: string[],
   createdAt?: Date|Object,
   updatedAt?: Date|Object,
   deletedAt?: Date|Object

@@ -182,7 +182,12 @@ const nuxtConfig: Configuration = {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    extractCSS: true
+    extractCSS: true,
+    splitChunks: {
+      layouts: true,
+      pages: true,
+      commons: true
+    }
   }
 }
 

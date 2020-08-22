@@ -14,41 +14,33 @@
       </v-container>
 
       <SearchButtonGroup
-        :btn-status="state.btnStatus"
-        @input="(v) => state.btnStatus = v"
+        :btn-status="btnStatus"
+        @input="(v) => btnStatus = v"
       />
     </div>
 
-    <DefaultShopList :shops="filterShops" :max-item="shops.length" />
+    <DefaultShopList :shops="displayShops" :max-item="shops.length" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { Shop } from '@/src/types/Shop'
-import { BtnStatus } from '@/components/molecules/button_group/SearchButtonGroup.vue'
 import { MetaInfo } from 'vue-meta'
 import { filterShopsByAreas } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-
-type State = {
-  btnStatus: BtnStatus
-}
+import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
+import { useFilterShopByBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const state = reactive<State>({
-      btnStatus: {
-        area: false,
-        takeout: false,
-        openBuz: false,
-        nowLocation: false
-      } as BtnStatus
-    })
+    const { btnStatus } = useBtnStatus(context)
 
     const { areas } = useArea(context.root)
+
+    const { nowArea } = useArea(context.root)
 
     const { shops } = useShop(context.root)
 
@@ -61,19 +53,13 @@ export default defineComponent({
       return filterShopsByAreas(shops.value, filterAreas.value)
     })
 
-    const filterShops = computed(() => {
-      if (state.btnStatus.takeout) {
-        return filterShopsByArea.value.filter((shop: Shop) => shop.canTakeout)
-      }
-
-      return filterShopsByArea.value
-    })
+    const { displayShops } = useFilterShopByBtnStatus(btnStatus, filterShopsByArea, nowArea)
 
     return {
       areas,
+      displayShops,
       shops,
-      state,
-      filterShops
+      btnStatus
     }
   },
 

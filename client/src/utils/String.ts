@@ -42,6 +42,10 @@ export const hankakuKatakanaToZenkakuKatakana = (str: string) =>
  */
 export const isPostal = (v?: string|number) => {
   const postalRegex = /^\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}$/
+  if (!v) {
+    return false
+  }
+
   const testVal: string = isString(v) ? v : String(v)
   return postalRegex.test(testVal)
 }

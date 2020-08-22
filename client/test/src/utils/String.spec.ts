@@ -1,4 +1,11 @@
-import { hankakuKatakanaToZenkakuKatakana, isString, zenkakuToHankaku, zeroFill } from '@/src/utils/String'
+import {
+  hankakuKatakanaToZenkakuKatakana,
+  isPostal,
+  isString,
+  kanji2num,
+  zenkakuToHankaku,
+  zeroFill
+} from '@/src/utils/String'
 
 describe('utils/String', () => {
   describe('isString', () => {
@@ -23,6 +30,28 @@ describe('utils/String', () => {
     testCases.forEach((testCase) => {
       it(testCase.message, () => {
         expect(isString(testCase.arg)).toBe(testCase.expected)
+      })
+    })
+  })
+
+  describe('isPostal', () => {
+    type testType = {
+      message: string,
+      arg?: string|number,
+      expected: boolean
+    }
+
+    const testCases = [
+      { message: '郵便番号である', arg: '321-0922', expected: true },
+      { message: '郵便番号である', arg: '3210922', expected: true },
+      { message: '郵便番号である', arg: 3210922, expected: true },
+      { message: '郵便番号でない', arg: 'abc-defg', expected: false },
+      { message: '郵便番号でない', arg: undefined, expected: false }
+    ] as testType[]
+
+    testCases.forEach((testCase) => {
+      it(`${testCase.message} (${testCase.arg}`, () => {
+        expect(isPostal(testCase.arg)).toBe(testCase.expected)
       })
     })
   })
@@ -65,6 +94,26 @@ describe('utils/String', () => {
     testCases.forEach((testCase) => {
       it(`${testCase.message} (${testCase.arg} → ${testCase.expected})`, () => {
         expect(hankakuKatakanaToZenkakuKatakana(testCase.arg)).toBe(testCase.expected)
+      })
+    })
+  })
+
+  describe('kanji2num', () => {
+    type testType = {
+      message: string,
+      arg: string,
+      expected: string
+    }
+
+    const testCases = [
+      { message: '漢数字を算用数字に変換できる', arg: '一', expected: '1' },
+      { message: '漢数字を算用数字に変換できる', arg: '一二', expected: '12' },
+      { message: '漢数字を算用数字に変換できる', arg: 'あ三い', expected: 'あ3い' }
+    ] as testType[]
+
+    testCases.forEach((testCase) => {
+      it(`${testCase.message} (${testCase.arg} → ${testCase.expected})`, () => {
+        expect(kanji2num(testCase.arg)).toBe(testCase.expected)
       })
     })
   })

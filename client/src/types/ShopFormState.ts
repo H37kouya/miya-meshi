@@ -33,6 +33,7 @@ export type ShopFormState = {
     latitude: Shop['latitude'],
     longitude: Shop['longitude'],
     dishes: Shop['dishes'],
-    keywords: Shop['keywords']
+    keywords: Shop['keywords'],
+    timeZone: Shop['timeZone']
   }
 }

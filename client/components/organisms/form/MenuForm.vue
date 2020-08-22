@@ -87,7 +87,7 @@
             />
 
             <v-row>
-              <v-col cols="6">
+              <v-col cols="4">
                 <v-select
                   v-model="state.menu.dishes"
                   :items="dishesListForSelect"
@@ -97,12 +97,22 @@
                 />
               </v-col>
 
-              <v-col cols="6">
+              <v-col cols="4">
                 <v-select
                   v-model="state.menu.keywords"
                   :items="keywordsListForSelect"
                   :menu-props="{ maxHeight: '400' }"
                   label="キーワード選択"
+                  multiple
+                />
+              </v-col>
+
+              <v-col cols="4">
+                <v-select
+                  v-model="state.menu.timeZone"
+                  :items="timeZoneSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="時間帯"
                   multiple
                 />
               </v-col>
@@ -185,7 +195,8 @@ export default defineComponent({
         price: 0,
         priority: 3,
         isTaxIncluded: false,
-        canTakeOut: true
+        canTakeOut: true,
+        timeZone: [] as string[]
       }
     })
 
@@ -203,6 +214,7 @@ export default defineComponent({
       state.menu.canTakeOut = newVal ? newVal.canTakeOut : state.menu.canTakeOut
       state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
       state.menu.keywords = newVal ? newVal.keywords : state.menu.keywords
+      state.menu.timeZone = newVal ? newVal.timeZone : state.menu.timeZone
     })
 
     const dishesListForSelect = computed(() => {
@@ -213,11 +225,16 @@ export default defineComponent({
       return props.keywords.map(keyword => keyword.name)
     })
 
+    const timeZoneSelect = computed(() => {
+      return ['朝', '昼', '夜']
+    })
+
     const onSubmit = () => context.emit('submit', state.menu)
 
     return {
       dishesListForSelect,
       keywordsListForSelect,
+      timeZoneSelect,
       state,
       uuid,
       onSubmit

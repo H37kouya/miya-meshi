@@ -2,13 +2,21 @@
 export type Shop = {
   type: ShopType,
   id: string,
-  prefixName?: string,
+  // 店舗名
   name?: string,
+  // 店舗肩書き
+  prefixName?: string,
+  // 一言紹介
   description?: string,
+  // 長文紹介
   intro?: string,
-  postal?: string|number,
+  // 住所
   address?: string,
+  // 建物名
   buildingName?: string,
+  // 郵便番号
+  postal?: string|number,
+  // 電話番号
   tel?: string|number,
   imageLink?: string,
   subImageLink?: string[],
@@ -20,14 +28,18 @@ export type Shop = {
   twitterLink?: string,
   uberEatsLink?: string,
   youtubeLink?: string,
+  // 優先度
   priority: number,
+  // 価格帯
   priceRange?: string,
+  // 公開設定
   public: boolean,
   businessHour1?: string,
   businessHour2?: string,
   parkingLot?: string,
   regularHoliday?: string,
   seat?: string,
+  // テイクアウト可能かどうか
   canTakeout: boolean,
   instaShopLink?: string,
   instaNumber?: number,
@@ -35,6 +47,7 @@ export type Shop = {
   longitude?: number,
   keywords: string[],
   dishes?: string[],
+  timeZone?: string[],
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

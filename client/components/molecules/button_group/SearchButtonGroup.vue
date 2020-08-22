@@ -6,36 +6,30 @@
       </p>
 
       <TakeoutIcon
-        :selected="state.btnStatus.takeout"
-        @click="onInput('takeout')"
+        :selected="btnStatus.takeout"
+        @click="onInput('takeout', btnStatus)"
       />
       <OpenBuzIcon
-        :selected="state.btnStatus.openBuz"
-        @click="onInput('openBuz')"
+        :selected="btnStatus.openBuz"
+        @click="onInput('openBuz', btnStatus)"
       />
 
       <NowLocationIcon
-        :selected="state.btnStatus.nowLocation"
-        @click="onInput('nowLocation')"
+        :selected="btnStatus.nowLocation"
+        @click="onInput('nowLocation', btnStatus)"
       />
 
-      <AreaIcon
-        :selected="state.btnStatus.area"
-        @click="onInput('area')"
+      <TimeZoneIcon
+        :selected="btnStatus.timeZone"
+        @click="onInput('timeZone', btnStatus)"
       />
     </div>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-
-export type BtnStatus = {
-  area: boolean,
-  takeout: boolean,
-  openBuz: boolean,
-  nowLocation: boolean
-}
+import { defineComponent, SetupContext } from '@vue/composition-api'
+import { useBtnStatus, BtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
 
 type Props = {
   btnStatus: BtnStatus
@@ -50,22 +44,9 @@ export default defineComponent({
   },
 
   setup (props: Props, context: SetupContext) {
-    const state = reactive({
-      btnStatus: props.btnStatus as BtnStatus
-    })
-
-    const onInput = (name: 'takeout'|'openBuz'|'nowLocation'|'area') => {
-      const obj = Object.assign({}, props.btnStatus)
-      obj[name] = !obj[name]
-      return context.emit('input', obj)
-    }
-
-    watch(() => props.btnStatus, (newVal, _) => {
-      state.btnStatus = newVal
-    })
+    const { onInput } = useBtnStatus(context)
 
     return {
-      state,
       onInput
     }
   }

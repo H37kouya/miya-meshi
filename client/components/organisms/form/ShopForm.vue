@@ -111,6 +111,14 @@
                   label="キーワード選択"
                   multiple
                 />
+
+                <v-select
+                  v-model="state.shop.timeZone"
+                  :items="timeZoneSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="時間帯"
+                  multiple
+                />
               </v-card-text>
             </v-col>
           </v-row>
@@ -371,7 +379,8 @@ export default defineComponent({
         dishes: [] as string[],
         keywords: [] as string[],
         latitude: 0,
-        longitude: 0
+        longitude: 0,
+        timeZone: []
       }
     })
 
@@ -390,6 +399,10 @@ export default defineComponent({
 
     const keywordsListForSelect = computed(() => {
       return props.keywords.map(keyword => keyword.name)
+    })
+
+    const timeZoneSelect = computed(() => {
+      return ['朝', '昼', '夜']
     })
 
     const onGetAddress = async () => {
@@ -454,6 +467,7 @@ export default defineComponent({
       state.shop.longitude = newVal ? newVal.longitude : state.shop.longitude
       state.shop.dishes = newVal ? newVal.dishes : state.shop.dishes
       state.shop.keywords = newVal ? newVal.keywords : state.shop.keywords
+      state.shop.timeZone = newVal ? newVal.timeZone : state.shop.timeZone
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
@@ -464,6 +478,7 @@ export default defineComponent({
       ShopJa,
       uuid,
       keywordsListForSelect,
+      timeZoneSelect,
       priceRangeListForSelect,
       onGetAddress,
       onGetAddressByPostal,
