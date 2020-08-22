@@ -46,7 +46,6 @@ export default defineComponent({
 .btn-container {
   text-align: center;
   width: 70px;
-  //height: 60px;
 }
 
 .btn-text {

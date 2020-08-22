@@ -41,7 +41,7 @@ export default defineComponent({
   setup (_, context: SetupContext) {
     const state = reactive<State>({
       btnStatus: {
-        area: false,
+        timeZone: false,
         takeout: false,
         openBuz: false,
         nowLocation: false

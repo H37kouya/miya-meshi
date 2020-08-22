@@ -19,22 +19,29 @@
         @click="onInput('nowLocation')"
       />
 
-      <AreaIcon
-        :selected="state.btnStatus.area"
-        @click="onInput('area')"
+      <TimeZoneIcon
+        :selected="state.btnStatus.timeZone"
+        @click="onInput('timeZone')"
       />
     </div>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+
+export type TimeZone = 'lunch'|'night'|false
+const timeZoneArr = [false, 'lunch', 'night'] as TimeZone[]
 
 export type BtnStatus = {
-  area: boolean,
+  timeZone: TimeZone,
   takeout: boolean,
   openBuz: boolean,
   nowLocation: boolean
+}
+
+type State = {
+  btnStatus: BtnStatus
 }
 
 type Props = {
@@ -50,18 +57,26 @@ export default defineComponent({
   },
 
   setup (props: Props, context: SetupContext) {
-    const state = reactive({
+    const state = reactive<State>({
       btnStatus: props.btnStatus as BtnStatus
     })
 
-    const onInput = (name: 'takeout'|'openBuz'|'nowLocation'|'area') => {
+    const onInput = (name: 'takeout'|'openBuz'|'nowLocation'|'timeZone') => {
       const obj = Object.assign({}, props.btnStatus)
-      obj[name] = !obj[name]
+      if (name === 'timeZone') {
+        const idx = timeZoneArr.findIndex((s: TimeZone) => s === obj[name])
+        if (idx === -1) {
+          console.error('不適切な値がありまｓ')
+        }
+        obj[name] = timeZoneArr[idx + 1 === timeZoneArr.length ? 0 : idx + 1]
+      } else {
+        obj[name] = !obj[name]
+      }
       return context.emit('input', obj)
     }
 
-    watch(() => props.btnStatus, (newVal, _) => {
-      state.btnStatus = newVal
+    watchEffect(() => {
+      state.btnStatus = props.btnStatus
     })
 
     return {
