@@ -42,9 +42,15 @@
       <ContactShopField :shop="shop" />
     </v-lazy>
 
-    <div v-if="shop.latitude && shop.longitude" class="d-flex justify-center mb-4">
-      <LazyMap :latitude="shop.latitude" :longitude="shop.longitude" />
+    <div class="u-light-grey-background">
+      <div v-if="shop.latitude && shop.longitude" class="d-flex justify-center pb-6">
+        <LazyMap :latitude="shop.latitude" :longitude="shop.longitude" />
+      </div>
     </div>
+
+    <v-lazy>
+      <SnsIconsShopField :shop="shop" />
+    </v-lazy>
   </div>
 </template>
 

@@ -120,8 +120,8 @@ export default defineComponent({
 }
 
 .triangle-number {
-  font-size: 1rem;
-  font-weight: bolder;
+  font-size: 0.95rem;
+  font-weight: 500;
   line-height: 1.1;
   margin-top: -0.15rem;
 }
