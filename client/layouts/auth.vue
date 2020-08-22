@@ -15,7 +15,17 @@
 </template>
 
 <script>
+const TheAuthHeader = () => import('@/components/layouts/TheAuthHeader')
+const TheAuthSidebar = () => import('@/components/layouts/TheAuthSidebar')
+const TheAuthFooter = () => import('@/components/layouts/TheAuthFooter')
+
 export default {
+  components: {
+    TheAuthHeader,
+    TheAuthSidebar,
+    TheAuthFooter
+  },
+
   data () {
     return {
       drawer: false
