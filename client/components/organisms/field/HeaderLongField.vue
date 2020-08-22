@@ -10,7 +10,7 @@
       />
 
       <v-card class="news">
-        <v-img src="/miyameshi-ticket.jpg" />
+        <v-img src="/miyameshi-ticket.jpg" srcset="/miyameshi-ticket.webp" />
       </v-card>
 
       <div class="text-right pt-6 px-4 developer-name">

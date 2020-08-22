@@ -1,1 +1,1 @@
-import 'leaflet/dist/leaflet.css'
+(async () => require('leaflet/dist/leaflet.css'))()
