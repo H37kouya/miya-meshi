@@ -77,7 +77,8 @@ const nuxtConfig: Configuration = {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     '@nuxtjs/style-resources',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    'nuxt-purgecss'
   ],
   /*
   ** Nuxt.js modules
@@ -176,6 +177,9 @@ const nuxtConfig: Configuration = {
       font: undefined
     },
     treeShake: true
+  },
+  purgeCSS: {
+    whitelist: () => ['body', 'html', 'nuxt-progress', 'white--text']
   },
   /*
   ** Build configuration
