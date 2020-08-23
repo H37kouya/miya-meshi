@@ -1,25 +1,33 @@
 <template>
-  <v-footer
-    app
-    absolute
-    class="d-block pa-0"
+  <footer
+    class="pa-0"
   >
-    <RecruitmentFooterField />
+    <v-lazy>
+      <RecruitmentFooterField />
+    </v-lazy>
 
-    <SearchField />
+    <v-lazy>
+      <SearchField />
+    </v-lazy>
 
-    <div class="miya-meshi-container border-grey-top">
-      <MiyaMeshiFooterField />
-    </div>
+    <v-lazy>
+      <div class="miya-meshi-container border-grey-top">
+        <MiyaMeshiFooterField />
+      </div>
+    </v-lazy>
 
-    <div class="ulab-container">
-      <UlabFooterField />
-    </div>
+    <v-lazy>
+      <div class="ulab-container">
+        <UlabFooterField />
+      </div>
+    </v-lazy>
 
-    <div class="copyright-container">
-      <CopylightFooterField />
-    </div>
-  </v-footer>
+    <v-lazy>
+      <div class="copyright-container">
+        <CopylightFooterField />
+      </div>
+    </v-lazy>
+  </footer>
 </template>
 
 <style lang="scss">

@@ -13,8 +13,26 @@
         </p>
 
         <ul class="d-flex link-inline-list border-black pa-0 mb-2">
-          <li><a href="" class="sentence link-inline-list-item u-black--text">みやメシとは？</a></li>
-          <li><a href="" class="sentence link-inline-list-item u-black--text">みやメシHistory</a></li>
+          <li>
+            <a
+              href="https://note.com/miyameshi_ouen/n/nf920b05d1ad2"
+              target="_blank"
+              rel="noopener"
+              class="sentence link-inline-list-item u-black--text"
+            >
+              みやメシ応援隊とは
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://note.com/miyameshi_ouen"
+              target="_blank"
+              rel="noopener"
+              class="sentence link-inline-list-item u-black--text"
+            >
+              note
+            </a>
+          </li>
         </ul>
 
         <div>
