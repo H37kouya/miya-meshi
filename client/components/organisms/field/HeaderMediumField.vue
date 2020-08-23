@@ -3,7 +3,6 @@
     <div class="w-100">
       <v-img
         src="/miyameshi-header.jpg"
-        srcset="/miyameshi-header.webp"
         width="100%"
         max-height="160px"
         aspect-ratio="5.77"
