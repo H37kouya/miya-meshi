@@ -3,14 +3,13 @@
     <div style="width: 100%;" class="pos-relative">
       <v-img
         src="/miyameshi-top.png"
-        srcset="/miyameshi-top.webp"
         width="100%"
         aspect-ratio="1.78"
         max-height="160px"
       />
 
       <v-card class="news">
-        <v-img src="/miyameshi-ticket.jpg" srcset="/miyameshi-ticket.webp" />
+        <v-img src="/miyameshi-ticket.jpg" />
       </v-card>
 
       <div class="text-right pt-6 px-4 developer-name">
