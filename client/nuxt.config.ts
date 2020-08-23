@@ -8,7 +8,7 @@ const nuxtConfig: Configuration = {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'spa',
+  mode: 'universal',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -111,7 +111,10 @@ const nuxtConfig: Configuration = {
       measurementId: process.env.FIREBASE_MEASUREMENT_ID
     },
     services: {
-      auth: true, // Just as example. Can be any other service.
+      auth: {
+        // credential: '~/serviceAccount.json'
+        credential: true
+      }, // Just as example. Can be any other service.
       firestore: {
         enablePersistence: true,
         preload: true
