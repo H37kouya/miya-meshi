@@ -2,9 +2,7 @@
   <footer
     class="pa-0"
   >
-    <v-lazy>
-      <RecruitmentFooterField />
-    </v-lazy>
+    <RecruitmentFooterField />
 
     <v-lazy>
       <SearchField />
@@ -22,11 +20,9 @@
       </div>
     </v-lazy>
 
-    <v-lazy>
-      <div class="copyright-container">
-        <CopylightFooterField />
-      </div>
-    </v-lazy>
+    <div class="copyright-container">
+      <CopylightFooterField />
+    </div>
   </footer>
 </template>
 
