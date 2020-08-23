@@ -75,6 +75,7 @@ const nuxtConfig: Configuration = {
   buildModules: [
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
+    '@nuxtjs/google-analytics',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/style-resources',
     '@nuxtjs/vuetify'
@@ -161,7 +162,13 @@ const nuxtConfig: Configuration = {
       ]
     }
   },
-
+  /*
+   ** Google Analytics module configuration
+   ** https://github.com/nuxt-community/analytics-module
+   */
+  googleAnalytics: {
+    id: 'UA-175242187-1' // Used as fallback if no runtime config is provided
+  },
   styleResources: {
     // your settings here
     scss: ['~/assets/scss/variables.scss']
