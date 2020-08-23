@@ -26,8 +26,12 @@
 | ubereatsLink       | `String`           | Uber Eats          |
 | priority           | `Number`           | 優先度(表示順)      |
 | public             | `Boolean`          | 公開設定           |
-| businessHour1      | `DateTime`         | 営業時間1          |
-| businessHour2      | `DateTime`         | 営業時間2          |
+| businessStartHour1 | `DateTime`         | 営業時間1          |
+| businessEndHour1   | `DateTime`         | 営業時間1          |
+| businessLOHour1    | `DateTime`         | 営業時間1          |
+| businessStartHour2 | `DateTime`         | 営業時間1          |
+| businessEndHour2   | `DateTime`         | 営業時間2          |
+| businessLoHour2    | `DateTime`         | 営業時間2          |
 | parkingLot         | `String`           | 駐車場             |
 | regularHoliday     | `String`           | 定休日             |
 | seat               | `String`           | 座席             |

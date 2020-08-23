@@ -78,14 +78,34 @@
 
             <v-col cols="12" sm="4" class="mt-0 mt-sm-3">
               <v-card-text>
-                <BusinessHourShopTextField
-                  v-model="state.shop.businessHour1"
-                  :number="1"
+                <DialogWithTimePicker
+                  v-model="state.shop.businessStartHour1"
+                  label="営業開始時間1"
                 />
 
-                <BusinessHourShopTextField
-                  v-model="state.shop.businessHour2"
-                  :number="2"
+                <DialogWithTimePicker
+                  v-model="state.shop.businessEndHour1"
+                  label="営業終了時間1"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessLoHour1"
+                  label="ラストオーダー1"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessStartHour2"
+                  label="営業開始時間2"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessEndHour2"
+                  label="営業終了時間2"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessLoHour2"
+                  label="ラストオーダー2"
                 />
 
                 <RegularHolidayShopTextField
@@ -373,6 +393,12 @@ export default defineComponent({
         instaShopLink: undefined,
         businessHour1: undefined,
         businessHour2: undefined,
+        businessStartHour1: undefined,
+        businessEndHour1: undefined,
+        businessLoHour1: undefined,
+        businessStartHour2: undefined,
+        businessEndHour2: undefined,
+        businessLoHour2: undefined,
         parkingLot: undefined,
         regularHoliday: undefined,
         seat: undefined,
@@ -468,6 +494,12 @@ export default defineComponent({
       state.shop.dishes = newVal ? newVal.dishes : state.shop.dishes
       state.shop.keywords = newVal ? newVal.keywords : state.shop.keywords
       state.shop.timeZone = newVal ? newVal.timeZone : state.shop.timeZone
+      state.shop.businessStartHour1 = newVal ? newVal.businessStartHour1 : state.shop.businessStartHour1
+      state.shop.businessEndHour1 = newVal ? newVal.businessEndHour1 : state.shop.businessEndHour1
+      state.shop.businessLoHour1 = newVal ? newVal.businessLoHour1 : state.shop.businessLoHour1
+      state.shop.businessStartHour2 = newVal ? newVal.businessStartHour2 : state.shop.businessStartHour2
+      state.shop.businessEndHour2 = newVal ? newVal.businessEndHour2 : state.shop.businessEndHour2
+      state.shop.businessLoHour2 = newVal ? newVal.businessLoHour2 : state.shop.businessLoHour2
     })
 
     const onSubmit = () => context.emit('submit', state.shop)

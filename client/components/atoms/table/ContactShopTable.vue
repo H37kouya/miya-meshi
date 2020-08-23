@@ -50,20 +50,25 @@ const convertToTableData = (shop: Shop): TableData[] => {
     } as TableData)
   }
 
-  if (shop.businessHour1 || shop.businessHour2) {
-    if (shop.businessHour1 && shop.businessHour2) {
+  if (shop.businessStartHour1 || shop.businessEndHour1 || shop.businessStartHour2 || shop.businessEndHour2) {
+    if ((shop.businessStartHour1 || shop.businessEndHour1) && (shop.businessStartHour2 || shop.businessEndHour2)) {
       tableData.push({
         heading: ShopJa.BUSINESS_HOUR,
         valueType: 'array',
         value: [
-          shop.businessHour1,
-          shop.businessHour2
+          businessTimeToString(shop.businessStartHour1, shop.businessEndHour1, shop.businessLoHour1),
+          businessTimeToString(shop.businessStartHour2, shop.businessEndHour2, shop.businessLoHour2)
         ]
       })
-    } else {
+    } else if (shop.businessStartHour1 || shop.businessEndHour1) {
       tableData.push({
         heading: ShopJa.BUSINESS_HOUR,
-        value: `${shop.businessHour1}`
+        value: businessTimeToString(shop.businessStartHour1, shop.businessEndHour1, shop.businessLoHour1)
+      })
+    } else if (shop.businessStartHour2 || shop.businessEndHour2) {
+      tableData.push({
+        heading: ShopJa.BUSINESS_HOUR,
+        value: businessTimeToString(shop.businessStartHour2, shop.businessEndHour2, shop.businessLoHour2)
       })
     }
   }
@@ -97,6 +102,12 @@ const convertToTableData = (shop: Shop): TableData[] => {
   }
 
   return tableData
+}
+
+const businessTimeToString = (start?: string|Date, end?: string|Date, lo?: string|Date): string => {
+  const base: string = start ? `${start}` : ''
+  const plusEnd: string = end ? `${base} ~ ${end}` : base
+  return lo ? `${plusEnd} (LO ${lo})` : plusEnd
 }
 
 type Props = {
