@@ -1,49 +1,38 @@
 <template>
   <div>
-    <DefaultMainText id="recommend_for_instagram">
-      <div class="d-flex align-center justify-center">
-        <v-icon>mdi-instagram</v-icon>
-        <span>インスタからのおすすめ</span>
-      </div>
-    </DefaultMainText>
+    <DefaultInstaTopPageShopList :insta-shops="instaShops" />
 
-    <DefaultInstaShopList :shops="instaShops" />
+    <v-lazy>
+      <DefaultMainText id="recommend_for_weekend" :level="2">
+        今週のおすすめ
+      </DefaultMainText>
+    </v-lazy>
 
-    <div class="u-light-grey-background pb-2">
-      <div class="d-flex justify-center">
-        <v-container class="text-right pt-0">
-          <p class="mb-0">
-            <nuxt-link to="/insta" class="miya-meshi-books">
-              もっとみる
-            </nuxt-link>
-          </p>
-        </v-container>
-      </div>
-    </div>
+    <v-lazy>
+      <DefaultMenuList :menus="menus" justify="center" />
+    </v-lazy>
 
-    <DefaultMainText id="recommend_for_weekend" :level="2">
-      今週のおすすめ
-    </DefaultMainText>
+    <v-lazy>
+      <DefaultMainText id="news" :level="2">
+        新着情報
+      </DefaultMainText>
+    </v-lazy>
 
-    <DefaultMenuList :menus="menus" justify="center" />
-
-    <DefaultMainText id="news" :level="2">
-      新着情報
-    </DefaultMainText>
-
-    <v-row class="mx-0 mb-4" justify="center">
-      <template v-for="(news, key) in newsList">
-        <v-col :key="`news${key}`" cols="12" sm="4" md="3" class="px-0 pt-0 px-sm-2">
-          <NewsField
-            :alt="news.hashtags[0]"
-            :href="news.href"
-            :hashtags="news.hashtags"
-            :src="news.src"
-            :text="news.text"
-          />
-        </v-col>
-      </template>
-    </v-row>
+    <v-lazy>
+      <v-row class="mx-0 mb-4" justify="center">
+        <template v-for="(news, key) in newsList">
+          <v-col :key="`news${key}`" cols="12" sm="4" md="3" class="px-0 pt-0 px-sm-2">
+            <NewsField
+              :alt="news.hashtags[0]"
+              :href="news.href"
+              :hashtags="news.hashtags"
+              :src="news.src"
+              :text="news.text"
+            />
+          </v-col>
+        </template>
+      </v-row>
+    </v-lazy>
   </div>
 </template>
 
