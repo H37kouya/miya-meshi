@@ -34,8 +34,16 @@ export type Shop = {
   priceRange?: string,
   // 公開設定
   public: boolean,
+  // deprecated
   businessHour1?: string,
+  // deprecated
   businessHour2?: string,
+  businessStartHour1?: string|Date,
+  businessEndHour1?: string|Date,
+  businessLoHour1?: string|Date,
+  businessStartHour2?: string|Date,
+  businessEndHour2?: string|Date,
+  businessLoHour2?: string|Date,
   parkingLot?: string,
   regularHoliday?: string,
   seat?: string,
