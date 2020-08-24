@@ -38,6 +38,7 @@ export default defineComponent({
 
     const headers = [
       { text: '名前', value: 'name' },
+      { text: '優先度', value: 'priority' },
       { text: '編集', value: 'edit', sortable: false },
       { text: '削除', value: 'delete', sortable: false }
     ]
