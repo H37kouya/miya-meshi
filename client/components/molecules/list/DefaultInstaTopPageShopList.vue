@@ -25,7 +25,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { Shop } from '@/src/types/Shop'
 
+type Props = {
+  instaShops: Shop[]
+}
 export default defineComponent({
   props: {
     instaShops: {
@@ -35,3 +39,13 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.miya-meshi-books {
+  font-size: 0.8rem;
+
+  &::after {
+    content: '→';
+  }
+}
+</style>
