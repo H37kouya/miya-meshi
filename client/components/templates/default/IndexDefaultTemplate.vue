@@ -67,13 +67,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.miya-meshi-books {
-  font-size: 0.8rem;
-
-  &::after {
-    content: '→';
-  }
-}
-</style>

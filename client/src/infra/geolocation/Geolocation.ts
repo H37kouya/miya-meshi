@@ -35,13 +35,20 @@ export const getAddressByLongitudeAndLatitude = async (
     MAX_MIN_LOCATION.MIN_LATITUDE < latitude && latitude < MAX_MIN_LOCATION.MAX_LATITUDE
   ) {
     const apiURL = `${baseApiURLReverse}/?lat=${latitude}&lon=${longitude}`
+    type axiosGetReturn = {
+      results: {
+        muniCd: string,
+        lv01Nm: string
+      }
+    }
 
-    const { data } : any = await axios(apiURL)
+    const { data } = await axios.get<axiosGetReturn>(apiURL)
     if (data.results.muniCd.substring(0, 2) !== '09') {
       return undefined
     }
 
     const idx = data.results.muniCd.slice(1)
+    // @ts-ignore
     const str: string = GSI.MUNI_ARRAY[idx] as string
     const arr = str.split(',')
 
