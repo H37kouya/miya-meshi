@@ -1,0 +1,33 @@
+.footer-group-title {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 4px !important;
+}
+
+.link-inline-list {
+  list-style: none;
+
+  li {
+    padding: 0 0.5rem;
+  }
+
+  li:first-child {
+    padding: 0 0.5rem 0 0;
+  }
+
+  li:not(:last-child) {
+    border-right: 1px solid;
+  }
+}
+
+.link-inline-list-item {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.sentence {
+  font-size: 0.8rem;
+}
