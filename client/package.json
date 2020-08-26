@@ -25,6 +25,7 @@
     "firebase": "^7.18.0",
     "leaflet": "^1.6.0",
     "libphonenumber-js": "^1.7.56",
+    "miyameshi-lib": "file:../lib",
     "nuxt": "^2.14.3",
     "uuid": "^8.3.0",
     "vue2-leaflet": "^2.5.2"

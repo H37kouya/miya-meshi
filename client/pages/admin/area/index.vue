@@ -25,8 +25,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Area } from '~/src/types/Area'
-import { getAreaList } from '~/src/infra/firestore/Area'
+import { Area } from 'miyameshi-lib'
+import { getAreaList } from 'miyameshi-lib/src/infra/firestore/Area'
 
 export default defineComponent({
   middleware: 'admin-auth',

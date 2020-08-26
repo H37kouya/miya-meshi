@@ -30,18 +30,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { removeUndefinedFromObject } from 'miyameshi-lib/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { getShopByID } from '@/src/infra/firestore/Shop'
-import { Menu, MENU_TYPE } from '@/src/types/Menu'
-import { getMenuByID } from '@/src/infra/firestore/Menu'
-import { getDishList } from '~/src/infra/firestore/Dish'
-import { getKeywordList } from '~/src/infra/firestore/Keyword'
-import { Dish } from '~/src/types/Dish'
-import { Keyword } from '~/src/types/Keyword'
+import { Dish, Keyword, Shop, Enum, Menu } from 'miyameshi-lib'
+import { getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { getMenuByID } from 'miyameshi-lib/src/infra/firestore/Menu'
+import { getDishList } from 'miyameshi-lib/src/infra/firestore/Dish'
+import { getKeywordList } from 'miyameshi-lib/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -50,8 +47,8 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
-      shop: { type: SHOP_TYPE } as Shop,
-      menu: { type: MENU_TYPE } as Menu,
+      shop: { type: Enum.Type.SHOP } as Shop,
+      menu: { type: Enum.Type.MENU } as Menu,
       dishes: [] as Dish[],
       keywords: [] as Keyword[],
       id: computed(() => context.root.$route.params.id)

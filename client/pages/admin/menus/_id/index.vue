@@ -44,10 +44,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { Menu, MENU_TYPE } from '@/src/types/Menu'
-import { getShopByID } from '@/src/infra/firestore/Shop'
-import { deleteMenu, getMenuByID } from '@/src/infra/firestore/Menu'
+import { Shop, Menu, Enum } from 'miyameshi-lib'
+import { getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { deleteMenu, getMenuByID } from 'miyameshi-lib/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -56,8 +55,8 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
-      shop: { type: SHOP_TYPE } as Shop,
-      menu: { type: MENU_TYPE } as Menu,
+      shop: { type: Enum.Type.SHOP } as Shop,
+      menu: { type: Enum.Type.MENU } as Menu,
       id: computed(() => context.root.$route.params.id)
     })
 

@@ -23,18 +23,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { editShop as editDBShop, getShopByID } from '@/src/infra/firestore/Shop'
+import { Dish, Shop, PriceRange, Keyword, Enum } from 'miyameshi-lib'
+import { editShop as editDBShop, getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
-import { formatShopAddress } from '~/src/utils/Shop'
-import { getPriceRangeList } from '~/src/infra/firestore/PriceRange'
-import { PriceRange } from '~/src/types/PriceRange'
-import { Dish } from '~/src/types/Dish'
-import { getDishList } from '~/src/infra/firestore/Dish'
-import { getKeywordList } from '~/src/infra/firestore/Keyword'
-import { Keyword } from '~/src/types/Keyword'
+import { formatShopAddress } from 'miyameshi-lib/src/utils/Shop'
+import { getPriceRangeList } from 'miyameshi-lib/src/infra/firestore/PriceRange'
+import { getDishList } from 'miyameshi-lib/src/infra/firestore/Dish'
+import { getKeywordList } from 'miyameshi-lib/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -44,7 +41,7 @@ export default defineComponent({
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       dishes: [] as Dish[],
-      shop: { type: SHOP_TYPE } as Shop,
+      shop: { type: Enum.Type.SHOP } as Shop,
       keywords: [] as Keyword[],
       priceRangeList: [] as PriceRange[]
     })

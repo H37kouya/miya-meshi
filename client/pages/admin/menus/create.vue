@@ -29,17 +29,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { removeUndefinedFromObject } from 'miyameshi-lib/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { Shop } from '@/src/types/Shop'
-import { getShopByID } from '@/src/infra/firestore/Shop'
-import { getDishList } from '~/src/infra/firestore/Dish'
-import { getPriceRangeList } from '~/src/infra/firestore/PriceRange'
-import { getKeywordList } from '~/src/infra/firestore/Keyword'
-import { Dish } from '~/src/types/Dish'
-import { Keyword } from '~/src/types/Keyword'
+import { Dish, Keyword, Shop } from 'miyameshi-lib'
+import { getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { getDishList } from 'miyameshi-lib/src/infra/firestore/Dish'
+import { getKeywordList } from 'miyameshi-lib/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

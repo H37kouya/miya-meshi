@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
-import { PriceRange } from '@/src/types/PriceRange'
-import { deletePriceRange, getPriceRangeList } from '@/src/infra/firestore/PriceRange'
+import { PriceRange } from 'miyameshi-lib'
+import { deletePriceRange, getPriceRangeList } from 'miyameshi-lib/src/infra/firestore/PriceRange'
 
 export default defineComponent({
   middleware: 'admin-auth',

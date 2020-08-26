@@ -38,9 +38,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
-import { News } from '@/src/types/News'
-import { Shop } from '@/src/types/Shop'
+import { Shop, News, Menu } from 'miyameshi-lib'
 
 type Props = {
   menus: Menu[],

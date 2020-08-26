@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
-import { Dish } from '@/src/types/Dish'
-import { deleteDish, getDishList } from '@/src/infra/firestore/Dish'
+import { Dish } from 'miyameshi-lib'
+import { deleteDish, getDishList } from 'miyameshi-lib/src/infra/firestore/Dish'
 
 type State = {
   dishes: Dish[]

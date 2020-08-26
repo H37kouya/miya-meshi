@@ -36,10 +36,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
-import { Menu } from '@/src/types/Menu'
-import { deleteShop, getShopByID } from '@/src/infra/firestore/Shop'
-import { deleteMultipleMenu, getMenuListByShopID } from '@/src/infra/firestore/Menu'
+import { Shop, Menu } from 'miyameshi-lib'
+import { deleteShop, getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { deleteMultipleMenu, getMenuListByShopID } from 'miyameshi-lib/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',

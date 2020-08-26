@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Dish } from '@/src/types/Dish'
-import { getDishByID, editDish as editDBDish } from '@/src/infra/firestore/Dish'
+import { Dish } from 'miyameshi-lib'
+import { getDishByID, editDish as editDBDish } from 'miyameshi-lib/src/infra/firestore/Dish'
 
 type State = {
   dish: Dish
