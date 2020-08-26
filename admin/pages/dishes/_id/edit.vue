@@ -30,8 +30,6 @@ type State = {
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive<State>({
       dish: {} as Dish

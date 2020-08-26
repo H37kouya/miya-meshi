@@ -26,8 +26,6 @@ import { Dish } from 'miyameshi-lib'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const createDish = async (dish: Dish) => {
       await createDBDish(context.root.$fireStore, context.root.$fireStoreObj, dish)

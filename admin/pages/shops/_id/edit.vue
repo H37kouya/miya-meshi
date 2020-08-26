@@ -35,12 +35,10 @@ import { getKeywordList } from 'miyameshi-lib/src/infra/firestore/Keyword'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       dishes: [] as Dish[],
-      shop: { type: Enum.Type.SHOP } as Shop,
+      shop: { } as Shop,
       keywords: [] as Keyword[],
       priceRangeList: [] as PriceRange[]
     })

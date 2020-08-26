@@ -25,8 +25,6 @@ import { createArea as createDBArea } from 'miyameshi-lib/src/infra/firestore/Ar
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const createArea = async (area: any) => {
       await createDBArea(context.root.$fireStore, context.root.$fireStoreObj, area)

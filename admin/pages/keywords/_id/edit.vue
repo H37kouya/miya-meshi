@@ -27,8 +27,6 @@ import { getKeywordByID } from 'miyameshi-lib/src/infra/firestore/Keyword'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       keyword: {} as Keyword

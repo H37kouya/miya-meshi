@@ -27,8 +27,6 @@ import { getPriceRangeByID } from 'miyameshi-lib/src/infra/firestore/PriceRange'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       priceRange: {} as PriceRange

@@ -43,8 +43,6 @@ import { deleteMultipleMenu, getMenuListByShopID } from 'miyameshi-lib/src/infra
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       shop: {} as Shop,

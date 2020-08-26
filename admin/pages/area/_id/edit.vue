@@ -26,8 +26,6 @@ import { editArea as editDBArea, getAreaByID } from 'miyameshi-lib/src/infra/fir
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       area: {} as Area

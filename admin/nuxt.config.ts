@@ -109,8 +109,7 @@ const nuxtConfig: Configuration = {
     services: {
       auth: true, // Just as example. Can be any other service.
       firestore: {
-        enablePersistence: true,
-        preload: true
+        enablePersistence: true
       },
       analytics: !process.env.TEST_ENV,
       storage: true,

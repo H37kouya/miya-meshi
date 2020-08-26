@@ -29,8 +29,6 @@ type State = {
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_, context: SetupContext) {
     const state = reactive<State>({
       dishes: [] as Dish[]

@@ -47,8 +47,8 @@ export default defineComponent({
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
-      shop: { type: Enum.Type.SHOP } as Shop,
-      menu: { type: Enum.Type.MENU } as Menu,
+      shop: {} as Shop,
+      menu: {} as Menu,
       dishes: [] as Dish[],
       keywords: [] as Keyword[],
       id: computed(() => context.root.$route.params.id)

@@ -31,8 +31,6 @@ import { getAreaList } from 'miyameshi-lib/src/infra/firestore/Area'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_, context: SetupContext) {
     const state = reactive({
       areas: [] as Area[]

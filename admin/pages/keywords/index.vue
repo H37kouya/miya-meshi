@@ -26,8 +26,6 @@ import { deleteKeyword, getKeywordList } from 'miyameshi-lib/src/infra/firestore
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_, context: SetupContext) {
     const state = reactive({
       keywords: [] as Keyword[]

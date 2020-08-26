@@ -51,8 +51,6 @@ import { deleteMenu, getMenuByID } from 'miyameshi-lib/src/infra/firestore/Menu'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       shop: { type: Enum.Type.SHOP } as Shop,

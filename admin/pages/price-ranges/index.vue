@@ -26,8 +26,6 @@ import { deletePriceRange, getPriceRangeList } from 'miyameshi-lib/src/infra/fir
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_, context: SetupContext) {
     const state = reactive({
       priceRanges: [] as PriceRange[]

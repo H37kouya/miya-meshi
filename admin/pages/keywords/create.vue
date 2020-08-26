@@ -25,8 +25,6 @@ import { removeUndefinedFromObject } from 'miyameshi-lib/src/utils/Object'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const createKeyword = async (keyword: any) => {
       const addData = {

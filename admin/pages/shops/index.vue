@@ -27,8 +27,6 @@ import { getShopList } from 'miyameshi-lib/src/infra/firestore/Shop'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       shops: [] as Shop[]
