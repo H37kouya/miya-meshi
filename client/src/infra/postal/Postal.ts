@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { isString } from '~/src/utils/String'
+import { isString } from 'miyameshi-lib/src/utils/String'
 const POSTAL_API_URL = 'https://apis.postcode-jp.com/api/v3/postcodes'
 
 export const getAddressByPostal = async (postal: string|number) => {

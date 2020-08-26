@@ -12,7 +12,7 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
-import { isURL } from '~/src/utils/URL'
+import { isURL } from 'miyameshi-lib/src/utils/URL'
 
 type Props = {
   value?: string,

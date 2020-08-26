@@ -15,7 +15,7 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { PhoneNumber } from '@/src/types/PhoneNumber'
-import { formatTel, isPhoneNumber } from 'miyameshi-lib/src/utils/PhoneNumber'
+import { formatTel, isPhoneNumber } from '@/src/utils/PhoneNumber'
 
 type Props = {
   tel?: number|string|PhoneNumber

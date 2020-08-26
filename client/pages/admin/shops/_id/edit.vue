@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { ShopFormState } from '@/src/types/ShopFormState'
 import { Dish, Shop, PriceRange, Keyword, Enum } from 'miyameshi-lib'
 import { editShop as editDBShop, getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
@@ -46,7 +45,7 @@ export default defineComponent({
       priceRangeList: [] as PriceRange[]
     })
 
-    const editShop = async (shop: ShopFormState['shop']) => {
+    const editShop = async (shop: any) => {
       shop.address = formatShopAddress(shop.address)
 
       await editDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop, state.shop.id)

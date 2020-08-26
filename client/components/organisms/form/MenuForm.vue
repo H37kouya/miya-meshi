@@ -153,7 +153,7 @@ import { DEFAULT_IMAGE } from '@/src/types/Menu'
 import { MenuFormState } from '@/src/types/MenuFormState'
 import { isMenu } from 'miyameshi-lib/src/utils/Menu'
 import { Dish, Keyword, Menu } from 'miyameshi-lib'
-import { createUUID } from '~/src/utils/String'
+import { v4 as createUUID } from 'uuid'
 
 type Props = {
   dishes: Dish[],
