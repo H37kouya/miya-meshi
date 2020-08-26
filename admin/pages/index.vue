@@ -47,8 +47,6 @@ import { MetaInfo } from 'vue-meta'
 export default defineComponent({
   middleware: 'admin-auth',
 
-
-
   head (): MetaInfo {
     return {
       title: '管理者画面'
