@@ -31,7 +31,8 @@
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
-import { Shop, ShopJa } from '@/src/types/Shop'
+import { Shop } from 'miyameshi-lib'
+import { ShopJa, ShopMaxStringSize } from '@/src/types/Shop'
 
 type Props = {
   value: Shop['priority']

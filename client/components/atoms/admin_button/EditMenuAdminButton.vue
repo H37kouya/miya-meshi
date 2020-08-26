@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
+import { Menu } from 'miyameshi-lib'
 
 type Props = {
   menuid: Menu['id']

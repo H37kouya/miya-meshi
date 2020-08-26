@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { PriceRange } from '@/src/types/PriceRange'
+import { PriceRange } from 'miyameshi-lib'
 
 type Props = {
   priceRange?: PriceRange

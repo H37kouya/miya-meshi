@@ -13,7 +13,8 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
-import { Keyword, KeywordJa } from '@/src/types/Keyword'
+import { Keyword } from 'miyameshi-lib'
+import { KeywordJa } from '@/src/types/Keyword'
 
 type Props = {
   value: Keyword['name']

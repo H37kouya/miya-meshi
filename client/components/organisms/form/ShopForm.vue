@@ -323,15 +323,13 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Shop, ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
+import { ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
-import { isShop } from '@/src/utils/Shop'
-import { createUUID } from '@/src/utils/String'
-import { PriceRange } from '@/src/types/PriceRange'
+import { isShop } from 'miyameshi-lib/src/utils/Shop'
+import { createUUID } from 'miyameshi-lib/src/utils/String'
+import { Shop, Dish, PriceRange, Keyword } from 'miyameshi-lib'
 import { getLongitudeAndLatitudeByAddress } from '@/src/infra/geolocation/Geolocation'
 import { getAddressByPostal } from '@/src/infra/postal/Postal'
-import { Dish } from '@/src/types/Dish'
-import { Keyword } from '@/src/types/Keyword'
 
 type Props = {
   shop?: Shop,

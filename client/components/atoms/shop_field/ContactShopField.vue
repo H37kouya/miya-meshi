@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from 'miyameshi-lib'
 
 type Props = {
   shop: Shop

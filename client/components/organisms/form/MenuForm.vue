@@ -149,12 +149,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { DEFAULT_IMAGE, Menu } from '@/src/types/Menu'
+import { DEFAULT_IMAGE } from '@/src/types/Menu'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { isMenu } from '@/src/utils/Menu'
+import { isMenu } from 'miyameshi-lib/src/utils/Menu'
+import { Dish, Keyword, Menu } from 'miyameshi-lib'
 import { createUUID } from '~/src/utils/String'
-import { Dish } from '~/src/types/Dish'
-import { Keyword } from '~/src/types/Keyword'
 
 type Props = {
   dishes: Dish[],

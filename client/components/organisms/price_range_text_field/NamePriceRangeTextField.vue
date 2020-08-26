@@ -13,7 +13,8 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
-import { PriceRange, PriceRangeJa } from '@/src/types/PriceRange'
+import { PriceRange } from 'miyameshi-lib'
+import { PriceRangeJa } from '@/src/types/PriceRange'
 
 type Props = {
   value: PriceRange['name']

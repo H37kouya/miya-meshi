@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from 'miyameshi-lib'
 
 type Props = {
   shop: Shop

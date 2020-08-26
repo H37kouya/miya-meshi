@@ -10,7 +10,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop, ShopJa, ShopMaxStringSize } from '@/src/types/Shop'
+import { Shop } from 'miyameshi-lib'
+import { ShopJa, ShopMaxStringSize } from '@/src/types/Shop'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 

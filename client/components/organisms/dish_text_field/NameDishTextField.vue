@@ -13,7 +13,7 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
-import { Dish, DishJa } from '@/src/types/Dish'
+import { Dish, DishJa } from 'miyameshi-lib'
 
 type Props = {
   value: Dish['name']
