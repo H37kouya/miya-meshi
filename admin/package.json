@@ -23,12 +23,10 @@
     "@vue/composition-api": "^1.0.0-beta.10",
     "core-js": "^2.6.11",
     "firebase": "^7.18.0",
-    "leaflet": "^1.6.0",
     "libphonenumber-js": "^1.7.56",
     "miyameshi-lib": "file:../lib",
     "nuxt": "^2.14.3",
-    "uuid": "^8.3.0",
-    "vue2-leaflet": "^2.5.2"
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.3",
