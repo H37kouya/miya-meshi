@@ -1,7 +1,6 @@
 import { computed, ComputedRef } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop, Area } from 'miyameshi-lib'
 import { BtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
-import { Area } from '@/src/types/Area'
 
 export const useFilterShopByBtnStatus = (
   btnStatus: ComputedRef<BtnStatus>, shops: ComputedRef<Shop[]>, nowArea: ComputedRef<Area|undefined>

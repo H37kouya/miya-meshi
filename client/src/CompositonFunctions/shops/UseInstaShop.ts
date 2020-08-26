@@ -1,5 +1,5 @@
 import { computed, SetupContext, watchEffect } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from 'miyameshi-lib'
 import { ActionType } from '@/store/shops'
 
 export const useInstaShop = ({ $store }: SetupContext['root']) => {

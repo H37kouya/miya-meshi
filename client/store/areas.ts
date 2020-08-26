@@ -1,6 +1,6 @@
-import { Area } from '@/src/types/Area'
+import { Area } from 'miyameshi-lib'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
-import { getAreaList } from '~/src/infra/firestore/Area'
+import { getAreaList } from 'miyameshi-lib/src/infra/firestore/Area'
 import { GeoLocation } from '~/src/infra/geolocation/Geolocation'
 
 type State = {
