@@ -1,6 +1,7 @@
 import firebase from 'firebase'
-import { Keyword, KEYWORD_TYPE } from '@/src/types/Keyword'
-
+import { Keyword } from '../../../types/Keyword'
+import { Type } from '../../../enum'
+import { removeUndefinedFromObject } from '../../utils/Object'
 const KEYWORDS_COLLECTION_NAME = 'keywords'
 
 /**
@@ -53,7 +54,7 @@ export const firestoreDocDataToKeyword = (
   const docData = doc.data()
 
   return {
-    type: KEYWORD_TYPE,
+    type: Type.KEYWORD,
     id: doc.id,
     ...docData
   } as Keyword

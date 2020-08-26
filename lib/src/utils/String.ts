@@ -1,19 +1,11 @@
-import { v4 as uuidv4 } from 'uuid'
-import { hankakuKatakanaToZenkakuKatakana as hankakuKatakanaToZenkakuKatakanaLib } from '@/src/lib/string/Kana'
-
-/**
- * UUIDを取得する
- */
-export const createUUID = () => uuidv4()
+import { hankakuKatakanaToZenkakuKatakana as hankakuKatakanaToZenkakuKatakanaLib } from '../lib/hankakuKatakanaToZenkakuKatakana'
 
 /**
  * 文字列型かどうか
  *
  * @param { any } v
  */
-export const isString = (v: any): v is string => {
-  return typeof v === 'string'
-}
+export const isString = (v: any): v is string => typeof v === 'string'
 
 /**
  * 全角英数字を半角英数字に変換

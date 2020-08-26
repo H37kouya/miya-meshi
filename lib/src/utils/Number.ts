@@ -1,3 +1,6 @@
-export const isNumber = (v: any): v is number => {
-  return typeof v === 'number'
-}
+/**
+ * Number型かどうか
+ *
+ * @param { any } v
+ */
+export const isNumber = (v: any): v is number => typeof v === 'number'

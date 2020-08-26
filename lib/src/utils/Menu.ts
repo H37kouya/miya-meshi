@@ -1,10 +1,9 @@
-import { Menu, MENU_TYPE } from '@/src/types/Menu'
+import { Menu } from '../../types'
+import { Type } from '../../enum'
 
 /**
  * Menu型かどうか
  *
  * @param { any } v
  */
-export const isMenu = (v: any): v is Menu => {
-  return typeof v === 'object' && v.type === MENU_TYPE
-}
+export const isMenu = (v: any): v is Menu => typeof v === 'object' && v.type === Type.MENU

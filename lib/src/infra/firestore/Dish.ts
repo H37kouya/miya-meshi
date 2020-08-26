@@ -1,6 +1,7 @@
 import firebase from 'firebase'
-import { Dish, DISH_TYPE } from '@/src/types/Dish'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { Dish } from '../../../types/Dish'
+import { Type } from '../../../enum'
+import { removeUndefinedFromObject } from '../../utils/Object'
 
 const DISH_COLLECTION_NAME = 'dishes'
 
@@ -80,7 +81,7 @@ export const firestoreDocDataToDish = (
   const docData = doc.data()
 
   return {
-    type: DISH_TYPE,
+    type: Type.DISH,
     id: doc.id,
     ...docData
   } as Dish

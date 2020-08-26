@@ -1,6 +1,7 @@
 import firebase from 'firebase'
-import { PRICE_RANGE_TYPE, PriceRange } from '~/src/types/PriceRange'
-
+import { PriceRange } from '../../../types/PriceRange'
+import { Type } from '../../../enum'
+import { removeUndefinedFromObject } from '../../utils/Object'
 const PRICE_RANGE_COLLECTION_NAME = 'priceRanges'
 
 /**
@@ -53,7 +54,7 @@ export const firestoreDocDataToPriceRange = (
   const docData = doc.data()
 
   return {
-    type: PRICE_RANGE_TYPE,
+    type: Type.PRICE_RANGE,
     id: doc.id,
     ...docData
   } as PriceRange

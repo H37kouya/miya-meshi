@@ -1,7 +1,7 @@
 import firebase from 'firebase'
-import { Shop, SHOP_TYPE } from '@/src/types/Shop'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
-import { ShopFormState } from '@/src/types/ShopFormState'
+import { Shop } from '../../../types/Shop'
+import { Type } from '../../../enum'
+import { removeUndefinedFromObject } from '../../utils/Object'
 import { formatShopAddress, formatShopPostal } from '~/src/utils/Shop'
 
 const SHOP_COLLECTION_NAME = 'shops'
@@ -11,12 +11,12 @@ const SHOP_COLLECTION_NAME = 'shops'
  *
  * @param { firebase.firestore.Firestore } $fireStore
  * @param { typeof firebase.firestore } $fireStoreObj
- * @param { ShopFormState['shop']|Shop } shop
+ * @param { Shop } shop
  */
 export const createShop = async (
   $fireStore: firebase.firestore.Firestore,
   $fireStoreObj: typeof firebase.firestore,
-  shop: ShopFormState['shop']|Shop
+  shop: Shop
 ) => {
   shop.address = formatShopAddress(shop.address)
   shop.postal = formatShopPostal(shop.postal)
@@ -54,7 +54,7 @@ export const deleteShop = async (
 export const editShop = async (
   $fireStore: firebase.firestore.Firestore,
   $fireStoreObj: typeof firebase.firestore,
-  shop: ShopFormState['shop']|Shop,
+  shop: Shop,
   shopID: Shop['id']
 ) => {
   const updateData = {
@@ -150,7 +150,7 @@ export const firestoreDocDataToShop = (
   const docData = doc.data()
 
   return {
-    type: SHOP_TYPE,
+    type: Type.SHOP,
     id: doc.id,
     ...docData
   } as Shop

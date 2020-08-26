@@ -1,6 +1,7 @@
 import firebase from 'firebase'
-import { Area, AREA_TYPE } from '@/src/types/Area'
-import { removeUndefinedFromObject } from '~/src/utils/Object'
+import { Area } from '../../../types/Area'
+import { Type } from '../../../enum'
+import { removeUndefinedFromObject } from '../../utils/Object'
 
 const AREA_COLLECTION_NAME = 'areas'
 
@@ -97,7 +98,7 @@ export const firestoreDocDataToArea = (
   const docData = doc.data()
 
   return {
-    type: AREA_TYPE,
+    type: Type.AREA,
     id: doc.id,
     ...docData
   } as Area

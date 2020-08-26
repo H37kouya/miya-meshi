@@ -1,6 +1,7 @@
 import firebase from 'firebase'
-import { Menu, MENU_TYPE } from '@/src/types/Menu'
-
+import { Menu } from '../../../types/Menu'
+import { Type } from '../../../enum'
+import { removeUndefinedFromObject } from '../../utils/Object'
 const MENU_COLLECTION_NAME = 'menus'
 
 /**
@@ -131,7 +132,7 @@ export const firestoreDocDataToMenu = (
   const docData = doc.data()
 
   return {
-    type: MENU_TYPE,
+    type: Type.MENU,
     id: doc.id,
     ...docData
   } as Menu

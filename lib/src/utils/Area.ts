@@ -1,5 +1,5 @@
-import { Area } from '~/src/types/Area'
-import { isString } from '~/src/utils/String'
+import { Area } from '../../types'
+import { isString } from './String'
 
 /**
  * IDによって、areaをfilterする
