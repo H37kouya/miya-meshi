@@ -5,7 +5,7 @@
         エリア追加
       </AdminMainText>
 
-      <v-btn to="/admin/area" color="success">
+      <v-btn to="/area" color="success">
         エリア一覧へ戻る
       </v-btn>
     </v-row>
@@ -31,7 +31,7 @@ export default defineComponent({
     const createArea = async (area: any) => {
       await createDBArea(context.root.$fireStore, context.root.$fireStoreObj, area)
 
-      return await context.root.$router.push('/admin/area')
+      return await context.root.$router.push('/area')
     }
 
     return {

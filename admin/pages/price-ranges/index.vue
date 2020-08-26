@@ -5,7 +5,7 @@
         価格帯一覧
       </AdminMainText>
 
-      <v-btn to="/admin/price-ranges/create" color="success">
+      <v-btn to="/price-ranges/create" color="success">
         価格帯追加
       </v-btn>
     </v-row>

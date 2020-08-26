@@ -5,7 +5,7 @@
         キーワード一覧
       </AdminMainText>
 
-      <v-btn to="/admin/keywords/create" color="success">
+      <v-btn to="/keywords/create" color="success">
         キーワード追加
       </v-btn>
     </v-row>

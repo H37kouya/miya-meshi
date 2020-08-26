@@ -11,7 +11,7 @@
         </AdminMainText>
       </div>
 
-      <v-btn :to="`/admin/shops/${state.shop.id}`">
+      <v-btn :to="`/shops/${state.shop.id}`">
         店舗へ戻る
       </v-btn>
     </v-row>
@@ -68,7 +68,7 @@ export default defineComponent({
 
       await context.root.$fireStore.collection('menus').add(addData)
 
-      return await context.root.$router.push(`/admin/shops/${shopID}`)
+      return await context.root.$router.push(`/shops/${shopID}`)
     }
 
     watchEffect(async () => {

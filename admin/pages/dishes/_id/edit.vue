@@ -5,7 +5,7 @@
         料理編集
       </AdminMainText>
 
-      <v-btn to="/admin/dishes" color="success">
+      <v-btn to="/dishes" color="success">
         料理一覧へ戻る
       </v-btn>
     </v-row>
@@ -40,7 +40,7 @@ export default defineComponent({
     const editDish = async (dish: any) => {
       await editDBDish(context.root.$fireStore, context.root.$fireStoreObj, dish, state.dish.id)
 
-      return await context.root.$router.push('/admin/dishes')
+      return await context.root.$router.push('/dishes')
     }
 
     watchEffect(async () => {

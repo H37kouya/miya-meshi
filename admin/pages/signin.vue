@@ -59,7 +59,7 @@ export default defineComponent({
       try {
         await context.root.$fireAuth.signInWithEmailAndPassword(state.email, state.password)
 
-        return await context.root.$router.push('/admin')
+        return await context.root.$router.push('/')
       } catch (e) {
         state.errorMessage = e.message
         console.error(e)

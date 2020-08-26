@@ -2,7 +2,7 @@
   <v-card class="mt-4">
     <v-list two-line>
       <template v-for="(area, idx) in state.areas">
-        <v-list-item :key="area.id" :to="`/admin/area/${area.id}/edit`">
+        <v-list-item :key="area.id" :to="`/area/${area.id}/edit`">
           <v-list-item-content>
             <v-list-item-title>
               {{ area.name }} ({{ area.addresses.length }})

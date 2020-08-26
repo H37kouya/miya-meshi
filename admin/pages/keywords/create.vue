@@ -5,7 +5,7 @@
         キーワード追加
       </AdminMainText>
 
-      <v-btn to="/admin/keywords" color="success">
+      <v-btn to="/keywords" color="success">
         キーワード一覧へ戻る
       </v-btn>
     </v-row>
@@ -37,7 +37,7 @@ export default defineComponent({
 
       await context.root.$fireStore.collection('keywords').add(addData)
 
-      return await context.root.$router.push('/admin/keywords')
+      return await context.root.$router.push('/keywords')
     }
 
     return {

@@ -68,7 +68,7 @@ export default defineComponent({
         deleteShop(context.root.$fireStore, state.id)
       ])
 
-      await context.root.$router.push('/admin/shops')
+      await context.root.$router.push('/shops')
     }
 
     return {

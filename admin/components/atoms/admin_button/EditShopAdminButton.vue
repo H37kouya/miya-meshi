@@ -1,7 +1,7 @@
 <template>
   <CardButton
     v-bind="$attrs"
-    :to="`/admin/shops/${shopid}/edit`"
+    :to="`/shops/${shopid}/edit`"
     color="orange lighten-4"
     text="店舗編集"
     text-color="grey"

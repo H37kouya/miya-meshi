@@ -1,7 +1,7 @@
 <template>
   <CardButton
     v-bind="$attrs"
-    :to="`/admin/menus/create/?shopid=${shopid}`"
+    :to="`/menus/create/?shopid=${shopid}`"
     color="light-green lighten-4"
     text="メニュー追加"
     text-color="grey"

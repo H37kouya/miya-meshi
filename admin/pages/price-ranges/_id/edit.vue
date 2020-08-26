@@ -5,7 +5,7 @@
         価格帯編集
       </AdminMainText>
 
-      <v-btn to="/admin/price-ranges" color="success">
+      <v-btn to="/price-ranges" color="success">
         価格帯一覧へ戻る
       </v-btn>
     </v-row>
@@ -40,7 +40,7 @@ export default defineComponent({
         updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
       })
 
-      return await context.root.$router.push('/admin/price-ranges')
+      return await context.root.$router.push('/price-ranges')
     }
 
     onMounted(async () => {

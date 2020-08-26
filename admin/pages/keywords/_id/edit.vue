@@ -5,7 +5,7 @@
         キーワード編集
       </AdminMainText>
 
-      <v-btn to="/admin/keywords" color="success">
+      <v-btn to="/keywords" color="success">
         キーワード一覧へ戻る
       </v-btn>
     </v-row>
@@ -40,7 +40,7 @@ export default defineComponent({
         updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
       })
 
-      return await context.root.$router.push('/admin/keywords')
+      return await context.root.$router.push('/keywords')
     }
 
     onMounted(async () => {

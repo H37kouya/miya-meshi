@@ -5,7 +5,7 @@
         新規店舗追加
       </AdminMainText>
 
-      <v-btn to="/admin/shops" class="ml-auto ml-sm-0 mt-4 mt-sm-0" color="purple lighten-4">
+      <v-btn to="/shops" class="ml-auto ml-sm-0 mt-4 mt-sm-0" color="purple lighten-4">
         店舗一覧へ戻る
       </v-btn>
     </v-row>
@@ -45,7 +45,7 @@ export default defineComponent({
     const createShop = async (shop: any) => {
       await createDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop)
 
-      return await context.root.$router.push('/admin/shops')
+      return await context.root.$router.push('/shops')
     }
 
     watchEffect(async () => {

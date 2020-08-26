@@ -1,7 +1,7 @@
 <template>
   <CardButton
     v-bind="$attrs"
-    to="/admin/shops"
+    to="/shops"
     color="purple lighten-4"
     text="店舗一覧"
     text-color="grey"

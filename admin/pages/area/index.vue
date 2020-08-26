@@ -5,7 +5,7 @@
         エリア一覧
       </AdminMainText>
 
-      <v-btn to="/admin/area/create" color="success">
+      <v-btn to="/area/create" color="success">
         エリア追加
       </v-btn>
     </v-row>

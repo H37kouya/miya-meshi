@@ -5,7 +5,7 @@
         料理一覧
       </AdminMainText>
 
-      <v-btn to="/admin/dishes/create" color="success">
+      <v-btn to="/dishes/create" color="success">
         料理追加
       </v-btn>
     </v-row>

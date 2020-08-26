@@ -5,7 +5,7 @@
         店舗一覧
       </AdminMainText>
 
-      <v-btn to="/admin/shops/create" color="success">
+      <v-btn to="/shops/create" color="success">
         新規店舗追加
       </v-btn>
     </v-row>

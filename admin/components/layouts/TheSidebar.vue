@@ -40,37 +40,37 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'トップページ',
-          to: '/admin'
+          to: '/'
         },
         {
           icon: 'mdi-store',
           title: '店舗一覧',
-          to: '/admin/shops'
+          to: '/shops'
         },
         {
           icon: 'mdi-store',
           title: '新規店舗追加',
-          to: '/admin/shops/create'
+          to: '/shops/create'
         },
         {
           icon: 'mdi-alpha-k-box-outline',
           title: 'キーワード一覧',
-          to: '/admin/keywords'
+          to: '/keywords'
         },
         {
           icon: 'mdi-cash',
           title: '価格帯一覧',
-          to: '/admin/price-ranges'
+          to: '/price-ranges'
         },
         {
           icon: 'mdi-food',
           title: '料理一覧',
-          to: '/admin/dishes'
+          to: '/dishes'
         },
         {
           icon: 'mdi-map',
           title: 'エリア一覧',
-          to: '/admin/area'
+          to: '/area'
         }
       ]
     }

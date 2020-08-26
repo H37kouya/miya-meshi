@@ -1,7 +1,7 @@
 <template>
   <CardButton
     v-bind="$attrs"
-    to="/admin/shops/create"
+    to="/shops/create"
     color="green lighten-4"
     text="新規店舗作成"
     text-color="grey"

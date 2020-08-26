@@ -5,7 +5,7 @@
         価格帯追加
       </AdminMainText>
 
-      <v-btn to="/admin/price-ranges" color="success">
+      <v-btn to="/price-ranges" color="success">
         価格帯一覧へ戻る
       </v-btn>
     </v-row>
@@ -37,7 +37,7 @@ export default defineComponent({
 
       await context.root.$fireStore.collection('priceRanges').add(addData)
 
-      return await context.root.$router.push('/admin/price-ranges')
+      return await context.root.$router.push('/price-ranges')
     }
 
     return {

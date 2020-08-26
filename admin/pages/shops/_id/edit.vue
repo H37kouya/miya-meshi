@@ -5,7 +5,7 @@
         店舗編集
       </AdminMainText>
 
-      <v-btn to="/admin/shops" color="purple lighten-4">
+      <v-btn to="/shops" color="purple lighten-4">
         店舗一覧へ戻る
       </v-btn>
     </v-row>
@@ -50,7 +50,7 @@ export default defineComponent({
 
       await editDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop, state.shop.id)
 
-      return await context.root.$router.push('/admin/shops')
+      return await context.root.$router.push('/shops')
     }
 
     watchEffect(async () => {

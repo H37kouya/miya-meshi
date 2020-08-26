@@ -5,7 +5,7 @@
         エリアと住所を紐づける
       </AdminMainText>
 
-      <v-btn to="/admin/area" color="success">
+      <v-btn to="/area" color="success">
         エリア一覧
       </v-btn>
     </v-row>
@@ -165,7 +165,7 @@ export default defineComponent({
       }
       await Promise.all(promise)
 
-      return await context.root.$router.push('/admin/area')
+      return await context.root.$router.push('/area')
     }
 
     return {

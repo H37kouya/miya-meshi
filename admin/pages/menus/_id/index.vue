@@ -15,7 +15,7 @@
     <v-row justify="center" class="mt-4">
       <v-col v-if="state.shop.id" cols="6" md="3">
         <CardButton
-          :to="`/admin/shops/${state.shop.id}`"
+          :to="`/shops/${state.shop.id}`"
           color="orange lighten-4"
           text="店舗を見る"
           text-color="grey"
@@ -25,7 +25,7 @@
 
       <v-col cols="6" md="3">
         <CardButton
-          :to="`/admin/menus/${state.id}/edit`"
+          :to="`/menus/${state.id}/edit`"
           color="green lighten-4"
           text="メニュー編集"
           text-color="grey"
@@ -68,7 +68,7 @@ export default defineComponent({
     const onDelete = async () => {
       await deleteMenu(context.root.$fireStore, state.id)
 
-      return context.root.$router.push(`/admin/shops/${state.shop.id}`)
+      return context.root.$router.push(`/shops/${state.shop.id}`)
     }
 
     return {

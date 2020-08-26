@@ -6,7 +6,7 @@
   >
     <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
-    <nuxt-link to="/admin" class="black--text text-decoration-none">
+    <nuxt-link to="/" class="black--text text-decoration-none">
       <v-toolbar-title v-text="getTitle" />
     </nuxt-link>
   </v-app-bar>

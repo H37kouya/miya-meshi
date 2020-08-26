@@ -5,7 +5,7 @@
     class="elevation-1"
   >
     <template v-slot:item.edit="{ item }">
-      <v-btn :to="`/admin/keywords/${item.id}/edit`" color="orange" dark>
+      <v-btn :to="`/keywords/${item.id}/edit`" color="orange" dark>
         編集する
       </v-btn>
     </template>

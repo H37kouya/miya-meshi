@@ -1,7 +1,7 @@
 <template>
   <CardButton
     v-bind="$attrs"
-    to="/admin/keywords"
+    to="/keywords"
     color="indigo lighten-4"
     text="キーワード一覧"
     text-color="grey"

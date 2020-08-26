@@ -6,14 +6,14 @@
       </v-card-title>
 
       <div class="pr-4">
-        <v-btn :to="`/admin/menus/create/?shopid=${shopid}`" color="light-green lighten-4">
+        <v-btn :to="`/menus/create/?shopid=${shopid}`" color="light-green lighten-4">
           新規メニュー追加
         </v-btn>
       </div>
     </div>
 
     <v-list>
-      <v-list-item v-for="(menu, key) in menus" :key="key" :to="`/admin/menus/${menu.id}`">
+      <v-list-item v-for="(menu, key) in menus" :key="key" :to="`/menus/${menu.id}`">
         <v-list-item-avatar>
           <v-img v-if="menu.image" :src="menu.image" :alt="`${menu.name}`" />
         </v-list-item-avatar>

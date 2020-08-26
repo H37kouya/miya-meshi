@@ -5,7 +5,7 @@
         エリア編集
       </AdminMainText>
 
-      <v-btn to="/admin/area" color="success">
+      <v-btn to="/area" color="success">
         エリア一覧へ戻る
       </v-btn>
     </v-row>
@@ -36,7 +36,7 @@ export default defineComponent({
     const editArea = async (area: any) => {
       await editDBArea(context.root.$fireStore, context.root.$fireStoreObj, area, context.root.$route.params.id)
 
-      return await context.root.$router.push('/admin/area')
+      return await context.root.$router.push('/area')
     }
 
     watchEffect(async () => {
