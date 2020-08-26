@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import { Shop } from '../../../types/Shop'
 import { Type } from '../../../enum'
 import { removeUndefinedFromObject } from '../../utils/Object'
-import { formatShopAddress, formatShopPostal } from '~/src/utils/Shop'
+import { formatShopAddress, formatShopPostal } from '../../utils/Shop'
 
 const SHOP_COLLECTION_NAME = 'shops'
 
