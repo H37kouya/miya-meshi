@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       各種SNS
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background pt-6 px-2 pb-6">
       <v-row justify="center">

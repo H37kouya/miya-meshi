@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       ストーリー
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <div class="d-flex justify-center">

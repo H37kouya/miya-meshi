@@ -22,9 +22,9 @@
 
     <v-lazy>
       <div>
-        <DefaultMainText :level="2">
+        <MainText :level="2">
           メニュー
-        </DefaultMainText>
+        </MainText>
 
         <MenuImageShopField v-if="menuImage" :src="menuImage" />
 

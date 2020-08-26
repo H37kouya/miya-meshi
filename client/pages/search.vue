@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText id="result_detail_search">
+    <MainText id="result_detail_search">
       詳細検索結果
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background pt-3">
       <v-container>

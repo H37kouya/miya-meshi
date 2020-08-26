@@ -26,7 +26,6 @@
     },
     "types": [
       "@types/node",
-      "@types/uuid",
       "@types/leaflet",
       "@nuxt/types",
       "@nuxtjs/axios",

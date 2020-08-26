@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText>
+    <MainText>
       お店から探す
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background pt-3">
       <SearchButtonGroup

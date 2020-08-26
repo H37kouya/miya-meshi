@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       当店のおすすめ
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <v-container class="max-width-600 py-4">

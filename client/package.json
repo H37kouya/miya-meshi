@@ -27,7 +27,6 @@
     "libphonenumber-js": "^1.7.56",
     "miyameshi-lib": "file:../lib",
     "nuxt": "^2.14.3",
-    "uuid": "^8.3.0",
     "vue2-leaflet": "^2.5.2"
   },
   "devDependencies": {
@@ -42,7 +41,6 @@
     "@nuxtjs/vuetify": "^1.11.2",
     "@types/jest": "^26.0.10",
     "@types/leaflet": "^1.5.17",
-    "@types/uuid": "^8.3.0",
     "@vue/test-utils": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",

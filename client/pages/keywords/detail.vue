@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText id="search_detail">
+    <MainText id="search_detail">
       詳細検索
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <v-container class="max-width-480">

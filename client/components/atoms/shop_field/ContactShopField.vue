@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       店舗情報
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <v-container>

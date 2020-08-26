@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText id="miyameshi_pictures">
+    <MainText id="miyameshi_pictures">
       インスタからのおすすめ
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <v-container class="max-width-480">
