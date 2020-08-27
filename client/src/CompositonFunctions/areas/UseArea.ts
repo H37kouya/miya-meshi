@@ -1,5 +1,5 @@
 import { computed, SetupContext, watchEffect } from '@vue/composition-api'
-import { Area } from 'miyameshi-lib'
+import { Area } from '@h37kouya/miyameshi-lib'
 import { ActionType } from '~/store/areas'
 
 export const useArea = ({ $store }: SetupContext['root']) => {

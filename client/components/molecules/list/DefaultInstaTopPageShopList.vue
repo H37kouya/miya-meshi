@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop } from 'miyameshi-lib'
+import { Shop } from '@h37kouya/miyameshi-lib'
 
 type Props = {
   instaShops: Shop[]

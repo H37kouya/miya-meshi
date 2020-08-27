@@ -151,8 +151,8 @@
 import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { DEFAULT_IMAGE } from '@/src/types/Menu'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { isMenu } from 'miyameshi-lib/src/utils/Menu'
-import { Dish, Keyword, Menu } from 'miyameshi-lib'
+import { isMenu } from '@h37kouya/miyameshi-lib/src/utils/Menu'
+import { Dish, Keyword, Menu } from '@h37kouya/miyameshi-lib'
 import { v4 as createUUID } from 'uuid'
 
 type Props = {

@@ -1,5 +1,5 @@
 {
-  "name": "h37kouya",
+  "name": "@h37kouya/miyameshi-lib",
   "version": "1.0.1",
   "description": "みやメシのライブラリ",
   "main": "dist/index.js",
@@ -9,6 +9,12 @@
   },
   "author": "H37kouya",
   "license": "ISC",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "repository" :{
+    "type" : "git",
+    "url" : "http://github.com/H37kouya/miya-meshi.git",
+    "directory": "lib"
+  },
   "dependencies": {
     "firebase": "^7.19.0"
   },

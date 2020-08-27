@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Area } from 'miyameshi-lib'
+import { Area } from '@h37kouya/miyameshi-lib'
 
 type Props = {
   area?: Area

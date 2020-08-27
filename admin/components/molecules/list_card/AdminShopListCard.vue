@@ -42,8 +42,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { isShop } from 'miyameshi-lib/src/utils/Shop'
-import { Shop } from 'miyameshi-lib'
+import { isShop } from '@h37kouya/miyameshi-lib/src/utils/Shop'
+import { Shop } from '@h37kouya/miyameshi-lib'
 
 type Props = {
   shops: Shop[]

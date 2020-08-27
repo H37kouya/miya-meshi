@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
-import { removeUndefinedFromObject } from 'miyameshi-lib/src/utils/Object'
+import { removeUndefinedFromObject } from '@h37kouya/miyameshi-lib/src/utils/Object'
 
 export default defineComponent({
   middleware: 'admin-auth',

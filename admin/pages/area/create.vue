@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
-import { createArea as createDBArea } from 'miyameshi-lib/src/infra/firestore/Area'
+import { createArea as createDBArea } from '@h37kouya/miyameshi-lib/src/infra/firestore/Area'
 
 export default defineComponent({
   middleware: 'admin-auth',

@@ -1,6 +1,6 @@
 import { ActionTree } from 'vuex'
-import { Shop } from 'miyameshi-lib'
-import { getShopList, getShopListByInstaNumber } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { Shop } from '@h37kouya/miyameshi-lib'
+import { getShopList, getShopListByInstaNumber } from '@h37kouya/miyameshi-lib/src/infra/firestore/Shop'
 
 type State = {
   shops: Shop[],

@@ -24,13 +24,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Dish, Shop, PriceRange, Keyword, Enum } from 'miyameshi-lib'
-import { editShop as editDBShop, getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { Dish, Shop, PriceRange, Keyword, Enum } from '@h37kouya/miyameshi-lib'
+import { editShop as editDBShop, getShopByID } from '@h37kouya/miyameshi-lib/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
-import { formatShopAddress } from 'miyameshi-lib/src/utils/Shop'
-import { getPriceRangeList } from 'miyameshi-lib/src/infra/firestore/PriceRange'
-import { getDishList } from 'miyameshi-lib/src/infra/firestore/Dish'
-import { getKeywordList } from 'miyameshi-lib/src/infra/firestore/Keyword'
+import { formatShopAddress } from '@h37kouya/miyameshi-lib/src/utils/Shop'
+import { getPriceRangeList } from '@h37kouya/miyameshi-lib/src/infra/firestore/PriceRange'
+import { getDishList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Dish'
+import { getKeywordList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

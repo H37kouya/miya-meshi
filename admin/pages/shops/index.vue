@@ -21,8 +21,8 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
-import { Shop } from 'miyameshi-lib'
-import { getShopList } from 'miyameshi-lib/src/infra/firestore/Shop'
+import { Shop } from '@h37kouya/miyameshi-lib'
+import { getShopList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Shop'
 
 export default defineComponent({
   middleware: 'admin-auth',

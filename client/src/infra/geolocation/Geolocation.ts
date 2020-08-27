@@ -1,6 +1,6 @@
 import { GSI } from '@/assets/json/muni-tochigi'
 import axios from 'axios'
-import { kanji2num } from 'miyameshi-lib/src/utils/String'
+import { kanji2num } from '@h37kouya/miyameshi-lib/src/utils/String'
 const baseApiURLReverse = 'https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress'
 const baseApiURLForAddress = 'https://msearch.gsi.go.jp/address-search/AddressSearch'
 

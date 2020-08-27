@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
-import { Keyword } from 'miyameshi-lib'
-import { removeUndefinedFromObject } from 'miyameshi-lib/src/utils/Object'
-import { getKeywordByID } from 'miyameshi-lib/src/infra/firestore/Keyword'
+import { Keyword } from '@h37kouya/miyameshi-lib'
+import { removeUndefinedFromObject } from '@h37kouya/miyameshi-lib/src/utils/Object'
+import { getKeywordByID } from '@h37kouya/miyameshi-lib/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
-import { Shop } from 'miyameshi-lib'
+import { Shop } from '@h37kouya/miyameshi-lib'
 import { MetaInfo } from 'vue-meta'
 import { useInstaShop } from '@/src/CompositonFunctions/shops/UseInstaShop'
 

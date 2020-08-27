@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Area } from 'miyameshi-lib'
-import { editArea as editDBArea, getAreaByID } from 'miyameshi-lib/src/infra/firestore/Area'
+import { Area } from '@h37kouya/miyameshi-lib'
+import { editArea as editDBArea, getAreaByID } from '@h37kouya/miyameshi-lib/src/infra/firestore/Area'
 
 export default defineComponent({
   middleware: 'admin-auth',

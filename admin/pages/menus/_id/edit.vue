@@ -31,14 +31,14 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { removeUndefinedFromObject } from 'miyameshi-lib/src/utils/Object'
+import { removeUndefinedFromObject } from '@h37kouya/miyameshi-lib/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { Dish, Keyword, Shop, Enum, Menu } from 'miyameshi-lib'
-import { getShopByID } from 'miyameshi-lib/src/infra/firestore/Shop'
-import { getMenuByID } from 'miyameshi-lib/src/infra/firestore/Menu'
-import { getDishList } from 'miyameshi-lib/src/infra/firestore/Dish'
-import { getKeywordList } from 'miyameshi-lib/src/infra/firestore/Keyword'
+import { Dish, Keyword, Shop, Enum, Menu } from '@h37kouya/miyameshi-lib'
+import { getShopByID } from '@h37kouya/miyameshi-lib/src/infra/firestore/Shop'
+import { getMenuByID } from '@h37kouya/miyameshi-lib/src/infra/firestore/Menu'
+import { getDishList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Dish'
+import { getKeywordList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

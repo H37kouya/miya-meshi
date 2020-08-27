@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Shop } from 'miyameshi-lib'
+import { Shop } from '@h37kouya/miyameshi-lib'
 import { ShopJa } from '@/src/types/Shop'
 
 type TableData = {

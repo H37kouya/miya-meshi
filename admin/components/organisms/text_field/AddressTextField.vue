@@ -11,7 +11,7 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
-import { Shop } from 'miyameshi-lib'
+import { Shop } from '@h37kouya/miyameshi-lib'
 import { ShopJa, ShopMaxStringSize } from '@/src/types/Shop'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 

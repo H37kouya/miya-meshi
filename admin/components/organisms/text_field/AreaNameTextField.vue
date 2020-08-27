@@ -13,7 +13,7 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
-import { Area } from 'miyameshi-lib'
+import { Area } from '@h37kouya/miyameshi-lib'
 import { AreaJa, AreaMaxStringSize } from '@/src/types/Area'
 
 type Props = {
