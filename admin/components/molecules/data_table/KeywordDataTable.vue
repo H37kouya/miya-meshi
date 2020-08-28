@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Keyword } from '@h37kouya/miyameshi-lib'
+import { Keyword } from '@/lib'
 
 type Props = {
   keywords: Keyword[]

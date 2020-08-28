@@ -325,9 +325,9 @@
 import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
-import { isShop } from '@h37kouya/miyameshi-lib/src/utils/Shop'
+import { isShop } from '@/src'/utils/Shop'
 import { v4 as createUUID } from 'uuid'
-import { Shop, Dish, PriceRange, Keyword } from '@h37kouya/miyameshi-lib'
+import { Shop, Dish, PriceRange, Keyword } from '@/lib'
 import { getLongitudeAndLatitudeByAddress } from '@/src/infra/geolocation/Geolocation'
 import { getAddressByPostal } from '@/src/infra/postal/Postal'
 

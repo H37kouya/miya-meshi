@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext, watch, reactive, computed } from '@vue/composition-api'
-import { Menu } from '@h37kouya/miyameshi-lib'
+import { Menu } from '@/lib'
 
 type Props = {
   menu: Menu

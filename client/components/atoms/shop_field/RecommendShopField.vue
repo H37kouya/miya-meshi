@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Menu } from '@h37kouya/miyameshi-lib'
+import { Menu } from '@/lib'
 
 type State = {
   menus: Menu[]

@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Menu } from '@h37kouya/miyameshi-lib'
+import { Menu } from '@/lib'
 import { MetaInfo } from 'vue-meta'
 import { useMenu } from '@/src/CompositonFunctions/menus/UseMenu'
 import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'

@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Dish } from '@h37kouya/miyameshi-lib'
+import { Dish } from '@/lib'
 
 type State = {
   dialog: boolean,

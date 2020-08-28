@@ -11,9 +11,9 @@
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
-import { Shop } from '@h37kouya/miyameshi-lib'
+import { Shop } from '@/lib'
 import { ShopJa } from '@/src/types/Shop'
-import { isPostal } from '@h37kouya/miyameshi-lib/src/utils/String'
+import { isPostal } from '@/src'/utils/String'
 
 type Props = {
   value?: Shop['postal']

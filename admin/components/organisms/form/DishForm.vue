@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Dish } from '@h37kouya/miyameshi-lib'
+import { Dish } from '@/lib'
 
 type State = {
   dish: Dish

@@ -24,11 +24,11 @@
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { MetaInfo } from 'vue-meta'
-import { createShop as createDBShop } from '@h37kouya/miyameshi-lib/src/infra/firestore/Shop'
-import { Dish, PriceRange, Keyword } from '@h37kouya/miyameshi-lib'
-import { getPriceRangeList } from '@h37kouya/miyameshi-lib/src/infra/firestore/PriceRange'
-import { getDishList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Dish'
-import { getKeywordList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Keyword'
+import { createShop as createDBShop } from '@/src'/infra/firestore/Shop'
+import { Dish, PriceRange, Keyword } from '@/lib'
+import { getPriceRangeList } from '@/src'/infra/firestore/PriceRange'
+import { getDishList } from '@/src'/infra/firestore/Dish'
+import { getKeywordList } from '@/src'/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

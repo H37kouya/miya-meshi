@@ -53,8 +53,8 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import AddressJson from '@/assets/json/Utsunomiya-tiku.json'
-import { Area } from '@h37kouya/miyameshi-lib'
-import { editArea, getAreaList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Area'
+import { Area } from '@/lib'
+import { editArea, getAreaList } from '@/src'/infra/firestore/Area'
 
 const addressForView = (areas: Area[], hira: string[]) => {
   const array = AddressJson.data

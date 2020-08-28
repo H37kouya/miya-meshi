@@ -13,7 +13,7 @@
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
-import { Menu } from '@h37kouya/miyameshi-lib'
+import { Menu } from '@/lib'
 import { MenuJa, MenuMaxStringSize } from '@/src/types/Menu'
 
 type Props = {

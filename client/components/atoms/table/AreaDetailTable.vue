@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
-import { Area } from '@h37kouya/miyameshi-lib'
+import { Area } from '@/lib'
 
 type Props = {
   areas: Area[],

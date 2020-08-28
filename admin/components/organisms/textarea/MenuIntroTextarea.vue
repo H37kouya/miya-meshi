@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Menu } from '@h37kouya/miyameshi-lib'
+import { Menu } from '@/lib'
 import { MenuJa, MenuMaxStringSize } from '@/src/types/Menu'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'

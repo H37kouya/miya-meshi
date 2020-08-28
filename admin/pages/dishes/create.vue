@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
-import { createDish as createDBDish } from '@h37kouya/miyameshi-lib/src/infra/firestore/Dish'
-import { Dish } from '@h37kouya/miyameshi-lib'
+import { createDish as createDBDish } from '@/src'/infra/firestore/Dish'
+import { Dish } from '@/lib'
 
 export default defineComponent({
   middleware: 'admin-auth',

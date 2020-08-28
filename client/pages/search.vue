@@ -25,10 +25,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop } from '@h37kouya/miyameshi-lib'
+import { Shop } from '@/lib'
 import { MetaInfo } from 'vue-meta'
-import { filterShopsByAreas } from '@h37kouya/miyameshi-lib/src/utils/Shop'
-import { filterAreasByID } from '@h37kouya/miyameshi-lib/src/utils/Area'
+import { filterShopsByAreas } from '@/src'/utils/Shop'
+import { filterAreasByID } from '@/src'/utils/Area'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'

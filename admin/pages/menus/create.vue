@@ -30,13 +30,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { removeUndefinedFromObject } from '@h37kouya/miyameshi-lib/src/utils/Object'
+import { removeUndefinedFromObject } from '@/src'/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { Dish, Keyword, Shop } from '@h37kouya/miyameshi-lib'
-import { getShopByID } from '@h37kouya/miyameshi-lib/src/infra/firestore/Shop'
-import { getDishList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Dish'
-import { getKeywordList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Keyword'
+import { Dish, Keyword, Shop } from '@/lib'
+import { getShopByID } from '@/src'/infra/firestore/Shop'
+import { getDishList } from '@/src'/infra/firestore/Dish'
+import { getKeywordList } from '@/src'/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

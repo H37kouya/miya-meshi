@@ -1,6 +1,6 @@
 import { reactive, SetupContext, toRefs, watchEffect } from '@vue/composition-api'
-import { Menu } from '@h37kouya/miyameshi-lib'
-import { getMenuList } from '@h37kouya/miyameshi-lib/src/infra/firestore/Menu'
+import { Menu } from '@/lib'
+import { getMenuList } from '@/src'/infra/firestore/Menu'
 
 type State = {
   menus: Menu[]
