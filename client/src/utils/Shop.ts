@@ -1,5 +1,5 @@
-import { Area, Shop } from "../../types";
-import { Type } from "../../enum";
+import { Area, Shop } from "@/lib";
+import { Type } from "@/lib/enum";
 import { kanji2num, isString , zenkakuToHankaku } from "./String"
 
 /**

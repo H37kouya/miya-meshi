@@ -1,4 +1,4 @@
-import { Area } from '../../types'
+import { Area } from '@/lib'
 import { isString } from './String'
 
 /**

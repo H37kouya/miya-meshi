@@ -1,5 +1,5 @@
-import { Menu } from '../../types'
-import { Type } from '../../enum'
+import { Menu } from '@/lib'
+import { Type } from '@/lib/enum'
 
 /**
  * Menu型かどうか
