@@ -1,5 +1,5 @@
 import { reactive, SetupContext, toRefs, watchEffect } from '@vue/composition-api'
-import { getMenuList } from '@/src'/infra/firestore/Menu'
+import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/lib'
 
 export const useRecommendMenu = ({ $fireStore }: SetupContext['root']) => {

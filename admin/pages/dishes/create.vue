@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
-import { createDish as createDBDish } from '@/src'/infra/firestore/Dish'
+import { createDish as createDBDish } from '@/src/infra/firestore/Dish'
 import { Dish } from '@/lib'
 
 export default defineComponent({

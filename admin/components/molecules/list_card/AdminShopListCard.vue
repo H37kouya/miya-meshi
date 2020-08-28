@@ -42,7 +42,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { isShop } from '@/src'/utils/Shop'
+import { isShop } from '@/src/utils/Shop'
 import { Shop } from '@/lib'
 
 type Props = {

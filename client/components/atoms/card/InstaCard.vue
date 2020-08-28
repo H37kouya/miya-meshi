@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
-import { zeroFill } from '@/src'/utils/String'
+import { zeroFill } from '@/src/utils/String'
 
 type Props = {
   alt: string,

@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { Keyword } from '@/lib'
-import { deleteKeyword, getKeywordList } from '@/src'/infra/firestore/Keyword'
+import { deleteKeyword, getKeywordList } from '@/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

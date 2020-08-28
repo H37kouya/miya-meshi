@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
-import { removeUndefinedFromObject } from '@/src'/utils/Object'
+import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { PriceRange } from '@/lib'
-import { getPriceRangeByID } from '@/src'/infra/firestore/PriceRange'
+import { getPriceRangeByID } from '@/src/infra/firestore/PriceRange'
 
 export default defineComponent({
   middleware: 'admin-auth',

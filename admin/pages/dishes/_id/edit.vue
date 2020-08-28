@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Dish } from '@/lib'
-import { getDishByID, editDish as editDBDish } from '@/src'/infra/firestore/Dish'
+import { getDishByID, editDish as editDBDish } from '@/src/infra/firestore/Dish'
 
 type State = {
   dish: Dish

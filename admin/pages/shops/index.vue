@@ -22,7 +22,7 @@
 import { defineComponent, reactive, SetupContext, onMounted } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { Shop } from '@/lib'
-import { getShopList } from '@/src'/infra/firestore/Shop'
+import { getShopList } from '@/src/infra/firestore/Shop'
 
 export default defineComponent({
   middleware: 'admin-auth',

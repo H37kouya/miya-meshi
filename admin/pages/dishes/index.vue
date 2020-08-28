@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
 import { Dish } from '@/lib'
-import { deleteDish, getDishList } from '@/src'/infra/firestore/Dish'
+import { deleteDish, getDishList } from '@/src/infra/firestore/Dish'
 
 type State = {
   dishes: Dish[]

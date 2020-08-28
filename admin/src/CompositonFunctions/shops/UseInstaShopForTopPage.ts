@@ -1,6 +1,6 @@
 import { computed, onMounted, reactive, SetupContext, toRefs, watchEffect } from '@vue/composition-api'
 import { Shop } from '@/lib'
-import { getShopListByInstaNumber } from '@/src'/infra/firestore/Shop'
+import { getShopListByInstaNumber } from '@/src/infra/firestore/Shop'
 
 enum INSTA_SHOPS {
   LIMIT = 6

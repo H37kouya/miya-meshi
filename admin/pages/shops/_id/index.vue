@@ -37,8 +37,8 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
 import { Shop, Menu } from '@/lib'
-import { deleteShop, getShopByID } from '@/src'/infra/firestore/Shop'
-import { deleteMultipleMenu, getMenuListByShopID } from '@/src'/infra/firestore/Menu'
+import { deleteShop, getShopByID } from '@/src/infra/firestore/Shop'
+import { deleteMultipleMenu, getMenuListByShopID } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',

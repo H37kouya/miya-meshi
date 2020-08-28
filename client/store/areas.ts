@@ -1,6 +1,6 @@
 import { Area } from '@/lib'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
-import { getAreaList } from '@/src'/infra/firestore/Area'
+import { getAreaList } from '@/src/infra/firestore/Area'
 import { GeoLocation } from '~/src/infra/geolocation/Geolocation'
 
 type State = {

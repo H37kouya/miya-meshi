@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Area } from '@/lib'
-import { editArea as editDBArea, getAreaByID } from '@/src'/infra/firestore/Area'
+import { editArea as editDBArea, getAreaByID } from '@/src/infra/firestore/Area'
 
 export default defineComponent({
   middleware: 'admin-auth',

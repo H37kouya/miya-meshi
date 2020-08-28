@@ -25,12 +25,12 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Dish, Shop, PriceRange, Keyword, Enum } from '@/lib'
-import { editShop as editDBShop, getShopByID } from '@/src'/infra/firestore/Shop'
+import { editShop as editDBShop, getShopByID } from '@/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
-import { formatShopAddress } from '@/src'/utils/Shop'
-import { getPriceRangeList } from '@/src'/infra/firestore/PriceRange'
-import { getDishList } from '@/src'/infra/firestore/Dish'
-import { getKeywordList } from '@/src'/infra/firestore/Keyword'
+import { formatShopAddress } from '@/src/utils/Shop'
+import { getPriceRangeList } from '@/src/infra/firestore/PriceRange'
+import { getDishList } from '@/src/infra/firestore/Dish'
+import { getKeywordList } from '@/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',

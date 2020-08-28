@@ -13,7 +13,7 @@ import { defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { Shop } from '@/lib'
 import { ShopJa } from '@/src/types/Shop'
-import { isPostal } from '@/src'/utils/String'
+import { isPostal } from '@/src/utils/String'
 
 type Props = {
   value?: Shop['postal']
