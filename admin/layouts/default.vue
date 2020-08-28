@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <TheSystemBar />
+
     <TheHeader v-model="drawer" />
 
     <TheSidebar v-model="drawer" />
