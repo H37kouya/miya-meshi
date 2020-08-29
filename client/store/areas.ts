@@ -1,7 +1,7 @@
 import { Area } from '@/lib'
-import { GetterTree, ActionTree, MutationTree } from 'vuex'
+import { ActionTree } from 'vuex'
 import { getAreaList } from '@/src/infra/firestore/Area'
-import { GeoLocation } from '~/src/infra/geolocation/Geolocation'
+import { GeoLocation } from '@/src/infra/geolocation/Geolocation'
 
 type State = {
   areas: Area[],
@@ -49,8 +49,8 @@ export enum ActionType {
 
 export const actions: ActionTree<any, State> = {
   [ActionType.COMPUTED_NOW_LOCATION] ({ commit, getters, rootGetters }) {
-    if (getters.canComputedNowArea) {
-      const nowAddress = rootGetters['geolocation/location'] as GeoLocation
+    const nowAddress = rootGetters['geolocation/location'] as GeoLocation
+    if (getters.canComputedNowArea && nowAddress) {
       const area = getters.areas.find((area: Area) => {
         if (!area.addresses) {
           return false

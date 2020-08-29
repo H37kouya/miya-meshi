@@ -7,7 +7,11 @@ import { isString } from './String'
  * @param { Area[] } areas
  * @param { string|(string|null)[] } id
  */
-export const filterAreasByID = (areas: Area[], id: string|(string|null)[]) => {
+export const filterAreasByID = (areas: Area[], id: string|(string|null)[]|null) => {
+  if (!id) {
+    return []
+  }
+
   if (isString(id)) {
     return areas.filter((area: Area) => area.id === id)
   }

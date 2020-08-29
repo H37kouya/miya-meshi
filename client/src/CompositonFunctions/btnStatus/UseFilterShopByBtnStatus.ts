@@ -7,7 +7,6 @@ export const useFilterShopByBtnStatus = (
 ) => {
   const displayShops = computed(() => {
     let lShops = shops.value
-    console.log(shops)
     if (btnStatus.value.takeout) {
       lShops = lShops.filter((shop: Shop) => shop.canTakeout)
     }
