@@ -115,7 +115,7 @@ const nuxtConfig = {
       storage: true,
       performance: true
     }
-  }
+  },
   /*
   ** pwa module configuration
   ** https://pwa.nuxtjs.org/
