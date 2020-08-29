@@ -1,9 +1,4 @@
-import { Configuration } from '@nuxt/types'
-import colors from 'vuetify/es5/util/colors'
-import { FirebaseModuleConfiguration } from '@nuxtjs/firebase'
-import { AxiosOptions } from '@nuxtjs/axios'
-
-const nuxtConfig: Configuration = {
+const nuxtConfig = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -94,7 +89,7 @@ const nuxtConfig: Configuration = {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {} as AxiosOptions,
+  axios: {},
   /*
   ** Firebase module configuration
   ** See https://firebase.nuxtjs.org/
@@ -120,7 +115,7 @@ const nuxtConfig: Configuration = {
       storage: true,
       performance: true
     }
-  } as FirebaseModuleConfiguration,
+  }
   /*
   ** pwa module configuration
   ** https://pwa.nuxtjs.org/
