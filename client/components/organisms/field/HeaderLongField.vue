@@ -2,14 +2,14 @@
   <div>
     <div style="width: 100%;" class="pos-relative">
       <v-img
-        src="/miyameshi-top.png"
+        src="/s/miyameshi-top.png"
         width="100%"
         aspect-ratio="1.78"
         max-height="160px"
       />
 
       <v-card class="news">
-        <v-img src="/miyameshi-ticket.jpg" />
+        <v-img src="/s/miyameshi-ticket.jpg" />
       </v-card>
 
       <div class="text-right pt-6 px-4 developer-name">

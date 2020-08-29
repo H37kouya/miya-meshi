@@ -20,6 +20,16 @@
         "Service-Worker-Allowed": "/"
       }
     },
+    {
+      "src": "/s/(.*)",
+      "headers": { "cache-control": "s-maxage=604800" },
+      "dest": "/s/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "headers": { "cache-control": "s-maxage=604800" },
+      "dest": "/favicon.ico"
+    },
     { "src": "/(.*)", "dest": "/" }
   ]
 }
