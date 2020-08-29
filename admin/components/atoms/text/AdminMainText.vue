@@ -28,7 +28,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .admin-main-text {
   color: $admin-text-color;
   border-bottom: 0.1rem solid $admin-text-color;

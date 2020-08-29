@@ -57,7 +57,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card-button-text {
   font-size: 1.25rem;
   margin-bottom: 0;

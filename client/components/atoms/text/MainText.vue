@@ -28,7 +28,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .default-main-text {
   font-size: 1.1rem;
   font-weight: bolder;

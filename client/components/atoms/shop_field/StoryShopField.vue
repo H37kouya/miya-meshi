@@ -52,7 +52,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .text-container {
   background-color: rgba(#fff, 0.9);
 }

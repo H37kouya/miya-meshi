@@ -72,7 +72,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .to-detail-search {
   font-size: 0.8rem;
   text-decoration: none;

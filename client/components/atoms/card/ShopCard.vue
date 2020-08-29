@@ -54,7 +54,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .shop-name {
   font-size: 0.9rem;
   word-break: break-all;
