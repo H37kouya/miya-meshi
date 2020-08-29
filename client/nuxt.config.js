@@ -83,7 +83,8 @@ const nuxtConfig = {
     '@nuxtjs/axios',
     '@nuxtjs/device',
     '@nuxtjs/firebase',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-leaflet'
   ],
   /*
   ** Axios module configuration

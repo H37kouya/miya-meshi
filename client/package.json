@@ -23,9 +23,8 @@
     "@vue/composition-api": "^1.0.0-beta.11",
     "core-js": "^2.6.11",
     "firebase": "^7.19.1",
-    "leaflet": "^1.6.0",
     "nuxt": "^2.14.4",
-    "vue2-leaflet": "^2.5.2"
+    "nuxt-leaflet": "0.0.21"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.4",
