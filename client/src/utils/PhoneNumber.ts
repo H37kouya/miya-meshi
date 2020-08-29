@@ -1,34 +1,11 @@
-import { isValidNumber, AsYouType } from 'libphonenumber-js'
-import { PhoneNumber } from '@/src/types/PhoneNumber'
+import { isString } from '~/src/utils/String'
 
 /**
- * 電話番号をバリデーションする
+ * 正しい電話番号かを確認
  *
- * @param { any } v
+ * @param { string|number } tel
  */
-export const validateTel = (v: any) => {
-  return /^[0０]/.test(v) && isValidNumber(v, 'JP')
-}
-
-/**
- * 電話番号をフォーマットする
- *
- * @param { any } v
- * @return { ?PhoneNumber }
- */
-export const formatTel = (v: any) => {
-  if (!validateTel(v)) {
-    return undefined
-  }
-
-  return new AsYouType('JP').input(v) as PhoneNumber
-}
-
-/**
- * PhoneNumber型であるか
- *
- * @param { any } v
- */
-export const isPhoneNumber = (v: any): v is PhoneNumber => {
-  return validateTel(v)
+export const isSimplePhoneNumber = (tel: string|number) => {
+  const str = isString(tel) ? tel : String(tel)
+  return /^(0[5-9]0[0-9]{8}|0[1-9][1-9][0-9]{7})$/.test(str)
 }
