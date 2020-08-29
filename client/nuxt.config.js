@@ -107,10 +107,7 @@ const nuxtConfig = {
       measurementId: process.env.FIREBASE_MEASUREMENT_ID
     },
     services: {
-      firestore: {
-        enablePersistence: true,
-        preload: true
-      },
+      firestore: true,
       analytics: !process.env.TEST_ENV,
       storage: true,
       performance: true
