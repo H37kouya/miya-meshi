@@ -30,6 +30,11 @@
       "headers": { "cache-control": "s-maxage=604800" },
       "dest": "/favicon.ico"
     },
+    {
+      "src": "/no-image.png",
+      "headers": { "cache-control": "s-maxage=604800" },
+      "dest": "/no-image.png"
+    },
     { "src": "/(.*)", "dest": "/" }
   ]
 }
