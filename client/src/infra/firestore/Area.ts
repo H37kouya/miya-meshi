@@ -1,8 +1,8 @@
 import firebase from 'firebase'
 import { Area } from '@/lib/types/Area'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 
-const AREA_COLLECTION_NAME = 'areas'
+const AREA_COLLECTION_NAME = Collection.AREAS
 
 export const getAreaList = async (
   $fireStore: firebase.firestore.Firestore

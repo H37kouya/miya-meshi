@@ -1,15 +1,14 @@
 import firebase from 'firebase'
 import { Shop } from '@/lib/types/Shop'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 
-const SHOP_COLLECTION_NAME = 'shops'
+const SHOP_COLLECTION_NAME = Collection.SHOPS
 
 /**
  * Shop一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
  * @param { Number } limit 取得最大数
- * @param { Boolean } admin 管理者かどうか
  */
 export const getShopList = async (
   $fireStore: firebase.firestore.Firestore,
@@ -34,7 +33,6 @@ export const getShopList = async (
  *
  * @param { firebase.firestore.Firestore } $fireStore
  * @param { Number } limit 取得最大数
- * @param { Boolean } admin 管理者かどうか
  */
 export const getShopListByInstaNumber = async (
   $fireStore: firebase.firestore.Firestore,
