@@ -52,6 +52,10 @@ export const actions: ActionTree<any, State> = {
     if (getters.canComputedNowArea) {
       const nowAddress = rootGetters['geolocation/location'] as GeoLocation
       const area = getters.areas.find((area: Area) => {
+        if (!area.addresses) {
+          return false
+        }
+
         return area.addresses.includes(nowAddress.address)
       })
 
