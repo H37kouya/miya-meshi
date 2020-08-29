@@ -1,11 +1,11 @@
 <template>
   <div>
-    <DefaultMainText id="recommend_for_instagram">
+    <MainText id="recommend_for_instagram">
       <div class="d-flex align-center justify-center">
         <v-icon>mdi-instagram</v-icon>
         <span>インスタからのおすすめ</span>
       </div>
-    </DefaultMainText>
+    </MainText>
 
     <DefaultInstaShopList :shops="instaShops" />
 
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from '@/lib'
 
 type Props = {
   instaShops: Shop[]

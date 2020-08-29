@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       ストーリー
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <div class="d-flex justify-center">
@@ -52,7 +52,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .text-container {
   background-color: rgba(#fff, 0.9);
 }

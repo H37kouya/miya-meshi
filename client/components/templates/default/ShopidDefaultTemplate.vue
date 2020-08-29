@@ -12,7 +12,7 @@
 
     <div class="u-light-grey-background d-flex justify-center">
       <div class="max-width-480">
-        <FiveOneAdField src="/circle-ad.png" href="https://uu-circle20.firebaseapp.com/" />
+        <FiveOneAdField src="/s/circle-ad.png" href="https://uu-circle20.firebaseapp.com/" />
       </div>
     </div>
 
@@ -22,9 +22,9 @@
 
     <v-lazy>
       <div>
-        <DefaultMainText :level="2">
+        <MainText :level="2">
           メニュー
-        </DefaultMainText>
+        </MainText>
 
         <MenuImageShopField v-if="menuImage" :src="menuImage" />
 

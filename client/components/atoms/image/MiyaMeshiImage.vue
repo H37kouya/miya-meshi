@@ -1,5 +1,5 @@
 <template>
-  <v-img src="/miya-meshi.png" alt="みやメシアイコン" :width="width" v-bind="$attrs" />
+  <v-img src="/s/miya-meshi.png" alt="みやメシアイコン" :width="width" v-bind="$attrs" />
 </template>
 
 <script>

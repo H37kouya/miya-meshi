@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText id="search_by_menus">
+    <MainText id="search_by_menus">
       食べ物から探す
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background pt-3">
       <SearchButtonGroup
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
+import { Menu } from '@/lib'
 import { MetaInfo } from 'vue-meta'
 import { useMenu } from '@/src/CompositonFunctions/menus/UseMenu'
 import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'

@@ -1,0 +1,19 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+
+// BASE COLOR
+$u-black: #333;
+
+// MAIN PAGE COLOR
+
+// ADMIN COLOR
+$admin-text-color: #5f5f5f;
+
+// Vuetify Module
+$body-font-family: -apple-system, blinkmacsystemfont, roboto, "Segoe UI", "Helvetica Neue", helveticaneue, yugothic, "Yu Gothic Medium", "Yu Gothic", verdana, meiryo, sans-serif;
+$material-light: (
+  'text': (
+    'primary': $u-black,
+  )
+);
+
+@import '~vuetify/src/styles/styles.sass';

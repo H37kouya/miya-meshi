@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
     <v-img
-      src="/miyameshi-header.jpg"
+      src="/s/miyameshi-header.jpg"
       width="100%"
       max-height="160px"
       aspect-ratio="5.77"

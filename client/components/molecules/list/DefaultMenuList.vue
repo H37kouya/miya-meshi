@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
+import { Menu } from '@/lib'
 
 type State = {
   menus: Props['menus'],

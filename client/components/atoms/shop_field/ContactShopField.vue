@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       店舗情報
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <v-container>
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from '@/lib'
 
 type Props = {
   shop: Shop

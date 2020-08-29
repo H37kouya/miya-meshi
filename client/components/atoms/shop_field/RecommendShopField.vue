@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       当店のおすすめ
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background">
       <v-container class="max-width-600 py-4">
@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
+import { Menu } from '@/lib'
 
 type State = {
   menus: Menu[]

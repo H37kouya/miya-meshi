@@ -4,9 +4,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop, Menu } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
-import { Menu } from '@/src/types/Menu'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
 
 type State = {

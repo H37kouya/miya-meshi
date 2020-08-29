@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText id="result_detail_search">
+    <MainText id="result_detail_search">
       詳細検索結果
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background pt-3">
       <v-container>
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from '@/lib'
 import { MetaInfo } from 'vue-meta'
 import { filterShopsByAreas } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
@@ -72,7 +72,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .to-detail-search {
   font-size: 0.8rem;
   text-decoration: none;

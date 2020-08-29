@@ -1,20 +1,7 @@
 import firebase from 'firebase'
-import { PRICE_RANGE_TYPE, PriceRange } from '~/src/types/PriceRange'
-
+import { PriceRange } from '@/lib/types/PriceRange'
+import { Type } from '@/lib/enum'
 const PRICE_RANGE_COLLECTION_NAME = 'priceRanges'
-
-/**
- * Menuを削除する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { string } id
- */
-export const deletePriceRange = async (
-  $fireStore: firebase.firestore.Firestore,
-  id: string
-) => {
-  await $fireStore.collection(PRICE_RANGE_COLLECTION_NAME).doc(id).delete()
-}
 
 export const getPriceRangeList = async (
   $fireStore: firebase.firestore.Firestore
@@ -53,7 +40,7 @@ export const firestoreDocDataToPriceRange = (
   const docData = doc.data()
 
   return {
-    type: PRICE_RANGE_TYPE,
+    type: Type.PRICE_RANGE,
     id: doc.id,
     ...docData
   } as PriceRange

@@ -26,7 +26,7 @@
   </footer>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .border-grey-top {
   border-top: 1px solid #c4c4c4;
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-img src="/u-lab-icon.png" alt="U-labアイコン" :width="width" v-bind="$attrs" />
+  <v-img src="/s/u-lab-icon.png" alt="U-labアイコン" :width="width" v-bind="$attrs" />
 </template>
 
 <script>

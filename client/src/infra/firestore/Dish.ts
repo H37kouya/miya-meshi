@@ -1,47 +1,8 @@
 import firebase from 'firebase'
-import { Dish, DISH_TYPE } from '@/src/types/Dish'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
+import { Dish } from '@/lib/types/Dish'
+import { Type } from '@/lib/enum'
 
 const DISH_COLLECTION_NAME = 'dishes'
-
-export const createDish = async (
-  $fireStore: firebase.firestore.Firestore,
-  $fireStoreObj: typeof firebase.firestore,
-  dish: Dish
-) => {
-  const addData = {
-    ...removeUndefinedFromObject(dish),
-    createdAt: $fireStoreObj.FieldValue.serverTimestamp(),
-    updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
-  } as firebase.firestore.DocumentData
-
-  await $fireStore.collection(DISH_COLLECTION_NAME).add(addData)
-}
-
-/**
- * Menuを削除する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { string } id
- */
-export const deleteDish = async (
-  $fireStore: firebase.firestore.Firestore,
-  id: string
-) => {
-  await $fireStore.collection(DISH_COLLECTION_NAME).doc(id).delete()
-}
-
-export const editDish = async (
-  $fireStore: firebase.firestore.Firestore,
-  $fireStoreObj: typeof firebase.firestore,
-  dish: Dish,
-  id: string
-) => {
-  await $fireStore.collection(DISH_COLLECTION_NAME).doc(id).update({
-    ...removeUndefinedFromObject(dish),
-    updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
-  })
-}
 
 export const getDishList = async (
   $fireStore: firebase.firestore.Firestore
@@ -80,7 +41,7 @@ export const firestoreDocDataToDish = (
   const docData = doc.data()
 
   return {
-    type: DISH_TYPE,
+    type: Type.DISH,
     id: doc.id,
     ...docData
   } as Dish

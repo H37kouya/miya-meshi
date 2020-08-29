@@ -14,11 +14,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
-import { PhoneNumber } from '@/src/types/PhoneNumber'
-import { formatTel, isPhoneNumber } from '@/src/utils/PhoneNumber'
+import { isSimplePhoneNumber } from '@/src/utils/PhoneNumber'
 
 type Props = {
-  tel?: number|string|PhoneNumber
+  tel?: number|string
 }
 
 export default defineComponent({
@@ -29,13 +28,13 @@ export default defineComponent({
     }
   },
 
-  setup (props: Props, context: SetupContext) {
+  setup (props: Props, _: SetupContext) {
     const telLink = computed(() => {
-      if (!props.tel || isPhoneNumber(props.tel)) {
+      if (props.tel && isSimplePhoneNumber(props.tel)) {
         return props.tel
       }
 
-      return formatTel(props.tel)
+      return undefined
     })
 
     const href = computed(() => {

@@ -1,5 +1,5 @@
-import { Area } from '~/src/types/Area'
-import { isString } from '~/src/utils/String'
+import { Area } from '@/lib'
+import { isString } from './String'
 
 /**
  * IDによって、areaをfilterする
@@ -7,7 +7,11 @@ import { isString } from '~/src/utils/String'
  * @param { Area[] } areas
  * @param { string|(string|null)[] } id
  */
-export const filterAreasByID = (areas: Area[], id: string|(string|null)[]) => {
+export const filterAreasByID = (areas: Area[], id: string|(string|null)[]|null) => {
+  if (!id) {
+    return []
+  }
+
   if (isString(id)) {
     return areas.filter((area: Area) => area.id === id)
   }

@@ -3,9 +3,9 @@
     <DefaultInstaTopPageShopList :insta-shops="instaShops" />
 
     <v-lazy>
-      <DefaultMainText id="recommend_for_weekend" :level="2">
+      <MainText id="recommend_for_weekend" :level="2">
         今週のおすすめ
-      </DefaultMainText>
+      </MainText>
     </v-lazy>
 
     <v-lazy>
@@ -13,9 +13,9 @@
     </v-lazy>
 
     <v-lazy>
-      <DefaultMainText id="news" :level="2">
+      <MainText id="news" :level="2">
         新着情報
-      </DefaultMainText>
+      </MainText>
     </v-lazy>
 
     <v-lazy>
@@ -38,9 +38,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Menu } from '@/src/types/Menu'
-import { News } from '@/src/types/News'
-import { Shop } from '@/src/types/Shop'
+import { Shop, News, Menu } from '@/lib'
 
 type Props = {
   menus: Menu[],

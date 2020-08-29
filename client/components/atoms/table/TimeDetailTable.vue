@@ -1,29 +1,10 @@
 <template>
-  <v-container class="max-width-480">
-    <v-row justify="center" no-gutters class="keyword-row">
-      <template v-for="(time, key) in times">
-        <v-col
-          :key="key"
-          :class="{ 'selected': selectedTimes.find((name) => time === name ) }"
-          cols="4"
-          class="pa-1 text-center keyword-box d-flex justify-center align-center"
-          @click="onClick(time)"
-        >
-          {{ time }}
-        </v-col>
-      </template>
-    </v-row>
-
-    <p class="mb-0 text-right">
-      <a href="https://forms.gle/Yq6x8vKnaKKPYX6eA" target="_blank" rel="noopener" class="other-keyword">
-        もし求めてるキーワードがなかったら
-      </a>
-    </p>
-  </v-container>
+  <BaseDetailTable :list="listItems" @click="onClick" />
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { DetailListItem } from '~/components/atoms/table/DetailListItemType'
 
 type Props = {
   times: string[],
@@ -42,18 +23,23 @@ export default defineComponent({
     }
   },
 
-  setup (_, context: SetupContext) {
-    const onClick = (time: string) => {
-      return context.emit('click', time)
+  setup (props: Props, context: SetupContext) {
+    const listItems = computed(() => {
+      return props.times.map((time: string) => ({
+        id: time,
+        selected: !!props.selectedTimes.find((t: string) => time === t),
+        name: time
+      }) as DetailListItem)
+    })
+
+    const onClick = (id: string) => {
+      return context.emit('click', id)
     }
 
     return {
+      listItems,
       onClick
     }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-@import "detail_table";
-</style>

@@ -1,5 +1,5 @@
 import { ActionTree } from 'vuex'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from '@/lib'
 import { getShopList, getShopListByInstaNumber } from '@/src/infra/firestore/Shop'
 
 type State = {

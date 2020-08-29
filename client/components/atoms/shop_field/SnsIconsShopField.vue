@@ -1,8 +1,8 @@
 <template>
   <div>
-    <DefaultMainText :level="2">
+    <MainText :level="2">
       各種SNS
-    </DefaultMainText>
+    </MainText>
 
     <div class="u-light-grey-background pt-6 px-2 pb-6">
       <v-row justify="center">
@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Shop } from '@/src/types/Shop'
+import { Shop } from '@/lib'
 
 type Props = {
   shop: Shop
@@ -39,14 +39,14 @@ type SnsLink = {
 }
 
 enum snsImage {
-  facebook = '/facebook.png',
-  github = '/github.png',
-  hp = '/hp.png',
-  instagram = '/instagram.png',
-  line = '/line.png',
-  twitter = '/twitter.png',
-  youtube = '/youtube.png',
-  uberEats = '/UberEats_Badge_Vertical.png'
+  facebook = '/s/facebook.png',
+  github = '/s/github.png',
+  hp = '/s/hp.png',
+  instagram = '/s/instagram.png',
+  line = '/s/line.png',
+  twitter = '/s/twitter.png',
+  youtube = '/s/youtube.png',
+  uberEats = '/s/UberEats_Badge_Vertical.png'
 }
 
 const shopToSnsLinks = (shop: Shop): SnsLink[] => {

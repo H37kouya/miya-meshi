@@ -1,6 +1,6 @@
 import { computed, SetupContext, watchEffect } from '@vue/composition-api'
-import { Area } from '~/src/types/Area'
-import { ActionType } from '~/store/areas'
+import { Area } from '@/lib'
+import { ActionType } from '@/store/areas'
 
 export const useArea = ({ $store }: SetupContext['root']) => {
   // エリア一覧
