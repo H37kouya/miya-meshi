@@ -181,10 +181,13 @@ const nuxtConfig = {
   */
   build: {
     extractCSS: true,
-    splitChunks: {
-      layouts: true,
-      pages: true,
-      commons: true
+    extend (config, { isDev, isClient, isServer }) {
+      if (isServer) {
+        config.externals = {
+          '@firebase/app': 'commonjs @firebase/app',
+          '@firebase/firestore': 'commonjs @firebase/firestore'
+        }
+      }
     }
   }
 }
