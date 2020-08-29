@@ -1,69 +1,8 @@
 import firebase from 'firebase'
 import { Shop } from '@/lib/types/Shop'
 import { Type } from '@/lib/enum'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
-import { formatShopAddress, formatShopPostal } from '@/src/utils/Shop'
 
 const SHOP_COLLECTION_NAME = 'shops'
-
-/**
- * Shopを追加する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { typeof firebase.firestore } $fireStoreObj
- * @param { Shop } shop
- */
-export const createShop = async (
-  $fireStore: firebase.firestore.Firestore,
-  $fireStoreObj: typeof firebase.firestore,
-  shop: Shop
-) => {
-  shop.address = formatShopAddress(shop.address)
-  shop.postal = formatShopPostal(shop.postal)
-
-  const addData = {
-    ...removeUndefinedFromObject(shop),
-    createdAt: $fireStoreObj.FieldValue.serverTimestamp(),
-    updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
-  } as firebase.firestore.DocumentData
-
-  await $fireStore.collection(SHOP_COLLECTION_NAME).add(addData)
-}
-
-/**
- * Shopを削除する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { string } id
- */
-export const deleteShop = async (
-  $fireStore: firebase.firestore.Firestore,
-  id: string
-) => {
-  await $fireStore.collection(SHOP_COLLECTION_NAME).doc(id).delete()
-}
-
-/**
- * 店舗を編集する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { typeof firebase.firestore } $fireStoreObj
- * @param shop
- * @param { Shop['id] } shopID
- */
-export const editShop = async (
-  $fireStore: firebase.firestore.Firestore,
-  $fireStoreObj: typeof firebase.firestore,
-  shop: Shop,
-  shopID: Shop['id']
-) => {
-  const updateData = {
-    ...removeUndefinedFromObject(shop),
-    updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
-  }
-
-  await $fireStore.collection(SHOP_COLLECTION_NAME).doc(shopID).update(updateData)
-}
 
 /**
  * Shop一覧を取得
@@ -74,14 +13,11 @@ export const editShop = async (
  */
 export const getShopList = async (
   $fireStore: firebase.firestore.Firestore,
-  limit: number = 12,
-  admin: boolean = false
+  limit: number = 12
 ) => {
-  const publicWhere: boolean[] = admin ? [true, false] : [true]
-
   const func = $fireStore
     .collection(SHOP_COLLECTION_NAME)
-    .where('public', 'in', publicWhere)
+    .where('public', '==', true)
     .orderBy('priority', 'desc')
 
   const list = limit > 0 ? await func.limit(limit).get() : await func.get()
@@ -102,14 +38,11 @@ export const getShopList = async (
  */
 export const getShopListByInstaNumber = async (
   $fireStore: firebase.firestore.Firestore,
-  limit: number = 12,
-  admin: boolean = false
+  limit: number = 12
 ) => {
-  const publicWhere: boolean[] = admin ? [true, false] : [true]
-
   const func = $fireStore
     .collection(SHOP_COLLECTION_NAME)
-    .where('public', 'in', publicWhere)
+    .where('public', '==', true)
     .orderBy('instaNumber', 'desc')
     .where('instaNumber', '>', 0)
 

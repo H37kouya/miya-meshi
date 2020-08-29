@@ -1,21 +1,7 @@
 import firebase from 'firebase'
 import { PriceRange } from '@/lib/types/PriceRange'
 import { Type } from '@/lib/enum'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
 const PRICE_RANGE_COLLECTION_NAME = 'priceRanges'
-
-/**
- * Menuを削除する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { string } id
- */
-export const deletePriceRange = async (
-  $fireStore: firebase.firestore.Firestore,
-  id: string
-) => {
-  await $fireStore.collection(PRICE_RANGE_COLLECTION_NAME).doc(id).delete()
-}
 
 export const getPriceRangeList = async (
   $fireStore: firebase.firestore.Firestore

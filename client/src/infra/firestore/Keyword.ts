@@ -1,21 +1,7 @@
 import firebase from 'firebase'
 import { Keyword } from '@/lib/types/Keyword'
 import { Type } from '@/lib/enum'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
 const KEYWORDS_COLLECTION_NAME = 'keywords'
-
-/**
- * Menuを削除する
- *
- * @param { firebase.firestore.Firestore } $fireStore
- * @param { string } id
- */
-export const deleteKeyword = async (
-  $fireStore: firebase.firestore.Firestore,
-  id: string
-) => {
-  await $fireStore.collection(KEYWORDS_COLLECTION_NAME).doc(id).delete()
-}
 
 export const getKeywordList = async (
   $fireStore: firebase.firestore.Firestore

@@ -68,7 +68,6 @@ export default defineComponent({
     })
 
     watch(() => props.pastImageLink, (newVal, _) => {
-      console.log(newVal)
       if (newVal) {
         state.thumbnail = newVal
       }
