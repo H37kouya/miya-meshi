@@ -7,11 +7,11 @@ import { PriceRange } from './PriceRange'
 import { Shop } from './Shop'
 
 export {
-    Area,
-    Dish,
-    Keyword,
-    Menu,
-    News,
-    PriceRange,
-    Shop
+  Area,
+  Dish,
+  Keyword,
+  Menu,
+  News,
+  PriceRange,
+  Shop
 }
