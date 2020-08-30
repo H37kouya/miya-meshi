@@ -4,9 +4,20 @@
 
 ## Description
 
+> Nuxt.js (on comopsition api) / TypeScript / FireBase
+
 ## Environment
 
-> Nuxt.js (on comopsition api) / TypeScript / FireBase
+``` shell
+# メイン画面と管理者画面の同時起動
+$ cd client && npm run dev & cd admin && npm run dev
+
+# メイン画面起動
+$ cd client && npm run dev
+
+# 管理者画面の起動
+$ cd admin && npm run dev
+```
 
 ## テスト環境
 
