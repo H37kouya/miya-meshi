@@ -47,6 +47,8 @@ type State = {
 export default defineComponent({
   middleware: 'admin-guest',
 
+  layout: 'auth',
+
   setup (_: unknown, context: SetupContext) {
     const state = reactive<State>({
       email: '',
