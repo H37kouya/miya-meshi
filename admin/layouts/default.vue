@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <TheSystemBar />
+    <!-- <TheSystemBar /> -->
 
     <TheHeader v-model="drawer" />
 
