@@ -39,6 +39,14 @@
             </KeywordMainText>
           </div>
 
+          <div>
+            <DishDetailTable
+              :dishes="dishes"
+              :selected-ids="state.dishSelectedID"
+              @click="onDishClick"
+            />
+          </div>
+
           <div class="d-flex justify-center">
             <KeywordMainText id="search_by_time" :level="2">
               時間帯
@@ -64,17 +72,26 @@
 import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
+import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
 const times = ['朝', '昼', '夜']
 
+type State = {
+  areaSelectedID: string[],
+  dishSelectedID: string[]
+  timeSelectedName: string[]
+}
+
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const state = reactive({
+    const state = reactive<State>({
       areaSelectedID: [] as string[],
+      dishSelectedID: [] as string[],
       timeSelectedName: [] as string[]
     })
 
     const { areas } = useArea(context.root)
+    const { dishes } = useDish(context.root)
 
     const onAreaClick = (id: string) => {
       const areaID = state.areaSelectedID.find((aID: string) => id === aID)
@@ -82,6 +99,15 @@ export default defineComponent({
         state.areaSelectedID = state.areaSelectedID.filter((aID: string) => id !== aID)
       } else {
         state.areaSelectedID.push(id)
+      }
+    }
+
+    const onDishClick = (id: string) => {
+      const dishID = state.dishSelectedID.find((dID: string) => id === dID)
+      if (dishID) {
+        state.dishSelectedID = state.dishSelectedID.filter((dID: string) => id !== dID)
+      } else {
+        state.dishSelectedID.push(id)
       }
     }
 
@@ -105,7 +131,9 @@ export default defineComponent({
 
     return {
       areas,
+      dishes,
       onAreaClick,
+      onDishClick,
       onTimeClick,
       times,
       to,

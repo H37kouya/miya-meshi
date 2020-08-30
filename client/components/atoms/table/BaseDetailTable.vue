@@ -24,10 +24,10 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
-import { DetailListItem } from '~/components/atoms/table/DetailListItemType'
+import { DetailListItemType } from '@/components/atoms/table/DetailListItemType'
 
 type Props = {
-  list: DetailListItem
+  list: DetailListItemType
 }
 export default defineComponent({
   props: {

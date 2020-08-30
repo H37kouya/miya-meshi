@@ -1,7 +1,7 @@
 <template>
   <CardButton
     v-bind="$attrs"
-    to="/"
+    :href="$config.CLIENT_URL"
     color="pink lighten-4"
     text="メインページ"
     text-color="grey"

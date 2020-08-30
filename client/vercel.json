@@ -22,17 +22,17 @@
     },
     {
       "src": "/s/(.*)",
-      "headers": { "cache-control": "s-maxage=604800" },
+      "headers": { "cache-control": "max-age=31557600" },
       "dest": "/s/$1"
     },
     {
       "src": "/favicon.ico",
-      "headers": { "cache-control": "s-maxage=604800" },
+      "headers": { "cache-control": "max-age=31557600" },
       "dest": "/favicon.ico"
     },
     {
       "src": "/no-image.png",
-      "headers": { "cache-control": "s-maxage=604800" },
+      "headers": { "cache-control": "max-age=31557600" },
       "dest": "/no-image.png"
     },
     { "src": "/(.*)", "dest": "/" }

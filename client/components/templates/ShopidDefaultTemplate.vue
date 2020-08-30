@@ -56,8 +56,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
-import { Shop } from '~/src/types/Shop'
-import { Menu } from '~/src/types/Menu'
+import { Shop, Menu } from '~/lib'
 
 type Props = {
   shop: Shop,
