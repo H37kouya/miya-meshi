@@ -20,6 +20,10 @@ const nuxtConfig: Configuration = {
   env: {
     POSTAL_API_KEY: process.env.POSTAL_API_KEY
   },
+
+  publicRuntimeConfig: {
+    CLIENT_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://miyameshi.com'
+  },
   /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
