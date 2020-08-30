@@ -25,8 +25,8 @@ const nuxtConfig: Configuration = {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    titleTemplate: '%s - ' + 'みやメシ応援隊',
-    title: 'みやメシ応援隊',
+    titleTemplate: '%s - ' + 'みやメシ応援隊管理者',
+    title: 'みやメシ応援隊管理者',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -123,7 +123,7 @@ const nuxtConfig: Configuration = {
   pwa: {
     meta: {
       lang: undefined,
-      name: 'みやメシ応援隊',
+      name: 'みやメシ応援隊管理者',
       description: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
     },
     workbox: {
