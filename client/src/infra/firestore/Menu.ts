@@ -1,14 +1,14 @@
 import firebase from 'firebase'
 import { Menu } from '@/lib/types/Menu'
-import { Type } from '@/lib/enum'
-const MENU_COLLECTION_NAME = 'menus'
+import { Collection, Type } from '@/lib/enum'
+
+const MENU_COLLECTION_NAME = Collection.MENUS
 
 /**
  * Menu一覧を取得
  *
  * @param { firebase.firestore.Firestore } $fireStore
  * @param { Number } limit
- * @param { Boolean } admin
  */
 export const getMenuList = async (
   $fireStore: firebase.firestore.Firestore,
@@ -34,7 +34,6 @@ export const getMenuList = async (
  * @param { firebase.firestore.Firestore } $fireStore
  * @param { string } shopID
  * @param { Number } limit
- * @param { Boolean } admin
  */
 export const getMenuListByShopID = async (
   $fireStore: firebase.firestore.Firestore,

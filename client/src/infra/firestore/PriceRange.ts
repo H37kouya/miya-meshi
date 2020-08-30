@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import { PriceRange } from '@/lib/types/PriceRange'
-import { Type } from '@/lib/enum'
-const PRICE_RANGE_COLLECTION_NAME = 'priceRanges'
+import { Collection, Type } from '@/lib/enum'
+const PRICE_RANGE_COLLECTION_NAME = Collection.PriceRanges
 
 export const getPriceRangeList = async (
   $fireStore: firebase.firestore.Firestore

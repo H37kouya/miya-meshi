@@ -1,7 +1,8 @@
 import firebase from 'firebase'
 import { Keyword } from '@/lib/types/Keyword'
-import { Type } from '@/lib/enum'
-const KEYWORDS_COLLECTION_NAME = 'keywords'
+import { Collection, Type } from '@/lib/enum'
+
+const KEYWORDS_COLLECTION_NAME = Collection.KEYWORDS
 
 export const getKeywordList = async (
   $fireStore: firebase.firestore.Firestore

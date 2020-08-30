@@ -1,8 +1,8 @@
 import firebase from 'firebase'
 import { Dish } from '@/lib/types/Dish'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 
-const DISH_COLLECTION_NAME = 'dishes'
+const DISH_COLLECTION_NAME = Collection.DISHES
 
 export const getDishList = async (
   $fireStore: firebase.firestore.Firestore
