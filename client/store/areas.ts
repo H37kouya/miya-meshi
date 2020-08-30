@@ -1,26 +1,23 @@
 import { Area } from '@/lib'
-import { ActionTree } from 'vuex'
+import { GetterTree, ActionTree } from 'vuex'
 import { getAreaList } from '@/src/infra/firestore/Area'
 import { GeoLocation } from '@/src/infra/geolocation/Geolocation'
 
-type State = {
-  areas: Area[],
-  nowArea?: Area
-}
-
-export const state = (): State => ({
+export const state = () => ({
   areas: [] as Area[],
-  nowArea: undefined
+  nowArea: undefined as Area|undefined
 })
 
-type Getters = {
-  areas: State['areas'],
-  nowArea: State['nowArea'],
-  canComputedNowArea: boolean,
-  shouldFetchAreas: boolean
+export type State = ReturnType<typeof state>
+
+export type Getters = {
+  areas(state: State): State['areas'],
+  nowArea(state: State): State['nowArea'],
+  canComputedNowArea(state: State): boolean,
+  shouldFetchAreas(state: State): boolean
 }
 
-export const getters = {
+export const getters: GetterTree<State, State> & Getters = {
   areas: (state: State) => state.areas,
   nowArea: (state: State) => state.nowArea,
   canComputedNowArea: (state: State) => state.areas.length > 0,

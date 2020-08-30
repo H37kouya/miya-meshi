@@ -57,10 +57,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
+import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
 export default defineComponent({
+  setup (_, context: SetupContext) {
+    const { dishes } = useDish(context.root)
+
+    return {
+      dishes
+    }
+  },
+
   head: (): MetaInfo => ({
     title: '検索',
     meta: [

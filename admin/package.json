@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "analyze": "nuxt-ts build --analyze",
-    "dev": "nuxt-ts",
+    "dev": "nuxt-ts --port 3001",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",

@@ -4,20 +4,21 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { Dish } from '@/lib'
 import { DetailListItemType } from '@/components/atoms/table/DetailListItemType'
 
 type Props = {
-  times: string[],
-  selectedTimes: string[]
+  dishes: Dish[],
+  selectedIds: string[]
 }
 export default defineComponent({
   props: {
-    times: {
+    dishes: {
       type: Array,
       default: () => []
     },
 
-    selectedTimes: {
+    selectedIds: {
       type: Array,
       default: () => []
     }
@@ -25,10 +26,10 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const listItems = computed(() => {
-      return props.times.map((time: string) => ({
-        id: time,
-        selected: !!props.selectedTimes.find((t: string) => time === t),
-        name: time
+      return props.dishes.map((dish: Dish) => ({
+        id: dish.id,
+        selected: !!props.selectedIds.find((dID: string) => dish.id === dID),
+        name: dish.name
       }) as DetailListItemType)
     })
 

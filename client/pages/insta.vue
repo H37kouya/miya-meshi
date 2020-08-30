@@ -24,14 +24,3 @@ export default defineComponent({
   })
 })
 </script>
-
-<style lang="scss" scoped>
-.to-top-page {
-  font-size: 0.8rem;
-  text-decoration: none;
-
-  &::before {
-    content: '←';
-  }
-}
-</style>

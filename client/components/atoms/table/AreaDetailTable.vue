@@ -5,7 +5,7 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { Area } from '@/lib'
-import { DetailListItem } from '~/components/atoms/table/DetailListItemType'
+import { DetailListItemType } from '@/components/atoms/table/DetailListItemType'
 
 type Props = {
   areas: Area[],
@@ -30,7 +30,7 @@ export default defineComponent({
         id: area.id,
         selected: !!props.selectedIds.find((aID: string) => area.id === aID),
         name: area.name
-      }) as DetailListItem)
+      }) as DetailListItemType)
     })
 
     const onClick = (id: string) => {
