@@ -1,8 +1,9 @@
 import firebase from 'firebase'
 import { Keyword } from '@/lib/types/Keyword'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
-const KEYWORDS_COLLECTION_NAME = 'keywords'
+
+const KEYWORDS_COLLECTION_NAME = Collection.KEYWORDS
 
 /**
  * Menuを削除する

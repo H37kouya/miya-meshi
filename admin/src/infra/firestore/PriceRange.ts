@@ -1,8 +1,9 @@
 import firebase from 'firebase'
 import { PriceRange } from '@/lib/types/PriceRange'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
-const PRICE_RANGE_COLLECTION_NAME = 'priceRanges'
+
+const PRICE_RANGE_COLLECTION_NAME = Collection.PriceRanges
 
 /**
  * Menuを削除する

@@ -14,7 +14,8 @@ import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 import { Area } from '@/lib'
-import { AreaJa, AreaMaxStringSize } from '@/src/types/Area'
+import { Area as AreaLang } from '@/lang/ja/Area'
+import { AreaMaxStringSize } from '@/src/types/Area'
 
 type Props = {
   value: Area['name']
@@ -30,7 +31,7 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
-    const label = AreaJa.NAME
+    const label = AreaLang.NAME
     const MAX_LENGTH = AreaMaxStringSize.NAME
 
     const counter = computed(() => {

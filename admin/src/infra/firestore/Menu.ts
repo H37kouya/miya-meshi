@@ -1,8 +1,9 @@
 import firebase from 'firebase'
 import { Menu } from '@/lib/types/Menu'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
-const MENU_COLLECTION_NAME = 'menus'
+
+const MENU_COLLECTION_NAME = Collection.MENUS
 
 /**
  * Menuを削除する
