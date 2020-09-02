@@ -87,7 +87,7 @@
             />
 
             <v-row>
-              <v-col cols="4">
+              <v-col cols="12" sm="4">
                 <v-select
                   v-model="state.menu.dishes"
                   :items="dishesListForSelect"
@@ -97,7 +97,7 @@
                 />
               </v-col>
 
-              <v-col cols="4">
+              <v-col cols="12" sm="4">
                 <v-select
                   v-model="state.menu.keywords"
                   :items="keywordsListForSelect"
@@ -107,7 +107,7 @@
                 />
               </v-col>
 
-              <v-col cols="4">
+              <v-col cols="12" sm="4">
                 <v-select
                   v-model="state.menu.timeZone"
                   :items="timeZoneSelect"

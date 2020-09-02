@@ -1,13 +1,15 @@
 <template>
   <v-container>
-    <v-row justify="space-between">
+    <v-row class="mb-4" justify="space-between">
       <AdminMainText>
         キーワード一覧
       </AdminMainText>
 
-      <v-btn to="/keywords/create" color="success">
-        キーワード追加
-      </v-btn>
+      <div class="pt-4 pt-sm-0 ml-auto">
+        <v-btn to="/keywords/create" color="success">
+          キーワード追加
+        </v-btn>
+      </div>
     </v-row>
 
     <v-row>

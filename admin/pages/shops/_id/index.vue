@@ -6,7 +6,7 @@
       </AdminMainText>
     </v-row>
 
-    <v-row justify="center" class="mt-4">
+    <v-row class="mt-4">
       <v-col cols="6" md="3">
         <ListShopAdminButton />
       </v-col>

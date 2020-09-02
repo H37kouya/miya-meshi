@@ -11,7 +11,7 @@
         </AdminMainText>
       </div>
 
-      <v-btn :to="`/shops/${state.shop.id}`">
+      <v-btn :to="`/shops/${state.shop.id}`" class="ml-auto ml-sm-0 mt-4">
         店舗へ戻る
       </v-btn>
     </v-row>

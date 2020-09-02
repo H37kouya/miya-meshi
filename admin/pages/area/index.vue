@@ -11,7 +11,7 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col cols="3">
+      <v-col cols="6" sm="3">
         <AddressRelationAreaAdminCard />
       </v-col>
     </v-row>
