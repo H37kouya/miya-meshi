@@ -2,25 +2,53 @@
   <v-container>
     <v-row justify="space-between">
       <AdminMainText>
-        エリアと住所を紐づける
+        <span style="font-size: 95%;">エリアと住所を紐づける</span>
       </AdminMainText>
 
-      <v-btn to="/area" color="success">
-        エリア一覧
-      </v-btn>
+      <div class="pt-4 pt-sm-0">
+        <v-btn to="/area" color="success">
+          エリア一覧
+        </v-btn>
+      </div>
     </v-row>
 
     <div class="mt-4">
-      <v-row justify="space-between">
-        <div>
+      <v-row justify="space-between flex-column-reverse flex-sm-column">
+        <div v-if="$device.isDesktop">
           <v-btn-toggle>
-            <v-btn v-for="(hira, key) in hiragana" :key="`hiragana-${key}`" @click="selectHiragana(hira.arg)">
+            <v-btn
+              v-for="(hira, key) in hiragana"
+              :key="`hiragana-${key}`"
+              @click="selectHiragana(hira.arg)"
+            >
               {{ hira.name }}
             </v-btn>
           </v-btn-toggle>
         </div>
 
-        <div>
+        <div v-else-if="$device.isMobileOrTablet">
+          <v-btn-toggle class="mb-4">
+            <v-btn
+              v-for="(hira, key) in hiragana.slice(0, 6)"
+              :key="`hiragana-${key}`"
+              @click="selectHiragana(hira.arg)"
+            >
+              {{ hira.name }}
+            </v-btn>
+          </v-btn-toggle>
+
+          <v-btn-toggle class="mb-4">
+            <v-btn
+              v-for="(hira, key) in hiragana.slice(6)"
+              :key="`hiragana-${key}`"
+              @click="selectHiragana(hira.arg)"
+            >
+              {{ hira.name }}
+            </v-btn>
+          </v-btn-toggle>
+        </div>
+
+        <div class="mb-4 mb-sm-0 ml-auto ml-sm-0">
           <v-btn color="primary" x-large @click="complete">
             編集完了
           </v-btn>
@@ -29,7 +57,7 @@
     </div>
 
     <v-row class="mt-4">
-      <v-col v-for="(address, key) in addresses" :key="key" cols="3">
+      <v-col v-for="(address, key) in addresses" :key="key" cols="6" sm="3">
         <p class="mb-0">
           <ruby>
             <rb>{{ address.obj.name }}</rb>

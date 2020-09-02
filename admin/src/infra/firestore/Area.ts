@@ -1,9 +1,9 @@
 import firebase from 'firebase'
 import { Area } from '@/lib/types/Area'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 
-const AREA_COLLECTION_NAME = 'areas'
+const AREA_COLLECTION_NAME = Collection.AREAS
 
 /**
  * Shopを追加する

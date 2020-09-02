@@ -1,10 +1,10 @@
 import firebase from 'firebase'
 import { Shop } from '@/lib/types/Shop'
-import { Type } from '@/lib/enum'
+import { Collection, Type } from '@/lib/enum'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { formatShopAddress, formatShopPostal } from '@/src/utils/Shop'
 
-const SHOP_COLLECTION_NAME = 'shops'
+const SHOP_COLLECTION_NAME = Collection.SHOPS
 
 /**
  * Shopを追加する

@@ -12,7 +12,7 @@
       </div>
     </v-row>
 
-    <v-row justify="center" class="mt-4">
+    <v-row class="mt-4">
       <v-col v-if="state.shop.id" cols="6" md="3">
         <CardButton
           :to="`/shops/${state.shop.id}`"

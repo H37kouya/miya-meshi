@@ -1,9 +1,15 @@
+import { Collection } from './Collection'
+import { TimeZone } from './TimeZone'
 import { Type } from './Type'
 
 export {
-    Type
+  Collection,
+  TimeZone,
+  Type
 }
 
 export default {
-    Type
+  Collection,
+  TimeZone,
+  Type
 }
