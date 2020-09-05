@@ -16,7 +16,7 @@ Prefixに`FIREBASE_`とつくものは、[Firebase](https://firebase.google.com/
 | FIREBASE_MESSAGING_SENDER_ID | string  |         |
 | FIREBASE_APP_ID              | string  |         |
 | FIREBASE_MEASUREMENT_ID      | string  |         |
-| TEST_ENV                     | boolean | ローカル環境、テスト環境であることを示す。 |
+| TEST_ENV                     | boolean | TRUE時は、ローカル環境、テスト環境であることを示す。 |
 
 ## 管理者側
 
@@ -31,4 +31,4 @@ Prefixに`FIREBASE_`とつくものは、[Firebase](https://firebase.google.com/
 | FIREBASE_APP_ID              | string  |         |
 | FIREBASE_MEASUREMENT_ID      | string  |         |
 | POSTAL_API_KEY               | string  | PostcodeJP APIで発行 https://postcode-jp.com/ |
-| TEST_ENV                     | boolean | ローカル環境、テスト環境であることを示す。 |
+| TEST_ENV                     | boolean | TRUE時は、ローカル環境、テスト環境であることを示す。 |
