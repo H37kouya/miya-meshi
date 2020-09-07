@@ -34,7 +34,7 @@ import { computed, defineComponent, reactive, SetupContext, watchEffect } from '
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { Dish, Keyword, Shop, Enum, Menu } from '@/lib'
+import { Dish, Keyword, Shop, Menu } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuByID } from '@/src/infra/firestore/Menu'
 import { getDishList } from '@/src/infra/firestore/Dish'
@@ -42,8 +42,6 @@ import { getKeywordList } from '@/src/infra/firestore/Keyword'
 
 export default defineComponent({
   middleware: 'admin-auth',
-
-
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({

@@ -33,12 +33,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext } from '@vue/composition-api'
 import { Shop } from '@/lib'
-import { ShopMaxStringSize } from '@/src/types/Shop'
-import { Shop as ShopJa } from '@/lang/ja/Shop'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
-import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
   value: Shop['name']

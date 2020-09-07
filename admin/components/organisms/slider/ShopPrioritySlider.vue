@@ -32,7 +32,6 @@
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { Shop } from '@/lib'
-import { ShopMaxStringSize } from '@/src/types/Shop'
 import { Shop as ShopJa } from '@/lang/ja/Shop'
 
 type Props = {
