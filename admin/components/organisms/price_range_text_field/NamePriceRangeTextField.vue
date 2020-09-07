@@ -14,7 +14,7 @@ import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 import { PriceRange } from '@/lib'
-import { PriceRangeJa } from '@/src/types/PriceRange'
+import { PriceRange as PriceRangeJa } from '@/lang/ja/PriceRange'
 
 type Props = {
   value: PriceRange['name']

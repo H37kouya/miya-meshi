@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Dish, Shop, PriceRange, Keyword, Enum } from '@/lib'
+import { Dish, Shop, PriceRange, Keyword } from '@/lib'
 import { editShop as editDBShop, getShopByID } from '@/src/infra/firestore/Shop'
 import { MetaInfo } from 'vue-meta'
 import { formatShopAddress } from '@/src/utils/Shop'

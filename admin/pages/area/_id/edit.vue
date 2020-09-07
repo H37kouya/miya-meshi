@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Area } from '@/lib'
 import { editArea as editDBArea, getAreaByID } from '@/src/infra/firestore/Area'
 

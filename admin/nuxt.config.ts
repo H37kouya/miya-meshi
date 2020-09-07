@@ -1,5 +1,4 @@
 import { Configuration } from '@nuxt/types'
-import colors from 'vuetify/es5/util/colors'
 import { FirebaseModuleConfiguration } from '@nuxtjs/firebase'
 import { AxiosOptions } from '@nuxtjs/axios'
 

@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watch } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 
 type Props = {
   label: string,
