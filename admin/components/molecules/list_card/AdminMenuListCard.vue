@@ -36,8 +36,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Menu } from '~/src/types/Menu'
-import { Shop } from '~/src/types/Shop'
+import { Menu, Shop } from '@/lib'
 
 type Props = {
   menu: Menu[],
