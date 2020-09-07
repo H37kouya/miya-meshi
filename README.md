@@ -1,5 +1,7 @@
 # Readme
 
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/H37kouya/miya-meshi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/H37kouya/miya-meshi/context:javascript)
+
 ## Description
 
 > Nuxt.js (on comopsition api) / TypeScript / FireBase
