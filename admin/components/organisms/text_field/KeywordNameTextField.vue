@@ -14,7 +14,7 @@ import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 import { Keyword } from '@/lib'
-import { KeywordJa } from '@/src/types/Keyword'
+import { Keyword as KeywordJa } from '@/lang/ja/Keyword'
 
 type Props = {
   value: Keyword['name']

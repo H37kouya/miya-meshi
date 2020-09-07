@@ -14,7 +14,7 @@ import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 import { Dish } from '@/lib'
-import { DishJa } from '@/src/types/Dish'
+import { Dish as DishJa } from '@/lang/ja/Dish'
 
 type Props = {
   value: Dish['name']

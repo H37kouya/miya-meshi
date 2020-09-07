@@ -11,7 +11,8 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { Menu } from '@/lib'
-import { MenuJa, MenuMaxStringSize } from '@/src/types/Menu'
+import { MenuMaxStringSize } from '@/src/types/Menu'
+import { Menu as MenuJa } from '@/lang/ja/Menu'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
