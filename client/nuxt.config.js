@@ -10,12 +10,6 @@ const nuxtConfig = {
   */
   target: 'server',
   /*
-  ** Environment Config
-   */
-  env: {
-    POSTAL_API_KEY: process.env.POSTAL_API_KEY
-  },
-  /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
