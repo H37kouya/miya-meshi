@@ -11,7 +11,9 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
-    "test": "jest"
+    "test": "jest",
+    "generate:gsi-muniFuluJs-to-json": "cd scripts && ts-node GSIMuniFuluJsToJson",
+    "generate:gsi-muniTochigiJs-to-json": "cd scripts && ts-node GSIMuniTochigiJsToJson"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^1.0.0",

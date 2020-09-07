@@ -33,4 +33,4 @@ GSI.MUNI_ARRAY['9386'] = '9,栃木県,9386,高根沢町'
 GSI.MUNI_ARRAY['9407'] = '9,栃木県,9407,那須町'
 GSI.MUNI_ARRAY['9411'] = '9,栃木県,9411,那珂川町'
 
-export { GSI }
+module.exports = GSI
