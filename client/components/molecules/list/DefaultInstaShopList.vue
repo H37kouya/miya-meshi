@@ -24,7 +24,7 @@
         </template>
 
         <template v-else>
-          <v-col>
+          <v-col class="d-flex justify-center align-center not-founds">
             <p class="mb-0 text-center">
               条件に見合うお店が見つかりませんでした。
             </p>
@@ -79,4 +79,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import "defaultList";
+
+.not-founds {
+  height: 160px;
+}
 </style>

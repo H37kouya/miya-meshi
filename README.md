@@ -12,14 +12,18 @@
 
 ``` shell
 # メイン画面と管理者画面の同時起動
-$ cd client && npm run dev & cd admin && npm run dev
+$ make dev
 
 # メイン画面起動
-$ cd client && npm run dev
+$ make client-dev
 
 # 管理者画面の起動
-$ cd admin && npm run dev
+$ make admin-dev
 ```
+
+### Windows
+
+- [Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
 
 ## Docs
 

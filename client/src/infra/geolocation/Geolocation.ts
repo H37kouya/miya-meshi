@@ -1,4 +1,4 @@
-import { GSI } from '@/assets/json/muni-tochigi'
+import GSI from '@/assets/json/muni-tochigi.json'
 import axios from 'axios'
 import { kanji2num } from '@/src/utils/String'
 const baseApiURLReverse = 'https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress'
