@@ -1,4 +1,4 @@
-import { Menu } from './Menu'
+import { Menu } from '@/lib/types/Menu'
 
 export type MenuFormState = {
   menu: {

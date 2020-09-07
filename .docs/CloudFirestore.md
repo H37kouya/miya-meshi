@@ -41,6 +41,7 @@
 | keywords           | `Array<String>`    | キーワード一覧      |
 | instaNumber        | `Number`           | インスタの番号      |
 | instaShopLink      | `String`           | インスタの店舗のリンク |
+| displayMode        | `String`           | SIMPLE: 簡易掲載モード、 DEFAULT: ノーマルモード |
 | createdAt          | `DateTime`         | 作成日時           |
 | deletedAt          | `DateTime`         | 削除日時           |
 | updatedAt          | `DateTime`         | 更新日時           |

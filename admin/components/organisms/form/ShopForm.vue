@@ -19,16 +19,34 @@
 
       <v-col cols="12" sm="4">
         <v-card outlined>
-          <v-card-title>サイト設定</v-card-title>
+          <v-card-title class="pb-2 pb-sm-4">サイト設定</v-card-title>
 
-          <v-card-subtitle>店舗公開設定</v-card-subtitle>
-          <v-card-text class="pb-0">
-            <v-switch
-              v-model="state.shop.public"
-              :label="state.shop.public ? '公開' : '非公開'"
-              class="mt-0"
-            />
-          </v-card-text>
+          <v-row>
+            <v-col class="py-2 py-sm-4" cols="6">
+              <v-card-subtitle class="py-2 py-sm-4">店舗公開設定</v-card-subtitle>
+              <v-card-text class="pb-0">
+                <v-switch
+                  v-model="state.shop.public"
+                  :label="state.shop.public ? '公開' : '非公開'"
+                  class="mt-0"
+                />
+              </v-card-text>
+            </v-col>
+
+            <v-col class="py-2 py-sm-4" cols="6">
+              <v-card-subtitle class="py-2 py-sm-4">公開モード</v-card-subtitle>
+              <v-card-text class="pb-0">
+                <v-switch
+                  v-model="state.shop.displayMode"
+                  :label="state.shop.displayMode === displayMode.SIMPLE ? '簡易掲載' : '通常公開'"
+                  :true-value="displayMode.DEFAULT"
+                  :false-value="displayMode.SIMPLE"
+                  class="mt-0"
+                />
+              </v-card-text>
+              <p class="font-small mb-0">現在、「{{ state.shop.displayMode === displayMode.SIMPLE ? '簡易掲載' : '通常公開' }}」です。</p>
+            </v-col>
+          </v-row>
 
           <v-card-subtitle>優先度</v-card-subtitle>
           <v-card-text class="pb-3">
@@ -134,7 +152,7 @@
 
                 <v-select
                   v-model="state.shop.timeZone"
-                  :items="timeZoneSelect"
+                  :items="timeZoneJa"
                   :menu-props="{ maxHeight: '400' }"
                   label="時間帯"
                   multiple
@@ -330,6 +348,8 @@ import { v4 as createUUID } from 'uuid'
 import { Shop, Dish, PriceRange, Keyword } from '@/lib'
 import { getLongitudeAndLatitudeByAddress } from '@/src/infra/geolocation/Geolocation'
 import { getAddressByPostal } from '@/src/infra/postal/Postal'
+import { useTimeZone } from '@/src/CompositonFunctions/timeZones/UseTimeZone'
+import { DisplayMode } from '@/lib/enum/DisplayMode'
 
 type Props = {
   shop?: Shop,
@@ -404,7 +424,8 @@ export default defineComponent({
         keywords: [] as string[],
         latitude: 0,
         longitude: 0,
-        timeZone: []
+        timeZone: [],
+        displayMode: DisplayMode.DEFAULT
       }
     })
 
@@ -425,9 +446,7 @@ export default defineComponent({
       return props.keywords.map(keyword => keyword.name)
     })
 
-    const timeZoneSelect = computed(() => {
-      return ['朝', '昼', '夜']
-    })
+    const { timeZoneJa } = useTimeZone()
 
     const onGetAddress = async () => {
       if (!state.shop.address) {
@@ -459,45 +478,7 @@ export default defineComponent({
     }
 
     watch(() => props.shop, (newVal, _) => {
-      state.shop.name = newVal ? newVal.name : state.shop.name
-      state.shop.prefixName = newVal ? newVal.prefixName : state.shop.prefixName
-      state.shop.description = newVal ? newVal.description : state.shop.description
-      state.shop.intro = newVal ? newVal.intro : state.shop.intro
-      state.shop.imageLink = newVal ? newVal.imageLink : state.shop.imageLink
-      state.shop.menuImageLink = newVal ? newVal.menuImageLink : state.shop.menuImageLink
-      state.shop.facebookLink = newVal ? newVal.facebookLink : state.shop.facebookLink
-      state.shop.homepageLink = newVal ? newVal.homepageLink : state.shop.homepageLink
-      state.shop.instaLink = newVal ? newVal.instaLink : state.shop.instaLink
-      state.shop.lineLink = newVal ? newVal.lineLink : state.shop.lineLink
-      state.shop.twitterLink = newVal ? newVal.twitterLink : state.shop.twitterLink
-      state.shop.uberEatsLink = newVal ? newVal.uberEatsLink : state.shop.uberEatsLink
-      state.shop.youtubeLink = newVal ? newVal.youtubeLink : state.shop.youtubeLink
-      state.shop.priority = newVal ? newVal.priority : state.shop.priority
-      state.shop.priceRange = newVal ? newVal.priceRange : state.shop.priceRange
-      state.shop.public = newVal ? newVal.public : state.shop.public
-      state.shop.address = newVal ? newVal.address : state.shop.address
-      state.shop.buildingName = newVal ? newVal.buildingName : state.shop.buildingName
-      state.shop.postal = newVal ? newVal.postal : state.shop.postal
-      state.shop.tel = newVal ? newVal.tel : state.shop.tel
-      state.shop.canTakeout = newVal ? newVal.canTakeout : state.shop.canTakeout
-      state.shop.businessHour1 = newVal ? newVal.businessHour1 : state.shop.businessHour1
-      state.shop.businessHour2 = newVal ? newVal.businessHour2 : state.shop.businessHour2
-      state.shop.parkingLot = newVal ? newVal.parkingLot : state.shop.parkingLot
-      state.shop.regularHoliday = newVal ? newVal.regularHoliday : state.shop.regularHoliday
-      state.shop.seat = newVal ? newVal.seat : state.shop.seat
-      state.shop.instaNumber = newVal ? newVal.instaNumber : state.shop.instaNumber
-      state.shop.instaShopLink = newVal ? newVal.instaShopLink : state.shop.instaShopLink
-      state.shop.latitude = newVal ? newVal.latitude : state.shop.latitude
-      state.shop.longitude = newVal ? newVal.longitude : state.shop.longitude
-      state.shop.dishes = newVal ? newVal.dishes : state.shop.dishes
-      state.shop.keywords = newVal ? newVal.keywords : state.shop.keywords
-      state.shop.timeZone = newVal ? newVal.timeZone : state.shop.timeZone
-      state.shop.businessStartHour1 = newVal ? newVal.businessStartHour1 : state.shop.businessStartHour1
-      state.shop.businessEndHour1 = newVal ? newVal.businessEndHour1 : state.shop.businessEndHour1
-      state.shop.businessLoHour1 = newVal ? newVal.businessLoHour1 : state.shop.businessLoHour1
-      state.shop.businessStartHour2 = newVal ? newVal.businessStartHour2 : state.shop.businessStartHour2
-      state.shop.businessEndHour2 = newVal ? newVal.businessEndHour2 : state.shop.businessEndHour2
-      state.shop.businessLoHour2 = newVal ? newVal.businessLoHour2 : state.shop.businessLoHour2
+      state.shop = newVal ? newVal : state.shop
     })
 
     const onSubmit = () => context.emit('submit', state.shop)
@@ -508,7 +489,8 @@ export default defineComponent({
       ShopJa,
       uuid,
       keywordsListForSelect,
-      timeZoneSelect,
+      timeZoneJa,
+      displayMode: DisplayMode,
       priceRangeListForSelect,
       onGetAddress,
       onGetAddressByPostal,
