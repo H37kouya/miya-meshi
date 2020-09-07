@@ -4,21 +4,15 @@
   >
     <RecruitmentFooterField />
 
-    <v-lazy>
-      <SearchField />
-    </v-lazy>
+    <SearchField />
 
-    <v-lazy>
-      <div class="miya-meshi-container border-grey-top">
-        <MiyaMeshiFooterField />
-      </div>
-    </v-lazy>
+    <div class="miya-meshi-container border-grey-top">
+      <MiyaMeshiFooterField />
+    </div>
 
-    <v-lazy>
-      <div class="ulab-container">
-        <UlabFooterField />
-      </div>
-    </v-lazy>
+    <div class="ulab-container">
+      <UlabFooterField />
+    </div>
 
     <div class="copyright-container">
       <CopylightFooterField />
