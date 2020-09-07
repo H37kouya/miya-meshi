@@ -12,7 +12,7 @@
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { useModel } from '@/src/CompositonFunctions/utils/UseModel'
 import { Shop } from '@/lib'
-import { ShopJa } from '@/src/types/Shop'
+import { Shop as ShopJa } from '@/lang/ja/Shop'
 import { validateTel } from '~/src/utils/PhoneNumber'
 
 type Props = {

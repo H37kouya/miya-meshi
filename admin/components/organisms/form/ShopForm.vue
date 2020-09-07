@@ -341,7 +341,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
-import { ShopJa, DEFAULT_IMAGE } from '@/src/types/Shop'
+import { DEFAULT_IMAGE } from '@/src/types/Shop'
+import { Shop as ShopJa } from '@/lang/ja/Shop'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { isShop } from '@/src/utils/Shop'
 import { v4 as createUUID } from 'uuid'
