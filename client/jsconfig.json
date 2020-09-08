@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "es2020",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-          "*"
+        "*"
       ],
       "~/*": [
-          "*"
+        "*"
       ]
     }
   },
+  "include": [
+    "./*"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",
