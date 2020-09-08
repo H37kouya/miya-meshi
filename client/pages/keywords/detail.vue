@@ -74,7 +74,7 @@ import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
-const times = ['朝', '昼', '夜']
+const times = [{id: 'morning', name: '朝'}, {id: 'lunch', name: '昼'}, {id: 'night', name: '夜'}]
 
 type State = {
   areaSelectedID: string[],
@@ -124,7 +124,8 @@ export default defineComponent({
       return {
         path: '/search',
         query: {
-          areas: state.areaSelectedID
+          areas: state.areaSelectedID,
+          timezones: state.timeSelectedName
         }
       }
     })
