@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
+    "target": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "lib": [
       "ESNext",
@@ -18,10 +18,10 @@
     "baseUrl": ".",
     "paths": {
       "~/*": [
-        "./*"
+        "*"
       ],
       "@/*": [
-        "./*"
+        "*"
       ]
     },
     "types": [
@@ -37,9 +37,13 @@
       "@nuxtjs/vuetify"
     ]
   },
+  "include": [
+    "./*"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",
-    "dist"
+    "dist",
+    "coverage"
   ]
 }
