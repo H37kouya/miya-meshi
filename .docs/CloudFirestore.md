@@ -66,6 +66,16 @@
 | deletedAt       | `DateTime`      | 削除日時           |
 | updatedAt       | `DateTime`      | 更新日時           |
 
+## Area
+
+> エリアテーブル
+
+| Column Name     | Type            | Explanation        |
+| --------------  | --------------- | ------------------ |
+| id              | `String`        | Area ID            |
+| name            | `String`        | エリア名            |
+| addresses       | `Array<String>` | 住所一覧            |
+
 ## Keyword
 
 | Column Name     | Type            | Explanation        |
