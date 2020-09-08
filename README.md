@@ -27,3 +27,9 @@ $ make admin-dev
 
 - [DB テーブル定義 (Cloud FireStore 定義)](./.docs/CloudFirestore.md)
 - [クライアントルート定義](./.docs/RoutingClient.md)
+
+## トラブルシューティング
+
+### .vueファイル内でimportのパス解決ができないとき
+
+エディターで開くルートディレクトリを`./`から`./admin`や`./client`に変更するとパスの解決ができた。
