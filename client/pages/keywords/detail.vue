@@ -73,8 +73,9 @@ import { computed, defineComponent, reactive, SetupContext } from '@vue/composit
 import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
+import { Time } from '@/lib'
 
-const times = [{id: 'morning', name: '朝'}, {id: 'lunch', name: '昼'}, {id: 'night', name: '夜'}]
+const times = [{id: 'morning', name: '朝'}, {id: 'lunch', name: '昼'}, {id: 'night', name: '夜'}] as Time[]
 
 type State = {
   areaSelectedID: string[],
