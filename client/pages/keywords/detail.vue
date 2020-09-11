@@ -89,7 +89,11 @@ export default defineComponent({
     const state = reactive<State>({
       areaSelectedID: [] as string[],
       dishSelectedID: [] as string[],
-      timeSelectedName: [] as string[]
+      timeSelectedName: [
+        'morning',
+        'lunch',
+        'night'
+      ] as string[]
     })
 
     const { areas } = useArea(context.root)
