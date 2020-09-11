@@ -5,7 +5,7 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
 import { Dish } from '@/lib'
-import { DetailListItemType } from '@/components/atoms/table/DetailListItemType'
+import { DetailListItemType, DETAIL_LIST_ITEM, DETAIL_LIST_ITEM_LANG } from '@/components/atoms/table/DetailListItemType'
 
 type Props = {
   dishes: Dish[],
@@ -26,11 +26,19 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const listItems = computed(() => {
-      return props.dishes.map((dish: Dish) => ({
-        id: dish.id,
-        selected: !!props.selectedIds.find((dID: string) => dish.id === dID),
-        name: dish.name
-      }) as DetailListItemType)
+      return [
+        {
+          id: DETAIL_LIST_ITEM.ALL,
+          // 配列が空の時、「すべて」を表示する
+          selected: props.selectedIds.length === 0,
+          name: DETAIL_LIST_ITEM_LANG.ALL
+        } as DetailListItemType,
+        ...props.dishes.map((dish: Dish) => ({
+          id: dish.id,
+          selected: !!props.selectedIds.find((dID: string) => dish.id === dID),
+          name: dish.name
+        }) as DetailListItemType)
+      ]
     })
 
     const onClick = (id: string) => {
