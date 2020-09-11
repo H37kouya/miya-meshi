@@ -4,10 +4,11 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { Time } from '@/lib'
 import { DetailListItemType } from '@/components/atoms/table/DetailListItemType'
 
 type Props = {
-  times: string[],
+  times: Time[],
   selectedTimes: string[]
 }
 export default defineComponent({
@@ -25,10 +26,10 @@ export default defineComponent({
 
   setup (props: Props, context: SetupContext) {
     const listItems = computed(() => {
-      return props.times.map((time: string) => ({
-        id: time,
-        selected: !!props.selectedTimes.find((t: string) => time === t),
-        name: time
+      return props.times.map((time: Time) => ({
+        id: time.id,
+        selected: !!props.selectedTimes.find((t: string) => time.id === t),
+        name: time.name
       }) as DetailListItemType)
     })
 
