@@ -1,6 +1,7 @@
 # Readme
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/H37kouya/miya-meshi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/H37kouya/miya-meshi/context:javascript)
+[![DeepScan grade](https://deepscan.io/api/teams/8910/projects/13774/branches/241082/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=8910&pid=13774&bid=241082)
 
 ## Description
 
