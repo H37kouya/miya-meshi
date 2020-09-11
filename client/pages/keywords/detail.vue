@@ -21,7 +21,7 @@
 
           <div class="d-flex justify-center">
             <KeywordMainText id="search_by_area" :level="2">
-              地域
+              エリア
             </KeywordMainText>
           </div>
 
@@ -35,7 +35,7 @@
 
           <div class="d-flex justify-center">
             <KeywordMainText id="search_by_food" :level="2">
-              料理
+              ジャンル
             </KeywordMainText>
           </div>
 
@@ -74,8 +74,9 @@ import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Time } from '@/lib'
+import { DETAIL_LIST_ITEM } from '@/components/atoms/table/DetailListItemType'
 
-const times = [{id: 'morning', name: '朝'}, {id: 'lunch', name: '昼'}, {id: 'night', name: '夜'}] as Time[]
+const times = [{ id: 'morning', name: '朝' }, { id: 'lunch', name: '昼' }, { id: 'night', name: '夜' }] as Time[]
 
 type State = {
   areaSelectedID: string[],
@@ -88,13 +89,25 @@ export default defineComponent({
     const state = reactive<State>({
       areaSelectedID: [] as string[],
       dishSelectedID: [] as string[],
-      timeSelectedName: [] as string[]
+      timeSelectedName: [
+        'morning',
+        'lunch',
+        'night'
+      ] as string[]
     })
 
     const { areas } = useArea(context.root)
     const { dishes } = useDish(context.root)
 
     const onAreaClick = (id: string) => {
+      if (id === DETAIL_LIST_ITEM.ALL) {
+        if (state.areaSelectedID.length > 0) {
+          state.areaSelectedID = []
+        }
+
+        return
+      }
+
       const areaID = state.areaSelectedID.find((aID: string) => id === aID)
       if (areaID) {
         state.areaSelectedID = state.areaSelectedID.filter((aID: string) => id !== aID)
@@ -104,6 +117,14 @@ export default defineComponent({
     }
 
     const onDishClick = (id: string) => {
+      if (id === DETAIL_LIST_ITEM.ALL) {
+        if (state.dishSelectedID.length > 0) {
+          state.dishSelectedID = []
+        }
+
+        return
+      }
+
       const dishID = state.dishSelectedID.find((dID: string) => id === dID)
       if (dishID) {
         state.dishSelectedID = state.dishSelectedID.filter((dID: string) => id !== dID)
