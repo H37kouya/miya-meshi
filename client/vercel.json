@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "regions": "hnd1",
+  "regions": ["hnd1"],
   "public": true,
   "builds": [
     {
