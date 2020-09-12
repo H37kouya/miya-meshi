@@ -5,12 +5,8 @@
     </MainText>
 
     <div class="u-light-grey-background">
-      <v-container class="max-width-480">
-        <p class="mb-0">
-          <nuxt-link to="/keywords" class="to-keyword">
-            検索に戻る
-          </nuxt-link>
-        </p>
+      <v-container class="py-0">
+        <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
       </v-container>
 
       <div class="d-flex justify-center py-2">
@@ -76,7 +72,21 @@ import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Time } from '@/lib'
 import { DETAIL_LIST_ITEM } from '@/components/atoms/table/DetailListItemType'
 
+const breadcrumbs = [
+  { exact: true, text: 'Home', to: '/' },
+  { exact: true, text: '検索', to: '/keywords' },
+  { exact: true, text: '詳細検索', to: '/keywords/detail' }
+] as
+Partial<{
+  disabled: boolean
+  exact: boolean
+  href: string
+  link: boolean
+  text: string | number
+  to: string | object
+}>[]
 const times = [{ id: 'morning', name: '朝' }, { id: 'lunch', name: '昼' }, { id: 'night', name: '夜' }] as Time[]
+
 
 type State = {
   areaSelectedID: string[],
@@ -154,6 +164,7 @@ export default defineComponent({
 
     return {
       areas,
+      breadcrumbs,
       dishes,
       onAreaClick,
       onDishClick,

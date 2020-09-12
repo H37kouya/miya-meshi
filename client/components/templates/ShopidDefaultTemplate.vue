@@ -1,5 +1,9 @@
 <template>
   <div class="mt-4">
+    <v-container>
+      <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
+    </v-container>
+
     <HeaderShopField
       :src="shop.imageLink"
       :name="shop.name"
@@ -56,12 +60,26 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
-import { Shop, Menu } from '~/lib'
+import { Shop, Menu } from '@/lib'
+
+const breadcrumbs = [
+  { exact: true, text: 'Home', to: '/' },
+  { exact: true, text: 'お店で探す', to: '/shops' }
+] as
+Partial<{
+  disabled: boolean
+  exact: boolean
+  href: string
+  link: boolean
+  text: string | number
+  to: string | object
+}>[]
 
 type Props = {
   shop: Shop,
   menus: Menu[]
 }
+
 export default defineComponent({
   props: {
     shop: {
@@ -84,7 +102,23 @@ export default defineComponent({
       return props.shop.menuImageLink[0]
     })
 
+    const computedBreadcrumbs = computed(() => {
+      return [
+        ...breadcrumbs,
+        { exact: true, text: props.shop.name, to: `/shops/${props.shop.id}` }
+      ]as
+      Partial<{
+        disabled: boolean
+        exact: boolean
+        href: string
+        link: boolean
+        text: string | number
+        to: string | object
+      }>[]
+    })
+
     return {
+      breadcrumbs: computedBreadcrumbs,
       menuImage
     }
   }

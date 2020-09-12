@@ -6,15 +6,13 @@
 
     <div class="u-light-grey-background">
       <v-container>
+        <div>
+          <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
+        </div>
+
         <v-row justify="center">
           <v-col cols="12" class="d-flex justify-center">
             <div class="max-width-480">
-              <p>
-                <nuxt-link to="/" class="to-top-page">
-                  トップページへ
-                </nuxt-link>
-              </p>
-
               <div class="mb-2">
                 <p class="mb-0 search-title">
                   フリーワード検索
@@ -61,11 +59,25 @@ import { defineComponent, SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
+const breadcrumbs = [
+  { exact: true, text: 'Home', to: '/' },
+  { exact: true, text: '検索', to: '/keywords' }
+] as
+Partial<{
+  disabled: boolean
+  exact: boolean
+  href: string
+  link: boolean
+  text: string | number
+  to: string | object
+}>[]
+
 export default defineComponent({
   setup (_, context: SetupContext) {
     const { dishes } = useDish(context.root)
 
     return {
+      breadcrumbs,
       dishes
     }
   },
