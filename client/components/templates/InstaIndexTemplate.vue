@@ -5,13 +5,11 @@
     </MainText>
 
     <div class="u-light-grey-background">
-      <v-container class="max-width-480">
-        <p class="mb-0">
-          <nuxt-link to="/" class="to-top-page">
-            トップページへ
-          </nuxt-link>
-        </p>
+      <v-container class="py-0">
+        <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
+      </v-container>
 
+      <v-container class="max-width-480">
         <v-combobox
           v-model="selectedNumber"
           :items="canSelectInstaNumber"
@@ -30,6 +28,19 @@
 import { defineComponent } from '@vue/composition-api'
 import { Shop } from '@/lib'
 import { useSearchInstaShopByInstaNumber } from '@/src/CompositonFunctions/shops/UseSearchInstaShopByInstaNumber'
+
+const breadcrumbs = [
+  { exact: true, text: 'Home', to: '/' },
+  { exact: true, text: 'インスタからのおすすめ', to: '/insta' }
+] as
+Partial<{
+  disabled: boolean
+  exact: boolean
+  href: string
+  link: boolean
+  text: string | number
+  to: string | object
+}>[]
 
 type Props = {
   shops: Shop[]
@@ -51,6 +62,7 @@ export default defineComponent({
     } = useSearchInstaShopByInstaNumber<Props>(props)
 
     return {
+      breadcrumbs,
       canSelectInstaNumber,
       filterShops,
       selectedNumber
