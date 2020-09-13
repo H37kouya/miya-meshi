@@ -1,9 +1,6 @@
-const nuxtConfig = {
-  /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
+import { NuxtConfig } from '@nuxt/types'
+
+const nuxtConfig: NuxtConfig = {
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -16,6 +13,7 @@ const nuxtConfig = {
   head: {
     titleTemplate: '%s - ' + 'みやメシ応援隊',
     title: 'みやメシ応援隊',
+    htmlAttrs: { lang: 'ja' },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -45,7 +43,6 @@ const nuxtConfig = {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/composition-api',
     '@/plugins/leaflet'
   ],
   /*
@@ -63,6 +60,7 @@ const nuxtConfig = {
   */
   buildModules: [
     '@nuxt/typescript-build',
+    '@nuxtjs/composition-api',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/google-analytics',
     '@nuxtjs/stylelint-module',
@@ -114,7 +112,7 @@ const nuxtConfig = {
   */
   pwa: {
     meta: {
-      lang: undefined,
+      lang: 'ja',
       name: 'みやメシ応援隊',
       description: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
     },
@@ -153,7 +151,7 @@ const nuxtConfig = {
    ** https://github.com/nuxt-community/analytics-module
    */
   googleAnalytics: {
-    id: 'UA-175242187-1' // Used as fallback if no runtime config is provided
+    id: process.env.TEST_ENV ? undefined : 'UA-175242187-1' // Used as fallback if no runtime config is provided
   },
   styleResources: {
     // your settings here

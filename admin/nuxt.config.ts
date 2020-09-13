@@ -1,13 +1,8 @@
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig  } from '@nuxt/types'
 import { FirebaseModuleConfiguration } from '@nuxtjs/firebase'
 import { AxiosOptions } from '@nuxtjs/axios'
 
-const nuxtConfig: Configuration = {
-  /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'spa',
+const nuxtConfig: NuxtConfig  = {
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -17,7 +12,7 @@ const nuxtConfig: Configuration = {
   ** Environment Config
    */
   env: {
-    POSTAL_API_KEY: process.env.POSTAL_API_KEY
+    POSTAL_API_KEY: process.env.POSTAL_API_KEY || ''
   },
 
   publicRuntimeConfig: {
@@ -30,6 +25,9 @@ const nuxtConfig: Configuration = {
   head: {
     titleTemplate: '%s - ' + 'みやメシ応援隊管理者',
     title: 'みやメシ応援隊管理者',
+    htmlAttrs: {
+      lang: 'ja'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -125,7 +123,7 @@ const nuxtConfig: Configuration = {
   */
   pwa: {
     meta: {
-      lang: undefined,
+      lang: 'ja',
       name: 'みやメシ応援隊管理者',
       description: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます'
     },
@@ -180,6 +178,9 @@ const nuxtConfig: Configuration = {
       font: undefined
     },
     treeShake: true
+  },
+  render: {
+    ssr: false
   },
   /*
   ** Build configuration
