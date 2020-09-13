@@ -63,7 +63,7 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/composition-api',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/google-analytics',
-    '@nuxtjs/stylelint-module',
+    // '@nuxtjs/stylelint-module',
     '@nuxtjs/style-resources',
     '@nuxtjs/vuetify'
   ],
@@ -163,7 +163,10 @@ const nuxtConfig: NuxtConfig = {
   },
   styleResources: {
     // your settings here
-    scss: ['~/assets/scss/variables.scss']
+    scss: [
+      '~/assets/scss/variables.scss',
+      '~/assets/scss/functions/**.scss'
+    ]
   },
   /*
   ** vuetify module configuration
