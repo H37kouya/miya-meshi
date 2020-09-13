@@ -37,9 +37,6 @@
       "@nuxtjs/vuetify"
     ]
   },
-  "include": [
-    "*/**/*.ts"
-  ],
   "exclude": [
     "node_modules",
     ".nuxt",
