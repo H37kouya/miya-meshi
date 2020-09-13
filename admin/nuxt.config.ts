@@ -3,6 +3,7 @@ import { FirebaseModuleConfiguration } from '@nuxtjs/firebase'
 import { AxiosOptions } from '@nuxtjs/axios'
 
 const nuxtConfig: NuxtConfig  = {
+  mode: 'spa',
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -178,9 +179,6 @@ const nuxtConfig: NuxtConfig  = {
       font: undefined
     },
     treeShake: true
-  },
-  render: {
-    ssr: false
   },
   /*
   ** Build configuration
