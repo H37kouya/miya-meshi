@@ -85,8 +85,8 @@ Partial<{
   text: string | number
   to: string | object
 }>[]
-const times = [{ id: 'morning', name: '朝' }, { id: 'lunch', name: '昼' }, { id: 'night', name: '夜' }] as Time[]
 
+const times = [{ id: 'morning', name: '朝' }, { id: 'lunch', name: '昼' }, { id: 'night', name: '夜' }] as Time[]
 
 type State = {
   areaSelectedID: string[],
@@ -157,6 +157,7 @@ export default defineComponent({
         path: '/search',
         query: {
           areas: state.areaSelectedID,
+          dishes: state.dishSelectedID,
           timezones: state.timeSelectedName
         }
       }
