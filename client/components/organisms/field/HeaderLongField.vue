@@ -8,9 +8,11 @@
         max-height="160px"
       />
 
-      <v-card class="news">
-        <v-img src="/s/miyameshi-ticket.jpg" />
-      </v-card>
+      <template v-if="!state.loading">
+        <v-card class="news">
+          <v-img src="/s/miyameshi-ticket.jpg" />
+        </v-card>
+      </template>
 
       <div class="text-right pt-6 px-4 developer-name">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
@@ -22,6 +24,28 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, onMounted, reactive } from '@nuxtjs/composition-api'
+
+export default defineComponent({
+  setup () {
+    const state = reactive({
+      loading: true
+    })
+
+    onMounted(() => {
+      setTimeout(() => {
+        state.loading = false
+      }, 500)
+    })
+
+    return {
+      state
+    }
+  }
+})
+</script>
 
 <style lang="scss" scoped>
 @import "heder_field";
