@@ -23,7 +23,8 @@ export const getShopList = async (
 
   const shops = [] as Shop[]
   list.forEach((doc) => {
-    shops.push(firestoreDocDataToShop(doc))
+    const shop = firestoreDocDataToShop(doc)
+    shop && shops.push(shop)
   })
   return shops
 }
@@ -48,7 +49,8 @@ export const getShopListByInstaNumber = async (
 
   const shops = [] as Shop[]
   list.forEach((doc) => {
-    shops.push(firestoreDocDataToShop(doc))
+    const shop = firestoreDocDataToShop(doc)
+    shop && shops.push(shop)
   })
   return shops
 }
@@ -79,6 +81,11 @@ export const firestoreDocDataToShop = (
   doc: firebase.firestore.QueryDocumentSnapshot|firebase.firestore.DocumentSnapshot
 ) => {
   const docData = doc.data()
+
+  // データを取得できない時
+  if (docData === undefined) {
+    return undefined
+  }
 
   return {
     type: Type.SHOP,
