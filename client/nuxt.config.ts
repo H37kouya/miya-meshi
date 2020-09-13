@@ -142,6 +142,14 @@ const nuxtConfig: NuxtConfig = {
         {
           urlPattern: '^https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress/?lat=(.*)&lon=(.*)',
           handler: 'cacheFirst'
+        },
+        {
+          urlPattern: 'https://www.googletagmanager.com/gtag(.*)',
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: 'https://www.google-analytics.com/analytics.js',
+          handler: 'cacheFirst'
         }
       ]
     }
