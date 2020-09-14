@@ -1,7 +1,7 @@
 <template>
   <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-    <v-card v-bind="$attrs">
-      <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
+    <v-card v-bind="$attrs" :flat="screenMd">
+      <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
     </v-card>
 
     <p class="prefix u-black--text mb-0" :class="{ 'no-prefix': !prefixName }">
@@ -10,11 +10,18 @@
     <p class="mb-0 shop-name u-black--text max-text-height-2">
       {{ name }}
     </p>
+
+    <div class="d-none d-sm-block">
+      <v-chip v-if="address" small>
+        {{ address }}
+      </v-chip>
+    </div>
   </component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type Props = {
   alt: string,
@@ -27,6 +34,11 @@ type Props = {
 export default defineComponent({
   props: {
     alt: {
+      type: String,
+      default: undefined
+    },
+
+    address: {
       type: String,
       default: undefined
     },
@@ -50,6 +62,12 @@ export default defineComponent({
       type: String,
       default: undefined
     }
+  },
+
+  setup () {
+    const { screenMd } = useGetScreenSize()
+
+    return { screenMd }
   }
 })
 </script>

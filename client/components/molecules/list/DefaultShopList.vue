@@ -10,8 +10,15 @@
       <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
-            <v-col :key="key" cols="4" class="px-1 py-1">
-              <ShopCard v-bind="shop" :to="`/shops/${shop.id}`" :src="shop.imageLink" />
+            <v-col :key="key" cols="4" class="px-1 py-1 pb-sm-4">
+              <ShopCard
+                :alt="`${shop.name} - thumnails`"
+                :address="shortAddress(shop.address)"
+                :to="`/shops/${shop.id}`"
+                :src="shop.imageLink"
+                :name="shop.name"
+                :prefix-name="shop.prefixName"
+              />
             </v-col>
           </template>
         </template>
@@ -29,8 +36,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { defineComponent, computed, reactive, SetupContext, watch } from '@vue/composition-api'
 import { Shop } from '@/lib'
+import { computedShortShopAddress } from '~/src/utils/Shop'
 
 type Props = {
   shops: Shop[],
@@ -59,11 +67,16 @@ export default defineComponent({
       shops: props.shops
     })
 
+    const shortAddress = computed(() => {
+      return (address: Shop['address']) => computedShortShopAddress(address)
+    })
+
     watch(() => props.shops, (newVal, _) => {
       state.shops = newVal
     })
 
     return {
+      shortAddress,
       state
     }
   }

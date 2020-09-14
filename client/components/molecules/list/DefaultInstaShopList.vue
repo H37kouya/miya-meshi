@@ -10,9 +10,10 @@
       <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
-            <v-col :key="key" cols="4" class="px-1 py-1">
+            <v-col :key="key" cols="4" class="px-1 py-1 pb-sm-4">
               <InstaCard
                 :alt="shop.name"
+                :address="shortAddress(shop.address)"
                 :prefix-name="shop.prefixName"
                 :name="shop.name"
                 :to="`/shops/${shop.id}`"
@@ -36,8 +37,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { Shop } from '@/lib'
+import { computedShortShopAddress } from '~/src/utils/Shop'
 
 type Props = {
   shops: Shop[],
@@ -66,11 +68,16 @@ export default defineComponent({
       shops: props.shops
     })
 
+    const shortAddress = computed(() => {
+      return (address: Shop['address']) => computedShortShopAddress(address)
+    })
+
     watch(() => props.shops, (newVal, _) => {
       state.shops = newVal
     })
 
     return {
+      shortAddress,
       state
     }
   }

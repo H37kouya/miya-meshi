@@ -1,6 +1,5 @@
 import { Area, Dish, Shop } from '@/lib'
 import { Type } from '@/lib/enum'
-import { kanji2num, isString, zenkakuToHankaku } from './String'
 
 /**
  * Shop型かどうか
@@ -10,41 +9,23 @@ import { kanji2num, isString, zenkakuToHankaku } from './String'
 export const isShop = (v: any): v is Shop => typeof v === 'object' && v.type === Type.SHOP
 
 /**
- * 住所をformatする
- *
  * @param {Shop['address']} address
  */
-export const formatShopAddress = (address: Shop['address']): Shop['address'] => {
+export const computedShortShopAddress = (address: Shop['address']): Shop['address'] => {
   if (!address) {
     return undefined
   }
 
-  address = kanji2num(zenkakuToHankaku(address))
-
   if (address.startsWith('栃木県')) {
-    return address
-  }
-
-  if (address.startsWith('宇都宮')) {
-    return `栃木県${address}`
+    return address.slice(3)
   }
 
   return address
 }
 
-export const formatShopPostal = (postal: Shop['postal']): Shop['postal'] => {
-  if (!postal) {
-    return undefined
-  }
-
-  const str = isString(postal) ? postal : String(postal)
-
-  return zenkakuToHankaku(str)
-}
-
 /**
-   * Areaを用いて、Shopをfilterする
-   */
+ * Areaを用いて、Shopをfilterする
+ */
 export const filterShopsByAreas = (shops: Shop[], areas: Area[]) => {
   const addresses = areas.reduce((pv, area) => {
     return [...pv, ...area.addresses]

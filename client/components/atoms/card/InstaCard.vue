@@ -1,7 +1,7 @@
 <template>
   <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-    <v-card v-bind="$attrs" class="pos-relative">
-      <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
+    <v-card v-bind="$attrs" class="pos-relative" :flat="screenMd">
+      <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
 
       <template v-if="instaNumber">
         <div class="insta-number-container">
@@ -18,12 +18,19 @@
     <p class="mb-0 shop-name u-black--text max-text-height-2">
       {{ name }}
     </p>
+
+    <div class="d-none d-sm-block">
+      <v-chip v-if="address" small>
+        {{ address }}
+      </v-chip>
+    </div>
   </component>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
 import { zeroFill } from '@/src/utils/String'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type Props = {
   alt: string,
@@ -37,6 +44,11 @@ type Props = {
 export default defineComponent({
   props: {
     alt: {
+      type: String,
+      default: undefined
+    },
+
+    address: {
       type: String,
       default: undefined
     },
@@ -69,9 +81,11 @@ export default defineComponent({
 
   setup (props: Props, _) {
     const displayNumber = computed(() => zeroFill(props.instaNumber))
+    const { screenMd } = useGetScreenSize()
 
     return {
-      displayNumber
+      displayNumber,
+      screenMd
     }
   }
 })
