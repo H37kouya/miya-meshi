@@ -14,7 +14,7 @@ export type Menu = {
   price?: number,
   public: boolean,
   isTaxIncluded?: boolean,
-  canTakeOut?: boolean,
+  canTakeout?: boolean,
   priority: number,
   dishes: string[],
   keywords: string[],

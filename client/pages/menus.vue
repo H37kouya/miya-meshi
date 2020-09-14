@@ -30,7 +30,7 @@ export default defineComponent({
 
     const displayMenus = computed(() => {
       if (btnStatus.value.takeout) {
-        return menus.value.filter((menu: Menu) => menu.canTakeOut)
+        return menus.value.filter((menu: Menu) => menu.canTakeout)
       }
 
       return menus.value
