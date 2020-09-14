@@ -4,13 +4,9 @@
       <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
 
       <template v-if="instaNumber">
-        <div class="triangle" />
-        <div class="triangle-text">
-          <p class="mb-0 triangle-prefix">
-            No.
-          </p>
-          <p class="mb-0 triangle-number">
-            {{ displayNumber }}
+        <div class="insta-number-container">
+          <p class="mb-0 insta-text">
+            No. <span class="insta-number">{{ displayNumber }}</span>
           </p>
         </div>
       </template>
@@ -99,30 +95,27 @@ export default defineComponent({
   }
 }
 
-.triangle {
+.insta-number-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  border-left: 50px solid #fef552;
-  border-bottom: 50px solid transparent;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
-.triangle-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.triangle-prefix {
+.insta-text {
+  background: rgba(#000, 60%);
+  border-radius: 4px;
+  color: #fff;
   font-size: 0.7rem;
   line-height: 1.1;
-  padding-left: 1px;
+  padding: 0.25rem 0.5rem;
+
+  @include mq(md) {
+    border-radius: 1px;
+  }
 }
 
-.triangle-number {
+.insta-number {
   font-size: 0.95rem;
   font-weight: 500;
-  line-height: 1.1;
-  margin-top: -0.15rem;
 }
 </style>

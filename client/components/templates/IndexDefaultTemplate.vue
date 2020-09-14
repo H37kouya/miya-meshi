@@ -20,6 +20,8 @@
           <p>現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗</p>
         </div>
 
+        <div v-else style="height: 60px;" />
+
         <div class="news-list-container">
           <v-lazy>
             <MainText id="news" :level="2">

@@ -8,12 +8,12 @@ import { PriceRange } from './PriceRange'
 import { Shop } from './Shop'
 
 export {
-    Area,
-    Dish,
-    Time,
-    Keyword,
-    Menu,
-    News,
-    PriceRange,
-    Shop
+  Area,
+  Dish,
+  Time,
+  Keyword,
+  Menu,
+  News,
+  PriceRange,
+  Shop
 }
