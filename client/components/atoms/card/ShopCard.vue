@@ -10,6 +10,12 @@
     <p class="mb-0 shop-name u-black--text max-text-height-2">
       {{ name }}
     </p>
+
+    <div class="d-none d-sm-block">
+      <v-chip v-if="address" small>
+        {{ address }}
+      </v-chip>
+    </div>
   </component>
 </template>
 
@@ -28,6 +34,11 @@ type Props = {
 export default defineComponent({
   props: {
     alt: {
+      type: String,
+      default: undefined
+    },
+
+    address: {
       type: String,
       default: undefined
     },
