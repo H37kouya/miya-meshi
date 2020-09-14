@@ -73,8 +73,8 @@
 
           <v-card-text>
             <v-switch
-              v-model="state.menu.canTakeOut"
-              :label="state.menu.canTakeOut ? '可能' : '不可能'"
+              v-model="state.menu.canTakeout"
+              :label="state.menu.canTakeout ? '可能' : '不可能'"
               class="mt-0"
             />
 
@@ -194,7 +194,7 @@ export default defineComponent({
         price: 0,
         priority: 3,
         isTaxIncluded: false,
-        canTakeOut: true,
+        canTakeout: true,
         timeZone: [] as string[]
       }
     })
@@ -210,7 +210,7 @@ export default defineComponent({
       state.menu.price = newVal ? newVal.price : state.menu.price
       state.menu.priority = newVal ? newVal.priority : state.menu.priority
       state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
-      state.menu.canTakeOut = newVal ? newVal.canTakeOut : state.menu.canTakeOut
+      state.menu.canTakeout = newVal ? newVal.canTakeout : state.menu.canTakeout
       state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
       state.menu.keywords = newVal ? newVal.keywords : state.menu.keywords
       state.menu.timeZone = newVal ? newVal.timeZone : state.menu.timeZone

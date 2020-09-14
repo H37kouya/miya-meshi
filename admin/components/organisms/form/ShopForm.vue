@@ -81,8 +81,8 @@
 
               <v-card-text>
                 <v-switch
-                  v-model="state.shop.canTakeOut"
-                  :label="state.shop.canTakeOut ? '可能' : '不可能'"
+                  v-model="state.shop.canTakeout"
+                  :label="state.shop.canTakeout ? '可能' : '不可能'"
                   class="mt-0"
                 />
 

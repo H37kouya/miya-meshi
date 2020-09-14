@@ -12,7 +12,7 @@ export type MenuFormState = {
     public: Menu['public'],
     priority: Menu['priority'],
     isTaxIncluded: Menu['isTaxIncluded'],
-    canTakeOut: Menu['canTakeOut'],
+    canTakeout: Menu['canTakeout'],
     timeZone: Menu['timeZone']
   }
 }
