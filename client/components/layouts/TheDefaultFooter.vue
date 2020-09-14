@@ -29,6 +29,9 @@
               <nuxt-link class="sentence text-decoration-none" to="/shops">店舗から探す</nuxt-link>
             </li>
             <li class="link-inline-list-item">
+              <nuxt-link class="sentence text-decoration-none" to="/insta">インスタからのおすすめ</nuxt-link>
+            </li>
+            <li class="link-inline-list-item">
               <a
                 class="sentence text-decoration-none"
                 href="https://forms.gle/gAknXAaCrfsr8UdA8"
