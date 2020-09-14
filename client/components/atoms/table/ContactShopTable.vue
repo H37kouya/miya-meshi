@@ -1,13 +1,13 @@
 <template>
   <table class="contact-table">
     <template v-for="(data, key) in tableData">
-      <tr :key="key">
+      <tr :key="`table-${key}`">
         <th class="table-heading text-center">
           {{ data.heading }}
         </th>
         <td class="table-value text-center">
           <template v-if="data.valueType === 'array'">
-            <p v-for="(str, key) in data.value" :key="key" class="mb-0">
+            <p v-for="(str, lkey) in data.value" :key="`array-${lkey}`" class="mb-0">
               {{ str }}
             </p>
           </template>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Shop } from '@/lib'
 import { Shop as ShopJa } from '@/lang/ja/Shop'
 
@@ -130,8 +130,8 @@ export default defineComponent({
 
     const tableData = computed(() => convertToTableData(state.shop))
 
-    watch(() => props.shop, (newVal, _) => {
-      state.shop = newVal
+    watchEffect(() => {
+      state.shop = props.shop
     })
 
     return {
