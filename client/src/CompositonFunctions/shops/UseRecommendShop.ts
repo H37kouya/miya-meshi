@@ -4,11 +4,11 @@ import { getShopList } from '@/src/infra/firestore/Shop'
 
 export const useRecommendShop = ({ $fireStore }: SetupContext['root']) => {
   const state = reactive({
-    shops: [] as Shop[]
+    recommendShops: [] as Shop[]
   })
 
   watchEffect(async () => {
-    state.shops = await getShopList($fireStore, 3)
+    state.recommendShops = await getShopList($fireStore, 3)
   })
 
   return toRefs(state)
