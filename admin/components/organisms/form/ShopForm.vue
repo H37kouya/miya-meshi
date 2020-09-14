@@ -440,7 +440,10 @@ export default defineComponent({
     })
 
     const dishesListForSelect = computed(() => {
-      return props.dishes.map(dish => dish.name)
+      return props.dishes.map(dish => ({
+        value: dish.id,
+        text: dish.name,
+      }))
     })
 
     const keywordsListForSelect = computed(() => {
