@@ -4,6 +4,10 @@
       お店から探す
     </MainText>
 
+    <v-container>
+      <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
+    </v-container>
+
     <div class="u-light-grey-background pt-3">
       <SearchButtonGroup
         :btn-status="btnStatus"
@@ -23,6 +27,19 @@ import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { useBtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
 import { useFilterShopByBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
 
+const breadcrumbs = [
+  { exact: true, text: 'Home', to: '/' },
+  { exact: true, text: 'お店から探す', to: '/shops' },
+] as
+Partial<{
+  disabled: boolean
+  exact: boolean
+  href: string
+  link: boolean
+  text: string | number
+  to: string | object
+}>[]
+
 export default defineComponent({
   setup (_, context: SetupContext) {
     const { btnStatus } = useBtnStatus(context)
@@ -35,6 +52,7 @@ export default defineComponent({
 
     return {
       btnStatus,
+      breadcrumbs,
       displayShops,
       shops
     }

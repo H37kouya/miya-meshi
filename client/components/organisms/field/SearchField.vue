@@ -12,12 +12,8 @@
       </v-row>
 
       <v-row justify="center">
-        <v-col cols="6" class="pa-2">
+        <v-col cols="12" class="pa-2">
           <ToSearchShopButton width="100%" />
-        </v-col>
-
-        <v-col cols="6" class="pa-2">
-          <ToSearchFoodButton width="100%" />
         </v-col>
       </v-row>
     </v-container>

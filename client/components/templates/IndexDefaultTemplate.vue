@@ -15,7 +15,7 @@
         </v-lazy>
       </v-col>
 
-      <v-col cols="12" md="4" class="px-0 px-md-3">
+      <v-col cols="12" md="4" class="px-0 px-md-8">
         <div v-if="maxShopCount" class="max-shop-count text-center text-md-left">
           <p>現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗</p>
         </div>
