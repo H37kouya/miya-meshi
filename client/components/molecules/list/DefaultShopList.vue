@@ -17,7 +17,7 @@
                 :to="`/shops/${shop.id}`"
                 :src="shop.imageLink"
                 :name="shop.name"
-                :prefix="shop.prefix"
+                :prefix-name="shop.prefixName"
               />
             </v-col>
           </template>
