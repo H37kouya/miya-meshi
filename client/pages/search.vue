@@ -94,6 +94,10 @@ export default defineComponent({
         }
       }
 
+      if (mappedTimeZonesQuery.length === 3) {
+        return filterShopsByArea.value
+      }
+
       return filterShopsByArea.value.filter((shop: Shop) => {
         if (!shop.timeZone) {
           return false
@@ -109,9 +113,9 @@ export default defineComponent({
 
     const filterShopsByDish = computed(() => {
       if (filterShopsByTime.value.length === 0) {
-        return shops.value
+        return filterShopsByTime.value
       }
-      return filterShopsByDishes(shops.value, filterDishes.value)
+      return filterShopsByDishes(filterShopsByTime.value, filterDishes.value)
     })
 
     const { displayShops } = useFilterShopByBtnStatus(btnStatus, filterShopsByDish, nowArea)
