@@ -19,7 +19,7 @@ export default defineComponent({
     const { instaShops } = useInstaShopForTopPage(context.root)
     const { recommendShops } = useRecommendShop(context.root)
     const { newsList } = useNews()
-    const { shops } = useShop(context.root)
+    const { shops } = useShop(context.root, 2000)
 
     return {
       instaShops,
