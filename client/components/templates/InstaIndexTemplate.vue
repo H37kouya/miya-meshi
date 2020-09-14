@@ -26,21 +26,13 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop } from '@/lib'
+import { Breadcrumb, Shop } from '@/lib'
 import { useSearchInstaShopByInstaNumber } from '@/src/CompositonFunctions/shops/UseSearchInstaShopByInstaNumber'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
   { exact: true, text: 'インスタからのおすすめ', to: '/insta' }
-] as
-Partial<{
-  disabled: boolean
-  exact: boolean
-  href: string
-  link: boolean
-  text: string | number
-  to: string | object
-}>[]
+] as Breadcrumb[]
 
 type Props = {
   shops: Shop[]

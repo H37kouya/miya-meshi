@@ -22,23 +22,16 @@
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
+import { Breadcrumb } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { useBtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
-import { useFilterShopByBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
+import { useFilterShopByBtnStatus } from '@/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
   { exact: true, text: 'お店から探す', to: '/shops' },
-] as
-Partial<{
-  disabled: boolean
-  exact: boolean
-  href: string
-  link: boolean
-  text: string | number
-  to: string | object
-}>[]
+] as Breadcrumb[]
 
 export default defineComponent({
   setup (_, context: SetupContext) {

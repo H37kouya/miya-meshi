@@ -1,4 +1,5 @@
 import { Area } from './Area'
+import { Breadcrumb } from './Breadcrumb'
 import { Dish } from './Dish'
 import { Time } from './Time'
 import { Keyword } from './Keyword'
@@ -9,6 +10,7 @@ import { Shop } from './Shop'
 
 export {
   Area,
+  Breadcrumb,
   Dish,
   Time,
   Keyword,
