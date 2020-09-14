@@ -35,7 +35,7 @@
 | parkingLot         | `String`           | 駐車場             |
 | regularHoliday     | `String`           | 定休日             |
 | seat               | `String`           | 座席             |
-| canTakeOut         | `Boolean`          | テイクアウト可能か  |
+| canTakeout         | `Boolean`          | テイクアウト可能か  |
 | priceRange         | `String`           | 価格帯             |
 | dishes             | `Array<String>`    | 料理一覧            |
 | keywords           | `Array<String>`    | キーワード一覧      |
@@ -61,7 +61,7 @@
 | price           | `Number`        | 値段               |
 | public          | `Boolean`       | 公開設定            |
 | isTaxOIncluded  | `Boolean`       | 税込みかどうか      |
-| canTakeOut      | `Boolean`       | テイクアウト可能か  |
+| canTakeout      | `Boolean`       | テイクアウト可能か  |
 | createdAt       | `DateTime`      | 作成日時           |
 | deletedAt       | `DateTime`      | 削除日時           |
 | updatedAt       | `DateTime`      | 更新日時           |

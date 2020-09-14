@@ -24,13 +24,15 @@ import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
 import { SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { Shop } from '@/lib'
-import { filterShopsByAreas } from '@/src/utils/Shop'
+import { filterShopsByAreas, filterShopsByDishes } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
+import { filterDishesByID } from '@/src/utils/Dish'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
 import { useFilterShopByBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
 import { isString } from '~/src/utils/String'
+import { useDish } from '~/src/CompositonFunctions/dishes/UseDishes'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -52,13 +54,18 @@ export default defineComponent({
     const { query } = useContext()
 
     const { btnStatus } = useBtnStatus(context)
-    const { areas } = useArea(context.root)
-    const { nowArea } = useArea(context.root)
+    const { areas, nowArea } = useArea(context.root)
     const { shops } = useShop(context.root)
+    const { dishes } = useDish(context.root)
 
     const filterAreas = computed(() => {
       const areasQuery = query.value.areas
       return filterAreasByID(areas.value, areasQuery)
+    })
+
+    const filterDishes = computed(() => {
+      const dishesQuery = query.value.dishes
+      return filterDishesByID(dishes.value, dishesQuery)
     })
 
     const filterShopsByArea = computed(() => {
@@ -100,7 +107,14 @@ export default defineComponent({
       })
     })
 
-    const { displayShops } = useFilterShopByBtnStatus(btnStatus, filterShopsByTime, nowArea)
+    const filterShopsByDish = computed(() => {
+      if (filterShopsByTime.value.length === 0) {
+        return shops.value
+      }
+      return filterShopsByDishes(shops.value, filterDishes.value)
+    })
+
+    const { displayShops } = useFilterShopByBtnStatus(btnStatus, filterShopsByDish, nowArea)
 
     return {
       areas,

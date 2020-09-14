@@ -1,4 +1,4 @@
-import { Area, Shop } from '@/lib'
+import { Area, Dish, Shop } from '@/lib'
 import { Type } from '@/lib/enum'
 import { kanji2num, isString, zenkakuToHankaku } from './String'
 
@@ -57,6 +57,22 @@ export const filterShopsByAreas = (shops: Shop[], areas: Area[]) => {
 
     for (const address of addresses) {
       if (shop.address.includes(address)) {
+        return true
+      }
+    }
+
+    return false
+  })
+}
+
+export const filterShopsByDishes = (shops: Shop[], dishes: Dish[]) => {
+  return shops.filter((shop: Shop) => {
+    if (!shop.dishes) {
+      return false
+    }
+
+    for (const dish of dishes) {
+      if (shop.dishes.includes(dish.id)) {
         return true
       }
     }
