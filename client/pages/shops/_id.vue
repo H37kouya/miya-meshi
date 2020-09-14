@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <ShopidDefaultTemplate v-if="data && data.shop" :shop="data.shop" :menus="state.menus" />
+  <v-container>
+    <v-row>
+      <v-col cols="12" md="8" class="px-0 px-sm-3">
+        <ShopidDefaultTemplate v-if="data && data.shop" :shop="data.shop" :menus="state.menus" />
 
-    <div v-else class="empty-height" />
-  </div>
+        <div v-else class="empty-height" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">

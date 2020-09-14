@@ -1,8 +1,8 @@
 <template>
-  <v-container class="max-width-350">
+  <v-container class="max-width-450 ulab-wrapper ml-md-0 px-4 px-md-8">
     <v-row justify="space-between" align="center">
       <div>
-        <p class="mb-2 sentence">
+        <p class="mb-2 sentence prefix-title">
           開発
         </p>
         <p class="mb-0 sentence">
@@ -16,13 +16,13 @@
           <li>
             <a
               href="https://note.com/kazuma7/n/n75fb0175270d"
-              class="sentence link-inline-list-item white--text"
+              class="sentence link-inline-list-item"
             >U-labとは？</a>
           </li>
           <li>
             <a
               href="https://uu-circle20.firebaseapp.com/"
-              class="sentence link-inline-list-item white--text"
+              class="sentence link-inline-list-item"
             >宇大サークルビラ一覧</a>
           </li>
         </ul>
@@ -35,13 +35,13 @@
             target="_blank"
             rel="noopener"
           >
-            <v-icon color="white" large>
+            <v-icon class="sns-icon" large>
               mdi-instagram
             </v-icon>
           </v-btn>
 
           <v-btn icon href="https://twitter.com/u_lab0811" target="_blank" rel="noopener">
-            <v-icon color="white" large>
+            <v-icon class="sns-icon" large>
               mdi-twitter
             </v-icon>
           </v-btn>
@@ -88,5 +88,35 @@
 
 .sentence {
   font-size: 0.8rem;
+}
+
+a.sentence {
+  color: #fff !important;
+
+  @include mq(md) {
+    color: #333 !important;
+  }
+}
+
+.ulab-wrapper {
+  height: 200px;
+
+  @include mq(md) {
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+.sns-icon {
+  color: #fff !important;
+
+  @include mq(md) {
+    color: #333 !important;
+  }
+}
+
+.prefix-title {
+  font-weight: bolder;
 }
 </style>

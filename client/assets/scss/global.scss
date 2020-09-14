@@ -19,6 +19,11 @@
   max-width: 350px !important;
 }
 
+.max-width-450 {
+  width: 450px !important;
+  max-width: 100% !important;
+}
+
 .max-width-480 {
   width: 480px !important;
   max-width: 100% !important;
@@ -62,4 +67,10 @@
 
 .right-arrow::before {
   content: '→';
+}
+
+.white-md-background {
+  @include mq(md) {
+    background-color: #fff;
+  }
 }

@@ -1,8 +1,8 @@
 <template>
-  <v-container class="max-width-350">
+  <v-container class="max-width-450 miyameshi-wrapper mr-md-0 px-4 px-md-8">
     <v-row justify="space-between" align="center">
       <div>
-        <p class="mb-2 sentence">
+        <p class="mb-2 sentence prefix-title">
           運営
         </p>
         <p class="mb-0 sentence">
@@ -90,5 +90,19 @@
 
 .sentence {
   font-size: 0.8rem;
+}
+
+.miyameshi-wrapper {
+  height: 200px;
+
+  @include mq(md) {
+    background: #fff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+.prefix-title {
+  font-weight: bolder;
 }
 </style>
