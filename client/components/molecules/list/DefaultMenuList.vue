@@ -91,5 +91,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "defaultList";
+.display-count {
+  font-size: 0.8rem;
+}
+
 </style>

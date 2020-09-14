@@ -1,7 +1,7 @@
 <template>
   <div>
     <MainText id="recommend_for_instagram">
-      <div class="d-flex align-center justify-center">
+      <div class="d-flex align-center justify-center justify-md-start">
         <v-icon>mdi-instagram</v-icon>
         <span>インスタからのおすすめ</span>
       </div>
@@ -9,7 +9,7 @@
 
     <DefaultInstaShopList :shops="instaShops" />
 
-    <div class="u-light-grey-background pb-2">
+    <div class="u-light-grey-background white-md-background pb-2">
       <div class="d-flex justify-center">
         <v-container class="text-right pt-0">
           <p class="mb-0">

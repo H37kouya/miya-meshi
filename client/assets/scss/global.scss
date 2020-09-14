@@ -68,3 +68,9 @@
 .right-arrow::before {
   content: '→';
 }
+
+.white-md-background {
+  @include mq(md) {
+    background-color: #fff;
+  }
+}

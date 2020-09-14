@@ -1,5 +1,5 @@
 <template>
-  <div class="u-light-grey-background">
+  <div class="u-light-grey-background white-md-background">
     <v-container class="pb-2">
       <div v-if="maxItem" class="text-right">
         <p class="mb-1 display-count">
@@ -10,7 +10,7 @@
       <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
-            <v-col :key="key" cols="4" md="3" class="px-1 py-1">
+            <v-col :key="key" cols="4" class="px-1 py-1">
               <ShopCard v-bind="shop" :to="`/shops/${shop.id}`" :src="shop.imageLink" />
             </v-col>
           </template>
@@ -71,5 +71,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "defaultList";
+.display-count {
+  font-size: 0.8rem;
+}
 </style>

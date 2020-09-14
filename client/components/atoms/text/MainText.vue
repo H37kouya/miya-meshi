@@ -1,7 +1,7 @@
 <template>
   <component
     :is="`h${level}`"
-    class="default-main-text text-center"
+    class="default-main-text text-center text-md-left"
     v-bind="$attrs"
   >
     <slot />
@@ -33,5 +33,9 @@ export default defineComponent({
   font-size: 1.1rem;
   font-weight: bolder;
   padding: 1.25rem;
+
+  @include mq(md) {
+    font-size: 1.3rem;
+  }
 }
 </style>
