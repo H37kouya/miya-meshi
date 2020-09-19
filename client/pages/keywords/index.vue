@@ -58,19 +58,12 @@
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
+import { Breadcrumb } from '~/lib'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
   { exact: true, text: '検索', to: '/keywords' }
-] as
-Partial<{
-  disabled: boolean
-  exact: boolean
-  href: string
-  link: boolean
-  text: string | number
-  to: string | object
-}>[]
+] as Breadcrumb[]
 
 export default defineComponent({
   setup (_, context: SetupContext) {

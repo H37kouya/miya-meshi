@@ -23,7 +23,7 @@
 import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
 import { SetupContext } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
-import { Shop } from '@/lib'
+import { Breadcrumb, Shop } from '@/lib'
 import { filterShopsByAreas, filterShopsByDishes } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
 import { filterDishesByID } from '@/src/utils/Dish'
@@ -39,15 +39,7 @@ const breadcrumbs = [
   { exact: true, text: '検索', to: '/keywords' },
   { exact: true, text: '詳細検索', to: '/keywords/detail' },
   { text: '検索結果', to: '/search' }
-] as
-Partial<{
-  disabled: boolean
-  exact: boolean
-  href: string
-  link: boolean
-  text: string | number
-  to: string | object
-}>[]
+] as Breadcrumb[]
 
 export default defineComponent({
   setup (_, context: SetupContext) {

@@ -8,7 +8,7 @@ export const useRecommendShop = ({ $fireStore }: SetupContext['root']) => {
   })
 
   watchEffect(async () => {
-    state.recommendShops = await getShopList($fireStore, 3)
+    state.recommendShops = await getShopList($fireStore, 4)
   })
 
   return toRefs(state)

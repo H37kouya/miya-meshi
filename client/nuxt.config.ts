@@ -51,10 +51,6 @@ const nuxtConfig: NuxtConfig = {
   */
   components: true,
 
-  router: {
-    middleware: 'location'
-  },
-
   /*
   ** Nuxt.js dev-modules
   */

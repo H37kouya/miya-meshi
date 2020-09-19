@@ -69,22 +69,14 @@ import { computed, defineComponent, reactive, SetupContext } from '@vue/composit
 import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
-import { Time } from '@/lib'
+import { Breadcrumb, Time } from '@/lib'
 import { DETAIL_LIST_ITEM } from '@/components/atoms/table/DetailListItemType'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
   { exact: true, text: '検索', to: '/keywords' },
   { exact: true, text: '詳細検索', to: '/keywords/detail' }
-] as
-Partial<{
-  disabled: boolean
-  exact: boolean
-  href: string
-  link: boolean
-  text: string | number
-  to: string | object
-}>[]
+] as Breadcrumb[]
 
 const times = [{ id: 'morning', name: '朝' }, { id: 'lunch', name: '昼' }, { id: 'night', name: '夜' }] as Time[]
 

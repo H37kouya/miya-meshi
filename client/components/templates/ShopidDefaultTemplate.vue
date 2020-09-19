@@ -60,20 +60,12 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
-import { Shop, Menu } from '@/lib'
+import { Breadcrumb, Shop, Menu } from '@/lib'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
   { exact: true, text: 'お店で探す', to: '/shops' }
-] as
-Partial<{
-  disabled: boolean
-  exact: boolean
-  href: string
-  link: boolean
-  text: string | number
-  to: string | object
-}>[]
+] as Breadcrumb[]
 
 type Props = {
   shop: Shop,
@@ -106,15 +98,7 @@ export default defineComponent({
       return [
         ...breadcrumbs,
         { exact: true, text: props.shop.name, to: `/shops/${props.shop.id}` }
-      ]as
-      Partial<{
-        disabled: boolean
-        exact: boolean
-        href: string
-        link: boolean
-        text: string | number
-        to: string | object
-      }>[]
+      ] as Breadcrumb[]
     })
 
     return {
