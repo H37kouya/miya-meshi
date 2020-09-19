@@ -78,4 +78,8 @@
 .breadcrumbs-container {
   border-top: 1px solid #d5ceb7;
   border-bottom: 1px solid #d5ceb7;
+
+  @include mq(sm) {
+    border: 1px solid #d5ceb7;
+  }
 }

@@ -4,23 +4,29 @@
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
-    <MainText>
-      お店から探す
-    </MainText>
+    <v-container class="pa-0">
+      <v-row class="mx-0">
+        <v-col cols="12" md="8" class="px-0 px-md-3">
+          <MainText>
+            お店から探す
+          </MainText>
 
-    <div>
-      <SearchAreaAndKyewordField
-        :area="nowArea"
-      />
-    </div>
+          <div>
+            <SearchAreaAndKyewordField
+              :area="nowArea"
+            />
+          </div>
 
-    <div>
-      <div class="sales-title">
-        <h3 class="pl-4 pt-4">営業中</h3>
-      </div>
+          <div>
+            <div class="sales-title">
+              <h3 class="pl-4 pt-4">営業中</h3>
+            </div>
 
-      <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
-    </div>
+            <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
