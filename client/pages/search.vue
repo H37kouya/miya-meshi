@@ -104,13 +104,15 @@ export default defineComponent({
     })
 
     const filterShopsByDish = computed(() => {
-      if (filterShopsByTime.value.length === 0) {
+      if (filterDishes.value.length === 0) {
         return filterShopsByTime.value
       }
       return filterShopsByDishes(filterShopsByTime.value, filterDishes.value)
     })
 
-    const { displayShops } = useFilterShopByBtnStatus(btnStatus, filterShopsByDish, nowArea)
+    const displayShops = computed(() => {
+      return filterShopsByDish.value
+    })
 
     return {
       areas,
