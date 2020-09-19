@@ -27,7 +27,7 @@
         </v-col>
 
         <v-col cols="12" md="4" class="d-none d-md-block">
-          <div class="area-container">
+          <div class="area-container mb-8">
             <h3 class="area-title">
               エリアから探す
             </h3>
@@ -52,6 +52,30 @@
               <p class="text-right mb-0">
                 <nuxt-link to="/keywords/detail" class="to-keyword-detail">
                   詳細検索
+                </nuxt-link>
+              </p>
+            </div>
+          </div>
+
+          <div class="area-container">
+            <h3 class="area-title">
+              ジャンルから探す
+            </h3>
+
+            <div class="search-now-location d-flex justify-space-between pa-4">
+              <p class="mb-0">
+                すべて
+              </p>
+
+              <v-icon>
+                mdi-chevron-right
+              </v-icon>
+            </div>
+
+            <div class="px-4 py-2">
+              <p class="text-right mb-0">
+                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
+                  ジャンル検索
                 </nuxt-link>
               </p>
             </div>
