@@ -35,7 +35,7 @@
         </template>
       </v-row>
 
-      <div>
+      <div v-if="pagination.totalVisible !== 1">
         <v-pagination
           :value="nowPage"
           :length="pagination.totalVisible"
@@ -81,7 +81,7 @@ export default defineComponent({
 
     nowPage: {
       type: Number,
-      default: 2
+      default: 1
     }
   },
 
@@ -110,7 +110,7 @@ export default defineComponent({
     const pagination = computed(() => {
       return {
         shops: state.shops.slice((props.nowPage - 1) * 10, props.nowPage * 10),
-        totalVisible: (state.shops.length % 10) + 1
+        totalVisible: Math.floor(state.shops.length / 10) + 1
       }
     })
 
