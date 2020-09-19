@@ -59,7 +59,7 @@ export enum ActionType {
 
 export const actions = {
   [ActionType.FETCH_LOCATION] ({ commit, getters }: any) {
-    if (getters.shouldFetchLocation) {
+    if (getters.shouldFetchLocation && navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           commit(MutationType.SET_LATITUDE_AND_LONGITUDE, {

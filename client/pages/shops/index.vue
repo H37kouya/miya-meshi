@@ -1,26 +1,25 @@
 <template>
   <div>
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container">
+      <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
+    </v-container>
+
     <MainText>
       お店から探す
     </MainText>
 
-    <v-container>
-      <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
-    </v-container>
-
-    <div class="u-light-grey-background pt-3">
-      <SearchButtonGroup
-        :btn-status="btnStatus"
-        @input="(v) => btnStatus = v"
+    <div>
+      <SearchAreaAndKyewordField
+        :area="nowArea"
       />
     </div>
 
-    <DefaultShopList :shops="displayShops" :max-item="shops.length" />
+    <DefaultShopList :shops="shops" :max-item="shops.length" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { Breadcrumb } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
@@ -35,18 +34,13 @@ const breadcrumbs = [
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const { btnStatus } = useBtnStatus(context)
-
     const { nowArea } = useArea(context.root)
 
     const { shops } = useShop(context.root)
 
-    const { displayShops } = useFilterShopByBtnStatus(btnStatus, shops, nowArea)
-
     return {
-      btnStatus,
       breadcrumbs,
-      displayShops,
+      nowArea,
       shops
     }
   },

@@ -11,10 +11,6 @@
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
       </div>
     </div>
-
-    <div>
-      <SearchField />
-    </div>
   </div>
 </template>
 

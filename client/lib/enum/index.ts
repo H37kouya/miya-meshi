@@ -1,12 +1,15 @@
-import { Type } from './Type'
 import { Collection } from './Collection'
+import { Time } from './Time'
+import { Type } from './Type'
 
 export {
-  Type,
-  Collection
+  Collection,
+  Time,
+  Type
 }
 
 export default {
-  Type,
-  Collection
+  Collection,
+  Time,
+  Type
 }
