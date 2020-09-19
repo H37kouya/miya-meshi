@@ -3,13 +3,13 @@
     <v-container class="pb-2">
       <div v-if="maxItem" class="text-right">
         <p class="mb-1 display-count">
-          <span class="red--text">{{ state.shops.length }}件</span>表示中/全{{ maxItem }}件中
+          <span class="red--text">{{ pagination.shops.length }}件</span>表示中/全{{ maxItem }}件中
         </p>
       </div>
 
       <v-row class="px-1" :justify="justify">
-        <template v-if="state.shops.length > 0">
-          <template v-for="(shop, key) in state.shops">
+        <template v-if="pagination.shops.length > 0">
+          <template v-for="(shop, key) in pagination.shops">
             <v-col :key="key" cols="6" class="px-1 pt-2 pb-sm-4">
               <ShopCard
                 :alt="`${shop.name} - thumnails`"
@@ -34,6 +34,14 @@
           </v-col>
         </template>
       </v-row>
+
+      <div>
+        <v-pagination
+          :value="nowPage"
+          :length="pagination.totalVisible"
+          @input="onPagination"
+        />
+      </div>
     </v-container>
   </div>
 </template>
@@ -46,7 +54,8 @@ import { computedShortShopAddress, getShopAreaByAddress } from '~/src/utils/Shop
 type Props = {
   areas: Area[],
   shops: Shop[],
-  maxItem: number
+  maxItem: number,
+  nowPage: number
 }
 export default defineComponent({
   props: {
@@ -68,10 +77,15 @@ export default defineComponent({
     justify: {
       type: String,
       default: 'start'
+    },
+
+    nowPage: {
+      type: Number,
+      default: 2
     }
   },
 
-  setup (props: Props, _: SetupContext) {
+  setup (props: Props, context: SetupContext) {
     const state = reactive({
       shops: props.shops
     })
@@ -93,14 +107,32 @@ export default defineComponent({
       }
     })
 
+    const pagination = computed(() => {
+      return {
+        shops: state.shops.slice((props.nowPage - 1) * 10, props.nowPage * 10),
+        totalVisible: (state.shops.length % 10) + 1
+      }
+    })
+
     watch(() => props.shops, (newVal, _) => {
       state.shops = newVal
     })
 
+    const onPagination = async (page: number) => {
+      return await context.root.$router.push({
+        path: '/shops',
+        query: {
+          page: String(page)
+        }
+      })
+    }
+
     return {
       computedShopArea,
       shortAddress,
-      state
+      state,
+      pagination,
+      onPagination
     }
   }
 })

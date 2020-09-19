@@ -1,38 +1,40 @@
 <template>
-  <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-    <v-card v-bind="$attrs" :flat="screenMd">
-      <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
-    </v-card>
+  <div>
+    <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
+      <v-card v-bind="$attrs" :flat="screenMd">
+        <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
+      </v-card>
 
-    <p class="mb-0 shop-name u-black--text max-text-height-2">
-      {{ name }}
-    </p>
-
-    <div class="explation">
-      <p v-if="area" class="d-sm-none area mb-0 u-black--text">
-        <v-icon color="#d4573c" small>
-          mdi-map-marker
-        </v-icon>
-
-        {{ area }}
+      <p class="mb-0 shop-name u-black--text max-text-height-2">
+        {{ name }}
       </p>
 
-      <p v-if="prefixName" class="prefix u-black--text mb-0">
-        <v-icon small>
-          mdi-food
-        </v-icon>
+      <div class="explation">
+        <p v-if="area" class="d-sm-none area mb-0 u-black--text">
+          <v-icon color="#d4573c" small>
+            mdi-map-marker
+          </v-icon>
 
-        {{ prefixName }}
-      </p>
+          {{ area }}
+        </p>
 
-      <p v-if="priceRange" class="area mb-0 u-black--text">
-        <v-icon small>
-          mdi-cash
-        </v-icon>
+        <p v-if="prefixName" class="prefix u-black--text mb-0">
+          <v-icon small>
+            mdi-food
+          </v-icon>
 
-        {{ priceRange }}
-      </p>
-    </div>
+          {{ prefixName }}
+        </p>
+
+        <p v-if="priceRange" class="area mb-0 u-black--text">
+          <v-icon small>
+            mdi-cash
+          </v-icon>
+
+          {{ priceRange }}
+        </p>
+      </div>
+    </component>
 
     <div class="mt-2">
       <v-chip-group>
@@ -45,7 +47,7 @@
         </v-chip>
       </v-chip-group>
     </div>
-  </component>
+  </div>
 </template>
 
 <script lang="ts">

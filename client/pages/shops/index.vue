@@ -19,10 +19,17 @@
 
           <div>
             <div class="sales-title">
-              <h3 class="pl-4 pt-4">営業中</h3>
+              <h3 class="pl-4 pt-4">
+                営業中
+              </h3>
             </div>
 
-            <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
+            <DefaultShopList
+              :areas="areas"
+              :shops="shops"
+              :max-item="shops.length"
+              :now-page="nowPage"
+            />
           </div>
         </v-col>
 
@@ -87,11 +94,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { Breadcrumb } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
+import { isArray } from '@/src/utils/Array'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -99,16 +107,29 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
+  watchQuery: ['page'],
+
   setup (_, context: SetupContext) {
     const { areas, nowArea } = useArea(context.root)
 
     const { shops } = useShop(context.root)
 
+    const nowPage = computed(() => {
+      const page = context.root.$route.query.page
+      if (isArray(page)) {
+        return 1
+      }
+
+      const pageNumber = Number(page)
+      return Number.isInteger(pageNumber) ? pageNumber : 1
+    })
+
     return {
       areas,
       breadcrumbs,
       nowArea,
-      shops
+      shops,
+      nowPage
     }
   },
 
