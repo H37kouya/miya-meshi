@@ -1,21 +1,82 @@
 <template>
   <div>
-    <MainText id="result_detail_search">
-      詳細検索結果
-    </MainText>
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container">
+      <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
+    </v-container>
 
-    <div class="u-light-grey-background pt-3">
-      <v-container class="py-0">
-        <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
-      </v-container>
+    <v-container class="pa-0">
+      <v-row class="mx-0">
+        <v-col cols="12" md="8" class="px-0 px-md-3">
+          <MainText id="result_detail_search">
+            詳細検索結果
+          </MainText>
 
-      <SearchButtonGroup
-        :btn-status="btnStatus"
-        @input="(v) => btnStatus = v"
-      />
-    </div>
+          <div>
+            <SearchAreaAndKyewordField
+              :area="nowArea"
+            />
+          </div>
 
-    <DefaultShopList :shops="displayShops" :max-item="shops.length" />
+          <DefaultShopList :shops="displayShops" :max-item="shops.length" />
+        </v-col>
+
+        <v-col cols="12" md="4" class="d-none d-md-block">
+          <div class="area-container mb-8">
+            <h3 class="area-title">
+              エリアから探す
+            </h3>
+
+            <div class="search-now-location d-flex justify-space-between pa-4">
+              <p class="mb-0">
+                現在地から探す
+              </p>
+
+              <v-icon>
+                mdi-chevron-right
+              </v-icon>
+            </div>
+
+            <div class="px-4 py-2">
+              <v-chip-group>
+                <v-chip small filter outlined value="canTakeout">
+                  テイクアウト可
+                </v-chip>
+              </v-chip-group>
+
+              <p class="text-right mb-0">
+                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
+                  詳細検索
+                </nuxt-link>
+              </p>
+            </div>
+          </div>
+
+          <div class="area-container">
+            <h3 class="area-title">
+              ジャンルから探す
+            </h3>
+
+            <div class="search-now-location d-flex justify-space-between pa-4">
+              <p class="mb-0">
+                すべて
+              </p>
+
+              <v-icon>
+                mdi-chevron-right
+              </v-icon>
+            </div>
+
+            <div class="px-4 py-2">
+              <p class="text-right mb-0">
+                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
+                  ジャンル検索
+                </nuxt-link>
+              </p>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -29,8 +90,6 @@ import { filterAreasByID } from '@/src/utils/Area'
 import { filterDishesByID } from '@/src/utils/Dish'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-import { useBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
-import { useFilterShopByBtnStatus } from '~/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
 import { isString } from '~/src/utils/String'
 import { useDish } from '~/src/CompositonFunctions/dishes/UseDishes'
 
@@ -45,7 +104,6 @@ export default defineComponent({
   setup (_, context: SetupContext) {
     const { query } = useContext()
 
-    const { btnStatus } = useBtnStatus(context)
     const { areas, nowArea } = useArea(context.root)
     const { shops } = useShop(context.root)
     const { dishes } = useDish(context.root)
@@ -118,8 +176,8 @@ export default defineComponent({
       areas,
       breadcrumbs,
       displayShops,
-      shops,
-      btnStatus
+      nowArea,
+      shops
     }
   },
 
@@ -133,12 +191,32 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.to-detail-search {
-  font-size: 0.8rem;
-  text-decoration: none;
+.sales-title {
+  border-bottom: 1px solid #d5ceb7;
 
-  &::before {
-    content: '←';
+  h3 {
+    font-size: 1.1rem;
+    font-weight: bolder;
   }
+}
+
+.area-container {
+  border: 1rem #f6f6f6 solid;
+}
+
+.area-title {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  padding: 1rem;
+}
+
+.search-now-location {
+  color: #5a5041;
+  background: #faf8f5;
+  font-weight: bolder;
+}
+
+.to-keyword-detail {
+  font-size: 0.8rem;
 }
 </style>
