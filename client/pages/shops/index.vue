@@ -25,6 +25,38 @@
             <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
           </div>
         </v-col>
+
+        <v-col cols="12" md="4" class="d-none d-md-block">
+          <div class="area-container">
+            <h3 class="area-title">
+              エリアから探す
+            </h3>
+
+            <div class="search-now-location d-flex justify-space-between pa-4">
+              <p class="mb-0">
+                現在地から探す
+              </p>
+
+              <v-icon>
+                mdi-chevron-right
+              </v-icon>
+            </div>
+
+            <div class="px-4 py-2">
+              <v-chip-group>
+                <v-chip small filter outlined value="canTakeout">
+                  テイクアウト可
+                </v-chip>
+              </v-chip-group>
+
+              <p class="text-right mb-0">
+                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
+                  詳細検索
+                </nuxt-link>
+              </p>
+            </div>
+          </div>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -73,5 +105,25 @@ export default defineComponent({
     font-size: 1.1rem;
     font-weight: bolder;
   }
+}
+
+.area-container {
+  border: 1rem #f6f6f6 solid;
+}
+
+.area-title {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  padding: 1rem;
+}
+
+.search-now-location {
+  color: #5a5041;
+  background: #faf8f5;
+  font-weight: bolder;
+}
+
+.to-keyword-detail {
+  font-size: 0.8rem;
 }
 </style>
