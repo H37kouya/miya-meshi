@@ -4,17 +4,46 @@
       <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
     </v-card>
 
-    <p class="prefix u-black--text mb-0" :class="{ 'no-prefix': !prefixName }">
-      {{ prefixName }}
-    </p>
     <p class="mb-0 shop-name u-black--text max-text-height-2">
       {{ name }}
     </p>
 
-    <div class="d-none d-sm-block">
-      <v-chip v-if="address" small>
-        {{ address }}
-      </v-chip>
+    <div class="explation">
+      <p v-if="area" class="d-sm-none area mb-0 u-black--text">
+        <v-icon color="#d4573c" small>
+          mdi-map-marker
+        </v-icon>
+
+        {{ area }}
+      </p>
+
+      <p v-if="prefixName" class="prefix u-black--text mb-0">
+        <v-icon small>
+          mdi-food
+        </v-icon>
+
+        {{ prefixName }}
+      </p>
+
+      <p v-if="priceRange" class="area mb-0 u-black--text">
+        <v-icon small>
+          mdi-cash
+        </v-icon>
+
+        {{ priceRange }}
+      </p>
+    </div>
+
+    <div class="mt-2">
+      <v-chip-group>
+        <v-chip v-if="address" class="d-none d-sm-block" small outlined>
+          {{ address }}
+        </v-chip>
+
+        <v-chip v-if="canTakeout" small outlined>
+          テイクアウト可
+        </v-chip>
+      </v-chip-group>
     </div>
   </component>
 </template>
@@ -43,12 +72,27 @@ export default defineComponent({
       default: undefined
     },
 
+    area: {
+      type: String,
+      default: undefined
+    },
+
+    canTakeout: {
+      type: Boolean,
+      default: false
+    },
+
     name: {
       type: String,
       default: undefined
     },
 
     prefixName: {
+      type: String,
+      default: undefined
+    },
+
+    priceRange: {
       type: String,
       default: undefined
     },
@@ -88,5 +132,17 @@ export default defineComponent({
     content: ' ';
     padding: 0.5rem;
   }
+}
+
+.explation {
+  height: 3.25rem;
+
+  @include mq(sm) {
+    height: 3rem;
+  }
+}
+
+.area {
+  font-size: 0.8rem;
 }
 </style>

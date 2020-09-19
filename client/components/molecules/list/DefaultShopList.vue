@@ -10,14 +10,17 @@
       <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
-            <v-col :key="key" cols="4" class="px-1 py-1 pb-sm-4">
+            <v-col :key="key" cols="6" class="px-1 pt-2 pb-sm-4">
               <ShopCard
                 :alt="`${shop.name} - thumnails`"
                 :address="shortAddress(shop.address)"
+                :area="computedShopArea(shop.address)"
+                :can-takeout="shop.canTakeout"
                 :to="`/shops/${shop.id}`"
                 :src="shop.imageLink"
                 :name="shop.name"
                 :prefix-name="shop.prefixName"
+                :price-range="shop.priceRange"
               />
             </v-col>
           </template>
@@ -37,15 +40,21 @@
 
 <script lang="ts">
 import { defineComponent, computed, reactive, SetupContext, watch } from '@vue/composition-api'
-import { Shop } from '@/lib'
-import { computedShortShopAddress } from '~/src/utils/Shop'
+import { Area, Shop } from '@/lib'
+import { computedShortShopAddress, getShopAreaByAddress } from '~/src/utils/Shop'
 
 type Props = {
+  areas: Area[],
   shops: Shop[],
   maxItem: number
 }
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     shops: {
       type: Array,
       default: () => []
@@ -71,11 +80,25 @@ export default defineComponent({
       return (address: Shop['address']) => computedShortShopAddress(address)
     })
 
+    const computedShopArea = computed(() => {
+      return (address: Shop['address']) => {
+        if (props.areas) {
+          const area = getShopAreaByAddress(address, props.areas)
+          if (area) {
+            return area.name
+          }
+        }
+
+        return computedShortShopAddress(address)
+      }
+    })
+
     watch(() => props.shops, (newVal, _) => {
       state.shops = newVal
     })
 
     return {
+      computedShopArea,
       shortAddress,
       state
     }

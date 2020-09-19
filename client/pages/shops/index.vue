@@ -14,7 +14,7 @@
       />
     </div>
 
-    <DefaultShopList :shops="shops" :max-item="shops.length" />
+    <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
   </div>
 </template>
 
@@ -24,8 +24,6 @@ import { MetaInfo } from 'vue-meta'
 import { Breadcrumb } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-import { useBtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
-import { useFilterShopByBtnStatus } from '@/src/CompositonFunctions/btnStatus/UseFilterShopByBtnStatus'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -34,11 +32,12 @@ const breadcrumbs = [
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const { nowArea } = useArea(context.root)
+    const { areas, nowArea } = useArea(context.root)
 
     const { shops } = useShop(context.root)
 
     return {
+      areas,
       breadcrumbs,
       nowArea,
       shops

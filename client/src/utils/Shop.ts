@@ -68,14 +68,24 @@ export const filterShopsByDishes = (shops: Shop[], dishes: Dish[]) => {
    * @param { Shop } shop
    * @param { Area[] } areas
    */
-export const getShopArea = (shop: Shop, areas: Area[]): Area|undefined => {
-  if (!shop.address) {
+export const getShopArea = (shop: Shop, areas: Area[]): Area|undefined => getShopAreaByAddress(shop.address, areas)
+
+/**
+ * Shopのエリアを取得する
+ *
+ * @param { Shop } shop
+ * @param { Area[] } areas
+ */
+export const getShopAreaByAddress = (address: Shop['address'], areas: Area[]): Area|undefined => {
+  if (!address) {
     return undefined
   }
 
   for (const area of areas) {
-    if (area.addresses.includes(shop.address)) {
-      return area
+    for (const areaAddress of area.addresses) {
+      if (address.includes(areaAddress)) {
+        return area
+      }
     }
   }
 
