@@ -103,7 +103,7 @@ import { isArray } from '@/src/utils/Array'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
-  { exact: true, text: 'お店から探す', to: '/shops' },
+  { text: 'お店から探す', to: '/shops' }
 ] as Breadcrumb[]
 
 export default defineComponent({
