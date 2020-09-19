@@ -14,7 +14,13 @@
       />
     </div>
 
-    <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
+    <div>
+      <div class="sales-title">
+        <h3 class="pl-4 pt-4">営業中</h3>
+      </div>
+
+      <DefaultShopList :areas="areas" :shops="shops" :max-item="shops.length" />
+    </div>
   </div>
 </template>
 
@@ -52,3 +58,14 @@ export default defineComponent({
   })
 })
 </script>
+
+<style lang="scss" scoped>
+.sales-title {
+  border-bottom: 1px solid #d5ceb7;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: bolder;
+  }
+}
+</style>
