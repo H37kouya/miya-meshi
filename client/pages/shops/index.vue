@@ -14,6 +14,7 @@
           <div>
             <SearchAreaAndKyewordField
               :area="nowArea"
+              @updateNowArea="onUpdateNowArea"
             />
           </div>
 

@@ -2,9 +2,16 @@
   <div>
     <div class="d-md-none d-flex justify-space-between align-center now-area-container">
       <div class="pl-4">
-        <p class="now-area mb-0">
-          現在のエリア
-        </p>
+        <div class="d-flex">
+          <p class="now-area mb-0">
+            現在のエリア
+          </p>
+
+          <v-btn depressed text x-small color="primary" @click="onUpdateNowArea">
+            現在地を更新
+          </v-btn>
+        </div>
+
         <p class="now-area-name mb-0">
           {{ area ? area.name : '不明' }}
         </p>
@@ -36,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, SetupContext } from '@nuxtjs/composition-api'
 import { Area } from '@/lib'
 
 type Props = {
@@ -55,12 +62,15 @@ export default defineComponent({
     }
   },
 
-  setup (_: Props) {
+  setup (_: Props, context: SetupContext) {
     const state = reactive<State>({
       chips: [] as string[]
     })
 
+    const onUpdateNowArea = () => context.emit('updateNowArea')
+
     return {
+      onUpdateNowArea,
       state
     }
   }

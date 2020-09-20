@@ -1,6 +1,7 @@
 <template>
   <IndexDefaultTemplate
     :insta-shops="instaShops"
+    :areas="areas"
     :shops="recommendShops"
     :news-list="newsList"
     :max-shop-count="shops.length"
@@ -13,6 +14,7 @@ import { useInstaShopForTopPage } from '@/src/CompositonFunctions/shops/UseInsta
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
+import { useArea } from '~/src/CompositonFunctions/areas/UseArea'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
@@ -20,8 +22,10 @@ export default defineComponent({
     const { recommendShops } = useRecommendShop(context.root)
     const { newsList } = useNews()
     const { shops } = useShop(context.root, 2000)
+    const { areas } = useArea(context.root)
 
     return {
+      areas,
       instaShops,
       recommendShops,
       shops,

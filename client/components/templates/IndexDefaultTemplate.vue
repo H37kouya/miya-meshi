@@ -11,7 +11,7 @@
         </v-lazy>
 
         <v-lazy>
-          <DefaultShopList :shops="shops" justify="center" />
+          <DefaultShopList :areas="areas" :shops="shops" justify="center" />
         </v-lazy>
       </v-col>
 
@@ -52,9 +52,10 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { Shop, News } from '@/lib'
+import { Shop, News, Area } from '@/lib'
 
 type Props = {
+  areas: Area[],
   shops: Shop[],
   instaShops: Shop[],
   newsList: News[]
@@ -62,6 +63,11 @@ type Props = {
 
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     shops: {
       type: Array,
       default: () => []

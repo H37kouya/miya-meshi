@@ -83,7 +83,8 @@ export const getShopAreaByAddress = (address: Shop['address'], areas: Area[]): A
 
   for (const area of areas) {
     for (const areaAddress of area.addresses) {
-      if (address.includes(areaAddress)) {
+      const _areaAddress = areaAddress.replace('丁目', '')
+      if (address.includes(_areaAddress)) {
         return area
       }
     }
