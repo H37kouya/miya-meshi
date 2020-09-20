@@ -41,13 +41,29 @@ export const mutations = {
 
 export enum ActionType {
   COMPUTED_NOW_LOCATION = 'COMPUTED_NOW_LOCATION',
-  FETCH_AREAS = 'FETCH_AREAS'
+  FETCH_AREAS = 'FETCH_AREAS',
+  RE_COMPUTED_NOW_LOCATION = 'RE_COMPUTED_NOW_LOCATION'
 }
 
 export const actions: ActionTree<any, State> = {
   [ActionType.COMPUTED_NOW_LOCATION] ({ commit, getters, rootGetters }) {
     const nowAddress = rootGetters['geolocation/location'] as GeoLocation
     if (getters.canComputedNowArea && nowAddress) {
+      const area = getters.areas.find((area: Area) => {
+        if (!area.addresses) {
+          return false
+        }
+
+        return area.addresses.includes(nowAddress.address)
+      })
+
+      commit(MutationType.SET_NOW_AREA, area)
+    }
+  },
+
+  [ActionType.RE_COMPUTED_NOW_LOCATION] ({ commit, getters, rootGetters }) {
+    const nowAddress = rootGetters['geolocation/location'] as GeoLocation
+    if (nowAddress) {
       const area = getters.areas.find((area: Area) => {
         if (!area.addresses) {
           return false
@@ -67,4 +83,5 @@ export const actions: ActionTree<any, State> = {
       dispatch(ActionType.COMPUTED_NOW_LOCATION)
     }
   }
+
 }

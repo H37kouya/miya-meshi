@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-space-between align-center now-area-container">
+    <div class="d-md-none d-flex justify-space-between align-center now-area-container">
       <div class="pl-4">
         <p class="now-area mb-0">
           現在のエリア
@@ -12,7 +12,7 @@
 
       <div class="pr-4">
         <v-btn color="#d6cba6" depressed large to="/keywords/detail">
-          現在地を変更
+          エリアを変更
         </v-btn>
       </div>
     </div>
@@ -79,11 +79,11 @@ export default defineComponent({
 
 .now-area-container {
   border-top: 1px solid #d5ceb7;
-  border-bottom: 1px solid #d5ceb7;
   padding: 0.5rem 0;
 }
 
 .search-keyword-container {
+  border-top: 1px solid #d5ceb7;
   border-bottom: 1px solid #d5ceb7;
 }
 

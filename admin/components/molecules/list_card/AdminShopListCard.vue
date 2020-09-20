@@ -36,6 +36,20 @@
           :key="idx"
         />
       </template>
+
+      <template v-if="state.shops.length === 0">
+        <div>
+          <p class="mb-0 text-center pa-8">
+            条件に見合うお店が見つかりませんでした。
+          </p>
+
+          <div class="d-flex justify-center">
+            <v-btn to="/shops" color="primary">
+              リセット
+            </v-btn>
+          </div>
+        </div>
+      </template>
     </v-list>
   </v-card>
 </template>

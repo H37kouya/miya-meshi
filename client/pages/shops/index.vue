@@ -34,35 +34,13 @@
         </v-col>
 
         <v-col cols="12" md="4" class="d-none d-md-block">
-          <div class="area-container mb-8">
-            <h3 class="area-title">
-              エリアから探す
-            </h3>
-
-            <div class="search-now-location d-flex justify-space-between pa-4">
-              <p class="mb-0">
-                現在地から探す
-              </p>
-
-              <v-icon>
-                mdi-chevron-right
-              </v-icon>
-            </div>
-
-            <div class="px-4 py-2">
-              <v-chip-group>
-                <v-chip small filter outlined value="canTakeout">
-                  テイクアウト可
-                </v-chip>
-              </v-chip-group>
-
-              <p class="text-right mb-0">
-                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
-                  詳細検索
-                </nuxt-link>
-              </p>
-            </div>
-          </div>
+          <SearchAreaField
+            :areas="areas"
+            :now-area="nowArea"
+            :value="searchAreas"
+            @change="onChangeSearchAreas"
+            @updateNowArea="onUpdateNowArea"
+          />
 
           <div class="area-container">
             <h3 class="area-title">
@@ -100,6 +78,7 @@ import { Breadcrumb } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { isArray } from '@/src/utils/Array'
+import { isString } from '@/src/utils/String'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -110,7 +89,7 @@ export default defineComponent({
   watchQuery: ['page'],
 
   setup (_, context: SetupContext) {
-    const { areas, nowArea } = useArea(context.root)
+    const { areas, nowArea, onUpdateNowArea } = useArea(context.root)
 
     const { shops } = useShop(context.root)
 
@@ -124,12 +103,37 @@ export default defineComponent({
       return Number.isInteger(pageNumber) ? pageNumber : 1
     })
 
+    const searchAreas = computed(() => {
+      const _searchAreas = context.root.$route.query.areas
+      if (isArray(_searchAreas)) {
+        return _searchAreas
+      }
+
+      if (isString(_searchAreas)) {
+        return [_searchAreas]
+      }
+
+      return []
+    })
+
+    const onChangeSearchAreas = async (areas: string[]) => {
+      return await context.root.$router.push({
+        path: '/shops',
+        query: {
+          areas
+        }
+      })
+    }
+
     return {
       areas,
       breadcrumbs,
       nowArea,
       shops,
-      nowPage
+      searchAreas,
+      nowPage,
+      onUpdateNowArea,
+      onChangeSearchAreas
     }
   },
 
