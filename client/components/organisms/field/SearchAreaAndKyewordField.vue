@@ -29,7 +29,7 @@
         絞り込み
       </p>
 
-      <v-chip-group v-model="state.chips" multiple>
+      <v-chip-group :value="value" multiple @change="onChange">
         <v-chip v-if="area" small filter outlined :value="area.id">
           {{ area.name }}
         </v-chip>
@@ -43,12 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext } from '@nuxtjs/composition-api'
-import { Area } from '@/lib'
-
-type Props = {
-  area: Area
-}
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 
 type State = {
   chips: string[]
@@ -59,19 +54,22 @@ export default defineComponent({
     area: {
       type: Object,
       default: undefined
+    },
+
+    value: {
+      type: Array,
+      default: () => []
     }
   },
 
-  setup (_: Props, context: SetupContext) {
-    const state = reactive<State>({
-      chips: [] as string[]
-    })
+  setup (_, context: SetupContext) {
+    const onChange = (val: string[]) => context.emit('change', val)
 
     const onUpdateNowArea = () => context.emit('updateNowArea')
 
     return {
-      onUpdateNowArea,
-      state
+      onChange,
+      onUpdateNowArea
     }
   }
 })
