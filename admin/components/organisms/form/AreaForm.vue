@@ -25,14 +25,8 @@
           <v-card outlined>
             <v-card-text>
               <AddressNameTextField
-                v-model="state.area.addresses"
+                :addresses="state.area.addresses"
               />
-
-              <div class="d-flex justify-end">
-                <v-btn type="submit" color="primary" large>
-                  追加
-                </v-btn>
-              </div>
             </v-card-text>
           </v-card>
         </v-col>
