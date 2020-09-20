@@ -78,6 +78,7 @@ import { Breadcrumb } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { isArray } from '@/src/utils/Array'
+import { isString } from '@/src/utils/String'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -108,7 +109,11 @@ export default defineComponent({
         return _searchAreas
       }
 
-      return undefined
+      if (isString(_searchAreas)) {
+        return [_searchAreas]
+      }
+
+      return []
     })
 
     const onChangeSearchAreas = async (areas: string[]) => {
