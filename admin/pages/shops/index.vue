@@ -72,12 +72,14 @@ export default defineComponent({
 
     const filterShops = computed(() => {
       const name = context.root.$route.query.name
-      if (name) {
+      if (isString(name)) {
+        const _nameToLower = name.toLowerCase()
+
         return state.shops.filter((shop: Shop) => {
           if (!shop.name) {
             return false
           }
-          return name.includes(shop.name)
+          return shop.name.toLowerCase().includes(_nameToLower)
         })
       }
 

@@ -2,9 +2,16 @@
   <div>
     <div class="d-md-none d-flex justify-space-between align-center now-area-container">
       <div class="pl-4">
-        <p class="now-area mb-0">
-          現在のエリア
-        </p>
+        <div class="d-flex">
+          <p class="now-area mb-0">
+            現在のエリア
+          </p>
+
+          <v-btn depressed text x-small color="primary" @click="onUpdateNowArea">
+            現在地を更新
+          </v-btn>
+        </div>
+
         <p class="now-area-name mb-0">
           {{ area ? area.name : '不明' }}
         </p>
@@ -22,7 +29,7 @@
         絞り込み
       </p>
 
-      <v-chip-group v-model="state.chips" multiple>
+      <v-chip-group :value="value" multiple @change="onChange">
         <v-chip v-if="area" small filter outlined :value="area.id">
           {{ area.name }}
         </v-chip>
@@ -36,12 +43,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api'
-import { Area } from '@/lib'
-
-type Props = {
-  area: Area
-}
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 
 type State = {
   chips: string[]
@@ -52,16 +54,22 @@ export default defineComponent({
     area: {
       type: Object,
       default: undefined
+    },
+
+    value: {
+      type: Array,
+      default: () => []
     }
   },
 
-  setup (_: Props) {
-    const state = reactive<State>({
-      chips: [] as string[]
-    })
+  setup (_, context: SetupContext) {
+    const onChange = (val: string[]) => context.emit('change', val)
+
+    const onUpdateNowArea = () => context.emit('updateNowArea')
 
     return {
-      state
+      onChange,
+      onUpdateNowArea
     }
   }
 })

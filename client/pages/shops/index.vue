@@ -14,6 +14,9 @@
           <div>
             <SearchAreaAndKyewordField
               :area="nowArea"
+              :value="searchAreasAndCanTakeout"
+              @updateNowArea="onUpdateNowArea"
+              @change="onChangeSearch"
             />
           </div>
 
@@ -26,7 +29,7 @@
 
             <DefaultShopList
               :areas="areas"
-              :shops="shops"
+              :shops="filterShopsByCanTakeout"
               :max-item="shops.length"
               :now-page="nowPage"
             />
@@ -74,11 +77,13 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
-import { Breadcrumb } from '@/lib'
+import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { isArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
+import { filterShopsByAreas } from '~/src/utils/Shop'
+import { filterAreasByID } from '~/src/utils/Area'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -103,6 +108,22 @@ export default defineComponent({
       return Number.isInteger(pageNumber) ? pageNumber : 1
     })
 
+    const searchAreasAndCanTakeout = computed(() => {
+      const _canTakeout = context.root.$route.query.canTakeout
+      if (isArray(_canTakeout)) {
+        return searchAreas.value
+      }
+
+      if (isString(_canTakeout)) {
+        return [
+          ...searchAreas.value,
+          'canTakeout'
+        ]
+      }
+
+      return searchAreas.value
+    })
+
     const searchAreas = computed(() => {
       const _searchAreas = context.root.$route.query.areas
       if (isArray(_searchAreas)) {
@@ -116,6 +137,31 @@ export default defineComponent({
       return []
     })
 
+    const onChangeSearch = async (value: string[]) => {
+      const query = {
+        areas: [] as string[]
+      } as {
+        areas?: string[]
+        canTakeout?: 'true'
+      }
+
+      for (const v of value) {
+        if (v.includes('canTakeout')) {
+          query.canTakeout = 'true'
+        } else {
+          query.areas && query.areas.push(v)
+        }
+      }
+
+      return await context.root.$router.push({
+        path: '/shops',
+        query: {
+          areas: query.areas && query.areas.length > 0 ? query.areas : undefined,
+          canTakeout: query.canTakeout
+        }
+      })
+    }
+
     const onChangeSearchAreas = async (areas: string[]) => {
       return await context.root.$router.push({
         path: '/shops',
@@ -125,13 +171,37 @@ export default defineComponent({
       })
     }
 
+    const filterAreas = computed(() => {
+      const areasQuery = context.root.$route.query.areas
+      return filterAreasByID(areas.value, areasQuery)
+    })
+
+    const filterShopsByArea = computed(() => {
+      if (filterAreas.value.length === 0) {
+        return shops.value
+      }
+      return filterShopsByAreas(shops.value, filterAreas.value)
+    })
+
+    const filterShopsByCanTakeout = computed(() => {
+      const _canTakeout = context.root.$route.query.canTakeout
+      if (isString(_canTakeout)) {
+        return filterShopsByArea.value.filter((shop: Shop) => shop.canTakeout)
+      }
+
+      return filterShopsByArea.value
+    })
+
     return {
       areas,
       breadcrumbs,
       nowArea,
+      filterShopsByCanTakeout,
       shops,
       searchAreas,
+      searchAreasAndCanTakeout,
       nowPage,
+      onChangeSearch,
       onUpdateNowArea,
       onChangeSearchAreas
     }
