@@ -1,23 +1,44 @@
 <template>
-  <v-form @submit.prevent="onSubmit">
-    <v-row>
-      <v-col cols="12" sm="8">
-        <v-card outlined>
-          <v-card-text>
-            <AreaNameTextField
-              v-model="state.area.name"
-            />
+  <v-container>
+    <v-form @submit.prevent="onSubmit">
+      <v-row>
+        <v-col cols="12" sm="8">
+          <v-card outlined>
+            <v-card-text>
+              <AreaNameTextField
+                v-model="state.area.name"
+              />
 
-            <div class="d-flex justify-end">
-              <v-btn type="submit" color="primary" large>
-                追加
-              </v-btn>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-form>
+              <div class="d-flex justify-end">
+                <v-btn type="submit" color="primary" large>
+                  追加
+                </v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-form>
+    <v-form @submit.prevent="onSubmit">
+      <v-row>
+        <v-col cols="12" sm="8">
+          <v-card outlined>
+            <v-card-text>
+              <AddressNameTextField
+                v-model="state.area.addresses"
+              />
+
+              <div class="d-flex justify-end">
+                <v-btn type="submit" color="primary" large>
+                  追加
+                </v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-form>
+  </v-container>
 </template>
 
 <script lang="ts">
