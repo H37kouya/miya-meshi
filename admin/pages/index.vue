@@ -29,6 +29,14 @@
         <KeywordAdminButton />
       </v-col>
 
+      <v-col cols="6" md="3">
+        <DishAdminButton />
+      </v-col>
+
+      <v-col cols="6" md="3">
+        <PriceRangeAdminButton />
+      </v-col>
+
       <v-col cols="6" sm="3">
         <AreaAdminButton />
       </v-col>
