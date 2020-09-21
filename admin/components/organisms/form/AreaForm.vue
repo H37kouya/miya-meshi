@@ -1,23 +1,43 @@
 <template>
-  <v-form @submit.prevent="onSubmit">
+  <v-container>
+    <v-form @submit.prevent="onSubmit">
+      <v-row>
+        <v-col cols="12" sm="8">
+          <v-card outlined>
+            <v-card-text>
+              <AreaNameTextField
+                v-model="state.area.name"
+              />
+
+              <div class="d-flex justify-end">
+                <v-btn type="submit" color="primary" large>
+                  追加
+                </v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-form>
     <v-row>
       <v-col cols="12" sm="8">
-        <v-card outlined>
-          <v-card-text>
-            <AreaNameTextField
-              v-model="state.area.name"
-            />
-
-            <div class="d-flex justify-end">
-              <v-btn type="submit" color="primary" large>
-                追加
-              </v-btn>
-            </div>
-          </v-card-text>
-        </v-card>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">住所</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(address, index) in state.area.addresses" :key="index">
+                <td>{{ address }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </v-col>
     </v-row>
-  </v-form>
+  </v-container>
 </template>
 
 <script lang="ts">
