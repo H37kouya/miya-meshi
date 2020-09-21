@@ -39,8 +39,7 @@ export default defineComponent({
     }
 
     const onDeleteAreaAddress = async (address: string) => {
-      console.log('done')
-      const _newArea = await editDBArea(
+      await editDBArea(
         context.root.$fireStore,
         context.root.$fireStoreObj,
         {
