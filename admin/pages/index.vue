@@ -41,6 +41,10 @@
         <AreaAdminButton />
       </v-col>
 
+      <v-col cols="6" sm="3">
+        <SettingsAdminButton />
+      </v-col>
+
       <v-col cols="6" md="3">
         <MiyaMeshiInstaAdminButton />
       </v-col>
