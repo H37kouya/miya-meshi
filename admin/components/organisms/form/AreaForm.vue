@@ -19,19 +19,24 @@
         </v-col>
       </v-row>
     </v-form>
-    <v-form @submit.prevent="onSubmit">
-      <v-row>
-        <v-col cols="12" sm="8">
-          <v-card outlined>
-            <v-card-text>
-              <AddressNameTextField
-                :addresses="state.area.addresses"
-              />
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-form>
+    <v-row>
+      <v-col cols="12" sm="8">
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">住所</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(address, index) in state.area.addresses" :key="index">
+                <td>{{ address }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
