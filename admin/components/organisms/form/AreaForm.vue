@@ -22,7 +22,6 @@
 
     <v-row>
       <v-col cols="12" sm="8">
-        <p class="mb-2">※<span class="red--text">削除</span>は現在、機能しません。後日追加予定。</p>
         <v-simple-table>
           <template v-slot:default>
             <thead>
