@@ -19,18 +19,24 @@
         </v-col>
       </v-row>
     </v-form>
+
     <v-row>
       <v-col cols="12" sm="8">
+        <p class="mb-2">※<span class="red--text">削除</span>は現在、機能しません。後日追加予定。</p>
         <v-simple-table>
           <template v-slot:default>
             <thead>
               <tr>
                 <th class="text-left">住所</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(address, index) in state.area.addresses" :key="index">
                 <td>{{ address }}</td>
+                <td @click="onDelete(address)">
+                  <span class="delete-text">削除</span>
+                </td>
               </tr>
             </tbody>
           </template>
@@ -71,10 +77,24 @@ export default defineComponent({
 
     const onSubmit = () => context.emit('submit', state.area)
 
+    const onDelete = (address: string) => context.emit('delete', address)
+
     return {
       state,
+      onDelete,
       onSubmit
     }
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.delete-text {
+  caret-color: #f44336;
+  color: #f44336;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+</style>

@@ -12,7 +12,7 @@
 
     <v-row>
       <v-col cols="12">
-        <AreaForm :area="state.area" @submit="editArea" />
+        <AreaForm :area="state.area" @delete="onDeleteAreaAddress" @submit="editArea" />
       </v-col>
     </v-row>
   </v-container>
@@ -21,6 +21,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Area } from '@/lib'
+import { Type } from '@/lib/enum'
 import { editArea as editDBArea, getAreaByID } from '@/src/infra/firestore/Area'
 
 export default defineComponent({
@@ -37,13 +38,30 @@ export default defineComponent({
       return await context.root.$router.push('/area')
     }
 
+    const onDeleteAreaAddress = async (address: string) => {
+      await editDBArea(
+        context.root.$fireStore,
+        context.root.$fireStoreObj,
+        {
+          type: Type.AREA,
+          id: state.area.id,
+          name: state.area.name,
+          addresses: state.area.addresses.filter((_address: string) => _address !== address)
+        } as Area,
+        context.root.$route.params.id
+      )
+
+      return await context.root.$router.push('/area')
+    }
+
     watchEffect(async () => {
       state.area = await getAreaByID(context.root.$fireStore, context.root.$route.params.id)
     })
 
     return {
       state,
-      editArea
+      editArea,
+      onDeleteAreaAddress
     }
   }
 })

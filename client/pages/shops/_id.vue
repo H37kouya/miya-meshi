@@ -1,10 +1,24 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="8" class="px-0 px-sm-3">
-        <ShopidDefaultTemplate v-if="data && data.shop" :shop="data.shop" :menus="state.menus" />
+      <v-col cols="12" class="px-0 px-sm-3">
+        <template v-if="!screenMd">
+          <ShopidDefaultTemplate
+            v-if="data && data.shop"
+            :shop="data.shop"
+            :menus="state.menus"
+          />
 
-        <div v-else class="empty-height" />
+          <div v-else class="empty-height" />
+        </template>
+
+        <template v-else>
+          <ShopidPcTemplate
+            v-if="data && data.shop"
+            :shop="data.shop"
+            :menus="state.menus"
+          />
+        </template>
       </v-col>
     </v-row>
   </v-container>
@@ -15,6 +29,7 @@ import { defineComponent, reactive, useAsync, useContext, watchEffect } from '@n
 import { Shop, Menu } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
+import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type State = {
   shop: Shop,
@@ -27,6 +42,8 @@ export default defineComponent({
     const state = reactive({
       menus: [] as Menu[]
     })
+
+    const { screenMd } = useGetScreenSize()
 
     const data = useAsync<{ shop: Shop|undefined }>(async () => {
       const shop = await getShopByID(app.$fireStore, params.value.id)
@@ -49,6 +66,7 @@ export default defineComponent({
 
     return {
       data,
+      screenMd,
       state
     }
   }

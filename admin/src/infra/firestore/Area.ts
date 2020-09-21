@@ -45,7 +45,13 @@ export const editArea = async (
     updatedAt: $fireStoreObj.FieldValue.serverTimestamp()
   }
 
-  await $fireStore.collection(AREA_COLLECTION_NAME).doc(areaID).update(updateData)
+  try {
+    await $fireStore.collection(AREA_COLLECTION_NAME).doc(areaID).update(updateData)
+
+    return updateData as Area
+  } catch (e) {
+    alert('更新に失敗した可能性があります')
+  }
 }
 
 /**

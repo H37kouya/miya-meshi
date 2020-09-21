@@ -71,6 +71,11 @@ export default {
           icon: 'mdi-map',
           title: 'エリア一覧',
           to: '/area'
+        },
+        {
+          icon: 'mdi-cog',
+          title: '設定',
+          to: '/settings'
         }
       ]
     }

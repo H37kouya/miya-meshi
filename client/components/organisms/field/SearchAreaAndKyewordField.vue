@@ -18,7 +18,7 @@
       </div>
 
       <div class="pr-4">
-        <v-btn color="#d6cba6" depressed large to="/keywords/detail">
+        <v-btn dark color="#d6cba6" depressed large to="/keywords/detail">
           エリアを変更
         </v-btn>
       </div>

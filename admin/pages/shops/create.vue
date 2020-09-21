@@ -13,6 +13,7 @@
     <v-row>
       <ShopForm
         :dishes="state.dishes"
+        :keywords="state.keywords"
         :price-range-list="state.priceRangeList"
         @submit="createShop"
       />

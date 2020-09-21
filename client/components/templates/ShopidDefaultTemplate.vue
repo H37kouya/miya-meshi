@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4">
+  <div>
     <v-container>
       <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
     </v-container>
@@ -85,7 +85,7 @@ export default defineComponent({
     }
   },
 
-  setup (props) {
+  setup (props: Props) {
     const menuImage = computed(() => {
       if (!props.shop.menuImageLink) {
         return undefined
