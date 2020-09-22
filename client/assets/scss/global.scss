@@ -80,7 +80,8 @@
   border-bottom: 1px solid #d5ceb7;
 
   @include mq(sm) {
-    border: 1px solid #d5ceb7;
+    border-top: none;
+    background-color: #fff;
   }
 }
 
