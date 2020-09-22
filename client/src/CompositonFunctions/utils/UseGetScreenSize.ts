@@ -11,10 +11,10 @@ export const useGetScreenSize = () => {
     height: 0
   })
 
-  const screenSm = computed(() => state.width > 600)
-  const screenMd = computed(() => state.width > 960)
-  const screenLg = computed(() => state.width > 1264)
-  const screenXl = computed(() => state.width > 1904)
+  const screenSm = computed(() => (state.width === 0 && state.height === 0) || state.width > 600)
+  const screenMd = computed(() => (state.width === 0 && state.height === 0) || state.width > 960)
+  const screenLg = computed(() => (state.width === 0 && state.height === 0) || state.width > 1264)
+  const screenXl = computed(() => (state.width === 0 && state.height === 0) || state.width > 1904)
 
   const handleResize = () => {
     // resizeのたびにこいつが発火するので、ここでやりたいことをやる

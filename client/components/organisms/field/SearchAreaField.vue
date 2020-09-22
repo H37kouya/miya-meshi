@@ -28,7 +28,7 @@
       </div>
 
       <p class="now-area-name mb-0">
-        {{ nowArea ? nowArea.name : '不明' }}
+        {{ nowArea ? nowArea.name : '全て' }}
       </p>
     </div>
 

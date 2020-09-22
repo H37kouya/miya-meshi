@@ -1,10 +1,6 @@
 <template>
   <div>
-    <MainText :level="2">
-      当店のおすすめ
-    </MainText>
-
-    <div class="u-light-grey-background">
+    <div class="u-light-grey-background recommend-container">
       <v-container class="max-width-600 py-4">
         <template v-for="(menu, key) in state.menus">
           <div :key="menu.id" class="px-4" :class="{ 'mb-4': state.menus.length - 1 !== key }">
@@ -49,3 +45,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.recommend-container {
+  @include mq(md) {
+    background: #fff;
+  }
+}
+</style>
