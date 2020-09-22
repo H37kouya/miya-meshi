@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@nuxtjs/composition-api'
 import { Menu } from '@/lib'
 
 type State = {

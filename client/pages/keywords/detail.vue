@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'

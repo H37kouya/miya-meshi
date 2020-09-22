@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { Area } from '@/lib'
 import { DetailListItemType, DETAIL_LIST_ITEM, DETAIL_LIST_ITEM_LANG } from '@/components/atoms/table/DetailListItemType'
 

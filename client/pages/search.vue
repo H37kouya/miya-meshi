@@ -82,7 +82,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
-import { SetupContext } from '@vue/composition-api'
+import { SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { Breadcrumb, Shop } from '@/lib'
 import { filterShopsByAreas, filterShopsByDishes } from '@/src/utils/Shop'

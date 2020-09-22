@@ -1,4 +1,4 @@
-import { computed, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, SetupContext, watchEffect } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 import { ActionType } from '@/store/shops'
 

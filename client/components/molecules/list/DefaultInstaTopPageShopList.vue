@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 
 type Props = {

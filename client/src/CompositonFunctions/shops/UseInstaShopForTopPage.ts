@@ -1,4 +1,4 @@
-import { computed, onMounted, reactive, SetupContext, toRefs } from '@vue/composition-api'
+import { computed, onMounted, reactive, SetupContext, toRefs } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 import { getShopListByInstaNumber } from '@/src/infra/firestore/Shop'
 

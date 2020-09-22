@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watch } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 import { computedShortShopAddress } from '~/src/utils/Shop'
 

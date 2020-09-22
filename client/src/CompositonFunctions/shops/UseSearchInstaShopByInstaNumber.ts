@@ -1,4 +1,4 @@
-import { computed, reactive, toRefs } from '@vue/composition-api'
+import { computed, reactive, toRefs } from '@nuxtjs/composition-api'
 import { Shop } from '~/lib'
 
 type State = {

@@ -1,4 +1,4 @@
-import { reactive, SetupContext, toRefs, watchEffect } from '@vue/composition-api'
+import { reactive, SetupContext, toRefs, watchEffect } from '@nuxtjs/composition-api'
 import { getMenuList } from '@/src/infra/firestore/Menu'
 import { Menu } from '@/lib'
 

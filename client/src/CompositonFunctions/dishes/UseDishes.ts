@@ -1,4 +1,4 @@
-import { computed, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, SetupContext, watchEffect } from '@nuxtjs/composition-api'
 import { Getters, ActionType } from '@/store/dishes'
 
 export const useDish = ({ $store }: SetupContext['root']) => {

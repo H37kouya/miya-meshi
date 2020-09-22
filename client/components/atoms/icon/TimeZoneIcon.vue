@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { TimeZone } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
 
 type Props = {

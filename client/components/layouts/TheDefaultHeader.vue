@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
 const HeaderLongField = () => import('@/components/organisms/field/HeaderLongField.vue')
 const HeaderMediumField = () => import('@/components/organisms/field/HeaderMediumField.vue')
 const HeaderShortField = () => import('@/components/organisms/field/HeaderShortField.vue')

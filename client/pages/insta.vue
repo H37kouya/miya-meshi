@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useInstaShop } from '@/src/CompositonFunctions/shops/UseInstaShop'
 
