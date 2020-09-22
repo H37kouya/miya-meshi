@@ -26,7 +26,7 @@
               <nuxt-link class="sentence text-decoration-none" to="/">トップページ</nuxt-link>
             </li>
             <li class="link-inline-list-item">
-              <nuxt-link class="sentence text-decoration-none" to="/shops">店舗から探す</nuxt-link>
+              <nuxt-link class="sentence text-decoration-none" to="/shops">お店から探す</nuxt-link>
             </li>
             <li class="link-inline-list-item">
               <nuxt-link class="sentence text-decoration-none" to="/insta">インスタからのおすすめ</nuxt-link>

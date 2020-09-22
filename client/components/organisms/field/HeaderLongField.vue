@@ -16,7 +16,7 @@
             <HeaderIconField />
           </v-col>
 
-          <v-col class="py-0">
+          <v-col class="py-0 d-none d-md-block">
             <div class="d-flex justify-end">
               <div>
                 <v-img

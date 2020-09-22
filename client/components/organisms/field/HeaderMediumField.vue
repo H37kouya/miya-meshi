@@ -1,6 +1,6 @@
 <template>
   <div class="w-100">
-    <div class="d-md-none">
+    <div class="d-sm-none">
       <v-img
         src="/s/miyameshi-header.jpg"
         width="100%"
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="d-none d-md-block border-b border-dark-gray">
+    <div class="d-none d-sm-block border-b border-dark-gray">
       <v-container>
         <v-row justify="space-around" align="center">
           <v-col class="py-0">
@@ -29,8 +29,8 @@
             <HeaderIconField />
           </v-col>
 
-          <v-col class="py-0">
-            <div lass="d-flex justify-end">
+          <v-col class="py-0 d-none d-md-block">
+            <div class="d-flex justify-end">
               <div>
                 <v-img
                   src="/s/icon-door.png"
