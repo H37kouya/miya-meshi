@@ -15,7 +15,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     shop: {
       type: Object,
@@ -27,9 +29,5 @@ export default {
       default: () => []
     }
   }
-}
+})
 </script>
-
-<style>
-
-</style>

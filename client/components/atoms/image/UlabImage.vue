@@ -3,12 +3,14 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     width: {
       type: [Number, String],
       default: '120px'
     }
   }
-}
+})
 </script>
