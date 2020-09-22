@@ -37,12 +37,6 @@
         :max-height="screenSm ? '586px' : '160px'"
       />
 
-      <template v-if="!state.loading">
-        <v-card class="d-sm-none news">
-          <v-img src="/s/miyameshi-ticket.jpg" />
-        </v-card>
-      </template>
-
       <div class="text-right pt-6 px-4 developer-name d-sm-none">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
       </div>
@@ -51,25 +45,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 export default defineComponent({
   setup () {
-    const state = reactive({
-      loading: true
-    })
-
     const { screenSm, screenMd } = useGetScreenSize()
 
-    onMounted(() => {
-      setTimeout(() => {
-        state.loading = false
-      }, 500)
-    })
-
     return {
-      state,
       screenSm,
       screenMd
     }
