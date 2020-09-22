@@ -43,6 +43,10 @@ const nuxtConfig: NuxtConfig = {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    {
+      src: '@/plugins/vuetify.ts',
+      ssr: true
+    },
     '@/plugins/leaflet'
   ],
   /*
@@ -171,7 +175,8 @@ const nuxtConfig: NuxtConfig = {
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
     defaultAssets: {
-      font: undefined
+      font: undefined,
+      icons: undefined
     },
     treeShake: true
   },
