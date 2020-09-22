@@ -1,4 +1,4 @@
-import { computed, onMounted, onUnmounted, reactive, toRefs } from '@vue/composition-api'
+import { computed, onMounted, onUnmounted, reactive, toRefs } from '@nuxtjs/composition-api'
 
 type State = {
   width: number,

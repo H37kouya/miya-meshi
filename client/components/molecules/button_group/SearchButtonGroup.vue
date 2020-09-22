@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
-import { useBtnStatus, BtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { useBtnStatus, BtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
 
 type Props = {
   btnStatus: BtnStatus

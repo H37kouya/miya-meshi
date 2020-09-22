@@ -6,10 +6,19 @@
 export const isArray = (v: any): v is any[] => Array.isArray(v)
 
 /**
- * nullだけのはいれつであるか
+ * nullだけの配列であるか
  *
  * @param { any } v
  */
 export const isNullArray = (v: any): v is null[] => {
   return isArray(v) && v.length > 0 && v.every((c: any) => c === null)
 }
+
+/**
+ * stringかnullで構成されている配列をstring[]に変換する
+ *
+ * @param { (string|null)[] } arr
+ */
+export const nullOrStringArrayToStringArray = (
+  arr: (string|null)[]
+): string[] => arr.filter((v: string|null): v is string => v !== null)

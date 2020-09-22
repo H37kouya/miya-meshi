@@ -55,10 +55,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
-import { Breadcrumb } from '~/lib'
+import { Breadcrumb } from '@/lib'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },

@@ -1,4 +1,4 @@
-import { computed, SetupContext } from '@vue/composition-api'
+import { computed, SetupContext } from '@nuxtjs/composition-api'
 
 type Props = {
   value?: any

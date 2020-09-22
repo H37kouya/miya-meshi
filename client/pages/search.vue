@@ -82,7 +82,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
-import { SetupContext } from '@vue/composition-api'
+import { SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { Breadcrumb, Shop } from '@/lib'
 import { filterShopsByAreas, filterShopsByDishes } from '@/src/utils/Shop'
@@ -90,8 +90,8 @@ import { filterAreasByID } from '@/src/utils/Area'
 import { filterDishesByID } from '@/src/utils/Dish'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-import { isString } from '~/src/utils/String'
-import { useDish } from '~/src/CompositonFunctions/dishes/UseDishes'
+import { isString } from '@/src/utils/String'
+import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },

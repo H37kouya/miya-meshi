@@ -1,4 +1,4 @@
-import { computed, onMounted, reactive, SetupContext, toRefs } from '@vue/composition-api'
+import { computed, onMounted, reactive, SetupContext, toRefs } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 import { getShopListByInstaNumber } from '@/src/infra/firestore/Shop'
 
@@ -23,5 +23,7 @@ export const useInstaShopForTopPage = ({ $fireStore, $store }: SetupContext['roo
       : await getShopListByInstaNumber($fireStore, INSTA_SHOPS.LIMIT)
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }

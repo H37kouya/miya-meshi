@@ -9,6 +9,8 @@ import { Type } from '@/lib/enum'
 export const isShop = (v: any): v is Shop => typeof v === 'object' && v.type === Type.SHOP
 
 /**
+ * 表示用に短くした住所を取得
+ *
  * @param {Shop['address']} address
  */
 export const computedShortShopAddress = (address: Shop['address']): Shop['address'] => {
@@ -73,7 +75,7 @@ export const getShopArea = (shop: Shop, areas: Area[]): Area|undefined => getSho
 /**
  * Shopのエリアを取得する
  *
- * @param { Shop } shop
+ * @param { Shop['address'] } address
  * @param { Area[] } areas
  */
 export const getShopAreaByAddress = (address: Shop['address'], areas: Area[]): Area|undefined => {

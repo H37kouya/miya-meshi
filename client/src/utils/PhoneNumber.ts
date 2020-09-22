@@ -1,4 +1,4 @@
-import { isString } from '~/src/utils/String'
+import { isString } from '@/src/utils/String'
 
 /**
  * 正しい電話番号かを確認

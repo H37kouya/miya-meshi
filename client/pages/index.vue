@@ -9,12 +9,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { useInstaShopForTopPage } from '@/src/CompositonFunctions/shops/UseInstaShopForTopPage'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-import { useArea } from '~/src/CompositonFunctions/areas/UseArea'
+import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 
 export default defineComponent({
   setup (_, context: SetupContext) {

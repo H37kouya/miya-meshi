@@ -1,5 +1,5 @@
-import { computed, reactive, toRefs } from '@vue/composition-api'
-import { Shop } from '~/lib'
+import { computed, reactive, toRefs } from '@nuxtjs/composition-api'
+import { Shop } from '@/lib'
 
 type State = {
   selectedNumber: number[]

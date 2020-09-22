@@ -1,4 +1,4 @@
-import { watchEffect, reactive, toRefs } from '@vue/composition-api'
+import { watchEffect, reactive, toRefs } from '@nuxtjs/composition-api'
 import { News } from '@/lib'
 import axios from 'axios'
 

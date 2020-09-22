@@ -1,4 +1,4 @@
-import { computed, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, SetupContext, watchEffect } from '@nuxtjs/composition-api'
 import { Getters, ActionType } from '@/store/areas'
 import { ActionType as GeolocationActionType } from '@/store/geolocation'
 

@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop } from '@/lib'
 import { useSearchInstaShopByInstaNumber } from '@/src/CompositonFunctions/shops/UseSearchInstaShopByInstaNumber'
 

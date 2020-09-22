@@ -82,8 +82,8 @@ import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { isArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
-import { filterShopsByAreas } from '~/src/utils/Shop'
-import { filterAreasByID } from '~/src/utils/Area'
+import { filterShopsByAreas } from '@/src/utils/Shop'
+import { filterAreasByID } from '@/src/utils/Area'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },

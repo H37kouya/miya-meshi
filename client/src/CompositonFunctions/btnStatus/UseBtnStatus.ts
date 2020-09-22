@@ -1,4 +1,4 @@
-import { reactive, SetupContext, toRefs } from '@vue/composition-api'
+import { reactive, SetupContext, toRefs } from '@nuxtjs/composition-api'
 
 export type TimeZone = 'lunch'|'night'|false
 const timeZoneArr = [false, 'lunch', 'night'] as TimeZone[]

@@ -1,4 +1,4 @@
-import { computed, ComputedRef } from '@vue/composition-api'
+import { computed, ComputedRef } from '@nuxtjs/composition-api'
 import { Shop, Area } from '@/lib'
 import { BtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
 

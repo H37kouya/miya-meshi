@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop, Menu } from '@/lib'
 
 const breadcrumbs = [

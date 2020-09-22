@@ -47,9 +47,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, reactive, SetupContext, watch } from '@vue/composition-api'
+import { defineComponent, computed, reactive, SetupContext, watch } from '@nuxtjs/composition-api'
 import { Area, Shop } from '@/lib'
-import { computedShortShopAddress, getShopAreaByAddress } from '~/src/utils/Shop'
+import { computedShortShopAddress, getShopAreaByAddress } from '@/src/utils/Shop'
 
 type Props = {
   areas: Area[],

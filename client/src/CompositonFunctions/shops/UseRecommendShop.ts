@@ -1,4 +1,4 @@
-import { reactive, SetupContext, toRefs, watchEffect } from '@vue/composition-api'
+import { reactive, SetupContext, toRefs, watchEffect } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 import { getShopList } from '@/src/infra/firestore/Shop'
 
@@ -11,5 +11,7 @@ export const useRecommendShop = ({ $fireStore }: SetupContext['root']) => {
     state.recommendShops = await getShopList($fireStore, 4)
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }
