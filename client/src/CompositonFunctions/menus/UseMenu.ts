@@ -15,5 +15,7 @@ export const useMenu = ({ $fireStore }: SetupContext['root']) => {
     state.menus = await getMenuList($fireStore)
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }
