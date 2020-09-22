@@ -7,12 +7,6 @@
         </v-col>
 
         <v-col cols="6" class="pa-2">
-          <ToSearchKeywordButton width="100%" />
-        </v-col>
-      </v-row>
-
-      <v-row justify="center">
-        <v-col cols="12" class="pa-2">
           <ToSearchShopButton width="100%" />
         </v-col>
       </v-row>
