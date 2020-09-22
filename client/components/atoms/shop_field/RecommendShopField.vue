@@ -1,20 +1,27 @@
 <template>
-  <div>
-    <div class="u-light-grey-background recommend-container">
-      <v-container class="max-width-600 py-4">
-        <template v-for="(menu, key) in state.menus">
-          <div :key="menu.id" class="px-4" :class="{ 'mb-4': state.menus.length - 1 !== key }">
-            <ShopRecommendListItem :menu="menu" />
-          </div>
+  <div class="u-light-grey-background recommend-container">
+    <v-container class="py-4">
+      <v-row>
+        <template v-for="(menu, key) in menus">
+          <v-col :key="menu.id" cols="12" md="4" class="px-4" :class="{ 'mb-4': menus.length - 1 !== key }">
+            <template v-if="screenMd">
+              <MenuCard v-bind="menu" :src="menu.image" />
+            </template>
+
+            <template v-else>
+              <ShopRecommendListItem :menu="menu" />
+            </template>
+          </v-col>
         </template>
-      </v-container>
-    </div>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { defineComponent, SetupContext } from '@vue/composition-api'
 import { Menu } from '@/lib'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type State = {
   menus: Menu[]
@@ -30,17 +37,11 @@ export default defineComponent({
     default: () => []
   },
 
-  setup (props: Props, _: SetupContext) {
-    const state = reactive<State>({
-      menus: [] as Menu[]
-    })
-
-    watchEffect(() => {
-      state.menus = props.menus
-    })
+  setup () {
+    const { screenMd } = useGetScreenSize()
 
     return {
-      state
+      screenMd
     }
   }
 })

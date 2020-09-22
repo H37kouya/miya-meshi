@@ -23,5 +23,7 @@ export const useInstaShopForTopPage = ({ $fireStore, $store }: SetupContext['roo
       : await getShopListByInstaNumber($fireStore, INSTA_SHOPS.LIMIT)
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }

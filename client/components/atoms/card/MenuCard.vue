@@ -1,20 +1,21 @@
 <template>
   <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-    <v-card v-bind="$attrs">
-      <v-img :alt="alt" :src="src" aspect-ratio="1.2" />
+    <v-card v-bind="$attrs" :flat="screenMd" :tile="screenMd">
+      <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.5 : 1.2" />
     </v-card>
 
     <p class="mb-0 menu-name u-black--text max-text-height-2">
       {{ name }}
     </p>
     <p class="price red--text mb-0">
-      {{ priceDisplay }} 円 ({{ isTaxIncluded ? '税込' : '税抜' }})
+      <span class="price-display">{{ priceDisplay }}</span> 円 ({{ isTaxIncluded ? '税込' : '税抜' }})
     </p>
   </component>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type Props = {
   alt: string,
@@ -60,8 +61,10 @@ export default defineComponent({
 
   setup (props: Props, _) {
     const priceDisplay = computed(() => props.price.toLocaleString())
+    const { screenMd } = useGetScreenSize()
 
     return {
+      screenMd,
       priceDisplay
     }
   }
@@ -71,11 +74,19 @@ export default defineComponent({
 <style lang="scss" scoped>
 .menu-name {
   font-size: 0.82rem;
-  word-break: break-all;
+  font-weight: bolder;
   height: 2.75rem;
+  word-break: break-all;
 }
 
 .price {
   font-size: 0.8rem;
+}
+
+.price-display {
+  font-weight: bolder;
+  @include mq(md) {
+    font-size: 1rem;
+  }
 }
 </style>

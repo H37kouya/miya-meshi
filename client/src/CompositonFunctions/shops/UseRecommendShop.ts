@@ -11,5 +11,7 @@ export const useRecommendShop = ({ $fireStore }: SetupContext['root']) => {
     state.recommendShops = await getShopList($fireStore, 4)
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }
