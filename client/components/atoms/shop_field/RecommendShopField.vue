@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { Menu } from '@/lib'
 import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
