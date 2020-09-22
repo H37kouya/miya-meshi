@@ -2,25 +2,26 @@
   <div>
     <div class="d-md-none d-flex justify-space-between align-center now-area-container">
       <div class="pl-4">
-        <div class="d-flex">
-          <p class="now-area mb-0">
-            現在のエリア
-          </p>
-
-          <v-btn depressed text x-small color="primary" @click="onUpdateNowArea">
-            現在地を更新
-          </v-btn>
-        </div>
-
-        <p class="now-area-name mb-0">
-          {{ area ? area.name : '不明' }}
+        <p class="now-area-name mb-0 d-flex align-center">
+          <v-icon size="20" color="#f44336">
+            mdi-map-marker
+          </v-icon>
+          <span>
+            {{ area ? area.name : '全て' }}
+          </span>
         </p>
       </div>
 
       <div class="pr-4">
-        <v-btn dark color="#d6cba6" depressed large to="/keywords/detail">
-          エリアを変更
-        </v-btn>
+        <nuxt-link class="change-area text-decoration-none" to="/keywords/detail">
+          <div class="d-flex align-center">
+            <v-icon small>
+              mdi-magnify
+            </v-icon>
+
+            <span>エリア変更</span>
+          </div>
+        </nuxt-link>
       </div>
     </div>
 
@@ -76,6 +77,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.change-area {
+  font-size: 0.8rem;
+}
+
 .now-area {
   font-size: 0.8rem;
 }
