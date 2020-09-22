@@ -31,7 +31,14 @@
       </p>
 
       <v-chip-group :value="value" multiple @change="onChange">
-        <v-chip v-if="area" small filter outlined :value="area.id">
+        <v-chip
+          v-if="area"
+          :value="area.id"
+          class="d-md-none"
+          small
+          filter
+          outlined
+        >
           {{ area.name }}
         </v-chip>
 
