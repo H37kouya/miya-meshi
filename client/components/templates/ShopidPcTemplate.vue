@@ -10,6 +10,34 @@
       <v-row>
         <v-col cols="8">
           <PcTopShopField :shop="shop" />
+
+          <div>
+            <div class="border-b border-gray">
+              <MainText :level="2">
+                おすすめの3品
+              </MainText>
+            </div>
+
+            <RecommendShopField :menus="menus" />
+          </div>
+
+          <div class="mt-4">
+            <div class="border-t border-gray">
+              <MainText :level="2">
+                店舗情報
+              </MainText>
+            </div>
+
+            <div>
+              <v-lazy>
+                <ContactShopTable :shop="shop" />
+              </v-lazy>
+            </div>
+          </div>
+        </v-col>
+
+        <v-col cols="4">
+          <ShopContactField :shop="shop" />
         </v-col>
       </v-row>
     </v-container>

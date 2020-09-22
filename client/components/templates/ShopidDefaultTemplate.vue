@@ -21,6 +21,10 @@
     </div>
 
     <v-lazy>
+      <MainText :level="2">
+        当店のおすすめ
+      </MainText>
+
       <RecommendShopField :menus="menus" />
     </v-lazy>
 
@@ -53,6 +57,10 @@
     </div>
 
     <v-lazy>
+      <MainText :level="2">
+        各種SNS
+      </MainText>
+
       <SnsIconsShopField :shop="shop" />
     </v-lazy>
   </div>
