@@ -17,6 +17,7 @@
             v-if="data && data.shop"
             :shop="data.shop"
             :menus="state.menus"
+            :type="type"
           />
         </template>
       </v-col>
@@ -25,11 +26,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useAsync, useContext, watchEffect } from '@nuxtjs/composition-api'
+import { computed, defineComponent, reactive, useAsync, useContext, watchEffect } from '@nuxtjs/composition-api'
 import { Shop, Menu } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
-import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
+import { isString } from '@/src/utils/String'
 
 type State = {
   shop: Shop,
@@ -38,7 +40,7 @@ type State = {
 
 export default defineComponent({
   setup () {
-    const { app, error, params } = useContext()
+    const { app, error, params, query } = useContext()
     const state = reactive({
       menus: [] as Menu[]
     })
@@ -50,6 +52,16 @@ export default defineComponent({
 
       return { shop }
     }, params.value.id)
+
+    const type = computed(() => {
+      const _type = query.value.type
+      const defaultType = ['dish', 'pic', 'contact']
+      if (isString(_type) && defaultType.includes(_type)) {
+        return _type as 'dish'|'pic'|'contact'
+      }
+
+      return 'top'
+    })
 
     watchEffect(() => {
       if (data.value && data.value.shop === undefined) {
@@ -67,7 +79,8 @@ export default defineComponent({
     return {
       data,
       screenMd,
-      state
+      state,
+      type
     }
   }
 })

@@ -9,17 +9,21 @@
 
       <v-row>
         <v-col cols="8">
-          <PcTopShopField :shop="shop" />
+          <template v-if="type === 'top'">
+            <ShopTypeTopField :shop="shop" :menus="menus" />
+          </template>
 
-          <div>
-            <div class="border-b border-gray">
-              <MainText :level="2">
-                おすすめの3品
-              </MainText>
-            </div>
+          <template v-else-if="type === 'dish'">
+            <ShopTypeDishField :shop="shop" :menus="menus" />
+          </template>
 
-            <RecommendShopField :menus="menus" />
-          </div>
+          <template v-else-if="type === 'pic'">
+            <ShopTypePicField :shop="shop" :menus="menus" />
+          </template>
+
+          <template v-else-if="type === 'contact'">
+            <ShopTypeContactField :shop="shop" :menus="menus" />
+          </template>
 
           <div class="mt-4">
             <div class="border-t border-gray">
@@ -37,7 +41,7 @@
         </v-col>
 
         <v-col cols="4">
-          <ShopContactField :shop="shop" />
+          <ShopContactField :shop="shop" :type="type" />
         </v-col>
       </v-row>
     </v-container>
@@ -55,7 +59,8 @@ const breadcrumbs = [
 
 type Props = {
   shop: Shop,
-  menus: Menu[]
+  menus: Menu[],
+  type: 'dish'|'pic'|'contact'|'top'
 }
 
 export default defineComponent({
@@ -68,6 +73,11 @@ export default defineComponent({
     menus: {
       type: Array,
       default: () => []
+    },
+
+    type: {
+      type: String,
+      default: 'top'
     }
   },
 

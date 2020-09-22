@@ -10,7 +10,7 @@
       <p class="cotact-tel mb-0 px-4 py-2">{{ shop.tel }}</p>
     </div>
 
-    <div v-if="shop.latitude && shop.longitude" class="border-b-4 border-gray">
+    <div v-if="type !== 'contact' && shop.latitude && shop.longitude" class="border-b-4 border-gray">
       <div class="border-b border-dark-gray">
         <h3 class="contact-title pt-4 px-4 pb-2">
           地図
@@ -41,13 +41,19 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 
 type Props = {
-  shop: Shop
+  shop: Shop,
+  type: 'dish'|'pic'|'contact'|'top'
 }
 export default defineComponent({
   props: {
     shop: {
       type: Object,
       default: undefined
+    },
+
+    type: {
+      type: String,
+      default: 'top'
     }
   }
 })
