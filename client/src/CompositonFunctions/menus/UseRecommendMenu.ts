@@ -11,5 +11,7 @@ export const useRecommendMenu = ({ $fireStore }: SetupContext['root']) => {
     state.menus = await getMenuList($fireStore, 3)
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }

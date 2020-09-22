@@ -16,5 +16,7 @@ export const useNews = () => {
     state.newsList = data.data
   })
 
-  return toRefs(state)
+  return {
+    ...toRefs(state)
+  }
 }
