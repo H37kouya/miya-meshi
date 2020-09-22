@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
-import { useBtnStatus, BtnStatus } from '~/src/CompositonFunctions/btnStatus/UseBtnStatus'
+import { useBtnStatus, BtnStatus } from '@/src/CompositonFunctions/btnStatus/UseBtnStatus'
 
 type Props = {
   btnStatus: BtnStatus

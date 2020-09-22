@@ -14,7 +14,7 @@ import { useInstaShopForTopPage } from '@/src/CompositonFunctions/shops/UseInsta
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-import { useArea } from '~/src/CompositonFunctions/areas/UseArea'
+import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
