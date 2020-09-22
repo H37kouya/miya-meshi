@@ -1,12 +1,12 @@
 /**
  * Objectからundefinedを削除する
  *
- * @param { object } obj
+ * @param { T } obj
  *
  * https://qiita.com/suin/items/c8a47317772c22ec80e4
  */
-export const removeUndefinedFromObject = (obj: object) => {
+export const removeUndefinedFromObject = <T extends { [key: string]: any }>(obj: T): T => {
   return Object.fromEntries(
     Object.entries(obj).filter(([_, v]) => v !== undefined)
-  )
+  ) as T
 }

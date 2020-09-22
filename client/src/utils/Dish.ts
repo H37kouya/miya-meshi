@@ -5,7 +5,7 @@ import { isString } from './String'
  * IDによって、dishをfilterする
  *
  * @param { Dish[] } dishes
- * @param { string|(string|null)[] } id
+ * @param { string|(string|null)[]|null } id
  */
 export const filterDishesByID = (dishes: Dish[], id: string|(string|null)[]|null) => {
   if (!id) {
