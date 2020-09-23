@@ -28,7 +28,7 @@
 
         <div v-else style="height: 60px;" />
 
-        <div class="news-list-container">
+        <div class="news-list-container mb-8">
           <v-lazy>
             <MainText id="news" :level="2">
               新着情報

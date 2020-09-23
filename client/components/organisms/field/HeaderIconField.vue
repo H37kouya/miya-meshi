@@ -39,25 +39,6 @@
     </div>
 
     <div class="icon-box">
-      <nuxt-link to="/" class="icon-box-link text-decoration-none">
-        <div class="d-flex justify-center">
-          <div>
-            <v-img
-              src="/s/icon-omelet-rice.png"
-              width="60px"
-              height="45px"
-              alt="「みやめしとは」のアイコン"
-            />
-          </div>
-        </div>
-
-        <p class="icon-text mb-0">
-          みやメシとは
-        </p>
-      </nuxt-link>
-    </div>
-
-    <div class="icon-box">
       <a
         href="https://forms.gle/gAknXAaCrfsr8UdA8"
         class="icon-box-link text-decoration-none"
@@ -77,6 +58,31 @@
 
         <p class="icon-text mb-0">
           お問い合わせ
+        </p>
+      </a>
+    </div>
+
+    <div class="icon-box">
+      <a
+        href="https://www.instagram.com/miyameshi_ouentai/"
+        target="_blank"
+        rel="noopener"
+        class="icon-box-link text-decoration-none"
+      >
+        <div class="d-flex justify-center">
+          <div>
+            <v-img
+              src="/s/instagram.png"
+              width="60px"
+              height="45px"
+              contain
+              alt="「Instagram」のアイコン"
+            />
+          </div>
+        </div>
+
+        <p class="icon-text mb-0">
+          Instagram
         </p>
       </a>
     </div>
