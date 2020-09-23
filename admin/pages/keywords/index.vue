@@ -2,12 +2,12 @@
   <v-container>
     <v-row class="mb-4" justify="space-between">
       <AdminMainText>
-        キーワード一覧
+        タグ一覧
       </AdminMainText>
 
       <div class="pt-4 pt-sm-0 ml-auto">
         <v-btn to="/keywords/create" color="success">
-          キーワード追加
+          タグ追加
         </v-btn>
       </div>
     </v-row>

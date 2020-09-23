@@ -1,4 +1,4 @@
 export enum Dish {
-  NAME     = '料理名',
+  NAME     = 'ジャンル名',
   PRIORITY = '優先度'
 }

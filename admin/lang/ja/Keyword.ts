@@ -1,4 +1,4 @@
 export enum Keyword {
-  NAME     = 'キーワード名',
+  NAME     = 'タグ名',
   PRIORITY = '優先度'
 }

@@ -53,19 +53,19 @@ export default {
           to: '/shops/create'
         },
         {
-          icon: 'mdi-alpha-k-box-outline',
-          title: 'キーワード一覧',
+          icon: 'mdi-alpha-t-box-outline',
+          title: 'タグ一覧',
           to: '/keywords'
+        },
+        {
+          icon: 'mdi-food',
+          title: 'ジャンル一覧',
+          to: '/dishes'
         },
         {
           icon: 'mdi-cash',
           title: '価格帯一覧',
           to: '/price-ranges'
-        },
-        {
-          icon: 'mdi-food',
-          title: '料理一覧',
-          to: '/dishes'
         },
         {
           icon: 'mdi-map',
