@@ -3,22 +3,25 @@
     <v-row>
       <v-col cols="12" class="px-0 px-sm-3">
         <template v-if="!screenMd">
-          <ShopidDefaultTemplate
-            v-if="data && data.shop"
-            :shop="data.shop"
-            :menus="state.menus"
-          />
+          <div v-if="data && data.shop" class="d-md-none">
+            <ShopidDefaultTemplate
+              :shop="data.shop"
+              :menus="state.menus"
+            />
+          </div>
 
           <div v-else class="empty-height" />
         </template>
 
         <template v-else>
-          <ShopidPcTemplate
-            v-if="data && data.shop"
-            :shop="data.shop"
-            :menus="state.menus"
-            :type="type"
-          />
+          <div class="d-none d-md-block">
+            <ShopidPcTemplate
+              v-if="data && data.shop"
+              :shop="data.shop"
+              :menus="state.menus"
+              :type="type"
+            />
+          </div>
         </template>
       </v-col>
     </v-row>

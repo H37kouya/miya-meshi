@@ -20,13 +20,11 @@
       </div>
     </div>
 
-    <v-lazy>
-      <MainText :level="2">
-        当店のおすすめ
-      </MainText>
+    <MainText :level="2">
+      当店のおすすめ
+    </MainText>
 
-      <RecommendShopField :menus="menus" />
-    </v-lazy>
+    <RecommendShopField :menus="menus" />
 
     <v-lazy>
       <div>
@@ -69,6 +67,8 @@
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop, Menu } from '@/lib'
+import { uniqArray } from '~/src/utils/Array'
+import { DEFAULT_IMAGE } from '~/src/types/Menu'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -99,7 +99,11 @@ export default defineComponent({
         return undefined
       }
 
-      return props.shop.menuImageLink[0]
+      const uniq = uniqArray(props.shop.menuImageLink)
+      // 画像が複数枚登録されていているとき、配列内のデフォルト画像を削除する
+      return uniq.length > 1
+        ? uniq.filter((val: string) => val !== DEFAULT_IMAGE)
+        : uniq
     })
 
     const computedBreadcrumbs = computed(() => {

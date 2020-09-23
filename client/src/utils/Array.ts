@@ -22,3 +22,10 @@ export const isNullArray = (v: any): v is null[] => {
 export const nullOrStringArrayToStringArray = (
   arr: (string|null)[]
 ): string[] => arr.filter((v: string|null): v is string => v !== null)
+
+/**
+ * 値が一意な配列を作成
+ *
+ * @param { T[] } arr
+ */
+export const uniqArray = <T>(arr: T[]): T[] => [...new Set(arr)]
