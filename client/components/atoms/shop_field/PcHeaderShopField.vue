@@ -5,9 +5,9 @@
         {{ shop.prefixName }}
       </p>
 
-      <p class="mb-0 shop-name">
+      <h1 class="mb-0 shop-name">
         {{ shop.name }}
-      </p>
+      </h1>
     </div>
 
     <v-row>
