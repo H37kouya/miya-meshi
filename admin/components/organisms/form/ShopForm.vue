@@ -320,11 +320,12 @@
               @input="(v) => state.shop.imageLink = v"
             />
 
-            <UploadImageFile
-              :path="`/shops/${uuid.menuImage}`"
-              :past-image-link="state.shop.menuImageLink[0]"
+            <UploadMultipleImageFile
+              :default-image="DEFAULT_IMAGE"
+              :path="uuid.menuImages.map((menuImage) => `/shops/${menuImage}`)"
+              :past-image-link="state.shop.menuImageLink"
               label="メニュー画像"
-              @input="(v) => state.shop.menuImageLink[0] = v"
+              @input="(v) => state.shop.menuImageLink = v"
             />
           </v-card-text>
         </v-card>
@@ -392,7 +393,7 @@ export default defineComponent({
         description: undefined,
         intro: undefined,
         imageLink: DEFAULT_IMAGE,
-        menuImageLink: [DEFAULT_IMAGE],
+        menuImageLink: [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE],
         facebookLink: undefined,
         homepageLink: undefined,
         instaLink: undefined,
@@ -432,7 +433,15 @@ export default defineComponent({
 
     const uuid = {
       image: createUUID(),
-      menuImage: createUUID()
+      menuImage: createUUID(),
+      menuImages: [
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID()
+      ]
     }
 
     const priceRangeListForSelect = computed(() => {
@@ -488,6 +497,7 @@ export default defineComponent({
     const onSubmit = () => context.emit('submit', state.shop)
 
     return {
+      DEFAULT_IMAGE,
       dishesListForSelect,
       state,
       ShopJa,
