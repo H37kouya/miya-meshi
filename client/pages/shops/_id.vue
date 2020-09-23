@@ -4,7 +4,7 @@
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
-    <v-container>
+    <v-container class="pt-0">
       <v-row>
         <v-col cols="12" class="px-0 px-sm-3">
           <template v-if="!screenMd">
@@ -36,11 +36,16 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, useAsync, useContext, watchEffect } from '@nuxtjs/composition-api'
-import { Shop, Menu } from '@/lib'
+import { Shop, Menu, Breadcrumb } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
 import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 import { isString } from '@/src/utils/String'
+
+const breadcrumbs = [
+  { exact: true, text: 'Home', to: '/' },
+  { exact: true, text: 'お店で探す', to: '/shops' }
+] as Breadcrumb[]
 
 type State = {
   shop: Shop,
@@ -72,6 +77,17 @@ export default defineComponent({
       return 'top'
     })
 
+    const computedBreadcrumbs = computed(() => {
+      if (data.value && data.value.shop) {
+        return [
+          ...breadcrumbs,
+          { text: data.value.shop.name, to: `/shops/${data.value.shop.id}` }
+        ] as Breadcrumb[]
+      } else {
+        return breadcrumbs
+      }
+    })
+
     watchEffect(() => {
       if (data.value && data.value.shop === undefined) {
         return error({
@@ -86,6 +102,7 @@ export default defineComponent({
     })
 
     return {
+      breadcrumbs: computedBreadcrumbs,
       data,
       screenMd,
       state,

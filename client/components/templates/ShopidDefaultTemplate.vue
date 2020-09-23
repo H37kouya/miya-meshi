@@ -62,14 +62,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { Breadcrumb, Shop, Menu } from '@/lib'
-import { uniqArray } from '~/src/utils/Array'
-import { DEFAULT_IMAGE } from '~/src/types/Menu'
-
-const breadcrumbs = [
-  { exact: true, text: 'Home', to: '/' },
-  { exact: true, text: 'お店で探す', to: '/shops' }
-] as Breadcrumb[]
+import { Shop, Menu } from '@/lib'
+import { uniqArray } from '@/src/utils/Array'
+import { DEFAULT_IMAGE } from '@/src/types/Menu'
 
 type Props = {
   shop: Shop,
@@ -102,15 +97,7 @@ export default defineComponent({
         : uniq
     })
 
-    const computedBreadcrumbs = computed(() => {
-      return [
-        ...breadcrumbs,
-        { exact: true, text: props.shop.name, to: `/shops/${props.shop.id}` }
-      ] as Breadcrumb[]
-    })
-
     return {
-      breadcrumbs: computedBreadcrumbs,
       menuImage
     }
   }
