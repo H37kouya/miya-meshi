@@ -13,7 +13,6 @@
             <v-col :key="key" cols="6" class="px-1 pt-2 pb-sm-4">
               <ShopCard
                 :alt="`${shop.name} - thumnails`"
-                :address="shortAddress(shop.address)"
                 :area="computedShopArea(shop.address)"
                 :can-takeout="shop.canTakeout"
                 :to="`/shops/${shop.id}`"
@@ -96,10 +95,6 @@ export default defineComponent({
       shops: props.shops
     })
 
-    const shortAddress = computed(() => {
-      return (address: Shop['address']) => computedShortShopAddress(address)
-    })
-
     const computedShopArea = computed(() => {
       return (address: Shop['address']) => {
         if (props.areas) {
@@ -109,7 +104,15 @@ export default defineComponent({
           }
         }
 
-        return computedShortShopAddress(address)
+        if (address) {
+          if (address.includes('宇都宮')) {
+            return computedShortShopAddress(address)
+          } else {
+            return '宇都宮市外'
+          }
+        }
+
+        return undefined
       }
     })
 
@@ -136,7 +139,6 @@ export default defineComponent({
 
     return {
       computedShopArea,
-      shortAddress,
       state,
       pagination,
       onPagination

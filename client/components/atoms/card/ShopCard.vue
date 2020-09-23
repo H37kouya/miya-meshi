@@ -38,8 +38,8 @@
 
     <div class="mt-2">
       <v-chip-group>
-        <v-chip v-if="address" class="d-none d-sm-block" small outlined>
-          {{ address }}
+        <v-chip v-if="area" class="d-none d-sm-block" small outlined>
+          {{ area }}
         </v-chip>
 
         <v-chip v-if="canTakeout" small outlined>
@@ -65,11 +65,6 @@ type Props = {
 export default defineComponent({
   props: {
     alt: {
-      type: String,
-      default: undefined
-    },
-
-    address: {
       type: String,
       default: undefined
     },

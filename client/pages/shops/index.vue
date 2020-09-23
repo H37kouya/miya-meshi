@@ -56,7 +56,7 @@
             @updateNowArea="onUpdateNowArea"
           />
 
-          <div class="area-container">
+          <div class="area-container mb-8">
             <h3 class="area-title">
               ジャンルから探す
             </h3>
@@ -78,6 +78,12 @@
                 </nuxt-link>
               </p>
             </div>
+          </div>
+
+          <div>
+            <v-card href="https://forms.gle/gAknXAaCrfsr8UdA8" target="_blank" rel="noopener" flat>
+              <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
+            </v-card>
           </div>
         </v-col>
       </v-row>

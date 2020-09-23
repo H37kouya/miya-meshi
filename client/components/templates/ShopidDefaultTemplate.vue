@@ -1,9 +1,5 @@
 <template>
   <div>
-    <v-container>
-      <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
-    </v-container>
-
     <HeaderShopField
       :src="shop.imageLink"
       :name="shop.name"

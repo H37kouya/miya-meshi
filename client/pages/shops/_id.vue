@@ -1,31 +1,37 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" class="px-0 px-sm-3">
-        <template v-if="!screenMd">
-          <div v-if="data && data.shop" class="d-md-none">
-            <ShopidDefaultTemplate
-              :shop="data.shop"
-              :menus="state.menus"
-            />
-          </div>
+  <div>
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-2">
+      <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
+    </v-container>
 
-          <div v-else class="empty-height" />
-        </template>
+    <v-container>
+      <v-row>
+        <v-col cols="12" class="px-0 px-sm-3">
+          <template v-if="!screenMd">
+            <div v-if="data && data.shop" class="d-md-none">
+              <ShopidDefaultTemplate
+                :shop="data.shop"
+                :menus="state.menus"
+              />
+            </div>
 
-        <template v-else>
-          <div class="d-none d-md-block">
-            <ShopidPcTemplate
-              v-if="data && data.shop"
-              :shop="data.shop"
-              :menus="state.menus"
-              :type="type"
-            />
-          </div>
-        </template>
-      </v-col>
-    </v-row>
-  </v-container>
+            <div v-else class="empty-height" />
+          </template>
+
+          <template v-else>
+            <div class="d-none d-md-block">
+              <ShopidPcTemplate
+                v-if="data && data.shop"
+                :shop="data.shop"
+                :menus="state.menus"
+                :type="type"
+              />
+            </div>
+          </template>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script lang="ts">

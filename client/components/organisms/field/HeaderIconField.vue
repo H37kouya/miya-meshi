@@ -58,7 +58,12 @@
     </div>
 
     <div class="icon-box">
-      <nuxt-link to="/" class="icon-box-link text-decoration-none">
+      <a
+        href="https://forms.gle/gAknXAaCrfsr8UdA8"
+        class="icon-box-link text-decoration-none"
+        target="_blank"
+        rel="noopener"
+      >
         <div class="d-flex justify-center">
           <div>
             <v-img
@@ -73,7 +78,7 @@
         <p class="icon-text mb-0">
           お問い合わせ
         </p>
-      </nuxt-link>
+      </a>
     </div>
   </div>
 </template>
