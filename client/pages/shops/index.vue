@@ -24,6 +24,7 @@
               <SearchAreaAndKyewordField
                 :area="nowArea"
                 :value="searchAreasAndCanTakeout"
+                :to-keyword-detail="toKeywordDetail"
                 @updateNowArea="onUpdateNowArea"
                 @change="onChangeSearch"
               />
@@ -52,6 +53,7 @@
             :areas="areas"
             :now-area="nowArea"
             :value="searchAreas"
+            :to-keyword-detail="toKeywordDetail"
             @change="onChangeSearchAreas"
             @updateNowArea="onUpdateNowArea"
           />
@@ -60,6 +62,7 @@
             <SearchDishField
               :dishes="dishes"
               :value="searchDishes"
+              :to-keyword-detail="toKeywordDetail"
               @change="onChangeSearcDishes"
             />
           </div>
@@ -222,12 +225,21 @@ export default defineComponent({
     const nowQuery = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
       const _areas = context.root.$route.query.areas
+      const _dishes = context.root.$route.query.dishes
 
       return {
         areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
+        dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
         canTakeout: isString(_canTakeout) ? _canTakeout : undefined
       }
     })
+
+    const toKeywordDetail = computed(() => ({
+      path: '/keywords/detail',
+      query: {
+        ...nowQuery.value
+      }
+    }))
 
     return {
       areas,
@@ -242,6 +254,7 @@ export default defineComponent({
       searchAreasAndCanTakeout,
       searchDishes,
       nowPage,
+      toKeywordDetail,
       onChangeSearch,
       onUpdateNowArea,
       onChangeSearchAreas,

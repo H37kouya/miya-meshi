@@ -65,12 +65,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext } from '@nuxtjs/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext } from '@nuxtjs/composition-api'
 import { MetaInfo } from 'vue-meta'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Breadcrumb, Time } from '@/lib'
 import { DETAIL_LIST_ITEM } from '@/components/atoms/table/DetailListItemType'
+import { isArray, nullOrStringArrayToStringArray } from '@/src/utils/Array'
+import { isString } from '@/src/utils/String'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -100,6 +102,23 @@ export default defineComponent({
 
     const { areas } = useArea(context.root)
     const { dishes } = useDish(context.root)
+
+    onMounted(() => {
+      const _areaQuery = context.root.$route.query.areas
+      const _dishesQuery = context.root.$route.query.dishes
+      const _timezonesQuery = context.root.$route.query.timezones
+      if (isArray(_areaQuery)) {
+        state.areaSelectedID = nullOrStringArrayToStringArray(_areaQuery)
+      }
+
+      if (isArray(_dishesQuery)) {
+        state.dishSelectedID = nullOrStringArrayToStringArray(_dishesQuery)
+      }
+
+      if (isArray(_timezonesQuery)) {
+        state.timeSelectedName = nullOrStringArrayToStringArray(_timezonesQuery)
+      }
+    })
 
     const onAreaClick = (id: string) => {
       if (id === DETAIL_LIST_ITEM.ALL) {
@@ -145,12 +164,15 @@ export default defineComponent({
     }
 
     const to = computed(() => {
+      const _canTakeout = context.root.$route.query.canTakeout
+
       return {
-        path: '/search',
+        path: '/shops',
         query: {
           areas: state.areaSelectedID,
           dishes: state.dishSelectedID,
-          timezones: state.timeSelectedName
+          timezones: state.timeSelectedName,
+          canTakeout: isString(_canTakeout) ? _canTakeout : undefined
         }
       }
     })

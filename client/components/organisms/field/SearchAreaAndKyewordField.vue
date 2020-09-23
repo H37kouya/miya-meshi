@@ -13,7 +13,7 @@
       </div>
 
       <div class="pr-4">
-        <nuxt-link class="change-area text-decoration-none" to="/keywords/detail">
+        <nuxt-link class="change-area text-decoration-none" :to="toKeywordDetail">
           <div class="d-flex align-center">
             <v-icon small>
               mdi-magnify
@@ -68,6 +68,11 @@ export default defineComponent({
     value: {
       type: Array,
       default: () => []
+    },
+
+    toKeywordDetail: {
+      type: [String, Object],
+      default: '/keywords/detail'
     }
   },
 
