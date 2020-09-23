@@ -126,8 +126,7 @@ export default defineComponent({
     return {
       state,
       onFileUpload,
-      onPageChange,
-      onFileClear
+      onPageChange
     }
   }
 })
