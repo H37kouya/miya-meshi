@@ -1,23 +1,33 @@
 <template>
   <div>
-    <v-container class="u-light-grey-background py-2 breadcrumbs-container">
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-2">
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
     <v-container class="pa-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 pt-0">
-          <MainText>
-            お店から探す
-          </MainText>
+          <div class="header-shop-list-container">
+            <div v-if="!screenMd" class="d-md-none">
+              <MainText>
+                お店から探す
+              </MainText>
+            </div>
 
-          <div>
-            <SearchAreaAndKyewordField
-              :area="nowArea"
-              :value="searchAreasAndCanTakeout"
-              @updateNowArea="onUpdateNowArea"
-              @change="onChangeSearch"
-            />
+            <div v-if="screenMd" class="d-none d-md-block">
+              <h1 class="shop-list-title px-4 pt-6 pb-4">
+                お店から探す
+              </h1>
+            </div>
+
+            <div>
+              <SearchAreaAndKyewordField
+                :area="nowArea"
+                :value="searchAreasAndCanTakeout"
+                @updateNowArea="onUpdateNowArea"
+                @change="onChangeSearch"
+              />
+            </div>
           </div>
 
           <div>
@@ -32,11 +42,12 @@
               :shops="filterShopsByCanTakeout"
               :max-item="shops.length"
               :now-page="nowPage"
+              :query="nowQuery"
             />
           </div>
         </v-col>
 
-        <v-col cols="12" md="4" class="d-none d-md-block">
+        <v-col cols="12" md="4" class="d-none d-md-block pt-0">
           <SearchAreaField
             :areas="areas"
             :now-area="nowArea"
@@ -84,6 +95,7 @@ import { isArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
 import { filterShopsByAreas } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
+import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -97,6 +109,7 @@ export default defineComponent({
     const { areas, nowArea, onUpdateNowArea } = useArea(context.root)
 
     const { shops } = useShop(context.root)
+    const { screenMd } = useGetScreenSize()
 
     const nowPage = computed(() => {
       const page = context.root.$route.query.page
@@ -192,11 +205,23 @@ export default defineComponent({
       return filterShopsByArea.value
     })
 
+    const nowQuery = computed(() => {
+      const _canTakeout = context.root.$route.query.canTakeout
+      const _areas = context.root.$route.query.areas
+
+      return {
+        areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
+        canTakeout: isString(_canTakeout) ? _canTakeout : undefined
+      }
+    })
+
     return {
       areas,
       breadcrumbs,
       nowArea,
+      nowQuery,
       filterShopsByCanTakeout,
+      screenMd,
       shops,
       searchAreas,
       searchAreasAndCanTakeout,
@@ -217,6 +242,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.shop-list-title {
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.header-shop-list-container {
+  background: #faf8f5;
+}
+
 .sales-title {
   border-bottom: 1px solid #d5ceb7;
 

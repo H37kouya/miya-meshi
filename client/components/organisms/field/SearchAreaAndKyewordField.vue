@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="field-container">
     <div class="d-md-none d-flex justify-space-between align-center now-area-container">
       <div class="pl-4">
         <p class="now-area-name mb-0 d-flex align-center">
@@ -27,7 +27,7 @@
 
     <div class="search-keyword-container px-4 py-1">
       <p class="search-keyword-title my-1">
-        絞り込み
+        {{ screenMd ? '良く追加されているタグ' : '絞り込み' }}
       </p>
 
       <v-chip-group :value="value" multiple @change="onChange">
@@ -52,6 +52,7 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type State = {
   chips: string[]
@@ -75,7 +76,10 @@ export default defineComponent({
 
     const onUpdateNowArea = () => context.emit('updateNowArea')
 
+    const { screenMd } = useGetScreenSize()
+
     return {
+      screenMd,
       onChange,
       onUpdateNowArea
     }
@@ -86,6 +90,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .change-area {
   font-size: 0.8rem;
+}
+
+.field-container {
+  @include mq(md) {
+    padding-bottom: 1rem;
+  }
 }
 
 .now-area {
@@ -100,11 +110,21 @@ export default defineComponent({
 .now-area-container {
   border-top: 1px solid #d5ceb7;
   padding: 0.5rem 0;
+
+  @include mq(md) {
+    border: none;
+  }
 }
 
 .search-keyword-container {
   border-top: 1px solid #d5ceb7;
   border-bottom: 1px solid #d5ceb7;
+
+  @include mq(md) {
+    border: none;
+    background: #fff;
+    margin: 0 1rem;
+  }
 }
 
 .search-keyword-title {

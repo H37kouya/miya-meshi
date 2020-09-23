@@ -88,3 +88,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+.env.dev
+.env.prod
+serviceAccount*.json
