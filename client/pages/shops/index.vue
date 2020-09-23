@@ -42,6 +42,7 @@
               :shops="filterShopsByCanTakeout"
               :max-item="shops.length"
               :now-page="nowPage"
+              :query="nowQuery"
             />
           </div>
         </v-col>
@@ -204,10 +205,21 @@ export default defineComponent({
       return filterShopsByArea.value
     })
 
+    const nowQuery = computed(() => {
+      const _canTakeout = context.root.$route.query.canTakeout
+      const _areas = context.root.$route.query.areas
+
+      return {
+        areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
+        canTakeout: isString(_canTakeout) ? _canTakeout : undefined
+      }
+    })
+
     return {
       areas,
       breadcrumbs,
       nowArea,
+      nowQuery,
       filterShopsByCanTakeout,
       screenMd,
       shops,

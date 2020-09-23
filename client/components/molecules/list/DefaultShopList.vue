@@ -55,7 +55,8 @@ type Props = {
   areas: Area[],
   shops: Shop[],
   maxItem: number,
-  nowPage: number
+  nowPage: number,
+  query: object
 }
 export default defineComponent({
   props: {
@@ -82,6 +83,11 @@ export default defineComponent({
     nowPage: {
       type: Number,
       default: 1
+    },
+
+    query: {
+      type: Object,
+      default: undefined
     }
   },
 
@@ -122,7 +128,8 @@ export default defineComponent({
       return await context.root.$router.push({
         path: '/shops',
         query: {
-          page: String(page)
+          page: String(page),
+          ...props.query
         }
       })
     }
