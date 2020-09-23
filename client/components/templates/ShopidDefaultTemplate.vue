@@ -1,9 +1,5 @@
 <template>
   <div>
-    <v-container>
-      <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
-    </v-container>
-
     <HeaderShopField
       :src="shop.imageLink"
       :name="shop.name"
@@ -54,26 +50,22 @@
       </div>
     </div>
 
-    <v-lazy>
+    <div v-if="snsLinks.length > 0">
       <MainText :level="2">
         各種SNS
       </MainText>
 
-      <SnsIconsShopField :shop="shop" />
-    </v-lazy>
+      <SnsIconsShopField :sns-links="snsLinks" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { Breadcrumb, Shop, Menu } from '@/lib'
-import { uniqArray } from '~/src/utils/Array'
-import { DEFAULT_IMAGE } from '~/src/types/Menu'
-
-const breadcrumbs = [
-  { exact: true, text: 'Home', to: '/' },
-  { exact: true, text: 'お店で探す', to: '/shops' }
-] as Breadcrumb[]
+import { Shop, Menu } from '@/lib'
+import { uniqArray } from '@/src/utils/Array'
+import { DEFAULT_IMAGE } from '@/src/types/Menu'
+import { shopToSnsLinks } from '@/src/utils/SnsLinks'
 
 type Props = {
   shop: Shop,
@@ -106,16 +98,11 @@ export default defineComponent({
         : uniq
     })
 
-    const computedBreadcrumbs = computed(() => {
-      return [
-        ...breadcrumbs,
-        { exact: true, text: props.shop.name, to: `/shops/${props.shop.id}` }
-      ] as Breadcrumb[]
-    })
+    const snsLinks = computed(() => shopToSnsLinks(props.shop))
 
     return {
-      breadcrumbs: computedBreadcrumbs,
-      menuImage
+      menuImage,
+      snsLinks
     }
   }
 })

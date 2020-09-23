@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    <div class="d-sm-none" style="background-color: #f5f5f5;">
+      <div class="max-width-350 py-3">
+        <ToSearchShopButton width="100%" />
+      </div>
+    </div>
+
     <v-row>
       <v-col cols="12" md="8" class="px-0 px-md-3">
         <DefaultInstaTopPageShopList :insta-shops="instaShops" />
@@ -22,7 +28,7 @@
 
         <div v-else style="height: 60px;" />
 
-        <div class="news-list-container">
+        <div class="news-list-container mb-8">
           <v-lazy>
             <MainText id="news" :level="2">
               新着情報
@@ -44,6 +50,12 @@
               </template>
             </v-row>
           </v-lazy>
+        </div>
+
+        <div>
+          <v-card href="https://forms.gle/gAknXAaCrfsr8UdA8" target="_blank" rel="noopener" flat>
+            <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
+          </v-card>
         </div>
       </v-col>
     </v-row>

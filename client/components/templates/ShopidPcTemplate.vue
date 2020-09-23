@@ -1,9 +1,5 @@
 <template>
   <div>
-    <v-container class="py-2">
-      <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
-    </v-container>
-
     <v-container>
       <PcHeaderShopField :shop="shop" />
 

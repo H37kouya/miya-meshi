@@ -24,6 +24,7 @@
               <SearchAreaAndKyewordField
                 :area="nowArea"
                 :value="searchAreasAndCanTakeout"
+                :to-keyword-detail="toKeywordDetail"
                 @updateNowArea="onUpdateNowArea"
                 @change="onChangeSearch"
               />
@@ -52,32 +53,24 @@
             :areas="areas"
             :now-area="nowArea"
             :value="searchAreas"
+            :to-keyword-detail="toKeywordDetail"
             @change="onChangeSearchAreas"
             @updateNowArea="onUpdateNowArea"
           />
 
-          <div class="area-container">
-            <h3 class="area-title">
-              ジャンルから探す
-            </h3>
+          <div class="mb-8">
+            <SearchDishField
+              :dishes="dishes"
+              :value="searchDishes"
+              :to-keyword-detail="toKeywordDetail"
+              @change="onChangeSearcDishes"
+            />
+          </div>
 
-            <div class="search-now-location d-flex justify-space-between pa-4">
-              <p class="mb-0">
-                すべて
-              </p>
-
-              <v-icon>
-                mdi-chevron-right
-              </v-icon>
-            </div>
-
-            <div class="px-4 py-2">
-              <p class="text-right mb-0">
-                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
-                  ジャンル検索
-                </nuxt-link>
-              </p>
-            </div>
+          <div>
+            <v-card href="https://forms.gle/gAknXAaCrfsr8UdA8" target="_blank" rel="noopener" flat>
+              <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
+            </v-card>
           </div>
         </v-col>
       </v-row>
@@ -95,7 +88,8 @@ import { isArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
 import { filterShopsByAreas } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
-import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
+import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -110,6 +104,7 @@ export default defineComponent({
 
     const { shops } = useShop(context.root)
     const { screenMd } = useGetScreenSize()
+    const { dishes } = useDish(context.root)
 
     const nowPage = computed(() => {
       const page = context.root.$route.query.page
@@ -124,17 +119,24 @@ export default defineComponent({
     const searchAreasAndCanTakeout = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
       if (isArray(_canTakeout)) {
-        return searchAreas.value
+        return [
+          ...searchAreas.value,
+          ...searchTimezones.value
+        ]
       }
 
       if (isString(_canTakeout)) {
         return [
           ...searchAreas.value,
+          ...searchTimezones.value,
           'canTakeout'
         ]
       }
 
-      return searchAreas.value
+      return [
+        ...searchAreas.value,
+        ...searchTimezones.value
+      ]
     })
 
     const searchAreas = computed(() => {
@@ -150,17 +152,47 @@ export default defineComponent({
       return []
     })
 
+    const searchDishes = computed(() => {
+      const _searchDishes = context.root.$route.query.dishes
+      if (isArray(_searchDishes)) {
+        return _searchDishes
+      }
+
+      if (isString(_searchDishes)) {
+        return [_searchDishes]
+      }
+
+      return []
+    })
+
+    const searchTimezones = computed(() => {
+      const _searchTimezones = context.root.$route.query.timezones
+      if (isArray(_searchTimezones)) {
+        return _searchTimezones
+      }
+
+      if (isString(_searchTimezones)) {
+        return [_searchTimezones]
+      }
+
+      return []
+    })
+
     const onChangeSearch = async (value: string[]) => {
       const query = {
-        areas: [] as string[]
+        areas: [] as string[],
+        timezones: [] as string[]
       } as {
-        areas?: string[]
+        areas?: string[],
+        timezones?: string[],
         canTakeout?: 'true'
       }
 
       for (const v of value) {
         if (v.includes('canTakeout')) {
           query.canTakeout = 'true'
+        } else if (['morning', 'lunch', 'night'].includes(v)) {
+          query.timezones && query.timezones.push(v)
         } else {
           query.areas && query.areas.push(v)
         }
@@ -170,6 +202,7 @@ export default defineComponent({
         path: '/shops',
         query: {
           areas: query.areas && query.areas.length > 0 ? query.areas : undefined,
+          timezones: query.timezones && query.timezones.length > 0 ? query.timezones : undefined,
           canTakeout: query.canTakeout
         }
       })
@@ -180,6 +213,15 @@ export default defineComponent({
         path: '/shops',
         query: {
           areas
+        }
+      })
+    }
+
+    const onChangeSearcDishes = async (dishes: string[]) => {
+      return await context.root.$router.push({
+        path: '/shops',
+        query: {
+          dishes
         }
       })
     }
@@ -208,16 +250,26 @@ export default defineComponent({
     const nowQuery = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
       const _areas = context.root.$route.query.areas
+      const _dishes = context.root.$route.query.dishes
 
       return {
         areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
+        dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
         canTakeout: isString(_canTakeout) ? _canTakeout : undefined
       }
     })
 
+    const toKeywordDetail = computed(() => ({
+      path: '/keywords/detail',
+      query: {
+        ...nowQuery.value
+      }
+    }))
+
     return {
       areas,
       breadcrumbs,
+      dishes,
       nowArea,
       nowQuery,
       filterShopsByCanTakeout,
@@ -225,10 +277,14 @@ export default defineComponent({
       shops,
       searchAreas,
       searchAreasAndCanTakeout,
+      searchDishes,
+      searchTimezones,
       nowPage,
+      toKeywordDetail,
       onChangeSearch,
       onUpdateNowArea,
-      onChangeSearchAreas
+      onChangeSearchAreas,
+      onChangeSearcDishes
     }
   },
 

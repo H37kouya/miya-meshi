@@ -1,13 +1,13 @@
 <template>
   <div class="area-container mb-8">
     <h3 class="area-title">
-      エリアから探す
+      ジャンルから探す
     </h3>
 
-    <div @click="onSearchNowLocation">
+    <div>
       <div class="search-now-location d-flex justify-space-between pa-4">
         <p class="mb-0">
-          現在地から探す
+          すべて
         </p>
 
         <v-icon>
@@ -16,31 +16,15 @@
       </div>
     </div>
 
-    <div class="area-list-container px-4 py-2">
-      <div class="d-flex justify-space-between">
-        <p class="area-list-title mb-0">
-          現在のエリア
-        </p>
-
-        <v-btn depressed x-small color="#d6cba6" @click="onUpdateNowArea">
-          現在地を更新
-        </v-btn>
-      </div>
-
-      <p class="now-area-name mb-0">
-        {{ nowArea ? nowArea.name : '全て' }}
-      </p>
-    </div>
-
     <div class="px-4 py-2">
       <p class="area-list-title mb-0">
-        エリア一覧
+        ジャンル一覧
       </p>
 
       <v-chip-group :value="value" column multiple @change="onChange">
-        <template v-for="area in areas">
-          <v-chip :key="area.id" :value="area.id" small filter outlined>
-            {{ area.name }}
+        <template v-for="dish in dishes.slice(0, 10)">
+          <v-chip :key="dish.id" :value="dish.id" small filter outlined>
+            {{ dish.name }}
           </v-chip>
         </template>
       </v-chip-group>
@@ -56,24 +40,18 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
-import { Area } from '@/lib'
+import { Dish } from '@/lib'
 
 type Props = {
-  areas: Area[],
-  nowArea: Area,
+  dishes: Dish[],
   value: string[]
 }
 
 export default defineComponent({
   props: {
-    areas: {
+    dishes: {
       type: Array,
       default: () => []
-    },
-
-    nowArea: {
-      type: Object,
-      default: undefined
     },
 
     value: {
@@ -92,21 +70,8 @@ export default defineComponent({
       return context.emit('change', value)
     }
 
-    const onUpdateNowArea = () => context.emit('updateNowArea')
-
-    const onSearchNowLocation = () => {
-      const _value = props.value.slice()
-      if (!_value.find((v: string) => v === props.nowArea.id)) {
-        _value.push(props.nowArea.id)
-      }
-
-      return onChange(_value)
-    }
-
     return {
-      onChange,
-      onSearchNowLocation,
-      onUpdateNowArea
+      onChange
     }
   }
 })

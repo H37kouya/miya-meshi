@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div>
+    <div v-if="snsLinks.length > 0">
       <div class="border-b border-dark-gray">
         <h3 class="contact-title pt-4 px-4 pb-2">
           各種SNS
@@ -30,15 +30,16 @@
       </div>
 
       <div>
-        <SnsIconsShopField :shop="shop" />
+        <SnsIconsShopField :sns-links="snsLinks" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
+import { shopToSnsLinks } from '@/src/utils/SnsLinks'
 
 type Props = {
   shop: Shop,
@@ -54,6 +55,14 @@ export default defineComponent({
     type: {
       type: String,
       default: 'top'
+    }
+  },
+
+  setup (props: Props) {
+    const snsLinks = computed(() => shopToSnsLinks(props.shop))
+
+    return {
+      snsLinks
     }
   }
 })
