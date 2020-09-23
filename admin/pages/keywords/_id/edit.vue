@@ -2,11 +2,11 @@
   <v-container>
     <v-row justify="space-between">
       <AdminMainText>
-        キーワード編集
+        タグ編集
       </AdminMainText>
 
       <v-btn to="/keywords" color="success">
-        キーワード一覧へ戻る
+        タグ一覧へ戻る
       </v-btn>
     </v-row>
 

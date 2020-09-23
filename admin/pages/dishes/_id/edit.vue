@@ -2,11 +2,11 @@
   <v-container>
     <v-row justify="space-between">
       <AdminMainText>
-        料理編集
+        ジャンル編集
       </AdminMainText>
 
       <v-btn to="/dishes" color="success">
-        料理一覧へ戻る
+        ジャンル一覧へ戻る
       </v-btn>
     </v-row>
 

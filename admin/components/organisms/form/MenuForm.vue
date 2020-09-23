@@ -92,7 +92,7 @@
                   v-model="state.menu.dishes"
                   :items="dishesListForSelect"
                   :menu-props="{ maxHeight: '400' }"
-                  label="料理選択"
+                  label="ジャンル選択"
                   multiple
                 />
               </v-col>
@@ -102,7 +102,7 @@
                   v-model="state.menu.keywords"
                   :items="keywordsListForSelect"
                   :menu-props="{ maxHeight: '400' }"
-                  label="キーワード選択"
+                  label="タグ選択"
                   multiple
                 />
               </v-col>

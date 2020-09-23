@@ -2,11 +2,11 @@
   <v-container>
     <v-row justify="space-between">
       <AdminMainText>
-        料理一覧
+        ジャンル一覧
       </AdminMainText>
 
       <v-btn to="/dishes/create" color="success">
-        料理追加
+        ジャンル追加
       </v-btn>
     </v-row>
 
