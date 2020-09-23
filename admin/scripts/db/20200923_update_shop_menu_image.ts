@@ -32,11 +32,11 @@ const handler = async () => {
       }
 
       console.log(`進行中：${doc.id}`)
+      console.log(newMenuImageLink)
+      collection.doc(docID).update({
+        menuImageLink: newMenuImageLink
+      })
     }
-
-    collection.doc(docID).update({
-      menuImageLink: newMenuImageLink
-    })
   })
 }
 
