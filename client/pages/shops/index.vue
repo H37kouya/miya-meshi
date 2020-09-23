@@ -56,28 +56,12 @@
             @updateNowArea="onUpdateNowArea"
           />
 
-          <div class="area-container mb-8">
-            <h3 class="area-title">
-              ジャンルから探す
-            </h3>
-
-            <div class="search-now-location d-flex justify-space-between pa-4">
-              <p class="mb-0">
-                すべて
-              </p>
-
-              <v-icon>
-                mdi-chevron-right
-              </v-icon>
-            </div>
-
-            <div class="px-4 py-2">
-              <p class="text-right mb-0">
-                <nuxt-link to="/keywords/detail" class="to-keyword-detail">
-                  ジャンル検索
-                </nuxt-link>
-              </p>
-            </div>
+          <div class="mb-8">
+            <SearchDishField
+              :dishes="dishes"
+              :value="searchDishes"
+              @change="onChangeSearcDishes"
+            />
           </div>
 
           <div>
@@ -101,7 +85,8 @@ import { isArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
 import { filterShopsByAreas } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
-import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
+import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -116,6 +101,7 @@ export default defineComponent({
 
     const { shops } = useShop(context.root)
     const { screenMd } = useGetScreenSize()
+    const { dishes } = useDish(context.root)
 
     const nowPage = computed(() => {
       const page = context.root.$route.query.page
@@ -156,6 +142,19 @@ export default defineComponent({
       return []
     })
 
+    const searchDishes = computed(() => {
+      const _searchDishes = context.root.$route.query.dishes
+      if (isArray(_searchDishes)) {
+        return _searchDishes
+      }
+
+      if (isString(_searchDishes)) {
+        return [_searchDishes]
+      }
+
+      return []
+    })
+
     const onChangeSearch = async (value: string[]) => {
       const query = {
         areas: [] as string[]
@@ -186,6 +185,15 @@ export default defineComponent({
         path: '/shops',
         query: {
           areas
+        }
+      })
+    }
+
+    const onChangeSearcDishes = async (dishes: string[]) => {
+      return await context.root.$router.push({
+        path: '/shops',
+        query: {
+          dishes
         }
       })
     }
@@ -224,6 +232,7 @@ export default defineComponent({
     return {
       areas,
       breadcrumbs,
+      dishes,
       nowArea,
       nowQuery,
       filterShopsByCanTakeout,
@@ -231,10 +240,12 @@ export default defineComponent({
       shops,
       searchAreas,
       searchAreasAndCanTakeout,
+      searchDishes,
       nowPage,
       onChangeSearch,
       onUpdateNowArea,
-      onChangeSearchAreas
+      onChangeSearchAreas,
+      onChangeSearcDishes
     }
   },
 
