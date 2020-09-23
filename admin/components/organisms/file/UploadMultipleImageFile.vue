@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 
 type Props = {
   defaultImage: string,
@@ -121,9 +121,6 @@ export default defineComponent({
 
     const onPageChange = (key: number) => {
       state.selected = key
-    }
-
-    const onFileClear = () => {
     }
 
     return {
