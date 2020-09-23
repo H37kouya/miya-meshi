@@ -89,7 +89,11 @@
 }
 
 .sentence {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+
+  @include mq(sm) {
+    font-size: 0.8rem;
+  }
 }
 
 .miyameshi-wrapper {

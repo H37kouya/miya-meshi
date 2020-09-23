@@ -50,13 +50,13 @@
       </div>
     </div>
 
-    <v-lazy>
+    <div v-if="snsLinks.length > 0">
       <MainText :level="2">
         各種SNS
       </MainText>
 
-      <SnsIconsShopField :shop="shop" />
-    </v-lazy>
+      <SnsIconsShopField :sns-links="snsLinks" />
+    </div>
   </div>
 </template>
 
@@ -65,6 +65,7 @@ import { computed, defineComponent } from '@nuxtjs/composition-api'
 import { Shop, Menu } from '@/lib'
 import { uniqArray } from '@/src/utils/Array'
 import { DEFAULT_IMAGE } from '@/src/types/Menu'
+import { shopToSnsLinks } from '@/src/utils/SnsLinks'
 
 type Props = {
   shop: Shop,
@@ -97,8 +98,11 @@ export default defineComponent({
         : uniq
     })
 
+    const snsLinks = computed(() => shopToSnsLinks(props.shop))
+
     return {
-      menuImage
+      menuImage,
+      snsLinks
     }
   }
 })

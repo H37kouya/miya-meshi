@@ -49,7 +49,7 @@
       </div>
 
       <div>
-        <UlabImage />
+        <UlabImage width="100px" />
       </div>
     </v-row>
   </v-container>
@@ -57,7 +57,7 @@
 
 <style lang="scss" scoped>
 .footer-group-title {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: bolder;
   margin-bottom: 4px !important;
 }
@@ -71,6 +71,10 @@
 
   li:first-child {
     padding: 0 0.5rem 0 0;
+  }
+
+  li:last-child {
+    padding: 0 0 0 0.5rem;
   }
 
   li:not(:last-child) {
@@ -87,7 +91,11 @@
 }
 
 .sentence {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+
+  @include mq(sm) {
+    font-size: 0.8rem;
+  }
 }
 
 a.sentence {
