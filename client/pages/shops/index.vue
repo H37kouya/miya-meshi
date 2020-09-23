@@ -119,17 +119,24 @@ export default defineComponent({
     const searchAreasAndCanTakeout = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
       if (isArray(_canTakeout)) {
-        return searchAreas.value
+        return [
+          ...searchAreas.value,
+          ...searchTimezones.value
+        ]
       }
 
       if (isString(_canTakeout)) {
         return [
           ...searchAreas.value,
+          ...searchTimezones.value,
           'canTakeout'
         ]
       }
 
-      return searchAreas.value
+      return [
+        ...searchAreas.value,
+        ...searchTimezones.value
+      ]
     })
 
     const searchAreas = computed(() => {
@@ -158,17 +165,34 @@ export default defineComponent({
       return []
     })
 
+    const searchTimezones = computed(() => {
+      const _searchTimezones = context.root.$route.query.timezones
+      if (isArray(_searchTimezones)) {
+        return _searchTimezones
+      }
+
+      if (isString(_searchTimezones)) {
+        return [_searchTimezones]
+      }
+
+      return []
+    })
+
     const onChangeSearch = async (value: string[]) => {
       const query = {
-        areas: [] as string[]
+        areas: [] as string[],
+        timezones: [] as string[]
       } as {
-        areas?: string[]
+        areas?: string[],
+        timezones?: string[],
         canTakeout?: 'true'
       }
 
       for (const v of value) {
         if (v.includes('canTakeout')) {
           query.canTakeout = 'true'
+        } else if (['morning', 'lunch', 'night'].includes(v)) {
+          query.timezones && query.timezones.push(v)
         } else {
           query.areas && query.areas.push(v)
         }
@@ -178,6 +202,7 @@ export default defineComponent({
         path: '/shops',
         query: {
           areas: query.areas && query.areas.length > 0 ? query.areas : undefined,
+          timezones: query.timezones && query.timezones.length > 0 ? query.timezones : undefined,
           canTakeout: query.canTakeout
         }
       })
@@ -253,6 +278,7 @@ export default defineComponent({
       searchAreas,
       searchAreasAndCanTakeout,
       searchDishes,
+      searchTimezones,
       nowPage,
       toKeywordDetail,
       onChangeSearch,

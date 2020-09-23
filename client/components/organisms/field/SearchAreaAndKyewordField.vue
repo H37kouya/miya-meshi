@@ -30,7 +30,7 @@
         {{ screenMd ? '良く追加されているタグ' : '絞り込み' }}
       </p>
 
-      <v-chip-group :value="value" multiple @change="onChange">
+      <v-chip-group :value="value" column multiple @change="onChange">
         <v-chip
           v-if="area"
           :value="area.id"
@@ -44,6 +44,18 @@
 
         <v-chip small filter outlined value="canTakeout">
           テイクアウト可
+        </v-chip>
+
+        <v-chip small filter outlined value="morning">
+          朝
+        </v-chip>
+
+        <v-chip small filter outlined value="lunch">
+          昼
+        </v-chip>
+
+        <v-chip small filter outlined value="night">
+          夜
         </v-chip>
       </v-chip-group>
     </div>
