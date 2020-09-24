@@ -9,6 +9,10 @@
                 v-model="state.area.name"
               />
 
+              <AreaPriorityTextField
+                v-model="state.area.priority"
+              />
+
               <div class="d-flex justify-end">
                 <v-btn type="submit" color="primary" large>
                   追加
@@ -65,13 +69,15 @@ export default defineComponent({
     const state = reactive({
       area: {
         name: '' as Area['name'],
-        addresses: [] as Area['addresses']
+        addresses: [] as Area['addresses'],
+        priority: 1 as Area['priority']
       }
     })
 
     watch(() => props.area, (newVal, _) => {
       state.area.name = newVal ? newVal.name : state.area.name
       state.area.addresses = newVal ? newVal.addresses : state.area.addresses
+      state.area.priority = newVal ? newVal.priority : state.area.priority
     })
 
     const onSubmit = () => context.emit('submit', state.area)

@@ -8,6 +8,10 @@
               {{ area.name }} ({{ area.addresses.length }})
             </v-list-item-title>
           </v-list-item-content>
+
+          <v-list-item-action v-if="area.priority">
+            {{ area.priority }}
+          </v-list-item-action>
         </v-list-item>
 
         <v-divider
