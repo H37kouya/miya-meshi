@@ -44,12 +44,6 @@
           </v-chip>
         </template>
       </v-chip-group>
-
-      <p class="text-right mb-0">
-        <nuxt-link to="/keywords/detail" class="to-keyword-detail">
-          詳細検索
-        </nuxt-link>
-      </p>
     </div>
   </div>
 </template>

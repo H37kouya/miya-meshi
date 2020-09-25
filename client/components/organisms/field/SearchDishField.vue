@@ -4,7 +4,7 @@
       ジャンルから探す
     </h3>
 
-    <div>
+    <!-- <div>
       <div class="search-now-location d-flex justify-space-between pa-4">
         <p class="mb-0">
           すべて
@@ -14,9 +14,9 @@
           mdi-chevron-right
         </v-icon>
       </div>
-    </div>
+    </div> -->
 
-    <div class="px-4 py-2">
+    <div class="px-4 py-2 border-t border-dark-grey">
       <p class="area-list-title mb-0">
         ジャンル一覧
       </p>
@@ -28,12 +28,6 @@
           </v-chip>
         </template>
       </v-chip-group>
-
-      <p class="text-right mb-0">
-        <nuxt-link to="/keywords/detail" class="to-keyword-detail">
-          詳細検索
-        </nuxt-link>
-      </p>
     </div>
   </div>
 </template>

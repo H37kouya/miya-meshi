@@ -74,12 +74,6 @@ import { DETAIL_LIST_ITEM } from '@/components/atoms/table/DetailListItemType'
 import { isArray, nullOrStringArrayToStringArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
 
-const breadcrumbs = [
-  { exact: true, text: 'Home', to: '/' },
-  { exact: true, text: '検索', to: '/keywords' },
-  { exact: true, text: '詳細検索', to: '/keywords/detail' }
-] as Breadcrumb[]
-
 const times = [{ id: 'morning', name: '朝' }, { id: 'lunch', name: '昼' }, { id: 'night', name: '夜' }] as Time[]
 
 type State = {
@@ -175,6 +169,14 @@ export default defineComponent({
           canTakeout: isString(_canTakeout) ? _canTakeout : undefined
         }
       }
+    })
+
+    const breadcrumbs = computed(() => {
+      return [
+        { exact: true, text: 'Home', to: '/' },
+        { exact: true, text: 'お店から探す', to: to.value },
+        { exact: false, text: '詳細検索', to: '/keywords/detail' }
+      ] as Breadcrumb[]
     })
 
     return {
