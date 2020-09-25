@@ -1,14 +1,14 @@
 <template>
   <div>
-    <MainText id="miyameshi_pictures">
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-2">
+      <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
+    </v-container>
+
+    <MainText id="miyameshi_pictures" class="text-md-center">
       インスタからのおすすめ
     </MainText>
 
     <div class="u-light-grey-background">
-      <v-container class="py-0">
-        <v-breadcrumbs :items="breadcrumbs" class="pb-0 px-0 px-sm-6" />
-      </v-container>
-
       <v-container class="max-width-480">
         <v-combobox
           v-model="selectedNumber"

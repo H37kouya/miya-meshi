@@ -5,7 +5,7 @@
         <th class="table-heading text-center">
           {{ data.heading }}
         </th>
-        <td class="table-value text-center">
+        <td class="table-value text-center text-md-left pl-md-4">
           <template v-if="data.valueType === 'array'">
             <p v-for="(str, lkey) in data.value" :key="`array-${lkey}`" class="mb-0">
               {{ str }}
@@ -151,6 +151,10 @@ export default defineComponent({
     right: 1px #d2d2d2 solid;
     bottom: 1px #d2d2d2 solid;
   };
+
+  @include mq(md) {
+    width: auto;
+  }
 }
 
 .table-heading {
@@ -163,10 +167,18 @@ export default defineComponent({
     right: 1px #d2d2d2 solid;
     bottom: 1px #d2d2d2 solid;
   }
+
+  @include mq(md) {
+    width: 120px;
+  }
 }
 
 .contact-table {
   border-spacing: 0;
+
+  @include mq(md) {
+    width: 100%;
+  }
 
   tr:first-of-type {
     .table-heading {

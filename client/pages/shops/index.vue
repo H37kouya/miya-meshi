@@ -251,16 +251,18 @@ export default defineComponent({
       const _canTakeout = context.root.$route.query.canTakeout
       const _areas = context.root.$route.query.areas
       const _dishes = context.root.$route.query.dishes
+      const _timezones = context.root.$route.query.timezones
 
       return {
         areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
         dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
+        timezones: isArray(_timezones) && _timezones.length > 0 ? _timezones : undefined,
         canTakeout: isString(_canTakeout) ? _canTakeout : undefined
       }
     })
 
     const toKeywordDetail = computed(() => ({
-      path: '/keywords/detail',
+      path: '/keywords/area',
       query: {
         ...nowQuery.value
       }
@@ -304,7 +306,9 @@ export default defineComponent({
 }
 
 .header-shop-list-container {
-  background: #faf8f5;
+  @include mq(sm) {
+    background: #faf8f5;
+  }
 }
 
 .sales-title {
