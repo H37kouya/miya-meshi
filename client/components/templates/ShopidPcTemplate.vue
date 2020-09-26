@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <PcHeaderShopField :shop="shop" />
+      <PcHeaderShopField :can-click-dish="canClickDish" :shop="shop" />
 
       <v-row>
         <v-col cols="8">
@@ -86,6 +86,10 @@ export default defineComponent({
       return props.shop.menuImageLink[0]
     })
 
+    const canClickDish = computed(() => {
+      return props.menus.length > 0
+    })
+
     const computedBreadcrumbs = computed(() => {
       return [
         ...breadcrumbs,
@@ -95,6 +99,7 @@ export default defineComponent({
 
     return {
       breadcrumbs: computedBreadcrumbs,
+      canClickDish,
       menuImage
     }
   }

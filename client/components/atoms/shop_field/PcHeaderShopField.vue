@@ -28,6 +28,7 @@
 
       <v-col cols="3" class="pa-0">
         <v-btn
+          :disabled="!canClickDish"
           :to="`/shops/${shop.id}?type=dish`"
           class="shop-menu-btn"
           exact-active-class="shop-active-class"
@@ -84,6 +85,11 @@ type Props = {
 
 export default defineComponent({
   props: {
+    canClickDish: {
+      type: Boolean,
+      default: true
+    },
+
     shop: {
       type: Object,
       default: undefined
