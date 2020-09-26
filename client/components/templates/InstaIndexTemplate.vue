@@ -8,7 +8,7 @@
       インスタからのおすすめ
     </MainText>
 
-    <div class="u-light-grey-background">
+    <!-- <div class="u-light-grey-background">
       <v-container class="max-width-480">
         <v-combobox
           v-model="selectedNumber"
@@ -18,7 +18,7 @@
           multiple
         />
       </v-container>
-    </div>
+    </div> -->
 
     <DefaultInstaShopList :shops="filterShops" :max-item="shops.length" />
   </div>
@@ -48,28 +48,13 @@ export default defineComponent({
 
   setup (props: Props, _) {
     const {
-      canSelectInstaNumber,
-      filterShops,
-      selectedNumber
+      filterShops
     } = useSearchInstaShopByInstaNumber<Props>(props)
 
     return {
       breadcrumbs,
-      canSelectInstaNumber,
-      filterShops,
-      selectedNumber
+      filterShops
     }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.to-top-page {
-  font-size: 0.8rem;
-  text-decoration: none;
-
-  &::before {
-    content: '←';
-  }
-}
-</style>
