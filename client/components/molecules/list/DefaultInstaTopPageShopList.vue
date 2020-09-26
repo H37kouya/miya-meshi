@@ -32,6 +32,11 @@ type Props = {
 }
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     instaShops: {
       type: Array,
       default: () => []

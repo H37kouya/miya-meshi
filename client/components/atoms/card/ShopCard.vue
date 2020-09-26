@@ -5,12 +5,12 @@
         <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
       </v-card>
 
-      <p class="mb-0 shop-name u-black--text max-text-height-2">
+      <h4 class="my-1 shop-name u-black--text max-text-height-2">
         {{ name }}
-      </p>
+      </h4>
 
       <div class="explation">
-        <p v-if="area" class="d-sm-none area mb-0 u-black--text">
+        <p v-if="area" class="area mb-0 u-black--text">
           <v-icon color="#d4573c" small>
             mdi-map-marker
           </v-icon>
@@ -38,10 +38,6 @@
 
     <div class="mt-2">
       <v-chip-group>
-        <v-chip v-if="area" class="d-none d-sm-block" small outlined>
-          {{ area }}
-        </v-chip>
-
         <v-chip v-if="canTakeout" small outlined>
           テイクアウト可
         </v-chip>
@@ -116,8 +112,14 @@ export default defineComponent({
 <style lang="scss" scoped>
 .shop-name {
   font-size: 0.9rem;
-  word-break: break-all;
-  height: 2.75rem;
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include mq(md) {
+    font-size: 1rem;
+  }
 }
 
 .prefix {

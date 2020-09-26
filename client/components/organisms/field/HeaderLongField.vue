@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div style="width: 100%;" class="pos-relative">
-      <v-container class="d-none d-sm-block">
+    <div style="width: 100%;">
+      <v-container v-if="screenSm" class="d-none d-sm-block">
         <v-row justify="space-around" align="center">
           <v-col class="py-0">
             <nuxt-link to="/">
@@ -31,13 +31,13 @@
       </v-container>
 
       <v-img
-        :src="screenSm ? '/s/miyameshi-pc-top.jpg' : '/s/miyameshi-top.png'"
+        :src="screenSm ? '/s/miyameshi-pc-top.jpg' : '/s/miyameshi-phone-top.jpg'"
         width="100%"
         :aspect-ratio="screenSm ? undefined : 1.78"
         :max-height="screenSm ? '586px' : '160px'"
       />
 
-      <div class="text-right pt-6 px-4 developer-name d-sm-none">
+      <div class="text-right px-4 developer-name d-sm-none">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
       </div>
     </div>

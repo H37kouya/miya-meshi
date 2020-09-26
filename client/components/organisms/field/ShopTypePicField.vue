@@ -5,6 +5,13 @@
         店舗写真
       </MainText>
     </div>
+
+    <div class="d-flex justify-center">
+      <v-img
+        alt="現在準備中 - 完成をお待ちください"
+        src="/s/now-working.png"
+      />
+    </div>
   </div>
 </template>
 

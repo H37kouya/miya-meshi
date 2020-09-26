@@ -2,7 +2,7 @@
   <div class="w-100">
     <div class="d-sm-none">
       <v-img
-        src="/s/miyameshi-header.jpg"
+        src="/s/miyameshi-header-white.jpg"
         width="100%"
         max-height="160px"
         aspect-ratio="5.77"

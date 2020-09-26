@@ -13,7 +13,7 @@
             <v-col :key="key" cols="4" class="px-1 py-1 pb-sm-4">
               <InstaCard
                 :alt="shop.name"
-                :address="shortAddress(shop.address)"
+                :area="computedShopArea(shop.address)"
                 :prefix-name="shop.prefixName"
                 :name="shop.name"
                 :to="`/shops/${shop.id}`"
@@ -38,15 +38,21 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watch } from '@nuxtjs/composition-api'
-import { Shop } from '@/lib'
-import { computedShortShopAddress } from '@/src/utils/Shop'
+import { Area, Shop } from '@/lib'
+import { computedShortShopAddress, getShopAreaByAddress } from '@/src/utils/Shop'
 
 type Props = {
+  areas: Area[]
   shops: Shop[],
   maxItem: number
 }
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     shops: {
       type: Array,
       default: () => []
@@ -72,11 +78,33 @@ export default defineComponent({
       return (address: Shop['address']) => computedShortShopAddress(address)
     })
 
+    const computedShopArea = computed(() => {
+      return (address: Shop['address']) => {
+        if (props.areas) {
+          const area = getShopAreaByAddress(address, props.areas)
+          if (area) {
+            return area.name
+          }
+        }
+
+        if (address) {
+          if (address.includes('宇都宮')) {
+            return computedShortShopAddress(address)
+          } else {
+            return '宇都宮市外'
+          }
+        }
+
+        return undefined
+      }
+    })
+
     watch(() => props.shops, (newVal, _) => {
       state.shops = newVal
     })
 
     return {
+      computedShopArea,
       shortAddress,
       state
     }

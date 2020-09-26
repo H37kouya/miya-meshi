@@ -7,7 +7,7 @@
             mdi-map-marker
           </v-icon>
           <span>
-            {{ area ? area.name : '全て' }}
+            {{ selectedArea }}
           </span>
         </p>
       </div>
@@ -85,6 +85,11 @@ export default defineComponent({
     toKeywordDetail: {
       type: [String, Object],
       default: '/keywords/detail'
+    },
+
+    selectedArea: {
+      type: String,
+      default: 'すべて'
     }
   },
 

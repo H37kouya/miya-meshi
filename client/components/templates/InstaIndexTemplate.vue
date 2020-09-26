@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-2">
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-0">
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
@@ -8,7 +8,7 @@
       インスタからのおすすめ
     </MainText>
 
-    <div class="u-light-grey-background">
+    <!-- <div class="u-light-grey-background">
       <v-container class="max-width-480">
         <v-combobox
           v-model="selectedNumber"
@@ -18,9 +18,9 @@
           multiple
         />
       </v-container>
-    </div>
+    </div> -->
 
-    <DefaultInstaShopList :shops="filterShops" :max-item="shops.length" />
+    <DefaultInstaShopList :areas="areas" :shops="filterShops" :max-item="shops.length" />
   </div>
 </template>
 
@@ -40,6 +40,11 @@ type Props = {
 
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     shops: {
       type: Array,
       default: () => []
@@ -48,28 +53,13 @@ export default defineComponent({
 
   setup (props: Props, _) {
     const {
-      canSelectInstaNumber,
-      filterShops,
-      selectedNumber
+      filterShops
     } = useSearchInstaShopByInstaNumber<Props>(props)
 
     return {
       breadcrumbs,
-      canSelectInstaNumber,
-      filterShops,
-      selectedNumber
+      filterShops
     }
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.to-top-page {
-  font-size: 0.8rem;
-  text-decoration: none;
-
-  &::before {
-    content: '←';
-  }
-}
-</style>

@@ -25,6 +25,7 @@
                 :area="nowArea"
                 :value="searchAreasAndCanTakeout"
                 :to-keyword-detail="toKeywordDetail"
+                :selected-area="selectedArea"
                 @updateNowArea="onUpdateNowArea"
                 @change="onChangeSearch"
               />
@@ -40,7 +41,7 @@
 
             <DefaultShopList
               :areas="areas"
-              :shops="filterShopsByCanTakeout"
+              :shops="filterShopsByTime"
               :max-item="shops.length"
               :now-page="nowPage"
               :query="nowQuery"
@@ -53,7 +54,6 @@
             :areas="areas"
             :now-area="nowArea"
             :value="searchAreas"
-            :to-keyword-detail="toKeywordDetail"
             @change="onChangeSearchAreas"
             @updateNowArea="onUpdateNowArea"
           />
@@ -62,7 +62,6 @@
             <SearchDishField
               :dishes="dishes"
               :value="searchDishes"
-              :to-keyword-detail="toKeywordDetail"
               @change="onChangeSearcDishes"
             />
           </div>
@@ -84,9 +83,9 @@ import { MetaInfo } from 'vue-meta'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
-import { isArray } from '@/src/utils/Array'
+import { isArray, nullOrStringArrayToStringArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
-import { filterShopsByAreas } from '@/src/utils/Shop'
+import { filterShopsByAreas, filterShopsByDishIDs } from '@/src/utils/Shop'
 import { filterAreasByID } from '@/src/utils/Area'
 import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
@@ -142,7 +141,7 @@ export default defineComponent({
     const searchAreas = computed(() => {
       const _searchAreas = context.root.$route.query.areas
       if (isArray(_searchAreas)) {
-        return _searchAreas
+        return nullOrStringArrayToStringArray(_searchAreas)
       }
 
       if (isString(_searchAreas)) {
@@ -155,7 +154,7 @@ export default defineComponent({
     const searchDishes = computed(() => {
       const _searchDishes = context.root.$route.query.dishes
       if (isArray(_searchDishes)) {
-        return _searchDishes
+        return nullOrStringArrayToStringArray(_searchDishes)
       }
 
       if (isString(_searchDishes)) {
@@ -168,7 +167,7 @@ export default defineComponent({
     const searchTimezones = computed(() => {
       const _searchTimezones = context.root.$route.query.timezones
       if (isArray(_searchTimezones)) {
-        return _searchTimezones
+        return nullOrStringArrayToStringArray(_searchTimezones)
       }
 
       if (isString(_searchTimezones)) {
@@ -198,10 +197,13 @@ export default defineComponent({
         }
       }
 
+      const _dishes = context.root.$route.query.dishes
+
       return await context.root.$router.push({
         path: '/shops',
         query: {
           areas: query.areas && query.areas.length > 0 ? query.areas : undefined,
+          dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
           timezones: query.timezones && query.timezones.length > 0 ? query.timezones : undefined,
           canTakeout: query.canTakeout
         }
@@ -209,19 +211,33 @@ export default defineComponent({
     }
 
     const onChangeSearchAreas = async (areas: string[]) => {
+      const _canTakeout = context.root.$route.query.canTakeout
+      const _dishes = context.root.$route.query.dishes
+      const _timezones = context.root.$route.query.timezones
+
       return await context.root.$router.push({
         path: '/shops',
         query: {
-          areas
+          areas,
+          dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
+          timezones: isArray(_timezones) && _timezones.length > 0 ? _timezones : undefined,
+          canTakeout: isString(_canTakeout) ? _canTakeout : undefined
         }
       })
     }
 
     const onChangeSearcDishes = async (dishes: string[]) => {
+      const _canTakeout = context.root.$route.query.canTakeout
+      const _areas = context.root.$route.query.areas
+      const _timezones = context.root.$route.query.timezones
+
       return await context.root.$router.push({
         path: '/shops',
         query: {
-          dishes
+          areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
+          dishes,
+          timezones: isArray(_timezones) && _timezones.length > 0 ? _timezones : undefined,
+          canTakeout: isString(_canTakeout) ? _canTakeout : undefined
         }
       })
     }
@@ -247,6 +263,42 @@ export default defineComponent({
       return filterShopsByArea.value
     })
 
+    const filterShopsByDish = computed(() => {
+      if (searchDishes.value.length === 0) {
+        return filterShopsByCanTakeout.value
+      }
+      return filterShopsByDishIDs(filterShopsByCanTakeout.value, searchDishes.value)
+    })
+
+    const filterShopsByTime = computed(() => {
+      const timezonesQuery = searchTimezones
+      const _originalShops: Shop[] = filterShopsByDish.value
+      if (timezonesQuery.value.length === 0) {
+        return _originalShops
+      }
+      const mappedTimeZonesQuery = [] as string[]
+      for (const timezone of timezonesQuery.value) {
+        timezone === 'morning' && mappedTimeZonesQuery.push('朝')
+        timezone === 'lunch' && mappedTimeZonesQuery.push('昼')
+        timezone === 'night' && mappedTimeZonesQuery.push('夜')
+      }
+
+      if (mappedTimeZonesQuery.length === 0 || mappedTimeZonesQuery.length >= 3) {
+        return _originalShops
+      }
+
+      return _originalShops.filter((shop: Shop) => {
+        if (!shop.timeZone) {
+          return false
+        }
+        for (const timezone of shop.timeZone) {
+          if (mappedTimeZonesQuery.includes(timezone)) {
+            return true
+          }
+        }
+      })
+    })
+
     const nowQuery = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
       const _areas = context.root.$route.query.areas
@@ -268,19 +320,30 @@ export default defineComponent({
       }
     }))
 
+    const selectedArea = computed(() => {
+      const _areas = filterAreasByID(areas.value, searchAreas.value)
+
+      if (_areas.length === 0) {
+        return 'すべて'
+      }
+
+      return _areas[0].name
+    })
+
     return {
       areas,
       breadcrumbs,
       dishes,
       nowArea,
       nowQuery,
-      filterShopsByCanTakeout,
+      filterShopsByTime,
       screenMd,
       shops,
       searchAreas,
       searchAreasAndCanTakeout,
       searchDishes,
       searchTimezones,
+      selectedArea,
       nowPage,
       toKeywordDetail,
       onChangeSearch,

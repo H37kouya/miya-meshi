@@ -72,7 +72,7 @@
         <div class="d-flex justify-center">
           <div>
             <v-img
-              src="/s/instagram.png"
+              src="/s/icon-omelet-rice.png"
               width="60px"
               height="45px"
               contain
@@ -82,7 +82,7 @@
         </div>
 
         <p class="icon-text mb-0">
-          Instagram
+          インスタ
         </p>
       </a>
     </div>

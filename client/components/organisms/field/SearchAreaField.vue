@@ -28,7 +28,7 @@
       </div>
 
       <p class="now-area-name mb-0">
-        {{ nowArea ? nowArea.name : '全て' }}
+        {{ nowArea ? nowArea.name : 'すべて' }}
       </p>
     </div>
 
@@ -73,11 +73,6 @@ export default defineComponent({
     value: {
       type: Array,
       default: () => []
-    },
-
-    toKeywordDetail: {
-      type: [String, Object],
-      default: '/keywords/detail'
     }
   },
 
