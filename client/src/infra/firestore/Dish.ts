@@ -4,10 +4,15 @@ import { Collection, Type } from '@/lib/enum'
 
 const DISH_COLLECTION_NAME = Collection.DISHES
 
+/**
+ * Dish一覧を取得する
+ *
+ * @param { firebase.firestore.Firestore }  $fireStore
+ */
 export const getDishList = async (
   $fireStore: firebase.firestore.Firestore
 ) => {
-  const list = await $fireStore.collection(DISH_COLLECTION_NAME).get()
+  const list = await $fireStore.collection(DISH_COLLECTION_NAME).orderBy('priority', 'desc').get()
 
   const dishes = [] as Dish[]
   list.forEach((doc) => {

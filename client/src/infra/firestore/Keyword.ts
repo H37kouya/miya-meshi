@@ -4,10 +4,15 @@ import { Collection, Type } from '@/lib/enum'
 
 const KEYWORDS_COLLECTION_NAME = Collection.KEYWORDS
 
+/**
+ * キーワード一覧を取得
+ *
+ * @param { firebase.firestore.Firestore }  $fireStore
+ */
 export const getKeywordList = async (
   $fireStore: firebase.firestore.Firestore
 ) => {
-  const list = await $fireStore.collection(KEYWORDS_COLLECTION_NAME).get()
+  const list = await $fireStore.collection(KEYWORDS_COLLECTION_NAME).orderBy('priority', 'desc').get()
 
   const keywords = [] as Keyword[]
   list.forEach((doc) => {

@@ -7,5 +7,6 @@ export type Area = {
   type: Type.AREA,
   id: string,
   name: string,
-  addresses: string[]
+  addresses: string[],
+  priority: number
 }

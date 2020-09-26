@@ -4,10 +4,15 @@ import { Collection, Type } from '@/lib/enum'
 
 const AREA_COLLECTION_NAME = Collection.AREAS
 
+/**
+ * エリア一覧を取得する
+ *
+ * @param { firebase.firestore.Firestore }  $fireStore
+ */
 export const getAreaList = async (
   $fireStore: firebase.firestore.Firestore
 ) => {
-  const list = await $fireStore.collection(AREA_COLLECTION_NAME).get()
+  const list = await $fireStore.collection(AREA_COLLECTION_NAME).orderBy('priority', 'desc').get()
 
   const areas = [] as Area[]
   list.forEach((doc) => {
