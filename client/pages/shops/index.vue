@@ -25,6 +25,7 @@
                 :area="nowArea"
                 :value="searchAreasAndCanTakeout"
                 :to-keyword-detail="toKeywordDetail"
+                :selected-area="selectedArea"
                 @updateNowArea="onUpdateNowArea"
                 @change="onChangeSearch"
               />
@@ -140,7 +141,7 @@ export default defineComponent({
     const searchAreas = computed(() => {
       const _searchAreas = context.root.$route.query.areas
       if (isArray(_searchAreas)) {
-        return _searchAreas
+        return nullOrStringArrayToStringArray(_searchAreas)
       }
 
       if (isString(_searchAreas)) {
@@ -264,7 +265,7 @@ export default defineComponent({
 
     const filterShopsByDish = computed(() => {
       if (searchDishes.value.length === 0) {
-        return shops.value
+        return filterShopsByCanTakeout.value
       }
       return filterShopsByDishIDs(filterShopsByCanTakeout.value, searchDishes.value)
     })
@@ -319,6 +320,16 @@ export default defineComponent({
       }
     }))
 
+    const selectedArea = computed(() => {
+      const _areas = filterAreasByID(areas.value, searchAreas.value)
+
+      if (_areas.length === 0) {
+        return 'すべて'
+      }
+
+      return _areas[0].name
+    })
+
     return {
       areas,
       breadcrumbs,
@@ -332,6 +343,7 @@ export default defineComponent({
       searchAreasAndCanTakeout,
       searchDishes,
       searchTimezones,
+      selectedArea,
       nowPage,
       toKeywordDetail,
       onChangeSearch,
