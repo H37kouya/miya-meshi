@@ -51,11 +51,6 @@ export default defineComponent({
     value: {
       type: Array,
       default: () => []
-    },
-
-    toKeywordDetail: {
-      type: [String, Object],
-      default: '/keywords/detail'
     }
   },
 

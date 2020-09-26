@@ -48,20 +48,36 @@ export const filterShopsByAreas = (shops: Shop[], areas: Area[]) => {
   })
 }
 
-export const filterShopsByDishes = (shops: Shop[], dishes: Dish[]) => {
+/**
+ * Dish IDによって、shopsをフィルターする
+ *
+ * @param { Shop[] } shops
+ * @param { Dish['id'][] } dishIDs
+ */
+export const filterShopsByDishIDs = (shops: Shop[], dishIDs: Dish['id'][]) => {
   return shops.filter((shop: Shop) => {
     if (!shop.dishes) {
       return false
     }
 
-    for (const dish of dishes) {
-      if (shop.dishes.includes(dish.id)) {
+    for (const id of dishIDs) {
+      if (shop.dishes.includes(id)) {
         return true
       }
     }
 
     return false
   })
+}
+
+/**
+ * Dishによって、shopsをフィルターする
+ *
+ * @param { Shop[] } shops
+ * @param { Dish[] } dishes
+ */
+export const filterShopsByDishes = (shops: Shop[], dishes: Dish[]) => {
+  return filterShopsByDishIDs(shops, dishes.map((dish: Dish) => dish.id))
 }
 
 /**
