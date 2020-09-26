@@ -100,9 +100,8 @@ export default defineComponent({
 .shop-name {
   font-size: 0.9rem;
   font-weight: bolder;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-all;
+  height: 2.75rem;
 }
 
 .prefix {

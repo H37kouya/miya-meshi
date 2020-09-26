@@ -7,7 +7,7 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12" md="8" class="px-0 px-md-3">
+      <v-col cols="12" md="8" class="pt-0 pt-md-3 px-0 px-md-3">
         <DefaultInstaTopPageShopList :areas="areas" :insta-shops="instaShops" />
 
         <v-lazy>
