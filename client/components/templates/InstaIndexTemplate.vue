@@ -20,7 +20,7 @@
       </v-container>
     </div> -->
 
-    <DefaultInstaShopList :shops="filterShops" :max-item="shops.length" />
+    <DefaultInstaShopList :areas="areas" :shops="filterShops" :max-item="shops.length" />
   </div>
 </template>
 
@@ -40,6 +40,11 @@ type Props = {
 
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     shops: {
       type: Array,
       default: () => []

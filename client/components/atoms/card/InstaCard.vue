@@ -20,8 +20,8 @@
     </p>
 
     <div class="d-none d-sm-block">
-      <v-chip v-if="address" small>
-        {{ address }}
+      <v-chip v-if="area" small outlined>
+        {{ area }}
       </v-chip>
     </div>
   </component>
@@ -44,6 +44,11 @@ type Props = {
 export default defineComponent({
   props: {
     alt: {
+      type: String,
+      default: undefined
+    },
+
+    area: {
       type: String,
       default: undefined
     },
@@ -94,8 +99,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .shop-name {
   font-size: 0.9rem;
-  word-break: break-all;
-  height: 2.75rem;
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .prefix {
