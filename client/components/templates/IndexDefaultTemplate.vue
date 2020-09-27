@@ -1,13 +1,21 @@
 <template>
-  <v-container>
+  <v-container class="pt-0 pt-sm-0">
     <v-row class="d-sm-none" style="background-color: #f5f5f5;" justify="center">
       <v-col class="max-width-350 text-center py-3">
         <ToSearchShopButton width="100%" />
+
+        <div v-if="maxShopCount" class="max-shop-count text-center pt-4">
+          <p class="mb-2">
+            現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗
+          </p>
+        </div>
+
+        <div v-else style="height: 60px;" />
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="12" md="8" class="pt-0 pt-md-3 px-0 px-md-3">
+      <v-col cols="12" md="8" class="py-0 pt-md-3 px-0 px-md-3">
         <DefaultInstaTopPageShopList :areas="areas" :insta-shops="instaShops" />
 
         <v-lazy>
@@ -21,8 +29,8 @@
         </v-lazy>
       </v-col>
 
-      <v-col cols="12" md="4" class="px-0 px-md-8">
-        <div v-if="maxShopCount" class="max-shop-count text-center text-md-left">
+      <v-col cols="12" md="4" class="px-0 px-md-8 pt-0 pt-md-3">
+        <div v-if="maxShopCount" class="d-none d-md-block max-shop-count text-center text-md-left">
           <p>現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗</p>
         </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="u-light-grey-background">
+  <div>
     <v-container class="pt-3 pb-2">
       <template v-if="!state.loading">
         <div v-if="maxItem > 0" class="text-right">
@@ -11,7 +11,7 @@
         <v-row class="px-1" :justify="justify">
           <template v-if="state.menus.length > 0">
             <template v-for="(menu, key) in state.menus">
-              <v-col :key="key" cols="4" md="3" class="px-1 py-1">
+              <v-col :key="key" cols="4" class="px-1 py-1">
                 <MenuCard v-bind="menu" :src="menu.image" :to="`/shops/${menu.shopID}`" />
               </v-col>
             </template>

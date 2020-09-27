@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div class="border-b border-gray">
-      <MainText :level="2">
-        店舗写真
-      </MainText>
-    </div>
+    <ShopText :level="2">
+      店舗写真
+    </ShopText>
 
-    <div class="d-flex justify-center">
+    <div class="d-flex justify-center pa-8">
       <v-img
         alt="現在準備中 - 完成をお待ちください"
-        src="/s/now-working.png"
+        :src="screenSm ? '/s/now-working.png' : '/s/now-working-mobile.png'"
       />
     </div>
   </div>
@@ -17,6 +15,7 @@
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
+import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
 
 export default defineComponent({
   props: {
@@ -28,6 +27,14 @@ export default defineComponent({
     menus: {
       type: Array,
       default: () => []
+    }
+  },
+
+  setup () {
+    const { screenSm } = useGetScreenSize
+
+    return {
+      screenSm
     }
   }
 })

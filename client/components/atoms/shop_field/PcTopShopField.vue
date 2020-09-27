@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-3 pt-md-0 px-3 px-md-0">
     <v-img
       :src="shop.imageLink"
       width="100%"
@@ -38,8 +38,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .shop-description {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bolder;
+
+  @include mq(md) {
+    font-size: 1.1rem;
+  }
 }
 
 .shop-intro {

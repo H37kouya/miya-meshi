@@ -2,12 +2,10 @@
   <div>
     <PcTopShopField :shop="shop" />
 
-    <div>
-      <div class="border-b border-gray">
-        <MainText :level="2">
-          おすすめの3品
-        </MainText>
-      </div>
+    <div v-if="menus.length > 0">
+      <ShopText :level="2">
+        おすすめの3品
+      </ShopText>
 
       <RecommendShopField :menus="menus" />
     </div>

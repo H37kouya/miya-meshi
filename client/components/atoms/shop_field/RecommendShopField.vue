@@ -1,6 +1,6 @@
 <template>
   <div class="u-light-grey-background recommend-container">
-    <v-container class="py-4">
+    <v-container class="py-4 px-6 px-md-3">
       <v-row>
         <template v-for="(menu, key) in menus">
           <v-col :key="menu.id" cols="12" md="4" class="px-4 py-0 py-md-3" :class="{ 'mb-4': menus.length - 1 !== key }">

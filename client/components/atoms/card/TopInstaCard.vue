@@ -12,42 +12,44 @@
       </template>
     </v-card>
 
-    <h4 class="mb-0 shop-name u-black--text max-text-height-2">
-      {{ name }}
-    </h4>
+    <div class="d-none d-md-block">
+      <h4 class="mb-0 shop-name u-black--text max-text-height-2">
+        {{ name }}
+      </h4>
 
-    <div class="explation">
-      <p v-if="area" class="area mb-0 u-black--text">
-        <v-icon color="#d4573c" small>
-          mdi-map-marker
-        </v-icon>
+      <div class="explation">
+        <p v-if="area" class="area mb-0 u-black--text">
+          <v-icon color="#d4573c" small>
+            mdi-map-marker
+          </v-icon>
 
-        {{ area }}
-      </p>
+          {{ area }}
+        </p>
 
-      <p v-if="prefixName" class="prefix u-black--text mb-0">
-        <v-icon small>
-          mdi-food
-        </v-icon>
+        <p v-if="prefixName" class="prefix u-black--text mb-0">
+          <v-icon small>
+            mdi-food
+          </v-icon>
 
-        {{ prefixName }}
-      </p>
+          {{ prefixName }}
+        </p>
 
-      <p v-if="priceRange" class="area mb-0 u-black--text">
-        <v-icon small>
-          mdi-cash
-        </v-icon>
+        <p v-if="priceRange" class="area mb-0 u-black--text">
+          <v-icon small>
+            mdi-cash
+          </v-icon>
 
-        {{ priceRange }}
-      </p>
-    </div>
+          {{ priceRange }}
+        </p>
+      </div>
 
-    <div class="mt-2">
-      <v-chip-group>
-        <v-chip v-if="canTakeout" small outlined>
-          テイクアウト可
-        </v-chip>
-      </v-chip-group>
+      <div class="mt-2">
+        <v-chip-group>
+          <v-chip v-if="canTakeout" small outlined>
+            テイクアウト可
+          </v-chip>
+        </v-chip-group>
+      </div>
     </div>
   </component>
 </template>
@@ -85,7 +87,7 @@ export default defineComponent({
 
     canTakeout: {
       type: Boolean,
-      default: false
+      default: undefined
     },
 
     instaNumber: {
@@ -98,12 +100,12 @@ export default defineComponent({
       default: undefined
     },
 
-    priceRange: {
+    prefixName: {
       type: String,
       default: undefined
     },
 
-    prefixName: {
+    priceRange: {
       type: String,
       default: undefined
     },
