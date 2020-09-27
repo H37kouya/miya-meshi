@@ -4,7 +4,7 @@
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
-    <ShopidPcTemplate
+    <ShopidTemplate
       v-if="data && data.shop"
       :shop="data.shop"
       :menus="state.menus"

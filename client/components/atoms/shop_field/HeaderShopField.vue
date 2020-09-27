@@ -22,7 +22,7 @@
             </h1>
           </div>
 
-          <TelIconButton class="tel-pos" large />
+          <TelIconButton class="tel-pos" large :tel="shop.tel" />
         </div>
       </div>
 
@@ -41,72 +41,72 @@
           </h1>
         </div>
       </div>
-
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="3" class="py-0 px-0 pl-md-3">
-            <v-btn
-              :to="`/shops/${shop.id}`"
-              class="shop-menu-btn"
-              exact-active-class="shop-active-class"
-              exact
-              text
-              tile
-              width="100%"
-              height="44px"
-            >
-              トップ
-            </v-btn>
-          </v-col>
-
-          <v-col cols="3" class="pa-0">
-            <v-btn
-              :disabled="!canClickDish"
-              :to="`/shops/${shop.id}?type=dish`"
-              class="shop-menu-btn"
-              exact-active-class="shop-active-class"
-              exact
-              text
-              tile
-              width="100%"
-              height="44px"
-            >
-              料理
-            </v-btn>
-          </v-col>
-
-          <v-col cols="3" class="pa-0">
-            <v-btn
-              :to="`/shops/${shop.id}?type=pic`"
-              class="shop-menu-btn"
-              exact-active-class="shop-active-class"
-              exact
-              text
-              tile
-              width="100%"
-              height="44px"
-            >
-              店舗写真
-            </v-btn>
-          </v-col>
-
-          <v-col cols="3" class="py-0 px-0 pr-md-3">
-            <v-btn
-              :to="`/shops/${shop.id}?type=contact`"
-              class="shop-menu-btn"
-              exact
-              exact-active-class="shop-active-class"
-              text
-              tile
-              width="100%"
-              height="44px"
-            >
-              {{ screenMd ? '地図・お問い合わせ' : '地図' }}
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
     </div>
+
+    <v-container class="pa-0">
+      <v-row class="mx-0">
+        <v-col cols="3" class="py-0 px-0 pl-md-3">
+          <v-btn
+            :to="`/shops/${shop.id}`"
+            class="shop-menu-btn"
+            exact-active-class="shop-active-class"
+            exact
+            text
+            tile
+            width="100%"
+            height="44px"
+          >
+            トップ
+          </v-btn>
+        </v-col>
+
+        <v-col cols="3" class="pa-0">
+          <v-btn
+            :disabled="!canClickDish"
+            :to="`/shops/${shop.id}?type=dish`"
+            class="shop-menu-btn"
+            exact-active-class="shop-active-class"
+            exact
+            text
+            tile
+            width="100%"
+            height="44px"
+          >
+            料理
+          </v-btn>
+        </v-col>
+
+        <v-col cols="3" class="pa-0">
+          <v-btn
+            :to="`/shops/${shop.id}?type=pic`"
+            class="shop-menu-btn"
+            exact-active-class="shop-active-class"
+            exact
+            text
+            tile
+            width="100%"
+            height="44px"
+          >
+            店舗写真
+          </v-btn>
+        </v-col>
+
+        <v-col cols="3" class="py-0 px-0 pr-md-3">
+          <v-btn
+            :to="`/shops/${shop.id}?type=contact`"
+            class="shop-menu-btn"
+            exact
+            exact-active-class="shop-active-class"
+            text
+            tile
+            width="100%"
+            height="44px"
+          >
+            {{ screenMd ? '地図・お問い合わせ' : '地図' }}
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
