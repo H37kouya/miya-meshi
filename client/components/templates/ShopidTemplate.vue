@@ -24,10 +24,10 @@
           </template>
 
           <div class="mt-4">
-            <div class="border-t border-gray">
-              <MainText :level="2">
+            <div class="border-t border-gray mb-2">
+              <ShopText :level="2">
                 店舗情報
-              </MainText>
+              </ShopText>
             </div>
 
             <div class="d-flex justify-center d-md-block">

@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div class="border-b border-gray">
-      <MainText :level="2">
-        店舗写真
-      </MainText>
-    </div>
+    <ShopText :level="2">
+      店舗写真
+    </ShopText>
 
     <div class="d-flex justify-center">
       <v-img
