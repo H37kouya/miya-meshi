@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sns-background u-light-grey-background pt-6 px-2 pb-6">
+    <div class="sns-background pt-6 px-2 pb-6">
       <v-row justify="center">
         <template v-for="(snsLink, key) in snsLinks">
           <v-btn
@@ -40,8 +40,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .sns-background {
-  @include mq(md) {
-    background: #fff;
-  }
+  background: #fff;
 }
 </style>

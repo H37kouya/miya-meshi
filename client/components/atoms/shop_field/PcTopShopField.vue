@@ -6,7 +6,7 @@
       aspect-ratio="1.6"
     />
 
-    <div class="pt-2">
+    <div class="pt-2 px-3 px-md-0">
       <p class="mb-2 shop-description">
         {{ shop.description }}
       </p>
@@ -38,8 +38,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .shop-description {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bolder;
+
+  @include mq(md) {
+    font-size: 1.1rem;
+  }
 }
 
 .shop-intro {

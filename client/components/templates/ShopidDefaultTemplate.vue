@@ -1,14 +1,11 @@
 <template>
   <div>
     <HeaderShopField
+      :shop="shop"
       :src="shop.imageLink"
       :name="shop.name"
       :prefix-name="shop.prefixName"
     />
-
-    <div v-if="shop.description">
-      <DescriptionShopField :description="shop.description" />
-    </div>
 
     <div class="u-light-grey-background d-flex justify-center">
       <div class="max-width-480">

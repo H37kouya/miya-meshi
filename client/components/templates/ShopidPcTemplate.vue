@@ -1,10 +1,12 @@
 <template>
   <div>
-    <v-container>
-      <PcHeaderShopField :can-click-dish="canClickDish" :shop="shop" />
+    <v-container class="px-0 px-md-3">
+      <HeaderShopField :can-click-dish="canClickDish" :shop="shop" />
+    </v-container>
 
-      <v-row>
-        <v-col cols="8">
+    <v-container class="px-0 px-md-3">
+      <v-row class="mx-0">
+        <v-col cols="12" md="8" class="px-0 px-md-3">
           <template v-if="type === 'top'">
             <ShopTypeTopField :shop="shop" :menus="menus" />
           </template>
@@ -28,15 +30,13 @@
               </MainText>
             </div>
 
-            <div>
-              <v-lazy>
-                <ContactShopTable :shop="shop" />
-              </v-lazy>
+            <div class="d-flex justify-center d-md-block">
+              <ContactShopTable :shop="shop" />
             </div>
           </div>
         </v-col>
 
-        <v-col cols="4">
+        <v-col cols="12" md="4" class="px-0 px-md-3">
           <ShopContactField :shop="shop" :type="type" />
         </v-col>
       </v-row>
