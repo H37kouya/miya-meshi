@@ -4,20 +4,24 @@
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
-    <MainText v-if="error.statusCode === 404">
-      {{ error.statusCode === 404 ? pageNotFound : otherError }}
-    </MainText>
+    <v-container class="px-0">
+      <MainText v-if="error.statusCode === 404">
+        {{ error.statusCode === 404 ? pageNotFound : otherError }}
+      </MainText>
 
-    <h2 class="error-detail mb-2 pt-2 px-2 border-t border-dark-gray">
-      お探しのページが見つかりませんでした
-    </h2>
+      <h2 class="error-detail mb-2 pt-2 px-2 border-t border-dark-gray">
+        お探しのページが見つかりませんでした
+      </h2>
 
-    <div class="d-flex justify-center">
-      <v-img
-        src="/s/error-not-found.jpg"
-        alt="お探しのページが見つかりませんでした"
-      />
-    </div>
+      <div class="d-flex justify-center">
+        <div class="max-width-480">
+          <v-img
+            src="/s/error-not-found.jpg"
+            alt="お探しのページが見つかりませんでした"
+          />
+        </div>
+      </div>
+    </v-container>
   </div>
 </template>
 
