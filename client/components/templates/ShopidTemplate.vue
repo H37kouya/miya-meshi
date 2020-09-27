@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-container class="px-0 px-md-3">
+    <v-container class="px-0 px-md-3 pb-0">
       <HeaderShopField :can-click-dish="canClickDish" :shop="shop" />
     </v-container>
 
-    <v-container class="px-0 px-md-3">
+    <v-container class="px-0 px-md-3 pt-0">
       <v-row class="mx-0">
-        <v-col cols="12" md="8" class="px-0 px-md-3">
+        <v-col cols="12" md="8" class="px-0 px-md-3 pt-0 pt-md-3">
           <template v-if="type === 'top'">
             <ShopTypeTopField :shop="shop" :menus="menus" />
           </template>
@@ -36,7 +36,7 @@
           </div>
         </v-col>
 
-        <v-col cols="12" md="4" class="px-0 px-md-3">
+        <v-col cols="12" md="4" class="px-0 px-md-3 pt-0 pt-md-3">
           <ShopContactField :shop="shop" :type="type" />
         </v-col>
       </v-row>

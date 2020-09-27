@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="pt-3 pt-md-0 px-3 px-md-0">
     <v-img
       :src="shop.imageLink"
       width="100%"
       aspect-ratio="1.6"
     />
 
-    <div class="pt-2 px-3 px-md-0">
+    <div class="pt-2">
       <p class="mb-2 shop-description">
         {{ shop.description }}
       </p>

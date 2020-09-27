@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-md-3">
     <div class="d-md-none">
       <div class="d-flex justify-center header-shop w-100">
         <div class="pos-relative header-shop-wrapper">
@@ -43,8 +43,8 @@
       </div>
     </div>
 
-    <v-container class="pa-0">
-      <v-row class="mx-0">
+    <v-container class="pa-0 header-shop-container">
+      <v-row class="mx-0 header-shop-row">
         <v-col cols="3" class="py-0 px-0 pl-md-3">
           <v-btn
             :to="`/shops/${shop.id}`"
@@ -209,6 +209,13 @@ export default defineComponent({
   &::before {
     opacity: 1 !important;
     background: #fff;
+  }
+}
+
+.header-shop-row {
+  @include mq(md) {
+    margin-left: -12px !important;
+    margin-right: -12px !important;
   }
 }
 </style>
