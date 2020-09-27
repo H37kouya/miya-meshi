@@ -1,17 +1,11 @@
 <template>
   <div class="u-light-grey-background white-md-background">
     <v-container class="pb-2">
-      <div v-if="maxItem" class="text-right">
-        <p class="mb-1 display-count">
-          <span class="red--text">{{ state.shops.length }}件</span>表示中/全{{ maxItem }}件中
-        </p>
-      </div>
-
       <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
             <v-col :key="key" cols="4" class="px-1 py-1 pb-sm-4">
-              <InstaCard
+              <TopInstaCard
                 :alt="shop.name"
                 :area="computedShopArea(shop.address)"
                 :can-takeout="shop.canTakeout"
@@ -58,11 +52,6 @@ export default defineComponent({
     shops: {
       type: Array,
       default: () => []
-    },
-
-    maxItem: {
-      type: Number,
-      default: 0
     },
 
     justify: {
