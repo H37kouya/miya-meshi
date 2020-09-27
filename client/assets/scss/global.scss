@@ -90,7 +90,9 @@
 }
 
 .border-large-grey {
-  border: 1rem #EEECE5 solid;
+  @include mq(md) {
+    border: 1rem #EEECE5 solid;
+  }
 }
 
 .red--text {
