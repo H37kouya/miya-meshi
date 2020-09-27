@@ -13,6 +13,10 @@
         料理一覧
       </ShopText>
     </div>
+
+    <div>
+      <DefaultMenuList :menus="menus" />
+    </div>
   </div>
 </template>
 

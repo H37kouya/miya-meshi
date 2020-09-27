@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-2">
+    <v-container class="u-light-grey-background py-2 breadcrumbs-container mb-0">
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 

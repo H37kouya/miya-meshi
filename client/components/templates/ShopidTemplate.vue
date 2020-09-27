@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="px-0 px-md-3 pb-0">
+    <v-container class="px-0 px-md-3 py-0">
       <HeaderShopField :can-click-dish="canClickDish" :shop="shop" />
     </v-container>
 

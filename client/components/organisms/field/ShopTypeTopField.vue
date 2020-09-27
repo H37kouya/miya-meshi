@@ -2,7 +2,7 @@
   <div>
     <PcTopShopField :shop="shop" />
 
-    <div>
+    <div v-if="menus.length > 0">
       <ShopText :level="2">
         おすすめの3品
       </ShopText>
