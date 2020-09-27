@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sns-background pt-6 px-2 pb-6">
-      <v-row justify="center">
+      <v-row>
         <template v-for="(snsLink, key) in snsLinks">
           <v-btn
             :key="key"
@@ -10,7 +10,7 @@
             rel="noopener"
             icon
             x-large
-            class="mx-2"
+            class="mx-2 mb-2"
           >
             <v-img :src="snsLink.src" :alt="snsLink.name" aspect-ratio="1" />
           </v-btn>
