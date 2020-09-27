@@ -10,7 +10,7 @@
       <v-row class="px-1" :justify="justify">
         <template v-if="state.shops.length > 0">
           <template v-for="(shop, key) in state.shops">
-            <v-col :key="key" cols="4" class="px-1 py-1 pb-sm-4">
+            <v-col :key="key" cols="6" md="4" class="px-1 py-1 pb-sm-4">
               <InstaCard
                 :alt="shop.name"
                 :area="computedShopArea(shop.address)"
