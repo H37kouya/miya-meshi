@@ -31,7 +31,9 @@
             </div>
 
             <div class="d-flex justify-center d-md-block">
-              <ContactShopTable :shop="shop" />
+              <v-lazy>
+                <ContactShopTable :shop="shop" />
+              </v-lazy>
             </div>
           </div>
         </v-col>
