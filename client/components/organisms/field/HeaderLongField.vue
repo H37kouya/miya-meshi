@@ -39,6 +39,15 @@
       <div class="text-right px-4 developer-name d-sm-none">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
       </div>
+
+      <div class="text-center border-y border-dark-gray miya-meshi-about-container">
+        <nuxt-link
+          class="text-decoration-none w-100 d-flex justify-center align-center link"
+          to="/about/miyameshi"
+        >
+          みやメシ応援隊とは
+        </nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -76,5 +85,21 @@ export default defineComponent({
   background-color: darkgray;
   max-width: 200px;
   max-height: 120px;
+}
+
+.miya-meshi-about-container {
+  height: 60px;
+
+  @include mq(md) {
+    height: 100px;
+  }
+
+  .link {
+    height: 100%;
+    font-size: 1.25rem;
+    font-weight: bolder;
+    background: #90B496;
+    color: #fff;
+  }
 }
 </style>
