@@ -4,11 +4,21 @@
       店舗写真
     </ShopText>
 
-    <div class="d-flex justify-center pa-8">
+    <div class="text-center pt-4">
+      <h3 class="now-working-title">
+        準備中
+      </h3>
+
+      <p class="mb-0 now-working-text">
+        完成を楽しみにしてお待ちください
+      </p>
+    </div>
+
+    <div class="d-flex justify-center px-8 py-4">
       <v-img
         alt="現在準備中 - 完成をお待ちください"
-        src="/s/now-working-mobile.png"
-        max-width="400px"
+        :src="$device.isMobileOrTablet ? '/s/now-working-mobile.png' : '/s/now-working.png'"
+        max-width="300px"
       />
     </div>
   </div>
@@ -16,7 +26,6 @@
 
 <script>
 import { defineComponent } from '@nuxtjs/composition-api'
-import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
 
 export default defineComponent({
   props: {
@@ -29,14 +38,25 @@ export default defineComponent({
       type: Array,
       default: () => []
     }
-  },
-
-  setup () {
-    const { screenSm } = useGetScreenSize
-
-    return {
-      screenSm
-    }
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.now-working-title {
+  font-weight: bolder;
+  font-size: 1.1rem;
+
+  @include mq(md) {
+    font-size: 1.2rem;
+  }
+}
+
+.now-working-text {
+  font-size: 0.9rem;
+
+  @include mq(md) {
+    font-size: 1rem;
+  }
+}
+</style>

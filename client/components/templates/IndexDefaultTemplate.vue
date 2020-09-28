@@ -29,7 +29,7 @@
         </v-lazy>
       </v-col>
 
-      <v-col cols="12" md="4" class="px-0 px-md-8 pt-0 pt-md-3">
+      <v-col cols="12" md="4" class="px-0 px-md-4 pt-0 pt-md-3">
         <div v-if="maxShopCount" class="d-none d-md-block max-shop-count text-center text-md-left">
           <p>現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗</p>
         </div>
@@ -37,7 +37,7 @@
         <div v-else style="height: 60px;" />
 
         <div class="news-list-container mb-8">
-          <MainText id="news" :level="2">
+          <MainText id="news" :level="2" class="mb-2">
             新着情報
           </MainText>
 

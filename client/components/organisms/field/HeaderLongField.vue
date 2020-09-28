@@ -31,14 +31,22 @@
       </v-container>
 
       <v-img
-        :src="screenSm ? '/s/miyameshi-pc-top.jpg' : '/s/miyameshi-phone-top.jpg'"
-        width="100%"
+        :src="$device.isMobile ? '/s/miyameshi-phone-top.jpg' : '/s/miyameshi-pc-top.jpg'"
         :aspect-ratio="screenSm ? undefined : 1.78"
         :max-height="screenSm ? '586px' : '160px'"
       />
 
       <div class="text-right px-4 developer-name d-sm-none">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>
+      </div>
+
+      <div class="text-center border-y border-dark-gray miya-meshi-about-container">
+        <nuxt-link
+          class="text-decoration-none w-100 d-flex justify-center align-center link"
+          to="/about/miyameshi#title"
+        >
+          みやメシ応援隊とは
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -77,5 +85,21 @@ export default defineComponent({
   background-color: darkgray;
   max-width: 200px;
   max-height: 120px;
+}
+
+.miya-meshi-about-container {
+  height: 60px;
+
+  @include mq(md) {
+    height: 80px;
+  }
+
+  .link {
+    height: 100%;
+    font-size: 1.25rem;
+    font-weight: bolder;
+    background: #90B496;
+    color: #fff;
+  }
 }
 </style>

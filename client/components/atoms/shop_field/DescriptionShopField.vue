@@ -1,5 +1,5 @@
 <template>
-  <div class="u-light-grey-background d-flex justify-center py-4">
+  <div class="u-light-grey-background d-flex justify-center pt-4">
     <div class="max-width-480 d-flex justify-center align-center px-4">
       <v-img src="/s/miyameshi-mogumogu.png" max-width="45px" height="60px" class="mr-2" />
 

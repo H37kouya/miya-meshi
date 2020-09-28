@@ -10,7 +10,8 @@
 import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
 
 const LONG_ROUTES = [
-  '/'
+  '/',
+  '/about/miyameshi'
 ]
 
 // const MEDIUM_ROUTES = [
