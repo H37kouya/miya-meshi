@@ -7,7 +7,7 @@
       </div>
     </MainText>
 
-    <DefaultTopInstaShopList :shops="instaShops" />
+    <DefaultTopInstaShopList :areas="areas" :shops="instaShops" />
 
     <div class="u-light-grey-background white-md-background pb-2">
       <div class="d-flex justify-center">
