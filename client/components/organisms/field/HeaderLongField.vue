@@ -31,8 +31,7 @@
       </v-container>
 
       <v-img
-        :src="screenSm ? '/s/miyameshi-pc-top.jpg' : '/s/miyameshi-phone-top.jpg'"
-        width="100%"
+        :src="$device.isMobile ? '/s/miyameshi-phone-top.jpg' : '/s/miyameshi-pc-top.jpg'"
         :aspect-ratio="screenSm ? undefined : 1.78"
         :max-height="screenSm ? '586px' : '160px'"
       />
