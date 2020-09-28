@@ -29,7 +29,7 @@
       <DescriptionShopField v-if="shop.description" :description="shop.description" />
     </div>
 
-    <div class="header-shop-container pt-3">
+    <div class="u-light-grey-background header-shop-container pt-3">
       <div class="d-none d-md-block">
         <div class="pb-2 px-4">
           <p class="mb-0 shop-prefix-name">
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <v-container class="pa-0 header-shop-container">
+    <v-container class="u-light-grey-background pa-0 header-shop-container">
       <v-row class="mx-0 header-shop-row">
         <v-col cols="3" class="py-0 px-0 pl-md-3">
           <v-btn
@@ -186,7 +186,10 @@ export default defineComponent({
 
 .header-shop-container {
   width: 100%;
-  background: #FAF8F5;
+
+  @include mq(md) {
+    background: #FAF8F5;
+  }
 }
 
 .shop-name {

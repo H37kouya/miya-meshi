@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sns-background pt-6 px-2 pb-6">
-      <v-row>
+      <div class="d-flex">
         <template v-for="(snsLink, key) in snsLinks">
           <v-btn
             :key="key"
@@ -15,7 +15,7 @@
             <v-img :src="snsLink.src" :alt="snsLink.name" aspect-ratio="1" />
           </v-btn>
         </template>
-      </v-row>
+      </div>
     </div>
   </div>
 </template>

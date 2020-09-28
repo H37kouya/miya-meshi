@@ -11,8 +11,8 @@
         <p class="menu-name mb-0">
           {{ menu.name }}
         </p>
-        <p class="price mb-0">
-          {{ priceDisplay }} 円 ({{ menu.isTaxIncluded ? '税込' : '税抜' }})
+        <p class="price mb-0 red--text">
+          <span class="price-display">{{ priceDisplay }}</span> 円 ({{ menu.isTaxIncluded ? '税込' : '税抜' }})
         </p>
       </div>
     </v-col>
@@ -65,5 +65,9 @@ export default defineComponent({
 
 .price {
   font-size: 0.8rem;
+}
+
+.price-display {
+  font-size: 0.9rem;
 }
 </style>

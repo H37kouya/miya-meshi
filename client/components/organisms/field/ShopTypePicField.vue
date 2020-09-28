@@ -6,15 +6,9 @@
 
     <div class="d-flex justify-center pa-8">
       <v-img
-        v-if="screenSm"
-        alt="現在準備中 - 完成をお待ちください"
-        src="/s/now-working.png"
-      />
-
-      <v-img
-        v-else
         alt="現在準備中 - 完成をお待ちください"
         src="/s/now-working-mobile.png"
+        max-width="400px"
       />
     </div>
   </div>
