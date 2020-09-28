@@ -43,7 +43,7 @@
       <div class="text-center border-y border-dark-gray miya-meshi-about-container">
         <nuxt-link
           class="text-decoration-none w-100 d-flex justify-center align-center link"
-          to="/about/miyameshi"
+          to="/about/miyameshi#title"
         >
           みやメシ応援隊とは
         </nuxt-link>
@@ -91,7 +91,7 @@ export default defineComponent({
   height: 60px;
 
   @include mq(md) {
-    height: 100px;
+    height: 80px;
   }
 
   .link {
