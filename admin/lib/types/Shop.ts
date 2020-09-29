@@ -53,6 +53,7 @@ export type Shop = {
   canTakeout: boolean,
   instaShopLink?: string,
   instaNumber?: number,
+  shopGeoPoint?: Object,
   latitude?: number,
   longitude?: number,
   keywords: string[],

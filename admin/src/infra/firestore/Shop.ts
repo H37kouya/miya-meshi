@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import * as admin from 'firebase-admin'
 import { Shop } from '@/lib/types/Shop'
 import { Collection, Type } from '@/lib/enum'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
@@ -20,6 +21,7 @@ export const createShop = async (
 ) => {
   shop.address = formatShopAddress(shop.address)
   shop.postal = formatShopPostal(shop.postal)
+  shop.shopGeoPoint = new admin.firestore.GeoPoint(0,0)
 
   const addData = {
     ...removeUndefinedFromObject(shop),
