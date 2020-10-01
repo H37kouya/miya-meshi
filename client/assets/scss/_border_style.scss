@@ -23,6 +23,33 @@
   border-width: 1rem;
 }
 
+.border-md {
+  border-style: solid;
+  border-width: 1px;
+}
+
+@include mq(md) {
+  .border-md-1 {
+    border-style: solid;
+    border-width: 0.25rem;
+  }
+
+  .border-md-2 {
+    border-style: solid;
+    border-width: 0.5rem;
+  }
+
+  .bordermd--3 {
+    border-style: solid;
+    border-width: 0.75rem;
+  }
+
+  .border-md-4 {
+    border-style: solid;
+    border-width: 1rem;
+  }
+}
+
 .border-t,
 .border-y {
   border-top-style: solid;

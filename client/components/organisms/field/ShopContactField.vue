@@ -1,5 +1,5 @@
 <template>
-  <div class="border-large-grey">
+  <div class="border-md-4 border-gray">
     <div class="d-none d-md-block">
       <div v-if="shop.tel" class="border-b-4 border-gray">
         <div class="border-b border-dark-gray">

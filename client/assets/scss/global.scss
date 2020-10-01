@@ -85,10 +85,6 @@
   }
 }
 
-.border-grey {
-  border-color: #d5ceb7;
-}
-
 .border-large-grey {
   @include mq(md) {
     border: 1rem #EEECE5 solid;
@@ -97,4 +93,8 @@
 
 .red--text {
   color: #f44336 !important;
+}
+
+.font-bolder {
+  font-weight: bolder;
 }
