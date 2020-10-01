@@ -36,7 +36,7 @@
 
         <div v-else style="height: 60px;" />
 
-        <div class="news-list-container mb-8">
+        <div class="border-md-4 border-gray mb-8">
           <MainText id="news" :level="2" class="mb-2">
             新着情報
           </MainText>
@@ -126,12 +126,6 @@ export default defineComponent({
 
   @include mq(md) {
     font-size: 2rem;
-  }
-}
-
-.news-list-container {
-  @include mq(md) {
-    border: 1rem #f6f6f6 solid;
   }
 }
 </style>

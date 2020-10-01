@@ -85,10 +85,6 @@
   }
 }
 
-.border-grey {
-  border-color: #d5ceb7;
-}
-
 .border-large-grey {
   @include mq(md) {
     border: 1rem #EEECE5 solid;

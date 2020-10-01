@@ -1,6 +1,6 @@
 <template>
   <a :href="href" rel="noopener" target="_blank" class="text-decoration-none max-width-480">
-    <div class="mb-2 pos-relative image-field">
+    <div class="mb-2 pos-relative border-y border-dark-gray">
       <v-img :src="src" :alt="alt" aspect-ratio="1.78" />
 
       <div class="news-badge u-black--text">
@@ -64,13 +64,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.image-field {
-  $border: 1px solid lighten(#797979, 20%);
-
-  border-top: $border;
-  border-bottom: $border;
-}
-
 .news-badge {
   $news-color: #fef552;
 
