@@ -2,7 +2,7 @@
   <v-container class="pt-0 pt-sm-0">
     <v-row class="d-sm-none" style="background-color: #f5f5f5;" justify="center">
       <v-col class="max-width-350 text-center py-3">
-        <ToSearchShopButton width="100%" />
+        <ToSearchShopButton bold width="100%" />
 
         <div v-if="maxShopCount" class="max-shop-count text-center pt-4">
           <p class="mb-2">
