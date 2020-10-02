@@ -1,8 +1,10 @@
 <template>
   <div>
     <MainText id="recommend_for_instagram">
-      <div class="d-flex align-center justify-center justify-md-start">
-        <v-icon>mdi-instagram</v-icon>
+      <div class="d-flex align-end justify-center justify-md-start">
+        <v-icon size="30">
+          mdi-instagram
+        </v-icon>
         <span>インスタからのおすすめ</span>
       </div>
     </MainText>

@@ -1,19 +1,10 @@
-import { watchEffect, reactive, toRefs } from '@nuxtjs/composition-api'
+import { reactive, toRefs } from '@nuxtjs/composition-api'
 import { News } from '@/lib'
-import axios from 'axios'
-
-type axiosGet = {
-  data: News[]
-}
+import NewsList from '@/assets/json/NewsList.json'
 
 export const useNews = () => {
   const state = reactive({
-    newsList: [] as News[]
-  })
-
-  watchEffect(async () => {
-    const { data } = await axios.get<axiosGet>('/s/NewsList.json')
-    state.newsList = data.data
+    newsList: NewsList.data as News[]
   })
 
   return {
