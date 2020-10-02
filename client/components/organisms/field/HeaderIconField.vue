@@ -40,30 +40,6 @@
 
     <div class="icon-box">
       <a
-        href="https://forms.gle/gAknXAaCrfsr8UdA8"
-        class="icon-box-link text-decoration-none"
-        target="_blank"
-        rel="noopener"
-      >
-        <div class="d-flex justify-center">
-          <div>
-            <v-img
-              src="/s/icon-rice-boll.png"
-              width="60px"
-              height="45px"
-              alt="お問い合わせのアイコン"
-            />
-          </div>
-        </div>
-
-        <p class="icon-text mb-0">
-          お問い合わせ
-        </p>
-      </a>
-    </div>
-
-    <div class="icon-box">
-      <a
         href="https://www.instagram.com/miyameshi_ouentai/"
         target="_blank"
         rel="noopener"
@@ -83,6 +59,30 @@
 
         <p class="icon-text mb-0">
           インスタ
+        </p>
+      </a>
+    </div>
+
+    <div class="icon-box">
+      <a
+        href="https://forms.gle/gAknXAaCrfsr8UdA8"
+        class="icon-box-link text-decoration-none"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="d-flex justify-center">
+          <div>
+            <v-img
+              src="/s/icon-rice-boll.png"
+              width="60px"
+              height="45px"
+              alt="お問い合わせのアイコン"
+            />
+          </div>
+        </div>
+
+        <p class="icon-text mb-0">
+          お問い合わせ
         </p>
       </a>
     </div>
@@ -109,7 +109,7 @@ export default {
   border-radius: 0.5rem;
   font-size: 0.75rem;
   font-weight: bolder;
-  padding: 0.25rem 0;
+  padding: 0.125rem 0;
   text-align: center;
   bottom: 4px;
 }
