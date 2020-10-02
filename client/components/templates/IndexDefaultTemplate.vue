@@ -15,6 +15,19 @@
     </v-row>
 
     <v-row>
+      <v-col cols="12" class="pa-0">
+        <div class="d-md-none text-center border-y border-dark-gray miya-meshi-about-container">
+          <nuxt-link
+            class="text-decoration-none w-100 d-flex justify-center align-center link"
+            to="/about/miyameshi#title"
+          >
+            みやメシ応援隊とは
+          </nuxt-link>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col cols="12" md="8" class="py-0 pt-md-3 px-0 px-md-3">
         <DefaultInstaTopPageShopList :areas="areas" :insta-shops="instaShops" />
 
@@ -25,7 +38,7 @@
         </v-lazy>
 
         <v-lazy>
-          <DefaultShopList :areas="areas" :shops="shops" justify="center" />
+          <DefaultShopList :areas="areas" :shops="shops" justify="start" />
         </v-lazy>
       </v-col>
 
@@ -126,6 +139,18 @@ export default defineComponent({
 
   @include mq(md) {
     font-size: 2rem;
+  }
+}
+
+.miya-meshi-about-container {
+  height: 60px;
+
+  .link {
+    height: 100%;
+    font-size: 1.25rem;
+    font-weight: bolder;
+    background: #90B496;
+    color: #fff;
   }
 }
 </style>

@@ -9,7 +9,7 @@
         <v-col cols="12" md="8" class="px-0 px-md-3 pt-0">
           <div class="header-shop-list-container">
             <div v-if="!screenMd" class="d-md-none">
-              <MainText>
+              <MainText id="title">
                 お店から探す
               </MainText>
             </div>
