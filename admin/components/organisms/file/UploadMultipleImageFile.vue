@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
+import Compressor from 'compressorjs'
 
 type Props = {
   defaultImage: string,
@@ -101,22 +102,35 @@ export default defineComponent({
       }
 
       const storageRef = context.root.$fireStorage.ref(`upload/${props.path[state.selected]}`)
-      const uploadTask = storageRef.put(file)
-      uploadTask.on('state_changed',
-        (snapshot) => {
-          state.fileLoading = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      const payload: Compressor.Options = {
+        quality: 0.8,
+        maxWidth: 800,
+        maxHeight: 800,
+        mimeType: 'image/jpeg',
+        success(blob: Blob): void {
+          const uploadTask = storageRef.put(blob)
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              state.fileLoading = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            },
+            (err) => {
+              console.log(err)
+            },
+            () => {
+              uploadTask.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
+                state.fileLoading = 0
+                state.thumbnail[state.selected] = downloadURL
+                context.emit('input', state.thumbnail)
+              })
+            }
+          )
         },
-        (err) => {
-          console.log(err)
-        },
-        () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL: string) => {
-            state.fileLoading = 0
-            state.thumbnail[state.selected] = downloadURL
-            context.emit('input', state.thumbnail)
-          })
+        error(err: Error): void {
+          console.log(err.message)
         }
-      )
+      }
+
+      new Compressor(file, payload)
     }
 
     const onPageChange = (key: number) => {
