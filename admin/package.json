@@ -20,9 +20,10 @@
     "@nuxtjs/firebase": "^6.1.1",
     "@nuxtjs/pwa": "^3.0.2",
     "@vue/composition-api": "^1.0.0-beta.14",
-    "core-js": "^2.6.11",
-    "firebase": "^7.21.0",
-    "libphonenumber-js": "^1.7.58",
+    "compressorjs": "^1.0.6",
+    "core-js": "^3.6.5",
+    "firebase": "^7.22.0",
+    "libphonenumber-js": "^1.8.2",
     "nuxt": "^2.14.6",
     "uuid": "^8.3.0"
   },
@@ -43,12 +44,12 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.4.2",
-    "stylelint": "^13.7.1",
+    "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^26.4.1",
     "vue-jest": "^3.0.7"
   }
 }
