@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, useAsync, useContext, watchEffect } from '@nuxtjs/composition-api'
+import { computed, defineComponent, reactive, useAsync, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
 import { Shop, Menu, Breadcrumb } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
@@ -80,6 +80,10 @@ export default defineComponent({
       state.menus = await getMenuListByShopID(app.$fireStore, params.value.id)
     })
 
+    useMeta({
+      title: (data && data.value && data.value.shop && data.value.shop.name) || '店舗詳細ページ'
+    })
+
     return {
       breadcrumbs: computedBreadcrumbs,
       data,
@@ -87,7 +91,9 @@ export default defineComponent({
       state,
       type
     }
-  }
+  },
+
+  head: {}
 })
 </script>
 

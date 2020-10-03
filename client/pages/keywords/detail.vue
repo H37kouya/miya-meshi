@@ -65,8 +65,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext } from '@nuxtjs/composition-api'
-import { MetaInfo } from 'vue-meta'
+import { computed, defineComponent, onMounted, reactive, SetupContext, useMeta } from '@nuxtjs/composition-api'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Breadcrumb, Time } from '@/lib'
@@ -179,6 +178,10 @@ export default defineComponent({
       ] as Breadcrumb[]
     })
 
+    useMeta({
+      title: '詳細検索'
+    })
+
     return {
       areas,
       breadcrumbs,
@@ -192,12 +195,7 @@ export default defineComponent({
     }
   },
 
-  head: (): MetaInfo => ({
-    title: '詳細検索',
-    meta: [
-      { property: 'og:type', content: 'article' }
-    ]
-  })
+  head: {}
 })
 </script>
 

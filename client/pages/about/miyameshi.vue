@@ -105,16 +105,30 @@
 </template>
 
 <script>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, useMeta } from '@nuxtjs/composition-api'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 
 export default defineComponent({
   setup () {
     const { newsList } = useNews()
+
+    useMeta({
+      title: 'みやメシ応援隊とは',
+      meta: [
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'みやメシ応援隊とは。どうしてみやメシ応援隊を始めたのか？私たちの思いを書いています。'
+        }
+      ]
+    })
+
     return {
       newsList
     }
-  }
+  },
+
+  head: {}
 })
 </script>
 

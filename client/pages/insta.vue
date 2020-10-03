@@ -3,8 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
-import { MetaInfo } from 'vue-meta'
+import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
 import { useInstaShop } from '@/src/CompositonFunctions/shops/UseInstaShop'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 
@@ -13,17 +12,16 @@ export default defineComponent({
     const { areas } = useArea(context.root)
     const { instaShops } = useInstaShop(context.root)
 
+    useMeta({
+      title: 'みやメシ図鑑'
+    })
+
     return {
       areas,
       instaShops
     }
   },
 
-  head: (): MetaInfo => ({
-    title: 'みやメシ図鑑',
-    meta: [
-      { property: 'og:type', content: 'article' }
-    ]
-  })
+  head: {}
 })
 </script>
