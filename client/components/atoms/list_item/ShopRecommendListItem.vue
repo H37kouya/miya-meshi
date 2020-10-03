@@ -11,7 +11,7 @@
         <p class="menu-name mb-0">
           {{ menu.name }}
         </p>
-        <p class="price mb-0 red--text">
+        <p v-if="priceDisplay" class="price mb-0 red--text">
           <span class="price-display">{{ priceDisplay }}</span> 円 ({{ menu.isTaxIncluded ? '税込' : '税抜' }})
         </p>
       </div>

@@ -6,7 +6,7 @@
 
     <v-container class="pa-0">
       <v-row class="mx-0">
-        <v-col cols="12" md="8" class="px-0 px-md-3 pt-0">
+        <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
           <div class="header-shop-list-container">
             <div v-if="!screenMd" class="d-md-none">
               <MainText id="title">
