@@ -143,7 +143,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$border-color: #d5ceb7;
+$border-color: $dark-gray;
 
 .table-value {
   padding: 1rem 0.5rem;

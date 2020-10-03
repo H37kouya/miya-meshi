@@ -1,0 +1,36 @@
+// TEXT COLOR
+.u-black--text {
+  color: $u-black !important;
+  caret-color: $u-black !important;
+}
+
+.red--text {
+  color: map-get($red, 'base') !important;
+  caret-color: map-get($red, 'base') !important;
+}
+
+// FONT WEIGHT
+.font-bolder {
+  font-weight: bolder;
+}
+
+// TEXT HEIGHT
+.max-text-height-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.max-text-height-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.max-text-height-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

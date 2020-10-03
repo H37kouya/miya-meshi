@@ -13,7 +13,7 @@
     </v-card>
 
     <div class="d-none d-md-block">
-      <h4 class="mb-0 shop-name u-black--text max-text-height-2">
+      <h4 class="mb-0 shop-name u-black--text max-text-height-1">
         {{ name }}
       </h4>
 
@@ -137,9 +137,6 @@ export default defineComponent({
 .shop-name {
   font-size: 0.9rem;
   font-weight: bolder;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   @include mq(md) {
     font-size: 1rem;
@@ -166,7 +163,7 @@ export default defineComponent({
 .insta-text {
   background: rgba(#000, 60%);
   border-radius: 4px;
-  color: #fff;
+  color: $white;
   font-size: 0.7rem;
   line-height: 1.1;
   padding: 0.175rem 0.25rem;

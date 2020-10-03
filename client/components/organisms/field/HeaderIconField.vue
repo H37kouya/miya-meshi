@@ -100,12 +100,12 @@ export default {
   width: 120px;
   padding: 0 1rem;
   a {
-    color: #333;
+    color: $u-black;
   }
 }
 
 .icon-text {
-  background: #eeece5;
+  background: $gray;
   border-radius: 0.5rem;
   font-size: 0.75rem;
   font-weight: bolder;

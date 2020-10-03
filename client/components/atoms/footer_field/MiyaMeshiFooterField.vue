@@ -100,7 +100,7 @@
   height: 200px;
 
   @include mq(md) {
-    background: #fff;
+    background: $white;
     border-radius: 0.5rem;
     padding: 1rem;
   }

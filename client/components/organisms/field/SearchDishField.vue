@@ -88,7 +88,7 @@ export default defineComponent({
 }
 
 .area-list-container {
-  border-bottom: 1px solid #d5ceb7;
+  border-bottom: 1px solid $dark-gray;
 }
 
 .area-list-title {

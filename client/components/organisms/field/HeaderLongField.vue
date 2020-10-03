@@ -96,7 +96,7 @@ export default defineComponent({
     font-size: 1.25rem;
     font-weight: bolder;
     background: #90B496;
-    color: #fff;
+    color: $white;
   }
 }
 </style>

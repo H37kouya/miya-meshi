@@ -213,7 +213,7 @@ export default defineComponent({
 .shop-active-class {
   &::before {
     opacity: 1 !important;
-    background: #fff;
+    background: $white;
   }
 }
 

@@ -130,7 +130,7 @@ export default defineComponent({
 }
 
 .now-area-container {
-  border-top: 1px solid #d5ceb7;
+  border-top: 1px solid $dark-gray;
   padding: 0.5rem 0;
 
   @include mq(md) {
@@ -139,12 +139,12 @@ export default defineComponent({
 }
 
 .search-keyword-container {
-  border-top: 1px solid #d5ceb7;
-  border-bottom: 1px solid #d5ceb7;
+  border-top: 1px solid $dark-gray;
+  border-bottom: 1px solid $dark-gray;
 
   @include mq(md) {
     border: none;
-    background: #fff;
+    background: $white;
     margin: 0 1rem;
   }
 }

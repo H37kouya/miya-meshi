@@ -40,6 +40,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .sns-background {
-  background: #fff;
+  background: $white;
 }
 </style>

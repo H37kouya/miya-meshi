@@ -2,15 +2,6 @@
   text-decoration: none;
 }
 
-.u-black--text {
-  color: $u-black !important;
-  caret-color: $u-black !important;
-}
-
-.u-grey-background {
-  background-color: #797979;
-}
-
 .u-light-grey-background {
   background-color: #faf8f5;
 }
@@ -29,36 +20,12 @@
   max-width: 100% !important;
 }
 
-.max-width-600 {
-  max-width: 600px !important;
-}
-
 .w-100 {
   width: 100%;
 }
 
 .pos-relative {
   position: relative;
-}
-
-.max-text-height-1 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.max-text-height-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.max-text-height-3 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
 }
 
 .left-arrow::before {
@@ -71,30 +38,16 @@
 
 .white-md-background {
   @include mq(md) {
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
 .breadcrumbs-container {
-  border-top: 1px solid #d5ceb7;
-  border-bottom: 1px solid #d5ceb7;
+  border-top: 1px solid $dark-gray;
+  border-bottom: 1px solid $dark-gray;
 
   @include mq(sm) {
     border-top: none;
-    background-color: #fff;
+    background-color: $white;
   }
-}
-
-.border-large-grey {
-  @include mq(md) {
-    border: 1rem #EEECE5 solid;
-  }
-}
-
-.red--text {
-  color: #f44336 !important;
-}
-
-.font-bolder {
-  font-weight: bolder;
 }
