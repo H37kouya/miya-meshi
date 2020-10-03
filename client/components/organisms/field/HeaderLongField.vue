@@ -30,12 +30,22 @@
         </v-row>
       </v-container>
 
-      <v-img
-        :src="$device.isMobile ? '/s/miyameshi-phone-top.jpg' : '/s/miyameshi-pc-top.jpg'"
-        :aspect-ratio="screenSm ? undefined : 1.78"
-        :height="screenSm ? '586px' : '160px'"
-        :max-height="screenSm ? '586px' : '160px'"
-      />
+      <div class="d-sm-none">
+        <v-img
+          src="/s/miyameshi-phone-top.jpg"
+          :aspect-ratio="1.78"
+          height="160px"
+          max-height="160px"
+        />
+      </div>
+
+      <div class="d-none d-sm-block">
+        <v-img
+          src="/s/miyameshi-pc-top.jpg"
+          height="586px"
+          max-height="586px"
+        />
+      </div>
 
       <div class="text-right px-4 developer-name d-sm-none">
         <small class="developer-name-small">運営: みやメシ応援隊 開発: U-lab</small>

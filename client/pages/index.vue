@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
 import { useInstaShopForTopPage } from '@/src/CompositonFunctions/shops/UseInstaShopForTopPage'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
@@ -24,6 +24,14 @@ export default defineComponent({
     const { shops } = useShop(context.root, 2000)
     const { areas } = useArea(context.root)
 
+    useMeta({
+      title: 'みやメシ応援隊',
+      titleTemplate: undefined,
+      meta: [
+        { hid: 'og:type', property: 'og:type', content: 'website' }
+      ]
+    })
+
     return {
       areas,
       instaShops,
@@ -31,6 +39,8 @@ export default defineComponent({
       shops,
       newsList
     }
-  }
+  },
+
+  head: {}
 })
 </script>

@@ -79,7 +79,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
-import { MetaInfo } from 'vue-meta'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -353,11 +352,8 @@ export default defineComponent({
     }
   },
 
-  head: (): MetaInfo => ({
-    title: 'お店から探す',
-    meta: [
-      { property: 'og:type', content: 'article' }
-    ]
+  head: () => ({
+    title: 'お店から探す'
   })
 })
 </script>
