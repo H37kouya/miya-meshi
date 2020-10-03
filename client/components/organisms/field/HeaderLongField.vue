@@ -33,6 +33,7 @@
       <v-img
         :src="$device.isMobile ? '/s/miyameshi-phone-top.jpg' : '/s/miyameshi-pc-top.jpg'"
         :aspect-ratio="screenSm ? undefined : 1.78"
+        :height="screenSm ? '586px' : '160px'"
         :max-height="screenSm ? '586px' : '160px'"
       />
 

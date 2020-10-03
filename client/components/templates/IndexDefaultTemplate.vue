@@ -50,7 +50,7 @@
         <div v-else style="height: 60px;" />
 
         <div class="border-md-4 border-gray mb-8">
-          <MainText id="news" :level="2" class="mb-2">
+          <MainText id="news" :level="2">
             新着情報
           </MainText>
 

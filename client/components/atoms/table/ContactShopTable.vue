@@ -143,13 +143,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+$border-color: #d5ceb7;
+
 .table-value {
   padding: 1rem 0.5rem;
   width: 220px;
   font-size: 0.9rem;
   border: {
-    right: 1px #d2d2d2 solid;
-    bottom: 1px #d2d2d2 solid;
+    right: 1px $border-color solid;
+    bottom: 1px $border-color solid;
   };
 
   @include mq(md) {
@@ -163,9 +165,9 @@ export default defineComponent({
   width: 80px;
   font-size: 0.9rem;
   border: {
-    left: 1px #d2d2d2 solid;
-    right: 1px #d2d2d2 solid;
-    bottom: 1px #d2d2d2 solid;
+    left: 1px $border-color solid;
+    right: 1px $border-color solid;
+    bottom: 1px $border-color solid;
   }
 
   @include mq(md) {
@@ -182,11 +184,11 @@ export default defineComponent({
 
   tr:first-of-type {
     .table-heading {
-      border-top: 1px #d2d2d2 solid;
+      border-top: 1px $border-color solid;
     }
 
     .table-value {
-      border-top: 1px #d2d2d2 solid;
+      border-top: 1px $border-color solid;
     }
   }
 }

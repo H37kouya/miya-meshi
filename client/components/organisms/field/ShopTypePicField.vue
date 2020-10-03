@@ -14,10 +14,10 @@
       </p>
     </div>
 
-    <div class="d-flex justify-center px-8 py-4">
+    <div class="d-flex justify-center px-8 py-12 py-md-4">
       <v-img
         alt="現在準備中 - 完成をお待ちください"
-        :src="$device.isMobileOrTablet ? '/s/now-working-mobile.png' : '/s/now-working.png'"
+        src="/s/now-working.jpg"
         max-width="300px"
       />
     </div>

@@ -129,7 +129,8 @@ export default defineComponent({
 
     const onPagination = async (page: number) => {
       return await context.root.$router.push({
-        path: '/shops#title',
+        path: '/shops',
+        hash: 'title',
         query: {
           page: String(page),
           ...props.query

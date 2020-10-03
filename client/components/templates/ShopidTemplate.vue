@@ -4,7 +4,7 @@
       <HeaderShopField :can-click-dish="canClickDish" :shop="shop" />
     </v-container>
 
-    <v-container class="px-0 px-md-3 pt-0">
+    <v-container class="px-0 px-md-3 py-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 pt-0 pt-md-3">
           <template v-if="type === 'top'">
