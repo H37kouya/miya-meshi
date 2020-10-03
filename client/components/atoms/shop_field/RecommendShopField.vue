@@ -50,7 +50,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .recommend-container {
   @include mq(md) {
-    background: #fff;
+    background: $white;
   }
 }
 </style>

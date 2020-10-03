@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .keyword-main-text {
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid $u-black;
   font-size: 1.1rem;
   text-align: center;
   width: 90px;

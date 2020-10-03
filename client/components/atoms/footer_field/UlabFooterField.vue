@@ -99,10 +99,10 @@
 }
 
 a.sentence {
-  color: #fff !important;
+  color: $white !important;
 
   @include mq(md) {
-    color: #333 !important;
+    color: $u-black !important;
   }
 }
 
@@ -110,17 +110,17 @@ a.sentence {
   height: 200px;
 
   @include mq(md) {
-    background: #fff;
+    background: $white;
     border-radius: 0.5rem;
     padding: 1rem;
   }
 }
 
 .sns-icon {
-  color: #fff !important;
+  color: $white !important;
 
   @include mq(md) {
-    color: #333 !important;
+    color: $u-black !important;
   }
 }
 

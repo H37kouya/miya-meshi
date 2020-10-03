@@ -63,7 +63,7 @@ export default Vue.extend({
   animation: godown 0.5s linear forwards 3s;
   border-left: 35px solid transparent;
   border-right: 35px solid transparent;
-  border-bottom: 60px solid #fff;
+  border-bottom: 60px solid $white;
 }
 
 @keyframes turn {

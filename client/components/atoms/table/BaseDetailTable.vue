@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$border: 1px solid #333;
+$border: 1px solid $u-black;
 
 .keyword-row {
   border-top: $border;
@@ -57,7 +57,7 @@ $border: 1px solid #333;
 .keyword-box {
   border-right: $border;
   border-bottom: $border;
-  background-color: #fff;
+  background-color: $white;
   font-size: 0.85rem;
   cursor: pointer;
   height: 50px;

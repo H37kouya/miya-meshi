@@ -71,23 +71,23 @@
 
 .white-md-background {
   @include mq(md) {
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
 .breadcrumbs-container {
-  border-top: 1px solid #d5ceb7;
-  border-bottom: 1px solid #d5ceb7;
+  border-top: 1px solid $dark-gray;
+  border-bottom: 1px solid $dark-gray;
 
   @include mq(sm) {
     border-top: none;
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
 .border-large-grey {
   @include mq(md) {
-    border: 1rem #EEECE5 solid;
+    border: 1rem $gray solid;
   }
 }
 

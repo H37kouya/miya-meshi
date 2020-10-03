@@ -53,7 +53,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .menu-item-container {
-  background-color: #fff;
+  background-color: $white;
   border-radius: 5px;
 }
 

@@ -375,7 +375,7 @@ export default defineComponent({
 }
 
 .sales-title {
-  border-bottom: 1px solid #d5ceb7;
+  border-bottom: 1px solid $dark-gray;
 
   h3 {
     font-size: 1.1rem;

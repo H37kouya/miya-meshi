@@ -166,7 +166,7 @@ export default defineComponent({
 .insta-text {
   background: rgba(#000, 60%);
   border-radius: 4px;
-  color: #fff;
+  color: $white;
   font-size: 0.7rem;
   line-height: 1.1;
   padding: 0.175rem 0.25rem;

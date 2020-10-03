@@ -55,35 +55,35 @@
 <style lang="scss" scoped>
 .miya-meshi-container {
   width: 100%;
-  background-color: #fff;
+  background-color: $white;
   color: $u-black;
   padding: 0 0.5rem;
 
   @include mq(md) {
-    color: #333;
+    color: $u-black;
     background-color: #EEECE5;
   }
 }
 
 .ulab-container {
   width: 100%;
-  background-color: #333;
-  color: #fff;
+  background-color: $u-black;
+  color: $white;
   padding: 0 0.5rem;
 
   @include mq(md) {
-    color: #333;
+    color: $u-black;
     background-color: #EEECE5;
   }
 }
 
 .copyright-container {
   border-top: 1px #969696 solid;
-  background-color: #333;
+  background-color: $u-black;
 }
 
 .sitemap-container {
-  color: #333;
+  color: $u-black;
   background-color: #EEECE5;
 }
 
@@ -118,10 +118,10 @@
 }
 
 .sentence {
-  color: #333 !important;
+  color: $u-black !important;
 }
 
 a.sentence {
-  color: #333 !important;
+  color: $u-black !important;
 }
 </style>
