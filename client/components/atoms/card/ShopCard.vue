@@ -5,7 +5,7 @@
         <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
       </v-card>
 
-      <h4 class="my-1 shop-name u-black--text max-text-height-2">
+      <h4 class="my-1 shop-name u-black--text max-text-height-1">
         {{ name }}
       </h4>
 
@@ -113,9 +113,6 @@ export default defineComponent({
 .shop-name {
   font-size: 0.9rem;
   font-weight: bolder;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   @include mq(md) {
     font-size: 1rem;

@@ -12,7 +12,7 @@
       </template>
     </v-card>
 
-    <h4 class="mb-0 shop-name u-black--text max-text-height-2">
+    <h4 class="mb-0 shop-name u-black--text max-text-height-1">
       {{ name }}
     </h4>
 
@@ -135,9 +135,6 @@ export default defineComponent({
 .shop-name {
   font-size: 0.9rem;
   font-weight: bolder;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   @include mq(md) {
     font-size: 1rem;
