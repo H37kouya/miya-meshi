@@ -61,6 +61,7 @@
                   <NewsField
                     :alt="news.hashtags[0]"
                     :href="news.href"
+                    :to="news.to"
                     :hashtags="news.hashtags"
                     :src="news.src"
                     :text="news.text"
