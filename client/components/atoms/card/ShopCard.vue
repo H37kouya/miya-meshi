@@ -2,7 +2,12 @@
   <div>
     <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
       <v-card v-bind="$attrs" :flat="screenMd">
-        <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
+        <v-img
+          :alt="alt"
+          :aspect-ratio="screenMd ? 1.73 : 1.2"
+          :src="src"
+          min-height="120px"
+        />
       </v-card>
 
       <h4 class="my-1 shop-name u-black--text max-text-height-1">
@@ -26,13 +31,13 @@
           {{ prefixName }}
         </p>
 
-        <p v-if="priceRange" class="area mb-0 u-black--text">
+        <!-- <p v-if="priceRange" class="area mb-0 u-black--text">
           <v-icon small>
             mdi-cash
           </v-icon>
 
           {{ priceRange }}
-        </p>
+        </p> -->
       </div>
     </component>
 
@@ -131,10 +136,10 @@ export default defineComponent({
 }
 
 .explation {
-  height: 3.25rem;
+  height: 2rem;
 
   @include mq(sm) {
-    height: 3rem;
+    height: 2rem;
   }
 }
 
