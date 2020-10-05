@@ -1,0 +1,110 @@
+[
+ {
+  "id": "4mT1IRYyP89AcjbIzwmK",
+  "createdAt": {
+   "_seconds": 1597303015,
+   "_nanoseconds": 625000000
+  },
+  "isTaxIncluded": false,
+  "image": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fmenus%2Fc3b5a3f0-7273-4d35-88c5-62e084aeb067?alt=media&token=97dcd765-d9e6-4154-9e7d-4b599a1141ae",
+  "canTakeOut": false,
+  "price": 980,
+  "priority": 3,
+  "shopID": "cnWAvMu4RuCgP97W1QcX",
+  "name": "お野菜たっぷりLunchプレート",
+  "updatedAt": {
+   "_seconds": 1597451425,
+   "_nanoseconds": 124000000
+  },
+  "public": true
+ },
+ {
+  "id": "M9uR4ldHYFXsyNnr82jU",
+  "image": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fmenus%2F98a2190f-f162-4e8c-92a3-969a7ab26166?alt=media&token=c54282d5-c701-4209-9194-583070e157f6",
+  "canTakeOut": false,
+  "public": true,
+  "description": "よかった",
+  "price": 960,
+  "createdAt": {
+   "_seconds": 1597044013,
+   "_nanoseconds": 88000000
+  },
+  "updatedAt": {
+   "_seconds": 1597451404,
+   "_nanoseconds": 758000000
+  },
+  "name": "ハンバーグ&チキン",
+  "priority": 3,
+  "shopID": "2BUAxx1Py9w3pMIZAmny",
+  "isTaxIncluded": true,
+  "intro": "あ"
+ },
+ {
+  "id": "UQ9VEU3OhUZipIgzWXsd",
+  "image": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fmenus%2F436c743e-38df-461e-a462-2abec4983a19?alt=media&token=88fb792c-b167-4ab3-9d7a-2d718763a365",
+  "createdAt": {
+   "_seconds": 1597303001,
+   "_nanoseconds": 495000000
+  },
+  "canTakeOut": true,
+  "price": 0,
+  "timeZone": [
+   "昼"
+  ],
+  "keywords": [
+   "和食"
+  ],
+  "isTaxIncluded": false,
+  "public": true,
+  "updatedAt": {
+   "_seconds": 1598022294,
+   "_nanoseconds": 446000000
+  },
+  "shopID": "cnWAvMu4RuCgP97W1QcX",
+  "dishes": [
+   "中華料理"
+  ],
+  "priority": 3,
+  "name": "NYチーズケーキ"
+ },
+ {
+  "id": "cL7ufUi4GNlAbH5TXurA",
+  "shopID": "cnWAvMu4RuCgP97W1QcX",
+  "updatedAt": {
+   "_seconds": 1597451435,
+   "_nanoseconds": 569000000
+  },
+  "createdAt": {
+   "_seconds": 1597302985,
+   "_nanoseconds": 523000000
+  },
+  "canTakeOut": false,
+  "price": 980,
+  "image": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fmenus%2Fb3218331-aab4-41da-9096-bb964606f357?alt=media&token=1f35bb13-ceae-48e6-a963-2238e6c36ca9",
+  "priority": 4,
+  "name": "ハムとWチーズのEnglish Muffin +Drink",
+  "isTaxIncluded": false,
+  "public": true
+ },
+ {
+  "id": "eOuVKJsXdCZaboKeMzYp",
+  "shopID": "2BUAxx1Py9w3pMIZAmny",
+  "public": true,
+  "createdAt": {
+   "_seconds": 1597038247,
+   "_nanoseconds": 445000000
+  },
+  "image": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fmenus%2F9a0da74b-922d-4263-b42d-6d7ac6478aa6?alt=media&token=144ebe1d-84f7-4b45-b199-995ae5094f0c",
+  "isTaxIncluded": false,
+  "canTakeOut": false,
+  "intro": "あ",
+  "description": "あ",
+  "name": "おばあちゃんのナポリタン",
+  "updatedAt": {
+   "_seconds": 1597451412,
+   "_nanoseconds": 712000000
+  },
+  "price": 1280,
+  "priority": 3
+ }
+]

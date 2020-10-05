@@ -1,0 +1,129 @@
+[
+ {
+  "id": "Bp6dATkwxKE336LRtinH",
+  "createdAt": {
+   "_seconds": 1597575505,
+   "_nanoseconds": 343000000
+  },
+  "updatedAt": {
+   "_seconds": 1600906392,
+   "_nanoseconds": 563000000
+  },
+  "type": "area",
+  "addresses": [
+   "石那田町",
+   "一ノ沢町",
+   "一条1丁目",
+   "一条3丁目",
+   "一条4丁目",
+   "一条2丁目",
+   "一の沢1丁目",
+   "一の沢2丁目"
+  ],
+  "priority": 10,
+  "name": "宇都宮駅西"
+ },
+ {
+  "id": "Egx29z7ryawVBCLeRale",
+  "priority": 5,
+  "createdAt": {
+   "_seconds": 1597995554,
+   "_nanoseconds": 85000000
+  },
+  "addresses": [],
+  "name": "清原・ゆいの杜・東宇都宮",
+  "type": "area",
+  "updatedAt": {
+   "_seconds": 1600906397,
+   "_nanoseconds": 977000000
+  }
+ },
+ {
+  "id": "FjTr0IR7L0x1jkxpgysY",
+  "priority": 10,
+  "addresses": [
+   "泉が丘1丁目",
+   "泉が丘2丁目",
+   "泉が丘5丁目",
+   "泉が丘6丁目",
+   "泉が丘4丁目",
+   "泉が丘3丁目",
+   "泉が丘7丁目",
+   "簗瀬1丁目",
+   "簗瀬2丁目",
+   "簗瀬4丁目",
+   "簗瀬3丁目",
+   "石井町",
+   "今泉町",
+   "今泉3丁目",
+   "今泉2丁目",
+   "今泉1丁目",
+   "今泉4丁目",
+   "今泉5丁目",
+   "中今泉2丁目",
+   "中今泉1丁目",
+   "中今泉3丁目",
+   "中今泉5丁目",
+   "中今泉4丁目",
+   "中久保2丁目",
+   "中久保1丁目"
+  ],
+  "createdAt": {
+   "_seconds": 1597580932,
+   "_nanoseconds": 250000000
+  },
+  "type": "area",
+  "name": "宇都宮駅東",
+  "updatedAt": {
+   "_seconds": 1600906403,
+   "_nanoseconds": 434000000
+  }
+ },
+ {
+  "id": "a4vIgm4ogmokAkp3WaTU",
+  "type": "area",
+  "updatedAt": {
+   "_seconds": 1600906408,
+   "_nanoseconds": 795000000
+  },
+  "priority": 8,
+  "addresses": [
+   "インターパーク1丁目",
+   "インターパーク5丁目",
+   "インターパーク6丁目",
+   "インターパーク2丁目",
+   "インターパーク4丁目",
+   "インターパーク3丁目"
+  ],
+  "createdAt": {
+   "_seconds": 1597845401,
+   "_nanoseconds": 374000000
+  },
+  "name": "インターパーク"
+ },
+ {
+  "id": "hwzX8lfMVEx1lu3yLq6H",
+  "createdAt": {
+   "_seconds": 1597575451,
+   "_nanoseconds": 770000000
+  },
+  "name": "オリオン通り",
+  "type": "area",
+  "addresses": [
+   "明保野町",
+   "飯田町",
+   "飯山町",
+   "相野沢町",
+   "旭1丁目",
+   "旭2丁目",
+   "池上町",
+   "芦沼町",
+   "泉町"
+  ],
+  "updatedAt": {
+   "_seconds": 1600906414,
+   "_nanoseconds": 76000000
+  },
+  "priority": 8
+ }
+]

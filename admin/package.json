@@ -11,7 +11,13 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
-    "test": "jest"
+    "test": "jest",
+    "create:all": "npm run create:shops & npm run create:areas & npm run create:keywords & npm run create:dishes & npm run create:menus",
+    "create:shops": "ts-node ./scripts/db/_create_shop_list_json.ts",
+    "create:areas": "ts-node ./scripts/db/_create_area_list_json.ts",
+    "create:keywords": "ts-node ./scripts/db/_create_keyword_list_json.ts",
+    "create:dishes": "ts-node ./scripts/db/_create_dish_list_json.ts",
+    "create:menus": "ts-node ./scripts/db/_create_menu_list_json.ts"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
