@@ -1,0 +1,56 @@
+[
+ {
+  "id": "02NWpoPligB0uuYwgwmt",
+  "priority": 4,
+  "updatedAt": {
+   "_seconds": 1601103896,
+   "_nanoseconds": 129000000
+  },
+  "name": "和食",
+  "createdAt": {
+   "_seconds": 1597925855,
+   "_nanoseconds": 735000000
+  },
+  "type": "dish"
+ },
+ {
+  "id": "AbeWUt1sCD63sMVwL48u",
+  "updatedAt": {
+   "_seconds": 1598764644,
+   "_nanoseconds": 637000000
+  },
+  "createdAt": {
+   "_seconds": 1598764644,
+   "_nanoseconds": 637000000
+  },
+  "priority": 3,
+  "name": "イタリアン"
+ },
+ {
+  "id": "ZIiwHtaInF68EasYkgEa",
+  "updatedAt": {
+   "_seconds": 1597925790,
+   "_nanoseconds": 653000000
+  },
+  "priority": 3,
+  "name": "中華料理",
+  "createdAt": {
+   "_seconds": 1597925790,
+   "_nanoseconds": 653000000
+  }
+ },
+ {
+  "id": "tJofOnBFZOwASDZajpUH",
+  "updatedAt": {
+   "_seconds": 1601103904,
+   "_nanoseconds": 234000000
+  },
+  "priority": 10,
+  "createdAt": {
+   "_seconds": 1598764636,
+   "_nanoseconds": 408000000
+  },
+  "name": "ラーメン",
+  "type": "dish"
+ }
+]

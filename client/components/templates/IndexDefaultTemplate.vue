@@ -1,6 +1,6 @@
 <template>
   <v-container class="pt-0 pt-sm-0">
-    <v-row class="d-sm-none" style="background-color: #f5f5f5;" justify="center">
+    <v-row class="d-sm-none u-light-grey-background" justify="center">
       <v-col class="max-width-350 text-center py-3">
         <ToSearchShopButton bold width="100%" />
 
@@ -61,6 +61,7 @@
                   <NewsField
                     :alt="news.hashtags[0]"
                     :href="news.href"
+                    :to="news.to"
                     :hashtags="news.hashtags"
                     :src="news.src"
                     :text="news.text"

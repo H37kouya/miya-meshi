@@ -14,14 +14,12 @@
 
         <ul class="d-flex link-inline-list border-black pa-0 mb-2">
           <li>
-            <a
-              href="https://note.com/miyameshi_ouen/n/nf920b05d1ad2"
-              target="_blank"
-              rel="noopener"
+            <nuxt-link
+              to="/about/miyameshi#title"
               class="sentence link-inline-list-item u-black--text"
             >
               みやメシ応援隊とは
-            </a>
+            </nuxt-link>
           </li>
           <li>
             <a

@@ -1,91 +1,32 @@
 <template>
   <div class="d-flex justify-center">
-    <div class="icon-box">
-      <nuxt-link to="/" class="icon-box-link text-decoration-none">
-        <div class="d-flex justify-center">
-          <div>
-            <v-img
-              src="/s/icon-salad.png"
-              width="60px"
-              height="45px"
-              alt="トップページのアイコン"
-            />
-          </div>
-        </div>
+    <HeaderIcon
+      alt="トップページのアイコン"
+      src="/s/icon-salad.png"
+      to="/"
+      text="トップページ"
+    />
 
-        <p class="icon-text mb-0">
-          トップページ
-        </p>
-      </nuxt-link>
-    </div>
+    <HeaderIcon
+      alt="お店から探すのアイコン"
+      src="/s/icon-melon-bread.png"
+      to="/shops"
+      text="お店から探す"
+    />
 
-    <div class="icon-box">
-      <nuxt-link to="/shops" class="icon-box-link text-decoration-none">
-        <div class="d-flex justify-center">
-          <div>
-            <v-img
-              src="/s/icon-melon-bread.png"
-              width="60px"
-              height="45px"
-              alt="お店から探すのアイコン"
-            />
-          </div>
-        </div>
+    <HeaderIcon
+      alt="「Instagram」のアイコン"
+      src="/s/icon-omelet-rice.png"
+      href="https://www.instagram.com/miyameshi_ouentai/"
+      text="インスタ"
+    />
 
-        <p class="icon-text mb-0">
-          お店から探す
-        </p>
-      </nuxt-link>
-    </div>
-
-    <div class="icon-box">
-      <a
-        href="https://www.instagram.com/miyameshi_ouentai/"
-        target="_blank"
-        rel="noopener"
-        class="icon-box-link text-decoration-none"
-      >
-        <div class="d-flex justify-center">
-          <div>
-            <v-img
-              src="/s/icon-omelet-rice.png"
-              width="60px"
-              height="45px"
-              contain
-              alt="「Instagram」のアイコン"
-            />
-          </div>
-        </div>
-
-        <p class="icon-text mb-0">
-          インスタ
-        </p>
-      </a>
-    </div>
-
-    <div class="icon-box">
-      <a
-        href="https://forms.gle/gAknXAaCrfsr8UdA8"
-        class="icon-box-link text-decoration-none"
-        target="_blank"
-        rel="noopener"
-      >
-        <div class="d-flex justify-center">
-          <div>
-            <v-img
-              src="/s/icon-rice-boll.png"
-              width="60px"
-              height="45px"
-              alt="お問い合わせのアイコン"
-            />
-          </div>
-        </div>
-
-        <p class="icon-text mb-0">
-          お問い合わせ
-        </p>
-      </a>
-    </div>
+    <HeaderIcon
+      alt="お問い合わせのアイコン"
+      src="/s/icon-rice-boll.png"
+      href="https://forms.gle/gAknXAaCrfsr8UdA8"
+      text="お問い合わせ"
+    />
   </div>
 </template>
 
@@ -94,23 +35,3 @@ export default {
 
 }
 </script>
-
-<style lang="scss" scoped>
-.icon-box {
-  width: 120px;
-  padding: 0 1rem;
-  a {
-    color: $u-black;
-  }
-}
-
-.icon-text {
-  background: $gray;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: bolder;
-  padding: 0.125rem 0;
-  text-align: center;
-  bottom: 4px;
-}
-</style>

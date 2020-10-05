@@ -1,7 +1,12 @@
 <template>
   <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
     <v-card v-bind="$attrs" class="pos-relative" :flat="screenMd">
-      <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.73 : 1.2" />
+      <v-img
+        :alt="alt"
+        :aspect-ratio="screenMd ? 1.73 : 1.2"
+        :src="src"
+        min-height="80px"
+      />
 
       <template v-if="instaNumber">
         <div class="insta-number-container">

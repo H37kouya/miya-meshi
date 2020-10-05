@@ -1,5 +1,12 @@
 <template>
-  <a :href="href" rel="noopener" target="_blank" class="text-decoration-none max-width-480">
+  <component
+    :is="href ? 'a' : 'nuxt-link'"
+    :to="to"
+    :href="href"
+    :rel="href ? 'noopener' : undefined"
+    :target="href ? '_blank' : undefined"
+    class="text-decoration-none max-width-480"
+  >
     <div class="mb-2 pos-relative border-y border-dark-gray">
       <v-img :src="src" :alt="alt" aspect-ratio="1.78" />
 
@@ -19,7 +26,7 @@
       </div>
     </div>
 
-  </a>
+  </component>
 </template>
 
 <script lang="ts">
@@ -31,6 +38,7 @@ type Props = {
   hashtags: string[],
   src?: string,
   text?: string
+  to?: string
 }
 
 export default defineComponent({
@@ -56,6 +64,11 @@ export default defineComponent({
     },
 
     text: {
+      type: String,
+      default: undefined
+    },
+
+    to: {
       type: String,
       default: undefined
     }

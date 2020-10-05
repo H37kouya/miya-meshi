@@ -1,0 +1,420 @@
+[
+ {
+  "id": "0EzKUZIYcFnWEpP6RApV",
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "latitude": 36.666115,
+  "priceRange": "1,000円~2,000円",
+  "createdAt": {
+   "_seconds": 1597850304,
+   "_nanoseconds": 304000000
+  },
+  "canTakeout": true,
+  "updatedAt": {
+   "_seconds": 1597888196,
+   "_nanoseconds": 56000000
+  },
+  "name": "テスト店",
+  "imageLink": "/no-image.png",
+  "address": "栃木県宇都宮市石那田町ああ",
+  "public": true,
+  "longitude": 139.812561,
+  "priority": 3,
+  "instaNumber": 0
+ },
+ {
+  "id": "2BUAxx1Py9w3pMIZAmny",
+  "address": "栃木県宇都宮市塙田1丁目1−20",
+  "public": true,
+  "intro": "カズマの家だよー編集したよーー",
+  "canTakeOut": false,
+  "buildingName": "",
+  "name": "カズマの実家",
+  "updatedAt": {
+   "_seconds": 1601709189,
+   "_nanoseconds": 205000000
+  },
+  "type": "shop",
+  "longitude": 139.883392,
+  "tel": "",
+  "createdAt": {
+   "_seconds": 1596868902,
+   "_nanoseconds": 461000000
+  },
+  "latitude": 36.564575,
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "priority": 3,
+  "postal": "320-8501",
+  "description": "カズマの家だよー",
+  "priceRange": "1,000円~2,000円",
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F72c3ce62-9e20-4a04-9792-9634ed9472ac?alt=media&token=72e94c21-d12b-4a09-a7df-dee1c3e5f5b5",
+  "instaNumber": 11,
+  "homepageLink": "https://safety-park.xyz"
+ },
+ {
+  "id": "3X1kHdpRUr08YX7j0jY6",
+  "address": "栃木県宇都宮市曲師町1−7",
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "updatedAt": {
+   "_seconds": 1601133149,
+   "_nanoseconds": 749000000
+  },
+  "instaNumber": 100,
+  "priority": 1,
+  "canTakeout": true,
+  "canTakeOut": true,
+  "prefixName": "カフェ",
+  "longitude": 139.883835,
+  "public": true,
+  "createdAt": {
+   "_seconds": 1597383272,
+   "_nanoseconds": 96000000
+  },
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F344131ce-c296-4610-92a6-7eca6e58317e?alt=media&token=908e8f89-8e9e-4350-b275-18477cba3f52",
+  "type": "shop",
+  "latitude": 36.560257,
+  "name": "サウスアベニュー"
+ },
+ {
+  "id": "FO3X2qs0Jdtywf65j87Y",
+  "createdAt": {
+   "_seconds": 1600859729,
+   "_nanoseconds": 430000000
+  },
+  "latitude": 37.001896,
+  "postal": "3250001",
+  "address": "栃木県那須郡那須町高久甲",
+  "priority": 3,
+  "name": "市外にある喫茶店",
+  "timeZone": [],
+  "updatedAt": {
+   "_seconds": 1600859729,
+   "_nanoseconds": 430000000
+  },
+  "longitude": 140.059875,
+  "prefixName": "喫茶店",
+  "dishes": [],
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F8caba5e8-9ed3-491f-9710-dab7e5b8b7df?alt=media&token=0dbd0bef-3f7f-444d-a329-e26e3b1bfee1",
+  "keywords": [],
+  "canTakeout": true,
+  "displayMode": "DEFAULT",
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "public": true,
+  "instaNumber": 0
+ },
+ {
+  "id": "GPj8kuWAfuc1IdhXtFkP",
+  "displayMode": "DEFAULT",
+  "longitude": 0,
+  "dishes": [],
+  "updatedAt": {
+   "_seconds": 1600494009,
+   "_nanoseconds": 463000000
+  },
+  "canTakeout": true,
+  "imageLink": "/no-image.png",
+  "instaNumber": 0,
+  "public": true,
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "timeZone": [],
+  "latitude": 0,
+  "prefixName": "aa",
+  "createdAt": {
+   "_seconds": 1600494009,
+   "_nanoseconds": 463000000
+  },
+  "priority": 1,
+  "name": "aaaa",
+  "keywords": []
+ },
+ {
+  "id": "GltoD1na5d1tNvWvfQyv",
+  "priority": 1,
+  "imageLink": "/no-image.png",
+  "canTakeOut": true,
+  "prefixName": "中華料理",
+  "createdAt": {
+   "_seconds": 1597383234,
+   "_nanoseconds": 0
+  },
+  "updatedAt": {
+   "_seconds": 1597383234,
+   "_nanoseconds": 0
+  },
+  "name": "東峰飯店",
+  "canTakeout": true,
+  "public": true,
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "address": "栃木県宇都宮市"
+ },
+ {
+  "id": "GnTCsKH75UEeiq39qRws",
+  "instaShopLink": "https://www.instagram.com/p/CAreR3ZnoZb/",
+  "public": true,
+  "instaNumber": 6,
+  "menuImageLink": [
+   "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F98dbfbe8-8d12-4f22-a3d3-61b38407d1af?alt=media&token=05a4ef60-e169-4173-920e-57fd789f43b6",
+   "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F64053b7e-de44-41ea-9f00-004532f161c3?alt=media&token=8b9efeba-4f5c-4a1b-8da2-bfe1e166b132",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "description": "宇大峰キャンパスのお向かいさん。自慢のお米を使ったお弁当は10数種類！日替わりで飽きることがないです",
+  "businessStartHour1": "00:30",
+  "latitude": 36.55093,
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F96299310-0cc9-41f6-ae10-2c3806bca979?alt=media&token=014c8b8f-b0d6-475b-aa74-a11d14a7c850",
+  "name": "お米広場さとう",
+  "canTakeout": true,
+  "type": "shop",
+  "tel": "028‐637‐3888",
+  "displayMode": "DEFAULT",
+  "createdAt": {
+   "_seconds": 1597383182,
+   "_nanoseconds": 633000000
+  },
+  "prefixName": "弁当",
+  "businessEndHour2": "11:00",
+  "timeZone": [
+   "昼"
+  ],
+  "longitude": 139.91597,
+  "businessLoHour2": "03:01",
+  "updatedAt": {
+   "_seconds": 1601709144,
+   "_nanoseconds": 333000000
+  },
+  "intro": "お米広場さとうさんのお弁当は、お店の看板にもある通りお米がおいしいんです！噛めば噛むほど甘味が出てくるお米に、唐揚げや焼き魚、カキフライまで多様なおかずも頂くことができます。なんと嬉しい、日替わり弁当500円！一か月分の内容を見ることができます。今日は何のお弁当でしょうか？",
+  "priceRange": "2,000円~",
+  "address": "栃木県宇都宮市峰3-31-46",
+  "priority": 4,
+  "businessEndHour1": "05:00"
+ },
+ {
+  "id": "ISpOsVighKZqnucTHiio",
+  "name": "お好み焼き！テスト用・駅東店",
+  "priority": 3,
+  "priceRange": "1,000円~2,000円",
+  "createdAt": {
+   "_seconds": 1597901122,
+   "_nanoseconds": 982000000
+  },
+  "updatedAt": {
+   "_seconds": 1601709124,
+   "_nanoseconds": 914000000
+  },
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F2cd216c6-f5fe-4206-a0af-b40f6fbb6896?alt=media&token=e485f2a1-679d-42f5-a42c-96ed80c480c6",
+  "displayMode": "DEFAULT",
+  "canTakeout": true,
+  "longitude": 139.91954,
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "type": "shop",
+  "address": "栃木県宇都宮市泉が丘3丁目15",
+  "public": true,
+  "latitude": 36.563404,
+  "instaNumber": 4,
+  "postal": "321-0952"
+ },
+ {
+  "id": "JJJo6mHUfc9L1fFIhoWz",
+  "name": "rishi coffee",
+  "priority": 1,
+  "canTakeOut": true,
+  "updatedAt": {
+   "_seconds": 1597383254,
+   "_nanoseconds": 531000000
+  },
+  "prefixName": "カフェ",
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "imageLink": "/no-image.png",
+  "address": "栃木県宇都宮市",
+  "canTakeout": true,
+  "public": true,
+  "createdAt": {
+   "_seconds": 1597383254,
+   "_nanoseconds": 531000000
+  }
+ },
+ {
+  "id": "cnWAvMu4RuCgP97W1QcX",
+  "longitude": 139.906067,
+  "displayMode": "DEFAULT",
+  "twitterLink": "https://safety-park.xyz",
+  "updatedAt": {
+   "_seconds": 1601633230,
+   "_nanoseconds": 797000000
+  },
+  "address": "栃木県宇都宮市下栗町2906-7",
+  "businessHour2": "11:00〜18:00(LO17:30)",
+  "description": "オープンテラスを構えるおしゃれなカフェ。野菜たっぷりな料理やラテアートが楽しめます！",
+  "canTakeout": true,
+  "canTakeOut": true,
+  "dishes": [
+   "中華料理",
+   "和食",
+   "02NWpoPligB0uuYwgwmt",
+   "AbeWUt1sCD63sMVwL48u"
+  ],
+  "homepageLink": "https://safety-park.xyz",
+  "businessEndHour1": "03:10",
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F1a0efd34-e50c-487c-a0dd-90627891132e?alt=media&token=a3627d3f-8d41-4209-944a-be1b6136c3f5",
+  "type": "shop",
+  "businessStartHour1": "02:15",
+  "priceRange": "1,000円~2,000円",
+  "instaNumber": 1,
+  "businessStartHour2": "14:00",
+  "seat": "37席",
+  "instaLink": "https://safety-park.xyz",
+  "businessLoHour2": "22:00",
+  "public": true,
+  "prefixName": "喫茶店",
+  "latitude": 36.536224,
+  "createdAt": {
+   "_seconds": 1597302957,
+   "_nanoseconds": 868000000
+  },
+  "timeZone": [
+   "昼",
+   "夜"
+  ],
+  "lineLink": "",
+  "businessHour1": "7:30～10:30(LO10:30)",
+  "regularHoliday": "月曜・第1・3火曜",
+  "instaShopLink": "https://www.instagram.com/p/CAreRN2nLY8/",
+  "businessLoHour1": "03:00",
+  "keywords": [
+   "ラーメン"
+  ],
+  "priority": 5,
+  "name": "Just Cafe",
+  "tel": "028-666-8083",
+  "postal": "321-0923",
+  "intro": "母娘で営むアットホームなカフェ。オープンテラスも構える開放的な空間で、お野菜たっぷりな料理やシルキーな泡が特徴のラテアートが楽しめます！料理のほかにケーキのみのテイクアウトもできて、お家カフェも楽しめます！",
+  "menuImageLink": [
+   "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2Ff4cb9d87-289c-4596-b12b-be1fc4b6fba6?alt=media&token=564d7994-2006-44a7-bf89-a64f450045d2",
+   "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2Fa888d15f-080b-46d0-9e54-5a09bc4b63d7?alt=media&token=1664d5f5-5310-4be2-9894-b3bcc8889252",
+   "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2Fb1f3104e-a43c-4799-a21a-519b183956e4?alt=media&token=921b9f0c-8658-4c32-92ea-407a416c8704",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "businessEndHour2": "23:00"
+ },
+ {
+  "id": "drbqREWkacXhBNOYWBlX",
+  "prefixName": "カフェ",
+  "updatedAt": {
+   "_seconds": 1601709235,
+   "_nanoseconds": 963000000
+  },
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2Fa2282ad7-0138-42d3-9a9d-9ae61447eba9?alt=media&token=bf155cf4-04db-4e56-9e4d-0375c35c67de",
+  "canTakeout": true,
+  "instaNumber": 65,
+  "latitude": 36.560257,
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "type": "shop",
+  "priority": 1,
+  "address": "栃木県宇都宮市曲師町1−7",
+  "createdAt": {
+   "_seconds": 1597383200,
+   "_nanoseconds": 409000000
+  },
+  "name": "ベジタブルベースキメラ",
+  "longitude": 139.883835,
+  "public": true
+ },
+ {
+  "id": "jiNCug7GWACMuo292tcc",
+  "description": "あ",
+  "createdAt": {
+   "_seconds": 1597383219,
+   "_nanoseconds": 623000000
+  },
+  "address": "栃木県宇都宮市曲師町1−7",
+  "canTakeout": true,
+  "instaNumber": 13,
+  "longitude": 139.883835,
+  "menuImageLink": [
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png",
+   "/no-image.png"
+  ],
+  "name": "アロハウス",
+  "prefixName": "カフェ",
+  "latitude": 36.560257,
+  "priority": 1,
+  "imageLink": "https://firebasestorage.googleapis.com/v0/b/miyameshi-test.appspot.com/o/upload%2Fshops%2F1e14d052-1e5f-4d50-a580-029806629e64?alt=media&token=8178c844-2cfc-4807-8dbc-405f3b11ab87",
+  "public": true,
+  "type": "shop",
+  "canTakeOut": true,
+  "updatedAt": {
+   "_seconds": 1601709208,
+   "_nanoseconds": 872000000
+  }
+ }
+]
