@@ -6,16 +6,16 @@ export type SnsLink = {
   src: string
 }
 
-enum snsImage {
-  facebook = '/s/facebook.png',
-  github = '/s/github.png',
-  hp = '/s/hp.png',
-  instagram = '/s/instagram.png',
-  line = '/s/line.png',
-  twitter = '/s/twitter.png',
-  youtube = '/s/youtube.png',
-  uberEats = '/s/UberEats_Badge_Vertical.png'
-}
+const snsImage = {
+  facebook: '/s/facebook.png',
+  github: '/s/github.png',
+  hp: '/s/hp.png',
+  instagram: '/s/instagram.png',
+  line: '/s/line.png',
+  twitter: '/s/twitter.png',
+  youtube: '/s/youtube.png',
+  uberEats: '/s/UberEats_Badge_Vertical.png'
+} as const
 
 /**
  * Shopの配列からSnsLinkの配列を作成する

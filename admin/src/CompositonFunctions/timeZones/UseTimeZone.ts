@@ -7,7 +7,7 @@ export const useTimeZone = () => {
     TimeZone.MORNING,
     TimeZone.LUNCH,
     TimeZone.NIGHT
-  ])
+  ] as TimeZone[])
 
   const timeZoneJa = computed(() => Object.entries(TimeZoneJa).map(([_, value]) => value))
 

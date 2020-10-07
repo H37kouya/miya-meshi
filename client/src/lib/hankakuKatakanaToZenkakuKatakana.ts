@@ -88,7 +88,7 @@ const kanaMap: {[key:string]: string} = {
   '｢': '「',
   '｣': '」',
   '･': '・'
-}
+} as const
 
 /**
  * 半角カタカナを全角カタカナに変換する
