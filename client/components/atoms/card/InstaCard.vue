@@ -32,14 +32,6 @@
 
         {{ prefixName }}
       </p>
-
-      <p v-if="priceRange" class="area mb-0 u-black--text">
-        <v-icon small>
-          mdi-cash
-        </v-icon>
-
-        {{ priceRange }}
-      </p>
     </div>
 
     <div class="mt-2">
@@ -181,11 +173,7 @@ export default defineComponent({
 }
 
 .explation {
-  height: 3.25rem;
-
-  @include mq(sm) {
-    height: 3rem;
-  }
+  height: 2rem;
 }
 
 .area {
