@@ -137,10 +137,6 @@ export default defineComponent({
 
 .explation {
   height: 2rem;
-
-  @include mq(sm) {
-    height: 2rem;
-  }
 }
 
 .area {

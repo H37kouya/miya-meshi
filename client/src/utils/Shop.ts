@@ -33,12 +33,14 @@ export const filterShopsByAreas = (shops: Shop[], areas: Area[]) => {
     return [...pv, ...area.addresses]
   }, [] as string[])
 
+  const replacedAddresses = addresses.map((address: string) => address.replace('丁目', ''))
+
   return shops.filter((shop: Shop) => {
     if (!shop.address) {
       return false
     }
 
-    for (const address of addresses) {
+    for (const address of replacedAddresses) {
       if (shop.address.includes(address)) {
         return true
       }
