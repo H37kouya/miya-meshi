@@ -37,6 +37,11 @@
       "dest": "/no-image.png"
     },
     {
+      "src": "/icon.png",
+      "headers": { "cache-control": "public, max-age=31536000" },
+      "dest": "/icon.png"
+    },
+    {
       "src": "/(.*)",
       "headers": { "cache-control": "s-maxage=1, stale-while-revalidate "},
       "dest": "/"
