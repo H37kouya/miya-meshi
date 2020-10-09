@@ -3,12 +3,16 @@ import 'firebase/firestore'
 import { Collection } from '../lib/enum/Collection'
 require('dotenv').config()
 
-const $fireStore = firebase.initializeApp({
+const $fireStore = process.env.TEST_ENV ? undefined : firebase.initializeApp({
   databaseURL: process.env.FIREBASE_ADMIN_DATABASE_URL,
   projectId: process.env.FIREBASE_PROJECT_ID
 }).firestore()
 
 export default async () => {
+  if ($fireStore) {
+    return staticRoutes
+  }
+
   const _shopRoutes = await shopRoutes()
 
   return [
