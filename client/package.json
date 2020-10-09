@@ -13,7 +13,8 @@
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest",
     "generate:gsi-muniFuluJs-to-json": "cd scripts && ts-node GSIMuniFuluJsToJson",
-    "generate:gsi-muniTochigiJs-to-json": "cd scripts && ts-node GSIMuniTochigiJsToJson"
+    "generate:gsi-muniTochigiJs-to-json": "cd scripts && ts-node GSIMuniTochigiJsToJson",
+    "generate:sitemap": "cd scripts && ts-node GenerateSitemap"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
@@ -21,11 +22,12 @@
     "@nuxtjs/composition-api": "^0.12.5",
     "@nuxtjs/device": "^1.2.7",
     "@nuxtjs/firebase": "^6.1.1",
-    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/pwa": "^3.1.2",
+    "@nuxtjs/sitemap": "^2.4.0",
     "core-js": "^2.6.11",
-    "firebase": "^7.21.0",
+    "firebase": "^7.23.0",
     "nuxt": "^2.14.6",
-    "nuxt-leaflet": "0.0.21"
+    "nuxt-leaflet": "0.0.22"
   },
   "devDependencies": {
     "@mdi/font": "^5.6.55",
@@ -33,7 +35,7 @@
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/eslint-module": "^3.0.0",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
@@ -43,13 +45,13 @@
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.3.0",
-    "eslint": "^7.9.0",
+    "babel-jest": "^26.5.2",
+    "eslint": "^7.10.0",
     "eslint-plugin-nuxt": "^1.0.0",
-    "jest": "^26.4.2",
-    "stylelint": "^13.7.1",
+    "jest": "^26.5.2",
+    "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^26.4.1",
     "vue-jest": "^3.0.7"
   }
 }
