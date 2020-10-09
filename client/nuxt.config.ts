@@ -1,5 +1,5 @@
 import { NuxtConfig } from '@nuxt/types'
-import sitemapRoutes from './src/sitemap'
+import sitemapRoutes from './assets/json/sitemap.json'
 
 const nuxtConfig: NuxtConfig = {
   /*

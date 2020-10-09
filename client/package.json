@@ -13,7 +13,8 @@
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest",
     "generate:gsi-muniFuluJs-to-json": "cd scripts && ts-node GSIMuniFuluJsToJson",
-    "generate:gsi-muniTochigiJs-to-json": "cd scripts && ts-node GSIMuniTochigiJsToJson"
+    "generate:gsi-muniTochigiJs-to-json": "cd scripts && ts-node GSIMuniTochigiJsToJson",
+    "generate:sitemap": "cd scripts && ts-node GenerateSitemap"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
