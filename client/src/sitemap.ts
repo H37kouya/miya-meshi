@@ -8,19 +8,6 @@ const $fireStore = process.env.TEST_ENV ? undefined : firebase.initializeApp({
   projectId: process.env.FIREBASE_PROJECT_ID
 }).firestore()
 
-export default async () => {
-  if ($fireStore) {
-    return staticRoutes
-  }
-
-  const _shopRoutes = await shopRoutes()
-
-  return [
-    ...staticRoutes,
-    ..._shopRoutes
-  ]
-}
-
 const staticRoutes: readonly string[] = [
   '/',
   '/insta',
@@ -43,3 +30,16 @@ const shopRoutes = async (): Promise<string[]> => {
 
   return _routes.map((_route: string) => `/shops/${_route}`)
 }
+
+export default (async () => {
+  if (!$fireStore) {
+    return staticRoutes
+  }
+
+  const _shopRoutes = await shopRoutes()
+
+  return [
+    ...staticRoutes,
+    ..._shopRoutes
+  ]
+})()
