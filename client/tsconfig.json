@@ -31,6 +31,7 @@
       "@nuxtjs/axios",
       "@nuxtjs/device",
       "@nuxtjs/firebase",
+      "@nuxtjs/sitemap",
       "axios",
       "jest",
       "vuetify",
