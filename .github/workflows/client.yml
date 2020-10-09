@@ -30,6 +30,8 @@ jobs:
     - name: build
       run: npm run build
       working-directory: ./client
+      env:
+        TEST_ENV: true
     - name: test
       run: npm test
       working-directory: ./client
