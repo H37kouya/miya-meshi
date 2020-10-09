@@ -42,6 +42,10 @@
       "dest": "/icon.png"
     },
     {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
       "src": "/(.*)",
       "headers": { "cache-control": "s-maxage=1, stale-while-revalidate "},
       "dest": "/"
