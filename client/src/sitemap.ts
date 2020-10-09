@@ -17,8 +17,8 @@ const staticRoutes: readonly string[] = [
   '/about/miyameshi'
 ]
 
-const shopRoutes = async (): Promise<string[]> => {
-  const _shops = await $fireStore
+const shopRoutes = async (fireStore: firebase.firestore.Firestore): Promise<string[]> => {
+  const _shops = await fireStore
     .collection(Collection.SHOPS)
     .where('public', '==', true)
     .get()
@@ -36,7 +36,7 @@ export default (async () => {
     return staticRoutes
   }
 
-  const _shopRoutes = await shopRoutes()
+  const _shopRoutes = await shopRoutes($fireStore)
 
   return [
     ...staticRoutes,
