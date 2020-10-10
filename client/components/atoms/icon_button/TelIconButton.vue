@@ -29,20 +29,12 @@ export default defineComponent({
   },
 
   setup (props: Props, _: SetupContext) {
-    const telLink = computed(() => {
-      if (props.tel && isSimplePhoneNumber(props.tel)) {
-        return props.tel
-      }
-
-      return undefined
-    })
-
     const href = computed(() => {
-      if (!telLink) {
+      if (!props.tel) {
         return undefined
       }
 
-      return `tel:${telLink}`
+      return `tel:${props.tel}`
     })
 
     return {

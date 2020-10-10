@@ -7,7 +7,7 @@
         おすすめの3品
       </ShopText>
 
-      <RecommendShopField :menus="menus" />
+      <RecommendShopField :menus="menus.slice(0, 3)" />
     </div>
   </div>
 </template>

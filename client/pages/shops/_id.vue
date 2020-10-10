@@ -5,20 +5,18 @@
     </v-container>
 
     <ShopidTemplate
-      v-if="data && data.shop"
-      :shop="data.shop"
-      :menus="state.menus"
+      :shop="shop"
+      :menus="menus"
       :type="type"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, useAsync, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
+import Vue from 'vue'
 import { Shop, Menu, Breadcrumb } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
-import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 import { isString } from '@/src/utils/String'
 
 const breadcrumbs = [
@@ -26,74 +24,72 @@ const breadcrumbs = [
   { exact: true, text: 'お店で探す', to: '/shops' }
 ] as Breadcrumb[]
 
-type State = {
+interface State {
   shop: Shop,
   menus: Menu[]
 }
 
-export default defineComponent({
-  setup () {
-    const { app, error, params, query } = useContext()
-    const state = reactive({
+interface Method {
+
+}
+
+interface Computed {
+  breadcrumbs: Breadcrumb[],
+  type: 'top'|'dish'|'pic'|'contact'
+}
+
+export default Vue.extend<State, Method, Computed>({
+  data () {
+    return {
+      shop: {} as Shop,
       menus: [] as Menu[]
-    })
+    }
+  },
 
-    const { screenMd } = useGetScreenSize()
+  computed: {
+    breadcrumbs () {
+      if (this.shop) {
+        return [
+          ...breadcrumbs,
+          { text: this.shop.name, to: `/shops/${this.shop.id}` }
+        ] as Breadcrumb[]
+      } else {
+        return breadcrumbs
+      }
+    },
 
-    const data = useAsync<{ shop: Shop|undefined }>(async () => {
-      const shop = await getShopByID(app.$fireStore, params.value.id)
-
-      return { shop }
-    }, params.value.id)
-
-    const type = computed(() => {
-      const _type = query.value.type
+    type () {
+      const _type = this.$route.query.type
       const defaultType = ['dish', 'pic', 'contact']
       if (isString(_type) && defaultType.includes(_type)) {
         return _type as 'dish'|'pic'|'contact'
       }
 
       return 'top'
-    })
-
-    const computedBreadcrumbs = computed(() => {
-      if (data.value && data.value.shop) {
-        return [
-          ...breadcrumbs,
-          { text: data.value.shop.name, to: `/shops/${data.value.shop.id}` }
-        ] as Breadcrumb[]
-      } else {
-        return breadcrumbs
-      }
-    })
-
-    watchEffect(() => {
-      if (data.value && data.value.shop === undefined) {
-        return error({
-          statusCode: 404,
-          message: '指定された店舗は削除された可能性があります。'
-        })
-      }
-    })
-
-    watchEffect(async () => {
-      state.menus = await getMenuListByShopID(app.$fireStore, params.value.id)
-    })
-
-    useMeta({
-      title: (data && data.value && data.value.shop && data.value.shop.name) || '店舗詳細ページ'
-    })
-
-    return {
-      breadcrumbs: computedBreadcrumbs,
-      data,
-      screenMd,
-      state,
-      type
     }
   },
 
-  head: {}
+  async created () {
+    const shop = await getShopByID(this.$fireStore, this.$route.params.id)
+    if (!shop) {
+      return this.$nuxt.error({
+        statusCode: 404,
+        message: '指定された店舗は削除された可能性があります。'
+      })
+    }
+
+    this.shop = shop
+  },
+
+  async mounted () {
+    this.menus = await getMenuListByShopID(this.$fireStore, this.$route.params.id)
+  },
+
+  head() {
+    return {
+      title: (this.shop && this.shop.name) || '店舗詳細ページ'
+    }
+  }
 })
 </script>
 
