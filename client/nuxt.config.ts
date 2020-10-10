@@ -1,5 +1,4 @@
 import { NuxtConfig } from '@nuxt/types'
-import sitemapRoutes from './assets/json/sitemap.json'
 
 const nuxtConfig: NuxtConfig = {
   /*
@@ -83,7 +82,6 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/device',
     '@nuxtjs/firebase',
     '@nuxtjs/pwa',
-    '@nuxtjs/sitemap',
     'nuxt-leaflet'
   ],
   /*
@@ -175,12 +173,6 @@ const nuxtConfig: NuxtConfig = {
       '~/assets/scss/variables.scss',
       '~/assets/scss/functions/**.scss'
     ]
-  },
-  sitemap: {
-    hostname: 'https://miyameshi.com',
-    gzip: true,
-    cacheTime: 1000 * 60 * 30,
-    routes: sitemapRoutes
   },
   /*
   ** vuetify module configuration
