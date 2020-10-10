@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
-import { isSimplePhoneNumber } from '@/src/utils/PhoneNumber'
 
 type Props = {
   tel?: number|string
