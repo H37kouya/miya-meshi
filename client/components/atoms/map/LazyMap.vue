@@ -49,7 +49,7 @@ export default defineComponent({
 
   setup (props) {
     return {
-      url: 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
+      url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 15,
       center: [props.latitude, props.longitude]
     }
