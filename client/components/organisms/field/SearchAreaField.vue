@@ -4,16 +4,24 @@
       エリアから探す
     </h3>
 
-    <div @click="onSearchNowLocation">
-      <div class="search-now-location d-flex justify-space-between pa-4">
-        <p class="mb-0">
+    <div>
+      <v-btn
+        :disabled="(nowArea && value.includes(nowArea.id)) || false"
+        color="#faf8f5"
+        depressed
+        width="100%"
+        height="52px"
+        class="search-now-location d-flex justify-space-between pa-4"
+        @click="onSearchNowLocation"
+      >
+        <span>
           現在地から探す
-        </p>
+        </span>
 
         <v-icon>
           mdi-chevron-right
         </v-icon>
-      </div>
+      </v-btn>
     </div>
 
     <div class="area-list-container px-4 py-2">

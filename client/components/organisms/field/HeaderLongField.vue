@@ -107,6 +107,11 @@ export default defineComponent({
     font-weight: bolder;
     background: #90B496;
     color: $white;
+
+    &:hover {
+      background: darken(#90B496, 10%);
+      opacity: 0.9;
+    }
   }
 }
 </style>
