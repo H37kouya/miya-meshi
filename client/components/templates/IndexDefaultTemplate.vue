@@ -43,8 +43,8 @@
       </v-col>
 
       <v-col cols="12" md="4" class="px-0 px-md-4 pt-0 pt-md-3">
-        <div class="pt-2">
-          <div v-if="maxShopCount" class="d-none d-md-block max-shop-count text-center text-md-left">
+        <div class="d-none d-md-block pt-2">
+          <div v-if="maxShopCount" class="max-shop-count text-center text-md-left">
             <p>現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗</p>
           </div>
 
