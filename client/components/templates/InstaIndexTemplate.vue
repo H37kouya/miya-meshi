@@ -4,8 +4,13 @@
       <v-breadcrumbs :items="breadcrumbs" class="py-0 px-0 px-sm-6" />
     </v-container>
 
-    <MainText id="miyameshi_pictures" class="text-md-center">
-      インスタからのおすすめ
+    <MainText id="miyameshi_pictures">
+      <div class="d-flex align-end justify-center">
+        <v-icon size="30">
+          mdi-instagram
+        </v-icon>
+        <span>インスタからのおすすめ</span>
+      </div>
     </MainText>
 
     <!-- <div class="u-light-grey-background">

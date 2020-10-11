@@ -10,7 +10,7 @@
             rel="noopener"
             icon
             x-large
-            class="mx-2 mb-2"
+            class="mx-2 my-2"
           >
             <v-img :src="snsLink.src" :alt="snsLink.name" aspect-ratio="1" />
           </v-btn>

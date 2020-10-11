@@ -25,7 +25,6 @@
         <span class="read-continue">続きを見る</span>
       </div>
     </div>
-
   </component>
 </template>
 

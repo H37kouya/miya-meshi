@@ -13,7 +13,7 @@ export default defineComponent({
     const { instaShops } = useInstaShop(context.root)
 
     useMeta({
-      title: 'みやメシ図鑑'
+      title: 'インスタからのおすすめ'
     })
 
     return {

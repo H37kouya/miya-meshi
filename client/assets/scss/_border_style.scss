@@ -81,6 +81,38 @@
   border-top-width: 1rem;
 }
 
+@include mq(md) {
+  .border-md-t,
+  .border-md-y {
+    border-top-style: solid;
+    border-top-width: 1px;
+  }
+
+  .border-md-t-1,
+  .border-md-y-1 {
+    border-top-style: solid;
+    border-top-width: 0.25rem;
+  }
+
+  .border-md-t-2,
+  .border-md-y-2 {
+    border-top-style: solid;
+    border-top-width: 0.5rem;
+  }
+
+  .border-md-t-3,
+  .border-md-y-3 {
+    border-top-style: solid;
+    border-top-width: 0.75rem;
+  }
+
+  .border-md-t-4,
+  .border-md-y-4 {
+    border-top-style: solid;
+    border-top-width: 1rem;
+  }
+}
+
 .border-b,
 .border-y {
   border-bottom-style: solid;
