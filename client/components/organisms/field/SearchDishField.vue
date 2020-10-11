@@ -22,7 +22,7 @@
       </p>
 
       <v-chip-group :value="value" column multiple @change="onChange">
-        <template v-for="dish in dishes.slice(0, 10)">
+        <template v-for="dish in dishes">
           <v-chip :key="dish.id" :value="dish.id" small filter outlined>
             {{ dish.name }}
           </v-chip>
