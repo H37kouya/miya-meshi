@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainText id="recommend_for_instagram">
+    <MainText id="recommend_for_instagram" class="border-b border-dark-gray">
       <div class="d-flex align-end justify-center justify-md-start">
         <v-icon size="30">
           mdi-instagram

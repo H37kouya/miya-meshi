@@ -33,7 +33,7 @@
           </div>
 
           <div>
-            <div class="sales-title">
+            <div class="border-b border-dark-gray">
               <h3 class="pl-4 pt-4">
                 営業中
               </h3>
@@ -42,7 +42,7 @@
             <DefaultShopList
               :areas="areas"
               :shops="filterShopsByTime"
-              :max-item="shops.length"
+              :max-item="filterShopsByTime.length"
               :now-page="nowPage"
               :query="nowQuery"
             />
@@ -366,13 +366,11 @@ export default defineComponent({
 
 .header-shop-list-container {
   @include mq(sm) {
-    background: #faf8f5;
+    background: #f6f6f6;
   }
 }
 
 .sales-title {
-  border-bottom: 1px solid $dark-gray;
-
   h3 {
     font-size: 1.1rem;
     font-weight: bolder;

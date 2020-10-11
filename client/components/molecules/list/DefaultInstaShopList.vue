@@ -1,6 +1,6 @@
 <template>
   <div class="u-light-grey-background white-md-background">
-    <v-container class="pb-2">
+    <v-container class="pb-2 border-md-t border-dark-gray">
       <div v-if="maxItem" class="text-right">
         <p class="mb-1 display-count">
           <span class="red--text">{{ state.shops.length }}件</span>表示中/全{{ maxItem }}件中

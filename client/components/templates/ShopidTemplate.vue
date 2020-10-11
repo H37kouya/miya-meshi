@@ -23,8 +23,8 @@
             <ShopTypeContactField :shop="shop" :menus="menus" />
           </template>
 
-          <div class="mt-4">
-            <div class="border-t border-gray mb-2">
+          <div class="my-4 mb-md-8">
+            <div class="border-t border-gray mb-6">
               <ShopText :level="2">
                 店舗情報
               </ShopText>

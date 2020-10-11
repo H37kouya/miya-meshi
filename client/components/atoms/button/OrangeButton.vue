@@ -1,7 +1,7 @@
 <template>
   <v-btn
     v-bind="$attrs"
-    :class="{ 'font-bolder': bold }"
+    :class="{ 'font-bold': bold }"
     class="white--text"
     color="#ff9a61"
     x-large
