@@ -366,7 +366,7 @@ export default defineComponent({
 
 .header-shop-list-container {
   @include mq(sm) {
-    background: #f6f6f6;
+    background: #faf8f5;
   }
 }
 
@@ -378,7 +378,7 @@ export default defineComponent({
 }
 
 .area-container {
-  border: 1rem #f6f6f6 solid;
+  border: 1rem #faf8f5 solid;
 }
 
 .area-title {

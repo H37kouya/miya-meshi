@@ -68,7 +68,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .area-container {
-  border: 1rem #f6f6f6 solid;
+  border: 1rem $gray solid;
 }
 
 .area-title {

@@ -190,7 +190,7 @@ export default defineComponent({
   width: 100%;
 
   @include mq(md) {
-    background: #FAF8F5;
+    background: #faf8f5;
   }
 }
 
