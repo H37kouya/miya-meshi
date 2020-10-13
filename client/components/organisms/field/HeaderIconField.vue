@@ -24,7 +24,7 @@
     <HeaderIcon
       alt="お問い合わせのアイコン"
       src="/s/icon-rice-boll.png"
-      href="https://forms.gle/gAknXAaCrfsr8UdA8"
+      href="https://forms.gle/ZHkahhTdWXZyVyURA"
       text="お問い合わせ"
     />
   </div>

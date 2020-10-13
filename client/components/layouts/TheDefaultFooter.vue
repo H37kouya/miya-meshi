@@ -4,6 +4,17 @@
   >
     <RecruitmentFooterField />
 
+    <div class="contact-footer-container d-flex justify-center align-center border-y border-dark-gray">
+      <a
+        class="contact-footer-link text-decoration-none"
+        href="https://forms.gle/ZHkahhTdWXZyVyURA"
+        target="_blank"
+        rel="noopener"
+      >
+        <span>お問い合わせはこちらをクリック！</span>
+      </a>
+    </div>
+
     <SearchField />
 
     <div class="d-md-flex justify-center">
@@ -123,5 +134,15 @@
 
 a.sentence {
   color: $u-black !important;
+}
+
+.contact-footer-container {
+  background: #333;
+  width: 100%;
+  height: 60px;
+
+  a {
+    color: #fff;
+  }
 }
 </style>
