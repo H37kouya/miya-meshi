@@ -7,10 +7,10 @@
     :target="href ? '_blank' : undefined"
     class="text-decoration-none max-width-480"
   >
-    <div class="d-md-none mb-2 pos-relative border-y border-dark-gray">
+    <div class="mb-2 pos-relative border-y border-dark-gray">
       <v-img :src="src" :alt="alt" aspect-ratio="1.78" />
 
-      <div class="news-badge u-black--text">
+      <div class="d-md-none news-badge u-black--text">
         News
       </div>
     </div>

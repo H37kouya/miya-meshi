@@ -50,12 +50,19 @@ import { defineComponent, computed, reactive, SetupContext, watch } from '@nuxtj
 import { Area, Shop } from '@/lib'
 import { computedShortShopAddress, getShopAreaByAddress } from '@/src/utils/Shop'
 
+type Query = {
+  areas: string[],
+  dishes: string[],
+  canTakeout: string,
+  timezones: string[]
+}
+
 type Props = {
   areas: Area[],
   shops: Shop[],
   maxItem: number,
   nowPage: number,
-  query: object
+  query: Query
 }
 export default defineComponent({
   props: {
@@ -130,10 +137,13 @@ export default defineComponent({
     const onPagination = async (page: number) => {
       return await context.root.$router.push({
         path: '/shops',
-        hash: 'title',
+        hash: context.root.$route.hash === 'title1' ? 'title2' : 'title1',
         query: {
           page: String(page),
-          ...props.query
+          areas: props.query.areas,
+          dishes: props.query.dishes,
+          canTakeout: props.query.canTakeout,
+          timezones: props.query.timezones
         }
       })
     }
