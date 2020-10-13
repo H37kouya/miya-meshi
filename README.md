@@ -7,17 +7,17 @@
     <tr>
         <td>
             <a href="https://miyameshi.com">
-                <img src="./.github/image/icon.png" alt="みやメシ応援隊サイト" width="50" />
+                <img src="./.github/image/icon.png" alt="みやメシ応援隊サイト" width="80" />
             </a>
         </td>
         <td>
             <a href="https://www.instagram.com/miyameshi_ouentai/">
-                <img src="./.github/image/instagram.png" alt="みやメシ応援隊Instagram"  width="50" />
+                <img src="./.github/image/instagram.png" alt="みやメシ応援隊Instagram"  width="80" />
             </a>
         </td>
         <td>
             <a href="https://twitter.com/miyameshiouen">
-                <img src="./.github/image/twitter.png" alt="みやメシ応援隊Twitter"  width="50" />
+                <img src="./.github/image/twitter.png" alt="みやメシ応援隊Twitter"  width="80" />
             </a>
         </td>
     </tr>
