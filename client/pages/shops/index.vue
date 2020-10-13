@@ -9,7 +9,7 @@
         <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
           <div class="header-shop-list-container">
             <div v-if="!screenMd" class="d-md-none">
-              <MainText id="title">
+              <MainText id="title1 title2">
                 お店から探す
               </MainText>
             </div>
@@ -305,9 +305,9 @@ export default defineComponent({
       const _timezones = context.root.$route.query.timezones
 
       return {
-        areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
-        dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
-        timezones: isArray(_timezones) && _timezones.length > 0 ? _timezones : undefined,
+        areas: _areas,
+        dishes: _dishes,
+        timezones: _timezones,
         canTakeout: isString(_canTakeout) ? _canTakeout : undefined
       }
     })
