@@ -82,6 +82,7 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/device',
     '@nuxtjs/firebase',
     '@nuxtjs/pwa',
+    '@nuxtjs/google-adsense',
     'nuxt-leaflet'
   ],
   /*
@@ -173,6 +174,13 @@ const nuxtConfig: NuxtConfig = {
       '~/assets/scss/variables.scss',
       '~/assets/scss/functions/**.scss'
     ]
+  },
+  'google-adsense': {
+    id: process.env.GA_ADSENSE_ID,
+    pageLevelAds: false,
+    analyticsUacct: 'UA-175242187-1',
+    analyticsDomainName: 'miyameshi.com',
+    test: process.env.TEST_ENV
   },
   /*
   ** vuetify module configuration
