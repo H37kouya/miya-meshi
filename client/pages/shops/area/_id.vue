@@ -7,16 +7,16 @@
     <v-container class="pa-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
-          <div class="header-shop-list-container">
-            <div v-if="!screenMd" class="d-md-none">
-              <MainText id="title1 title2">
-                お店から探す
+          <div id="title1 title2" class="header-shop-list-container">
+            <div class="d-md-none">
+              <MainText>
+                {{ selectedArea }}から探す
               </MainText>
             </div>
 
-            <div v-if="screenMd" class="d-none d-md-block">
+            <div class="d-none d-md-block">
               <h1 class="shop-list-title px-4 pt-6 pb-4">
-                お店から探す
+                {{ selectedArea }}から探す
               </h1>
             </div>
 
@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { computed, defineComponent, SetupContext, useContext, watchEffect } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -99,10 +99,23 @@ export default defineComponent({
 
   setup (_, context: SetupContext) {
     const { areas, nowArea, onUpdateNowArea } = useArea(context.root)
+    const { error } = useContext()
 
     const { shops } = useShop(context.root)
     const { screenMd } = useGetScreenSize()
     const { dishes } = useDish(context.root)
+
+    watchEffect(() => {
+      const areasQuery = context.root.$route.params.id
+      if (areas.value.length > 0) {
+        const _areas = filterAreasByID(areas.value, areasQuery)
+        if (_areas.length === 0) {
+          return error({
+            statusCode: 404
+          })
+        }
+      }
+    })
 
     const nowPage = computed(() => {
       const page = context.root.$route.query.page
@@ -137,18 +150,7 @@ export default defineComponent({
       ]
     })
 
-    const searchAreas = computed(() => {
-      const _searchAreas = context.root.$route.query.areas
-      if (isArray(_searchAreas)) {
-        return nullOrStringArrayToStringArray(_searchAreas)
-      }
-
-      if (isString(_searchAreas)) {
-        return [_searchAreas]
-      }
-
-      return []
-    })
+    const searchAreas = computed(() => [context.root.$route.params.id])
 
     const searchDishes = computed(() => {
       const _searchDishes = context.root.$route.query.dishes
@@ -249,13 +251,12 @@ export default defineComponent({
 
     const onChangeSearcDishes = async (dishes: string[]) => {
       const _canTakeout = context.root.$route.query.canTakeout
-      const _areas = context.root.$route.query.areas
+      const _area = context.root.$route.params.id
       const _timezones = context.root.$route.query.timezones
 
       return await context.root.$router.push({
-        path: '/shops',
+        path: `/shops/area/${_area}`,
         query: {
-          areas: isArray(_areas) && _areas.length > 0 ? _areas : undefined,
           dishes,
           timezones: isArray(_timezones) && _timezones.length > 0 ? _timezones : undefined,
           canTakeout: isString(_canTakeout) ? _canTakeout : undefined
@@ -264,7 +265,7 @@ export default defineComponent({
     }
 
     const filterAreas = computed(() => {
-      const areasQuery = context.root.$route.query.areas
+      const areasQuery = context.root.$route.params.id
       return filterAreasByID(areas.value, areasQuery)
     })
 
@@ -322,12 +323,12 @@ export default defineComponent({
 
     const nowQuery = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
-      const _areas = context.root.$route.query.areas
+      const _areas = context.root.$route.params.id
       const _dishes = context.root.$route.query.dishes
       const _timezones = context.root.$route.query.timezones
 
       return {
-        areas: _areas,
+        areas: [_areas],
         dishes: _dishes,
         timezones: _timezones,
         canTakeout: isString(_canTakeout) ? _canTakeout : undefined

@@ -31,7 +31,6 @@ import { computed, defineComponent, onMounted, reactive, SetupContext, useMeta }
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Breadcrumb } from '@/lib'
-import { DETAIL_LIST_ITEM } from '@/components/atoms/table/DetailListItemType'
 import { isArray, nullOrStringArrayToStringArray } from '@/src/utils/Array'
 import { isString } from '@/src/utils/String'
 
@@ -52,25 +51,10 @@ export default defineComponent({
       const _areaQuery = context.root.$route.query.areas
       if (isArray(_areaQuery)) {
         state.areaSelectedID = nullOrStringArrayToStringArray(_areaQuery)
+      } else {
+        state.areaSelectedID = [_areaQuery]
       }
     })
-
-    const onAreaClick = (id: string) => {
-      if (id === DETAIL_LIST_ITEM.ALL) {
-        if (state.areaSelectedID.length > 0) {
-          state.areaSelectedID = []
-        }
-
-        return
-      }
-
-      const areaID = state.areaSelectedID.find((aID: string) => id === aID)
-      if (areaID) {
-        state.areaSelectedID = state.areaSelectedID.filter((aID: string) => id !== aID)
-      } else {
-        state.areaSelectedID.push(id)
-      }
-    }
 
     const nowQuery = computed(() => {
       const _canTakeout = context.root.$route.query.canTakeout
@@ -89,10 +73,20 @@ export default defineComponent({
       const _dishesQuery = context.root.$route.query.dishes
       const _timezonesQuery = context.root.$route.query.timezones
 
+      if (state.areaSelectedID.length === 0) {
+        return {
+          path: '/shops',
+          query: {
+            dishes: _dishesQuery,
+            timezones: _timezonesQuery,
+            canTakeout: isString(_canTakeout) ? _canTakeout : undefined
+          }
+        }
+      }
+
       return {
-        path: '/shops',
+        path: `/shops/area/${state.areaSelectedID[0]}`,
         query: {
-          areas: state.areaSelectedID,
           dishes: _dishesQuery,
           timezones: _timezonesQuery,
           canTakeout: isString(_canTakeout) ? _canTakeout : undefined
@@ -116,7 +110,6 @@ export default defineComponent({
       areas,
       breadcrumbs,
       dishes,
-      onAreaClick,
       onUpdateNowArea,
       nowArea,
       nowQuery,

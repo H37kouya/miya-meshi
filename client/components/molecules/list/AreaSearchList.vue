@@ -114,7 +114,7 @@ export default defineComponent({
 
     const nowAreaLink = computed(() => {
       return props.nowArea
-        ? { path: '/shops', query: { areas: props.nowArea.id, ...props.query } }
+        ? { path: `/shops/area/${props.nowArea.id}`, query: { ...props.query } }
         : { path: '/shops', query: { ...props.query } }
     })
 
