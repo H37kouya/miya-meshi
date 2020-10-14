@@ -42,24 +42,24 @@
       </div>
 
       <div v-if="area || shop.canTakeout || (shop.timeZone && shop.timeZone.length > 0)" class="pb-4 px-4">
-        <v-chip v-if="area" color="#d6cba6" small>
+        <v-chip v-if="area" outlined small>
           {{ area.name }}
         </v-chip>
 
-        <v-chip v-if="shop.canTakeout" color="#d6cba6" small>
+        <v-chip v-if="shop.canTakeout" outlined small>
           テイクアウト可
         </v-chip>
 
         <template v-if="shop.timeZone && shop.timeZone.length > 0">
-          <v-chip v-if="shop.timeZone.includes('朝')" color="#d6cba6" small>
+          <v-chip v-if="shop.timeZone.includes('朝')" outlined small>
             朝
           </v-chip>
 
-          <v-chip v-if="shop.timeZone.includes('昼')" color="#d6cba6" small>
+          <v-chip v-if="shop.timeZone.includes('昼')" outlined small>
             昼
           </v-chip>
 
-          <v-chip v-if="shop.timeZone.includes('夜')" color="#d6cba6" small>
+          <v-chip v-if="shop.timeZone.includes('夜')" outlined small>
             夜
           </v-chip>
         </template>
