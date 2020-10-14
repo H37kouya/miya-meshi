@@ -5,6 +5,7 @@
     </v-container>
 
     <ShopidTemplate
+      :area="area"
       :shop="shop"
       :menus="menus"
       :type="type"
@@ -14,10 +15,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Shop, Menu, Breadcrumb } from '@/lib'
+import { Shop, Menu, Breadcrumb, Area } from '@/lib'
 import { getShopByID } from '@/src/infra/firestore/Shop'
 import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
 import { isString } from '@/src/utils/String'
+import { ActionType } from '@/store/areas'
+import { getShopArea } from '~/src/utils/Shop'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -34,6 +37,8 @@ interface Method {
 }
 
 interface Computed {
+  area?: Area,
+  areas: Area[],
   breadcrumbs: Breadcrumb[],
   type: 'top'|'dish'|'pic'|'contact'
 }
@@ -47,6 +52,10 @@ export default Vue.extend<State, Method, Computed>({
   },
 
   computed: {
+    area () {
+      return getShopArea(this.shop, this.areas)
+    },
+
     breadcrumbs () {
       if (this.shop) {
         return [
@@ -66,6 +75,10 @@ export default Vue.extend<State, Method, Computed>({
       }
 
       return 'top'
+    },
+
+    areas () {
+      return this.$store.getters['areas/areas'] as Area[]
     }
   },
 
@@ -79,13 +92,14 @@ export default Vue.extend<State, Method, Computed>({
     }
 
     this.shop = shop
+    await this.$store.dispatch(`areas/${ActionType.FETCH_AREAS}`)
   },
 
   async mounted () {
     this.menus = await getMenuListByShopID(this.$fireStore, this.$route.params.id)
   },
 
-  head() {
+  head () {
     return {
       title: (this.shop && this.shop.name) || '店舗詳細ページ'
     }

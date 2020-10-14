@@ -135,6 +135,19 @@ export default defineComponent({
     })
 
     const onPagination = async (page: number) => {
+      if (props.query.areas && props.query.areas.length === 1) {
+        return await context.root.$router.push({
+          path: `/shops/area/${props.query.areas[0]}`,
+          hash: context.root.$route.hash === 'title1' ? 'title2' : 'title1',
+          query: {
+            page: String(page),
+            dishes: props.query.dishes,
+            canTakeout: props.query.canTakeout,
+            timezones: props.query.timezones
+          }
+        })
+      }
+
       return await context.root.$router.push({
         path: '/shops',
         hash: context.root.$route.hash === 'title1' ? 'title2' : 'title1',

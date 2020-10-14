@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="px-0 px-md-3 py-0">
-      <HeaderShopField :can-click-dish="canClickDish" :shop="shop" />
+      <HeaderShopField :can-click-dish="canClickDish" :shop="shop" :area="area" />
     </v-container>
 
     <v-container class="px-0 px-md-3 py-0">
@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { Breadcrumb, Shop, Menu } from '@/lib'
+import { Breadcrumb, Shop, Menu, Area } from '@/lib'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -56,6 +56,7 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 type Props = {
+  area?: Area,
   shop: Shop,
   menus: Menu[],
   type: 'dish'|'pic'|'contact'|'top'
@@ -63,6 +64,11 @@ type Props = {
 
 export default defineComponent({
   props: {
+    area: {
+      type: Object,
+      default: undefined
+    },
+
     shop: {
       type: Object,
       required: true
