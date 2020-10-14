@@ -41,11 +41,26 @@ const shopRoutes = async (fireStore: FirebaseFirestore.Firestore): Promise<strin
   return _routes.map((_route: string) => `/shops/${_route}`)
 }
 
+const areaRoutes = async (fireStore: FirebaseFirestore.Firestore): Promise<string[]> => {
+  const _areas = await fireStore
+    .collection(Collection.AREAS)
+    .get()
+
+  const _routes = [] as string[]
+  _areas.forEach((_area) => {
+    _routes.push(_area.id)
+  })
+
+  return _routes.map((_route: string) => `/shops/area/${_route}`)
+}
+
 const handler = async () => {
   const _shopRoutes = await shopRoutes($fireStore)
+  const _areaRoutes = await areaRoutes($fireStore)
 
   const routes = [
     ...staticRoutes,
+    ..._areaRoutes,
     ..._shopRoutes
   ]
 
