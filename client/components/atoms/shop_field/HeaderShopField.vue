@@ -40,6 +40,30 @@
           {{ shop.name }}
         </h1>
       </div>
+
+      <div v-if="area || shop.canTakeout || (shop.timeZone && shop.timeZone.length > 0)" class="pb-4 px-4">
+        <v-chip v-if="area" color="#d6cba6" small>
+          {{ area.name }}
+        </v-chip>
+
+        <v-chip v-if="shop.canTakeout" color="#d6cba6" small>
+          テイクアウト可
+        </v-chip>
+
+        <template v-if="shop.timeZone && shop.timeZone.length > 0">
+          <v-chip v-if="shop.timeZone.includes('朝')" color="#d6cba6" small>
+            朝
+          </v-chip>
+
+          <v-chip v-if="shop.timeZone.includes('昼')" color="#d6cba6" small>
+            昼
+          </v-chip>
+
+          <v-chip v-if="shop.timeZone.includes('夜')" color="#d6cba6" small>
+            夜
+          </v-chip>
+        </template>
+      </div>
     </div>
 
     <v-lazy>
@@ -114,15 +138,23 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
+import { Area, Shop } from '@/lib'
+import { useGetScreenSize } from '@/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type Props = {
+  area: Area,
+  shop: Shop,
   src: string,
   prefixName: string,
   name: string
 }
 export default defineComponent({
   props: {
+    area: {
+      type: Object,
+      default: undefined
+    },
+
     canClickDish: {
       type: Boolean,
       default: true
