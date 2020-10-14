@@ -11,8 +11,6 @@
         "php": "^7.2",
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.0",
-        "kreait/firebase-php": "^5.9",
-        "kreait/laravel-firebase": "^2.4",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0"
     },
