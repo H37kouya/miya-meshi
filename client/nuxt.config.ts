@@ -107,6 +107,11 @@ const nuxtConfig: NuxtConfig = {
       measurementId: process.env.FIREBASE_MEASUREMENT_ID || ''
     },
     services: {
+      auth: {
+        ssr: {
+          credential: process.env.SERVICE_ACCOUNT || true
+        }
+      },
       firestore: true,
       analytics: !process.env.TEST_ENV,
       storage: true,
