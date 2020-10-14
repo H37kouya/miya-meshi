@@ -44,6 +44,20 @@ interface Computed {
 }
 
 export default Vue.extend<State, Method, Computed>({
+  async asyncData({ $fireStore, params, error }) {
+    const shop = await getShopByID($fireStore, params.id)
+    if (!shop) {
+      return error({
+        statusCode: 404,
+        message: '指定された店舗は削除された可能性があります。'
+      })
+    }
+
+    return {
+      shop
+    }
+  },
+
   data () {
     return {
       shop: {} as Shop,
@@ -83,15 +97,6 @@ export default Vue.extend<State, Method, Computed>({
   },
 
   async created () {
-    const shop = await getShopByID(this.$fireStore, this.$route.params.id)
-    if (!shop) {
-      return this.$nuxt.error({
-        statusCode: 404,
-        message: '指定された店舗は削除された可能性があります。'
-      })
-    }
-
-    this.shop = shop
     await this.$store.dispatch(`areas/${ActionType.FETCH_AREAS}`)
   },
 
