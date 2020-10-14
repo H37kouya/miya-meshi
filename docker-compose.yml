@@ -2,12 +2,17 @@ version: "3.8"
 volumes:
   php-fpm-socket:
   db-store:
+  vendor-store:
+  node_modules-store:
 services:
   app:
     build: ./infra/docker/php
     volumes:
       - php-fpm-socket:/var/run/php-fpm
       - ./backend:/work/backend
+      - vendor-store:/work/backend/vendor
+    depends_on:
+      - db
 
   web:
     build: ./infra/docker/nginx
@@ -16,6 +21,7 @@ services:
     volumes:
       - php-fpm-socket:/var/run/php-fpm
       - ./backend:/work/backend
+      - node_modules-store:/work/backend/node_modules
 
   db:
     build: ./infra/docker/mysql
