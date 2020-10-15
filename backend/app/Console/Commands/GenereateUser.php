@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Repositories\CreateUser;
+use App\Usecases\CreateUserUsecase;
 use Illuminate\Console\Command;
 use \Illuminate\Validation\ValidationException;
 
@@ -26,17 +27,17 @@ class GenereateUser extends Command
      * Create User
      * @var CreateUser
      */
-    private CreateUser $_createUser;
+    private CreateUserUsecase $_createUserUsecase;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(CreateUser $createUser)
+    public function __construct(CreateUserUsecase $createUserUsecase)
     {
         parent::__construct();
-        $this->_createUser = $createUser;
+        $this->_createUserUsecase = $createUserUsecase;
     }
 
     /**
@@ -59,7 +60,7 @@ class GenereateUser extends Command
             return;
         }
 
-        $user = $this->_createUser->invoke($name);
+        $user = $this->_createUserUsecase->invoke($name);
         $this->line('ユーザーの生成に成功しました');
         $this->info('name: '.$user['name']);
         $this->info('token: '.$user['token']);

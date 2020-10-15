@@ -17,11 +17,12 @@ class CreateSelectionPostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('description', '50')->nullable()->comment('一言コメント');
             $table->longText('contents')->nullable()->comment('メインコンテンツ');
-            $table->boolean('public')->default(false)->comment('公開設定');
+            $table->string('image', 255)->comment('サムネイル画像');
+            $table->boolean('release')->default(false)->comment('公開設定');
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index('public');
+            $table->index('release');
         });
     }
 

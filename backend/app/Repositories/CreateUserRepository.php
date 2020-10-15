@@ -6,7 +6,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class CreateUser
+class CreateUserRepository
 {
     private User $_user;
 
