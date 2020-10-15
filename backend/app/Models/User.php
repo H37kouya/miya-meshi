@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * App\Models\User
  *
  * @property int $id
  * @property string $name ユーザー名
- * @property string $token トークン
+ * @property string $api_token トークン
  * @property string $remember_token Remember Token
  * @property int $active 有効なアカウントかどうか
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -27,7 +27,7 @@ use Illuminate\Support\Str;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Model
+class User extends Authenticatable
 {
     protected $fillable = [
         'name',

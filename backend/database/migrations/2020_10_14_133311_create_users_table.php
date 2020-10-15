@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('active')->default(false)->comment('有効なアカウントかどうか');
             $table->timestamps();
 
-            $table->index(['active', 'token']);
+            $table->index(['active', 'api_token']);
             $table->index(['active', 'remember_token']);
         });
     }
