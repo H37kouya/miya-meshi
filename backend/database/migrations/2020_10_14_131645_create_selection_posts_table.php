@@ -15,9 +15,10 @@ class CreateSelectionPostsTable extends Migration
     {
         Schema::create('selection_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title', '50')->comment('タイトル');
             $table->string('description', '50')->nullable()->comment('一言コメント');
             $table->longText('contents')->nullable()->comment('メインコンテンツ');
-            $table->string('image', 255)->comment('サムネイル画像');
+            $table->string('image', 255)->nullable()->comment('サムネイル画像');
             $table->boolean('release')->default(false)->comment('公開設定');
             $table->softDeletes();
             $table->timestamps();

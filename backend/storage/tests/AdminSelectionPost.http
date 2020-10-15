@@ -1,0 +1,41 @@
+http://localhost:8000/api/admin/selection-post
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/admin/selection-post/3
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+POST http://localhost:8000/api/admin/selection-post HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "title": "テスト投稿",
+    "description": "テスト投稿しました！",
+    "contents": "テスト投稿しました！あいうえお",
+    "release": true
+}
+
+###
+POST http://localhost:8000/api/admin/selection-post HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "title": "テスト投稿",
+    "description": "テスト投稿しました！",
+    "contents": "テスト投稿しました！あいうえお",
+    "release": true,
+    "firebase_area_ids": [
+        "aaa",
+        "bbb",
+        "ccc"
+    ]
+}
