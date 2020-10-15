@@ -23,7 +23,7 @@ class CreateUserRepository
             /** @var User $user */
             $user = $this->_user->create([
                 'name'           => $name,
-                'token'          => $this->_user->createToken(),
+                'api_token'      => $this->_user->createApiToken(),
                 'remember_token' => $this->_user->createRememberToken(),
                 'active'         => true
             ]);

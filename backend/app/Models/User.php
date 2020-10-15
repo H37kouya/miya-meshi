@@ -31,21 +31,10 @@ class User extends Model
 {
     protected $fillable = [
         'name',
-        'token',
+        'api_token',
         'remember_token',
         'active'
     ];
-
-    /**
-     * Token生成
-     *
-     * @return string
-     */
-    public function createToken(): string
-    {
-        $uuid = (string) Str::uuid();
-        return base64_encode($uuid);
-    }
 
     /**
      * Remember Token生成
@@ -56,5 +45,15 @@ class User extends Model
     {
         $uuid = (string) Str::uuid();
         return base64_encode($uuid);
+    }
+
+    /**
+     * API tokenの生成
+     *
+     * @return string
+     */
+    public function createApiToken(): string
+    {
+        return Str::random(80);
     }
 }
