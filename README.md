@@ -26,10 +26,16 @@
 ## Description
 
 ### Client
-> Nuxt.js (on comopsition api) / TypeScript / FireBase
+
+> Nuxt.js 2.14 (on comopsition api) / TypeScript / FireBase
 
 ### Admin
-> Nuxt.js (on comopsition api) / TypeScript / FireBase
+
+> Nuxt.js 2.14 (on comopsition api) / TypeScript / FireBase
+
+### Backend
+
+> Laravel 6 / PHP 7.4 / MySQL
 
 ## Environment
 
@@ -56,6 +62,19 @@ $ make admin-dev
 - [クライアントルート定義](./.docs/RoutingClient.md)
 
 ## トラブルシューティング
+
+### MySQLへのアクセス
+
+``` shell
+# Dockerコンテナ立ち上げ
+$ docker-compose up -d
+
+# dockerのdbコンテナに入る
+$ docker-comopose exec db bash
+
+# mysqlにアクセス (password: secret)
+$ mysql -u root -p
+```
 
 ### .vueファイル内でimportのパス解決ができないとき
 
