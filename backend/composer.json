@@ -11,6 +11,7 @@
         "php": "^7.2",
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.0",
+        "lampager/lampager-laravel": "^0.4.6",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0"
     },
