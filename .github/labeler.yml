@@ -1,0 +1,8 @@
+admin:
+- admin/**/*
+client:
+- client/**/*
+admin-packge-json:
+- admin/package.json
+client-package-json:
+- client/package.json

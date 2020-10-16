@@ -25,6 +25,10 @@
 
 ## Description
 
+### Client
+> Nuxt.js (on comopsition api) / TypeScript / FireBase
+
+### Admin
 > Nuxt.js (on comopsition api) / TypeScript / FireBase
 
 ## Environment
