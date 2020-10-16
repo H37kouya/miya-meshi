@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Admin\SelectionPost;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Admin\SelectionPost\IndexSelectionPostFormRequest;
 use App\Usecases\PaginateSelectionPostUsecase;
-use Illuminate\Http\Request;
 
 class IndexSelectionPostController extends Controller
 {
@@ -21,7 +21,7 @@ class IndexSelectionPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(IndexSelectionPostFormRequest $request)
     {
         $serach = [
             'releases'   => $request->query('releases', [true, false]),
