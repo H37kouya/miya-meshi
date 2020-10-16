@@ -8,7 +8,7 @@ class UpdateSelectionPostAreaRepository
 
     private DeleteSelectionPostAreaRepository $_deleteSelectionPostAreaRepository;
 
-    public function __invoke(
+    public function __construct(
         CreateSelectionPostAreaRepository $createSelectionPostAreaRepository,
         DeleteSelectionPostAreaRepository $deleteSelectionPostAreaRepository
     ) {
