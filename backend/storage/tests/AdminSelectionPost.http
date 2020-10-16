@@ -1,4 +1,10 @@
-http://localhost:8000/api/admin/selection-post
+http://localhost:8000/api/admin/selection-post?limit=3
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/admin/selection-post?limit=3&updated_at=2020-10-15 15:15:55&created_at=2020-10-15 15:15:55&id=3
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
@@ -19,7 +25,7 @@ Accept: application/json
     "title": "テスト投稿",
     "description": "テスト投稿しました！",
     "contents": "テスト投稿しました！あいうえお",
-    "release": true
+    "release": false
 }
 
 ###
@@ -32,7 +38,7 @@ Accept: application/json
     "title": "テスト投稿",
     "description": "テスト投稿しました！",
     "contents": "テスト投稿しました！あいうえお",
-    "release": true,
+    "release": false,
     "firebase_area_ids": [
         "aaa",
         "bbb",

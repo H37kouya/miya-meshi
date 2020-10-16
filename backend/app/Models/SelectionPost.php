@@ -52,6 +52,10 @@ class SelectionPost extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $casts = [
+        'release' => 'boolean'
+    ];
+
     /**
      * Relation to SelectionPostArea
      *

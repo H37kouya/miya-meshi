@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Lampager\Laravel\MacroServiceProvider::class,
 
         /*
          * Application Service Providers...
