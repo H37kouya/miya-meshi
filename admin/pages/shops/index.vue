@@ -58,11 +58,25 @@
               </v-col>
             </v-row>
 
-            <div class="d-flex justify-end">
-              <v-btn type="submit" color="primary">
-                検索
-              </v-btn>
-            </div>
+            <v-row align="end">
+              <v-col cols="6" md="4" class="pb-0">
+                <v-text-field
+                  v-model.number="state.searchInstaNumber"
+                  label="インスタ番号"
+                  outlined
+                  hide-details
+                  type="number"
+                  clearable
+                />
+              </v-col>
+
+              <div class="ml-auto">
+                <v-btn type="submit" color="primary">
+                  検索
+                </v-btn>
+              </div>
+            </v-row>
+
           </v-form>
         </div>
 
@@ -92,6 +106,7 @@ type State = {
   searchText: string,
   searchPublic: boolean|null
   searchPriority: number
+  searchInstaNumber: number|null
   shops: Shop[]
 }
 
@@ -113,6 +128,7 @@ export default defineComponent({
         return null
       })(),
       searchPriority: Number(context.root.$route.query.priority) || 0,
+      searchInstaNumber: Number(context.root.$route.query.instaNumber) || null,
       shops: [] as Shop[]
     })
 
@@ -135,6 +151,7 @@ export default defineComponent({
         return null
       })()
       const _nameToLower = isString(name) ? name.toLowerCase() : ''
+      const _instaNumber = Number(context.root.$route.query.instaNumber) || null
 
       return state.shops.filter((shop: Shop) => {
         if (_nameToLower && shop.name && !shop.name.toLowerCase().includes(_nameToLower)) {
@@ -146,6 +163,10 @@ export default defineComponent({
         }
 
         if (_priority && _priority !== shop.priority) {
+          return false
+        }
+
+        if (_instaNumber && _instaNumber !== shop.instaNumber) {
           return false
         }
 
@@ -177,7 +198,8 @@ export default defineComponent({
           page: String(page),
           name: state.searchText || undefined,
           priority: (state.searchPriority !== 0 && String(state.searchPriority)) || undefined,
-          public: String(state.searchPublic) || undefined
+          public: (state.searchPublic !== null && String(state.searchPublic)) || undefined,
+          instaNumber: String(state.searchInstaNumber)
         }
       })
     }
@@ -188,7 +210,8 @@ export default defineComponent({
         query: {
           name: state.searchText || undefined,
           priority: (state.searchPriority !== 0 && String(state.searchPriority)) || undefined,
-          public: String(state.searchPublic) || undefined
+          public: (state.searchPublic !== null && String(state.searchPublic)) || undefined,
+          instaNumber: String(state.searchInstaNumber)
         }
       })
     }
