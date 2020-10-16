@@ -19,14 +19,22 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>
-            <v-icon :color="menu.public ? 'success' : 'grey'">
-              {{ menu.public ? 'mdi-check-circle' : 'mdi-alert-circle' }}
-            </v-icon>
-            {{ menu.name }}
+          <v-list-item-title class="d-flex justify-space-between">
+            <div>
+              <v-icon :color="menu.public ? 'success' : 'grey'">
+                {{ menu.public ? 'mdi-check-circle' : 'mdi-alert-circle' }}
+              </v-icon>
+              {{ menu.name }}
+            </div>
+
+            <div v-if="menu.canTakeout">
+              <v-chip small outlined>
+                テイクアウト可
+              </v-chip>
+            </div>
           </v-list-item-title>
           <v-list-item-subtitle v-if="menu.description">
-            {{ menu.description }}
+            <span>{{ menu.description }}</span>
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>

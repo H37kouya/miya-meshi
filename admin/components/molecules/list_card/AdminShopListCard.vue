@@ -12,7 +12,18 @@
               <v-icon :color="shop.public ? 'success' : 'grey'">
                 {{ shop.public ? 'mdi-check-circle' : 'mdi-alert-circle' }}
               </v-icon>
-              {{ shop.name }}
+
+              <template v-if="shop.instaNumber">
+                <v-badge
+                  :content="shop.instaNumber"
+                  color="grey"
+                  inline
+                  class="mt-0"
+                >
+                  <span>{{ shop.name }}</span>
+                </v-badge>
+              </template>
+              <span v-else>{{ shop.name }}</span>
             </v-list-item-title>
             <v-list-item-subtitle v-if="shop.description" class="pl-4">
               {{ shop.description }}

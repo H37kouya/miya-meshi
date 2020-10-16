@@ -10,15 +10,14 @@
 
 <script lang="ts">
 import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
-import { useInstaShopForTopPage } from '@/src/CompositonFunctions/shops/UseInstaShopForTopPage'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
+import { getShopListByInstaNumber } from '~/src/infra/firestore/Shop'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const { instaShops } = useInstaShopForTopPage(context.root)
     const { recommendShops } = useRecommendShop(context.root)
     const { newsList } = useNews()
     const { shops } = useShop(context.root, 2000)
@@ -34,11 +33,16 @@ export default defineComponent({
 
     return {
       areas,
-      instaShops,
       recommendShops,
       shops,
       newsList
     }
+  },
+
+  async asyncData({ $fireStore }) {
+    const instaShops = await getShopListByInstaNumber($fireStore, 6)
+
+    return { instaShops }
   },
 
   head: {}

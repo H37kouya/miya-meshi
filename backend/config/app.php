@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Kreait\Laravel\Firebase\ServiceProvider::class,
+        Lampager\Laravel\MacroServiceProvider::class,
 
         /*
          * Application Service Providers...

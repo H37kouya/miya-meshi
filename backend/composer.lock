@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fdbc54bdefe1a7f5328621bebecac1a",
+    "content-hash": "f4e0d096df2e7f717483ea6645606d5f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -671,6 +671,115 @@
                 "trusted proxy"
             ],
             "time": "2020-06-23T01:36:47+00:00"
+        },
+        {
+            "name": "lampager/lampager",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lampager/lampager.git",
+                "reference": "546bb10c42d865c6f466dd8231a0780904b2f3a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lampager/lampager/zipball/546bb10c42d865c6f466dd8231a0780904b2f3a7",
+                "reference": "546bb10c42d865c6f466dd8231a0780904b2f3a7",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "codeception/specify": "^0.4.6",
+                "nilportugues/sql-query-formatter": "^1.2",
+                "php-coveralls/php-coveralls": "^1.0",
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lampager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mpyw",
+                    "email": "ryosuke_i_628@yahoo.co.jp"
+                }
+            ],
+            "description": "Rapid pagination without using OFFSET",
+            "keywords": [
+                "limit",
+                "offset",
+                "pagination",
+                "paginator"
+            ],
+            "time": "2020-10-06T05:22:40+00:00"
+        },
+        {
+            "name": "lampager/lampager-laravel",
+            "version": "v0.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lampager/lampager-laravel.git",
+                "reference": "571814b80d0281e9f65b50215bbb9f959c82e75b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lampager/lampager-laravel/zipball/571814b80d0281e9f65b50215bbb9f959c82e75b",
+                "reference": "571814b80d0281e9f65b50215bbb9f959c82e75b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/contracts": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "illuminate/database": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "lampager/lampager": "^0.4",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "nilportugues/sql-query-formatter": "^1.2",
+                "orchestra/testbench": "^6.0",
+                "php-coveralls/php-coveralls": "^2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lampager\\Laravel\\MacroServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lampager\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mpyw",
+                    "email": "ryosuke_i_628@yahoo.co.jp"
+                }
+            ],
+            "description": "Rapid pagination for Laravel",
+            "keywords": [
+                "illuminate",
+                "laravel",
+                "limit",
+                "offset",
+                "pagination",
+                "paginator"
+            ],
+            "time": "2020-10-06T09:54:15+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2416,16 +2525,16 @@
         },
         {
             "name": "symfony/http-client-contracts",
-            "version": "v2.2.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client-contracts.git",
-                "reference": "3a5d0fe7908daaa23e3dbf4cee3ba4bfbb19fdd3"
+                "reference": "41db680a15018f9c1d4b23516059633ce280ca33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/3a5d0fe7908daaa23e3dbf4cee3ba4bfbb19fdd3",
-                "reference": "3a5d0fe7908daaa23e3dbf4cee3ba4bfbb19fdd3",
+                "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/41db680a15018f9c1d4b23516059633ce280ca33",
+                "reference": "41db680a15018f9c1d4b23516059633ce280ca33",
                 "shasum": ""
             },
             "require": {
@@ -2436,8 +2545,9 @@
             },
             "type": "library",
             "extra": {
+                "branch-version": "2.3",
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.3-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -2487,7 +2597,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "time": "2020-10-14T17:08:19+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -4757,25 +4867,25 @@
         },
         {
             "name": "facade/ignition-contracts",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition-contracts.git",
-                "reference": "aeab1ce8b68b188a43e81758e750151ad7da796b"
+                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition-contracts/zipball/aeab1ce8b68b188a43e81758e750151ad7da796b",
-                "reference": "aeab1ce8b68b188a43e81758e750151ad7da796b",
+                "url": "https://api.github.com/repos/facade/ignition-contracts/zipball/3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
+                "reference": "3c921a1cdba35b68a7f0ccffc6dffc1995b18267",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.3|^8.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.14",
-                "phpunit/phpunit": "^7.5|^8.0",
-                "vimeo/psalm": "^3.12"
+                "friendsofphp/php-cs-fixer": "^v2.15.8",
+                "phpunit/phpunit": "^9.3.11",
+                "vimeo/psalm": "^3.17.1"
             },
             "type": "library",
             "autoload": {
@@ -4802,7 +4912,7 @@
                 "flare",
                 "ignition"
             ],
-            "time": "2020-07-14T10:10:28+00:00"
+            "time": "2020-10-16T08:27:54+00:00"
         },
         {
             "name": "filp/whoops",
