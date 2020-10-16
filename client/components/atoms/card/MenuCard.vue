@@ -1,16 +1,27 @@
 <template>
-  <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-    <v-card v-bind="$attrs" :flat="screenMd" :tile="screenMd">
-      <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.5 : 1.2" />
-    </v-card>
+  <div>
+    <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
+      <v-card v-bind="$attrs" :flat="screenMd" :tile="screenMd">
+        <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.5 : 1.2" />
+      </v-card>
 
-    <p class="mb-0 menu-name u-black--text max-text-height-2">
-      {{ name }}
-    </p>
-    <p v-if="price" class="price red--text mb-0">
-      <span class="price-display">{{ priceDisplay }}</span> 円 ({{ isTaxIncluded ? '税込' : '税抜' }})
-    </p>
-  </component>
+      <p class="mb-0 menu-name u-black--text max-text-height-2">
+        {{ name }}
+      </p>
+      <p v-if="price" class="price red--text mb-0">
+        <span class="price-display">{{ priceDisplay }}</span> 円 ({{ isTaxIncluded ? '税込' : '税抜' }})
+      </p>
+      <div v-else style="height: 19.2px" />
+    </component>
+
+    <div class="mt-2">
+      <v-chip-group>
+        <v-chip v-if="menu.canTakeout" small outlined>
+          テイクアウト可
+        </v-chip>
+      </v-chip-group>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -56,6 +67,11 @@ export default defineComponent({
     isTaxIncluded: {
       type: Boolean,
       default: false
+    },
+
+    menu: {
+      type: Object,
+      default: undefined
     }
   },
 

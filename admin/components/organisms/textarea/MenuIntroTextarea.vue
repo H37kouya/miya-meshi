@@ -1,6 +1,7 @@
 <template>
   <v-textarea
     v-model="model"
+    v-bind="$attrs"
     :counter="counter"
     :label="label"
     :maxlength="maxLength"

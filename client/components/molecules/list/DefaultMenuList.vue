@@ -11,8 +11,8 @@
         <v-row class="px-1" :justify="justify">
           <template v-if="state.menus.length > 0">
             <template v-for="(menu, key) in state.menus">
-              <v-col :key="key" cols="4" class="px-1 py-1">
-                <MenuCard v-bind="menu" :src="menu.image" :to="`/shops/${menu.shopID}`" />
+              <v-col :key="key" cols="6" md="4" class="px-1 py-1">
+                <MenuCard v-bind="menu" :menu="menu" :src="menu.image" :to="`/shops/${menu.shopID}`" />
               </v-col>
             </template>
           </template>

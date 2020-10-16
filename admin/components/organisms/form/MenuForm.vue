@@ -3,11 +3,24 @@
     <v-row>
       <v-col cols="12" sm="8">
         <v-card outlined>
-          <v-card-title>店舗について</v-card-title>
+          <v-card-title>メニューについて</v-card-title>
 
-          <v-card-text>
+          <v-card-text class="mb-0">
             <NameMenuTextField
               v-model="state.menu.name"
+              hide-details
+            />
+          </v-card-text>
+
+          <v-card-subtitle>
+            テイクアウト可能メニューかどうか
+          </v-card-subtitle>
+
+          <v-card-text>
+            <v-switch
+              v-model="state.menu.canTakeout"
+              :label="state.menu.canTakeout ? '可能' : '不可能'"
+              class="mt-0"
             />
           </v-card-text>
         </v-card>
@@ -15,9 +28,9 @@
 
       <v-col cols="12" sm="4">
         <v-card outlined>
-          <v-card-title>サイト設定</v-card-title>
+          <v-card-title>メニュー設定</v-card-title>
 
-          <v-card-subtitle>店舗公開設定</v-card-subtitle>
+          <v-card-subtitle>メニュー公開設定</v-card-subtitle>
 
           <v-card-text class="pb-0">
             <v-switch
@@ -65,25 +78,17 @@
     <v-row>
       <v-col cols="12">
         <v-card outlined>
-          <v-card-title>店舗紹介</v-card-title>
-
-          <v-card-subtitle>
-            テイクアウト可能店舗かどうか
-          </v-card-subtitle>
+          <v-card-title>メニュー紹介</v-card-title>
 
           <v-card-text>
-            <v-switch
-              v-model="state.menu.canTakeout"
-              :label="state.menu.canTakeout ? '可能' : '不可能'"
-              class="mt-0"
-            />
-
             <DescriptionMenuTextField
               v-model="state.menu.description"
+              placeholder="現在、登録しても公開ページ上に反映されません。"
             />
 
             <MenuIntroTextarea
               v-model="state.menu.intro"
+              placeholder="現在、登録しても公開ページ上に反映されません。"
             />
 
             <v-row>
