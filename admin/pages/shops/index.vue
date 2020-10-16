@@ -14,15 +14,51 @@
       <v-col cols="12">
         <div class="py-4">
           <v-form @submit.prevent="onSearch">
-            <div class="d-flex align-center max-width-350">
-              <v-text-field
-                v-model="state.searchText"
-                class="mr-4"
-                outlined
-                hide-details
-                label="店舗名で検索"
-              />
+            <v-row>
+              <v-col cols="12" md="4">
+                <div>
+                  <v-text-field
+                    v-model="state.searchText"
+                    outlined
+                    hide-details
+                    label="店舗名で検索"
+                  />
+                </div>
+              </v-col>
 
+              <v-col cols="6" md="4">
+                <v-select
+                  v-model="state.searchPriority"
+                  label="優先度"
+                  outlined
+                  hide-details
+                  :items="[
+                    { text: '全て', value: 0 },
+                    { text: 5, value: 5 },
+                    { text: 4, value: 4 },
+                    { text: 3, value: 3 },
+                    { text: 2, value: 2 },
+                    { text: 1, value: 1 }
+                  ]"
+                />
+              </v-col>
+
+              <v-col cols="6" md="4">
+                <v-select
+                  v-model="state.searchPublic"
+                  label="公開設定"
+                  outlined
+                  hide-details
+                  :items="[
+                    { text: '全て', value: null },
+                    { text: '公開中', value: true },
+                    { text: '非公開', value: false },
+                  ]"
+                />
+              </v-col>
+            </v-row>
+
+            <div class="d-flex justify-end">
               <v-btn type="submit" color="primary">
                 検索
               </v-btn>
@@ -54,6 +90,8 @@ import { isString } from '~/src/utils/String'
 
 type State = {
   searchText: string,
+  searchPublic: boolean|null
+  searchPriority: number
   shops: Shop[]
 }
 
@@ -63,6 +101,18 @@ export default defineComponent({
   setup (_: unknown, context: SetupContext) {
     const state = reactive<State>({
       searchText: isString(context.root.$route.query.name) ? context.root.$route.query.name : '',
+      searchPublic: (() => {
+        if (context.root.$route.query.public === 'true') {
+          return true
+        }
+
+        if (context.root.$route.query.public === 'false') {
+          return false
+        }
+
+        return null
+      })(),
+      searchPriority: Number(context.root.$route.query.priority) || 0,
       shops: [] as Shop[]
     })
 
@@ -72,18 +122,35 @@ export default defineComponent({
 
     const filterShops = computed(() => {
       const name = context.root.$route.query.name
-      if (isString(name)) {
-        const _nameToLower = name.toLowerCase()
+      const _priority = Number(context.root.$route.query.priority)
+      const _public = (() => {
+        if (context.root.$route.query.public === 'true') {
+          return true
+        }
 
-        return state.shops.filter((shop: Shop) => {
-          if (!shop.name) {
-            return false
-          }
-          return shop.name.toLowerCase().includes(_nameToLower)
-        })
-      }
+        if (context.root.$route.query.public === 'false') {
+          return false
+        }
 
-      return state.shops
+        return null
+      })()
+      const _nameToLower = isString(name) ? name.toLowerCase() : ''
+
+      return state.shops.filter((shop: Shop) => {
+        if (_nameToLower && shop.name && !shop.name.toLowerCase().includes(_nameToLower)) {
+          return false
+        }
+
+        if ((_public === true || _public === false) && shop.public !== _public) {
+          return false
+        }
+
+        if (_priority && _priority !== shop.priority) {
+          return false
+        }
+
+        return true
+      })
     })
 
     const pagination = computed(() => {
@@ -107,7 +174,10 @@ export default defineComponent({
       return await context.root.$router.push({
         path: '/shops',
         query: {
-          page: String(page)
+          page: String(page),
+          name: state.searchText || undefined,
+          priority: (state.searchPriority !== 0 && String(state.searchPriority)) || undefined,
+          public: String(state.searchPublic) || undefined
         }
       })
     }
@@ -116,7 +186,9 @@ export default defineComponent({
       return await context.root.$router.push({
         path: '/shops',
         query: {
-          name: state.searchText || undefined
+          name: state.searchText || undefined,
+          priority: (state.searchPriority !== 0 && String(state.searchPriority)) || undefined,
+          public: String(state.searchPublic) || undefined
         }
       })
     }
