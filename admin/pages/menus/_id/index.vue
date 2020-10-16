@@ -39,6 +39,14 @@
         <DeleteConfirmButton @click="onDelete" />
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-col cols="12" md="4">
+        <v-card v-if="state.menu.image">
+          <v-img :src="state.menu.image" />
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
