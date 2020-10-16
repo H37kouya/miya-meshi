@@ -33,6 +33,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|SelectionPost withTrashed()
  * @method static \Illuminate\Database\Query\Builder|SelectionPost withoutTrashed()
  * @mixin \Eloquent
+ * @property string|null $image サムネイル画像
+ * @property-read int|null $selection_post_areas_count
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereRelease($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereTitle($value)
  */
 class SelectionPost extends Model
 {
