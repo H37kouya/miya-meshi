@@ -94,6 +94,25 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.max-shop-count {
+  font-size: 1rem;
+  font-weight: bolder;
+
+  @include mq(md) {
+    font-size: 1.2rem;
+  }
+}
+
+.max-shop-count-number {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-left: 1rem;
+
+  @include mq(md) {
+    font-size: 2rem;
+  }
+}
+
 .miya-meshi-about-container {
   height: 60px;
 

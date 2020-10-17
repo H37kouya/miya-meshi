@@ -104,11 +104,10 @@
 
               <v-col cols="12" sm="4">
                 <v-select
-                  v-model="state.menu.keywords"
+                  v-model="state.menu.keywords[0]"
                   :items="keywordsListForSelect"
                   :menu-props="{ maxHeight: '400' }"
                   label="タグ選択"
-                  multiple
                 />
               </v-col>
 
@@ -195,7 +194,7 @@ export default defineComponent({
         image: DEFAULT_IMAGE,
         public: true,
         dishes: [] as string[],
-        keywords: [] as string[],
+        keywords: [''] as string[],
         price: 0,
         priority: 3,
         isTaxIncluded: false,
@@ -207,6 +206,8 @@ export default defineComponent({
     const uuid = createUUID()
 
     watch(() => props.menu, (newVal, _) => {
+      console.log(newVal)
+      console.log(state.menu.keywords)
       state.menu.name = newVal ? newVal.name : state.menu.name
       state.menu.description = newVal ? newVal.description : state.menu.description
       state.menu.intro = newVal ? newVal.intro : state.menu.intro
@@ -217,7 +218,7 @@ export default defineComponent({
       state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
       state.menu.canTakeout = newVal ? newVal.canTakeout : state.menu.canTakeout
       state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
-      state.menu.keywords = newVal ? newVal.keywords : state.menu.keywords
+      state.menu.keywords = newVal && newVal.keywords ? newVal.keywords : state.menu.keywords
       state.menu.timeZone = newVal ? newVal.timeZone : state.menu.timeZone
     })
 
@@ -229,7 +230,10 @@ export default defineComponent({
     })
 
     const keywordsListForSelect = computed(() => {
-      return props.keywords.map(keyword => keyword.name)
+      return [
+        '',
+        ...props.keywords.map(keyword => keyword.name)
+      ]
     })
 
     const timeZoneSelect = computed(() => {

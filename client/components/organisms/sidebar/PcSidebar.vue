@@ -89,5 +89,4 @@ export default defineComponent({
     font-size: 2rem;
   }
 }
-
 </style>
