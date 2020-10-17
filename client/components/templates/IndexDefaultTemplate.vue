@@ -43,42 +43,10 @@
       </v-col>
 
       <v-col cols="12" md="4" class="px-0 px-md-4 pt-0 pt-md-3">
-        <div class="d-none d-md-block pt-2">
-          <div v-if="maxShopCount" class="max-shop-count text-center text-md-left">
-            <p>現在の掲載店舗数<span class="max-shop-count-number">{{ maxShopCount }}</span>店舗</p>
-          </div>
-
-          <div v-else style="height: 60px;" />
-        </div>
-
-        <div class="border-md-4 border-gray mb-8">
-          <MainText id="news" :level="2">
-            新着情報
-          </MainText>
-
-          <v-lazy>
-            <v-row class="mx-0 mb-4" justify="center">
-              <template v-for="(news, key) in newsList">
-                <v-col :key="`news${key}`" cols="12" class="px-0 pt-0">
-                  <NewsField
-                    :alt="news.hashtags[0]"
-                    :href="news.href"
-                    :to="news.to"
-                    :hashtags="news.hashtags"
-                    :src="news.src"
-                    :text="news.text"
-                  />
-                </v-col>
-              </template>
-            </v-row>
-          </v-lazy>
-        </div>
-
-        <div class="d-none d-md-block">
-          <v-card href="https://forms.gle/gAknXAaCrfsr8UdA8" target="_blank" rel="noopener" flat>
-            <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
-          </v-card>
-        </div>
+        <pc-sidebar
+          :max-shop-count="maxShopCount"
+          :news-list="newsList"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -126,25 +94,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.max-shop-count {
-  font-size: 1rem;
-  font-weight: bolder;
-
-  @include mq(md) {
-    font-size: 1.2rem;
-  }
-}
-
-.max-shop-count-number {
-  font-size: 1.5rem;
-  font-weight: 500;
-  padding-left: 1rem;
-
-  @include mq(md) {
-    font-size: 2rem;
-  }
-}
-
 .miya-meshi-about-container {
   height: 60px;
 
