@@ -3,6 +3,7 @@
 namespace App\Usecases;
 
 use App\Models\SelectionPost;
+use Illuminate\Support\Arr;
 
 class GetSelectionPostUsecase
 {
@@ -30,11 +31,13 @@ class GetSelectionPostUsecase
             ? $selectionPostQuery->whereRelease(true)->findOrFail($selectionPostId)
             : $selectionPostQuery->findOrFail($selectionPostId);
 
-        return [
-            'selectionPost'   => $selectionPost->toArray(),
-            'firebaseAreaIds' => $selectionPost->selectionPostAreas->map(
-                fn ($selectionPostArea) => $selectionPostArea->firebase_area_id
-            )
-        ];
+        $firebaseAreaIds = $selectionPost->selectionPostAreas->map(
+            fn ($selectionPostArea) => $selectionPostArea->firebase_area_id
+        );
+        // いらないkeyの削除
+        Arr::forget($selectionPost, 'selectionPostAreas');
+        Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
+
+        return $selectionPost->toArray();
     }
 }

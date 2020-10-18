@@ -23,6 +23,8 @@ class ShowSelectionPostController extends Controller
      */
     public function __invoke(Request $request, int $selectionPostId)
     {
-        return $this->_getSelectionPostUsecase->invoke($selectionPostId, false);
+        return [
+            "data" => $this->_getSelectionPostUsecase->invoke($selectionPostId, false)
+        ];
     }
 }
