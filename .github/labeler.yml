@@ -1,8 +1,15 @@
 admin:
 - admin/**/*
+backend:
+- backend/**/*
 client:
 - client/**/*
+backend-composer-json:
+- backend/composer.json
+- backend/composer.lock
 admin-packge-json:
 - admin/package.json
+- admin/package-lock.json
 client-package-json:
 - client/package.json
+- client/package-lock.json
