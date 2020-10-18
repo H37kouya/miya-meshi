@@ -16,12 +16,15 @@
         {{ menu.name }}
       </p>
 
-      <p class="topic u-black--text mb-0">
-        <v-icon small>
-          mdi-information
-        </v-icon>
-        秋限定
-      </p>
+      <template v-if="menu.keywords && menu.keywords.length > 0">
+        <p class="topic u-black--text mb-0">
+          <v-icon small>
+            mdi-information
+          </v-icon>
+          {{ menu.keywords[0] }}
+        </p>
+      </template>
+      <div v-else style="height: 19.2px" />
 
       <p v-if="priceDisplay" class="price red--text mb-0">
         <v-icon color="#d4573c" small>
