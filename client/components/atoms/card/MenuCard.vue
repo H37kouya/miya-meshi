@@ -1,7 +1,14 @@
 <template>
   <div>
     <component :is="to ? `nuxt-link` : 'div'" :to="to" class="text-decoration-none">
-      <v-card v-bind="$attrs" :flat="screenMd" :tile="screenMd">
+      <v-card
+        v-bind="$attrs"
+        :href="to ? undefined : src"
+        :target="to ? undefined : '_blank'"
+        :rel="to ? undefined : 'noopener'"
+        :flat="screenMd"
+        :tile="screenMd"
+      >
         <v-img :alt="alt" :src="src" :aspect-ratio="screenMd ? 1.5 : 1.2" />
       </v-card>
 
