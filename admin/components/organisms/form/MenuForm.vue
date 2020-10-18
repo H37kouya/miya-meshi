@@ -12,17 +12,37 @@
             />
           </v-card-text>
 
-          <v-card-subtitle>
-            テイクアウト可能メニューかどうか
-          </v-card-subtitle>
+          <div class="d-flex align-center">
+            <div>
+              <v-card-subtitle>
+                テイクアウト可能メニューかどうか
+              </v-card-subtitle>
 
-          <v-card-text>
-            <v-switch
-              v-model="state.menu.canTakeout"
-              :label="state.menu.canTakeout ? '可能' : '不可能'"
-              class="mt-0"
-            />
-          </v-card-text>
+              <v-card-text>
+                <v-switch
+                  v-model="state.menu.canTakeout"
+                  :label="state.menu.canTakeout ? '可能' : '不可能'"
+                  class="mt-0"
+                />
+              </v-card-text>
+            </div>
+
+            <div>
+              <v-card-subtitle class="py-2">
+                タグ選択
+              </v-card-subtitle>
+
+              <v-card-text>
+                <v-select
+                  v-model="state.menu.keywords[0]"
+                  :items="keywordsListForSelect"
+                  :menu-props="{ maxHeight: '400' }"
+                  label="タグ選択"
+                  hide-details
+                />
+              </v-card-text>
+            </div>
+          </div>
         </v-card>
       </v-col>
 
