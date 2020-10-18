@@ -1,0 +1,36 @@
+http://localhost:8000/api/selection-post?limit=10
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/selection-post?limit=3&updated_at=2020-10-15 15:15:55&created_at=2020-10-15 15:15:55&id=3
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/selection-post/1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/selection-post/3
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+POST http://localhost:8000/api/selection-post HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "title": "テスト投稿",
+    "description": "テスト投稿しました！",
+    "contents": "テスト投稿しました！あいうえお",
+    "release": false
+}
+

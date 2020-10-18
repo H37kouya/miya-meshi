@@ -77,34 +77,10 @@
         </v-col>
 
         <v-col cols="12" md="4" class="px-0 px-md-4 pt-0 pt-md-3">
-          <div class="news-list-container mb-8">
-            <ShopText id="news" :level="2" class="mb-2">
-              新着情報
-            </ShopText>
-
-            <v-lazy>
-              <v-row class="mx-0 mb-4" justify="center">
-                <template v-for="(news, key) in newsList">
-                  <v-col :key="`news${key}`" cols="12" class="px-0 pt-0 px-sm-2">
-                    <NewsField
-                      :alt="news.hashtags[0]"
-                      :href="news.href"
-                      :hashtags="news.hashtags"
-                      :src="news.src"
-                      :to="news.to"
-                      :text="news.text"
-                    />
-                  </v-col>
-                </template>
-              </v-row>
-            </v-lazy>
-          </div>
-
-          <div class="d-none d-md-block">
-            <v-card href="https://forms.gle/gAknXAaCrfsr8UdA8" target="_blank" rel="noopener" flat>
-              <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
-            </v-card>
-          </div>
+          <pc-sidebar
+            :visible-shop-count="false"
+            :news-list="newsList"
+          />
         </v-col>
       </v-row>
     </v-container>

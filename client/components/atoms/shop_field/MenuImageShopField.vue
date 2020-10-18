@@ -22,6 +22,9 @@
               v-for="(_src, key) in src"
               :key="key"
               :src="_src"
+              :href="_src"
+              target="_blank"
+              rel="noopener"
               reverse-transition="fade-transition"
               transition="fade-transition"
             />

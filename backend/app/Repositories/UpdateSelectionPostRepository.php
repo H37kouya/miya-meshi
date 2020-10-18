@@ -35,7 +35,7 @@ class UpdateSelectionPostRepository
             DB::beginTransaction();
 
             /** @var SelectionPost $selectionPost */
-            $selectionPost = $this->_selectionPost->firstOrFail($selectionPostId);
+            $selectionPost = $this->_selectionPost->findOrFail($selectionPostId);
             $selectionPost->fill([
                 'title'       => $inputs['title'],
                 'contents'    => Arr::get($inputs, 'contents', null),

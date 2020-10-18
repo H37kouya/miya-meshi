@@ -20,7 +20,7 @@ export default defineComponent({
   setup (_, context: SetupContext) {
     const { recommendShops } = useRecommendShop(context.root)
     const { newsList } = useNews()
-    const { shops } = useShop(context.root, 2000)
+    const { shops } = useShop(context.root, 500)
     const { areas } = useArea(context.root)
 
     useMeta({

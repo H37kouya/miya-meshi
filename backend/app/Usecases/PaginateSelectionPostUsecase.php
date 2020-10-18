@@ -18,9 +18,9 @@ class PaginateSelectionPostUsecase
      * SelectionPostのPagination
      *
      * @param array $search
-     * @return void
+     * @return array
      */
-    public function invoke(array $search)
+    public function invoke(array $search): array
     {
         $releases = Arr::get($search, 'releases', [true]);
         $limit = Arr::get($search, 'limit', 10);

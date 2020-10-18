@@ -23,6 +23,7 @@ class UpdateSelectionPostUsecase
     /**
      * SelctionPostを新規作成する
      *
+     * @param integer $selectionPostId
      * @param array $inputs
      * @return array
      */
@@ -37,10 +38,9 @@ class UpdateSelectionPostUsecase
             $this->getFirebaseAreaIds($inputs)
         );
 
-        return [
-            'selectionPost'   => $selectionPost,
-            'firebaseAreaIds' => $firebaseAreaIds,
-        ];
+        Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
+
+        return $selectionPost;
     }
 
     /**

@@ -13,18 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Selection Post
+Route::get('/selection-post', 'Api\Client\SelectionPost\IndexSelectionPostController');
+Route::get('/selection-post/{selectionPostId}', 'Api\Client\SelectionPost\ShowSelectionPostController');
 
 Route::middleware('auth:api')->group(function() {
 
     // User
-    Route::get('/user', 'Api\ShowUserController');
-
-    // Admin SelectionPost
-    Route::get('/admin/selection-post', 'Api\Admin\SelectionPost\IndexSelectionPostController');
-    Route::post('/admin/selection-post', 'Api\Admin\SelectionPost\RegisterSelectionPostController');
-    Route::get('/admin/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\ShowSelectionPostController');
-    Route::put('/admin/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\UpdateSelectionPostController');
+    Route::get('/user', 'Api\ShowUserController')->name('api.user.show');
 });

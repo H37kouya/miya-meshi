@@ -3,7 +3,7 @@
     <v-container class="py-4 px-6 px-md-3">
       <v-row>
         <template v-for="(menu, key) in menus">
-          <v-col :key="menu.id" cols="12" md="4" class="px-4 py-0 py-md-3" :class="{ 'mb-4': menus.length - 1 !== key }">
+          <v-col :key="menu.id" cols="12" md="4" class="px-4 px-md-1 py-0 py-md-3" :class="{ 'mb-4': menus.length - 1 !== key }">
             <template v-if="screenMd">
               <MenuCard v-bind="menu" :menu="menu" :src="menu.image" />
             </template>
