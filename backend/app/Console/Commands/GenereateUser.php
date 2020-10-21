@@ -63,7 +63,7 @@ class GenereateUser extends Command
         $user = $this->_createUserUsecase->invoke($name);
         $this->line('ユーザーの生成に成功しました');
         $this->info('name: '.$user['name']);
-        $this->info('token: '.$user['token']);
+        $this->info('token: '.$user['api_token']);
         $this->line("\n".'end');
         return;
     }
