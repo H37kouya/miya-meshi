@@ -31,8 +31,8 @@ class CreateUserRepository
             DB::commit();
 
             return [
-                'name'  => $user->name,
-                'token' => $user->token
+                'name'      => $user->name,
+                'api_token' => $user->api_token
             ];
         } catch (Exception $e) {
             DB::rollBack();
