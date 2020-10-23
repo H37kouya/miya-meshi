@@ -4,6 +4,7 @@
     :counter="counter"
     :label="label"
     :maxlength="maxLength"
+    placeholder="居酒屋"
     outlined
     required
   />
