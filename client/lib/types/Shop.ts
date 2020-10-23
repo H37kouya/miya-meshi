@@ -59,6 +59,24 @@ export type Shop = {
   keywords: string[],
   dishes?: string[],
   timeZone?: string[],
+  // 店名(かな)
+  nameKana: string,
+  // 交通
+  access: string,
+  // 予約可否
+  canReservation: boolean,
+  // 予約最大人数
+  reservervationMaxNumber: string|number
+  // クレジットカード
+  creditCard: string
+  // 禁煙・喫煙
+  aboutSmoking: string
+  // 電子マネー
+  electronicMoney: string
+  // 総席数
+  totalNumberOfSeats: string
+  // 個室
+  privateRoom: string
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

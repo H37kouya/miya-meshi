@@ -13,6 +13,16 @@
             <NameShopTextField
               v-model="state.shop.name"
             />
+
+            <v-text-field
+              v-model="state.shop.nameKana"
+              :label="`店舗よみ(かな)`"
+              placeholder="みやめしおうえんたい"
+              type="text"
+              outlined
+              inputmode="kana"
+              maxlength="100"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -75,26 +85,94 @@
                 />
               </v-card-text>
 
-              <v-card-subtitle>
-                テイクアウト可能店舗かどうか
-              </v-card-subtitle>
-
               <v-card-text>
-                <v-switch
-                  v-model="state.shop.canTakeout"
-                  :label="state.shop.canTakeout ? '可能' : '不可能'"
-                  class="mt-0"
+                <v-row>
+                  <v-col cols="12" md="6" class="pt-0">
+                    <v-card-subtitle>
+                      テイクアウト可能店舗かどうか
+                    </v-card-subtitle>
+
+                    <v-switch
+                      v-model="state.shop.canTakeout"
+                      :label="state.shop.canTakeout ? '可能' : '不可能'"
+                      class="mt-0"
+                    />
+                  </v-col>
+
+                  <v-col cols="12" md="6" class="pt-0">
+                    <v-card-subtitle>
+                      予約可能店舗かどうか
+                    </v-card-subtitle>
+
+                    <v-switch
+                      v-model="state.shop.canReservation"
+                      :label="state.shop.canReservation ? '可能' : '不可能'"
+                      class="mt-0"
+                    />
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-select
+                      v-model="state.shop.priceRange"
+                      :items="priceRangeListForSelect"
+                      label="価格帯"
+                    />
+
+                    <v-select
+                      v-model="state.shop.dishes"
+                      :items="dishesListForSelect"
+                      :menu-props="{ maxHeight: '400' }"
+                      label="ジャンル選択"
+                      multiple
+                    />
+                  </v-col>
+
+                  <v-col cols="12" md="6">
+                    <v-select
+                      v-model="state.shop.keywords"
+                      :items="keywordsListForSelect"
+                      :menu-props="{ maxHeight: '400' }"
+                      label="タグ選択"
+                      multiple
+                    />
+
+                    <v-select
+                      v-model="state.shop.timeZone"
+                      :items="timeZoneJa"
+                      :menu-props="{ maxHeight: '400' }"
+                      label="時間帯"
+                      multiple
+                    />
+                  </v-col>
+                </v-row>
+
+                <v-text-field
+                  v-model.number="state.shop.reservervationMaxNumber"
+                  label="予約最大人数"
+                  placeholder="10"
+                  outlined
+                  suffix="人"
                 />
 
-                <v-select
-                  v-model="state.shop.priceRange"
-                  :items="priceRangeListForSelect"
-                  label="価格帯"
+                <v-text-field
+                  v-model.number="state.shop.creditCard"
+                  label="クレジットカード"
+                  placeholder="非対応"
+                  outlined
+                />
+
+                <v-text-field
+                  v-model.number="state.shop.electronicMoney"
+                  label="電子マネー"
+                  placeholder="Suicaなどの交通系電子マネー"
+                  outlined
                 />
               </v-card-text>
             </v-col>
 
-            <v-col cols="12" sm="4" class="mt-0 mt-sm-3">
+            <v-col cols="12" sm="4" class="mt-0">
               <v-card-text>
                 <DialogWithTimePicker
                   v-model="state.shop.businessStartHour1"
@@ -134,28 +212,20 @@
                   v-model="state.shop.seat"
                 />
 
-                <v-select
-                  v-model="state.shop.dishes"
-                  :items="dishesListForSelect"
-                  :menu-props="{ maxHeight: '400' }"
-                  label="ジャンル選択"
-                  multiple
+                <v-text-field
+                  v-model="state.shop.privateRoom"
+                  label="個室"
+                  placeholder="個室4室あります"
+                  maxlength="50"
+                  outlined
                 />
 
-                <v-select
-                  v-model="state.shop.keywords"
-                  :items="keywordsListForSelect"
-                  :menu-props="{ maxHeight: '400' }"
-                  label="タグ選択"
-                  multiple
-                />
-
-                <v-select
-                  v-model="state.shop.timeZone"
-                  :items="timeZoneJa"
-                  :menu-props="{ maxHeight: '400' }"
-                  label="時間帯"
-                  multiple
+                <v-text-field
+                  v-model="state.shop.aboutSmoking"
+                  label="禁煙・喫煙"
+                  placeholder="全席禁煙"
+                  maxlength="50"
+                  outlined
                 />
               </v-card-text>
             </v-col>
@@ -222,6 +292,14 @@
                   />
                 </v-col>
               </v-row>
+
+              <v-textarea
+                v-model="state.shop.access"
+                label="交通情報"
+                placeholder="例) JR宇都宮駅西口から
+３番乗り場（JRバス関東）清原台団地行、芳賀町役場行、祖母井行、茂木行、ベルモール行など 乗車時間約15分「宇大前」下車徒歩1分 "
+                outlined
+              />
             </v-col>
           </v-card-text>
         </v-card>
@@ -427,6 +505,15 @@ export default defineComponent({
         latitude: 0,
         longitude: 0,
         timeZone: [],
+        nameKana: undefined,
+        access: undefined,
+        canReservation: false,
+        reservervationMaxNumber: undefined,
+        creditCard: undefined,
+        aboutSmoking: undefined,
+        electronicMoney: undefined,
+        totalNumberOfSeats: undefined,
+        privateRoom: undefined,
         displayMode: DisplayMode.DEFAULT
       }
     })

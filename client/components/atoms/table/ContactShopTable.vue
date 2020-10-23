@@ -36,6 +36,13 @@ type TableData = {
 const convertToTableData = (shop: Shop): TableData[] => {
   const tableData = [] as TableData[]
 
+  if (shop.nameKana) {
+    tableData.push({
+      heading: '店舗よみ',
+      value: shop.nameKana
+    } as TableData)
+  }
+
   if (shop.address) {
     const value = shop.buildingName ? `${shop.address}${shop.buildingName}` : shop.address
     tableData.push({
@@ -48,6 +55,13 @@ const convertToTableData = (shop: Shop): TableData[] => {
     tableData.push({
       heading: ShopJa.TEL,
       value: shop.tel
+    } as TableData)
+  }
+
+  if (shop.access) {
+    tableData.push({
+      heading: '交通アクセス',
+      value: shop.access
     } as TableData)
   }
 
@@ -81,6 +95,20 @@ const convertToTableData = (shop: Shop): TableData[] => {
     })
   }
 
+  if (shop.canReservation === true || shop.canReservation === false) {
+    tableData.push({
+      heading: '予約可否',
+      value: shop.canReservation ? '予約可能' : '予約不可能'
+    })
+  }
+
+  if (shop.reservervationMaxNumber) {
+    tableData.push({
+      heading: '予約最大人数',
+      value: `${shop.reservervationMaxNumber}人`
+    })
+  }
+
   if (shop.regularHoliday) {
     tableData.push({
       heading: ShopJa.REGULAR_HOLIDAY,
@@ -99,6 +127,41 @@ const convertToTableData = (shop: Shop): TableData[] => {
     tableData.push({
       heading: ShopJa.PRICE_RANGE,
       value: shop.priceRange
+    })
+  }
+
+  if (shop.creditCard) {
+    tableData.push({
+      heading: 'クレジットカード',
+      value: shop.creditCard
+    })
+  }
+
+  if (shop.aboutSmoking) {
+    tableData.push({
+      heading: '禁煙・喫煙',
+      value: shop.aboutSmoking
+    })
+  }
+
+  if (shop.electronicMoney) {
+    tableData.push({
+      heading: '電子マネー',
+      value: shop.electronicMoney
+    })
+  }
+
+  if (shop.totalNumberOfSeats) {
+    tableData.push({
+      heading: '総席数',
+      value: shop.totalNumberOfSeats
+    })
+  }
+
+  if (shop.privateRoom) {
+    tableData.push({
+      heading: '個室',
+      value: shop.privateRoom
     })
   }
 

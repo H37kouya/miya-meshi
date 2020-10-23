@@ -5,6 +5,7 @@
     :label="label"
     :maxlength="maxLength"
     outlined
+    placeholder="50座席あります"
   />
 </template>
 
