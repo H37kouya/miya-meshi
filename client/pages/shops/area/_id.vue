@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext, useContext, watchEffect } from '@nuxtjs/composition-api'
+import { computed, defineComponent, SetupContext, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -352,6 +352,10 @@ export default defineComponent({
       return _areas[0].name
     })
 
+    useMeta({
+      title: `${selectedArea.value}から探す`
+    })
+
     return {
       areas,
       breadcrumbs,
@@ -375,9 +379,7 @@ export default defineComponent({
     }
   },
 
-  head: () => ({
-    title: 'お店から探す'
-  })
+  head: {}
 })
 </script>
 
