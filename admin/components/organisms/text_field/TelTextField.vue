@@ -30,7 +30,7 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const { model } = useModel<Props>(props, context.emit)
     const label = ShopJa.POSTAL
-    const MAX_LENGTH = 12
+    const MAX_LENGTH = 15
 
     const rules = {
       tel: (str?: string) => {
