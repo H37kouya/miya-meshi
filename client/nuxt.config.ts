@@ -184,8 +184,7 @@ const nuxtConfig: NuxtConfig = {
     id: process.env.GA_ADSENSE_ID,
     pageLevelAds: false,
     analyticsUacct: 'UA-175242187-1',
-    analyticsDomainName: 'miyameshi.com',
-    test: process.env.TEST_ENV
+    analyticsDomainName: 'miyameshi.com'
   },
   /*
   ** vuetify module configuration

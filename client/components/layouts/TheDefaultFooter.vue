@@ -2,6 +2,12 @@
   <footer
     class="pa-0"
   >
+    <div>
+      <adsbygoogle
+        ad-slot="6047159759"
+      />
+    </div>
+
     <RecruitmentFooterField />
 
     <div class="contact-footer-container d-flex justify-center align-center border-y border-dark-gray">

@@ -71,6 +71,12 @@
               <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
             </v-card>
           </div>
+
+          <div>
+            <adsbygoogle
+              ad-slot="7220123703"
+            />
+          </div>
         </v-col>
       </v-row>
     </v-container>

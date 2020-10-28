@@ -23,6 +23,14 @@
                 :price-range="shop.priceRange"
               />
             </v-col>
+
+            <template v-if="[11, 35, 89].includes(key)">
+              <v-col :key="`adsense_${key}`" cols="12">
+                <adsbygoogle
+                  ad-slot="6047159759"
+                />
+              </v-col>
+            </template>
           </template>
         </template>
 
