@@ -72,7 +72,7 @@
             </v-card>
           </div>
 
-          <div>
+          <div class="mt-8">
             <adsbygoogle
               ad-slot="7220123703"
             />
