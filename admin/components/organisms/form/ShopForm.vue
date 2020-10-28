@@ -322,6 +322,21 @@
               v-model="state.shop.instaShopLink"
               :label="ShopJa.INSTA_SHOP_LINK"
             />
+
+            <v-textarea
+              v-model="state.shop.instaIframe"
+              label="インスタ埋め込み"
+              outlined
+              hide-details
+            />
+
+            <div class="text-right mb-2">
+              <a href="https://mag.app-liv.jp/archive/125990/" rel="noopener" target="_blank">埋め込みのやり方</a>
+            </div>
+
+            <div>
+              <div v-html="state.shop.instaIframe" />
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -514,6 +529,7 @@ export default defineComponent({
         electronicMoney: undefined,
         totalNumberOfSeats: undefined,
         privateRoom: undefined,
+        instaIframe: undefined,
         displayMode: DisplayMode.DEFAULT
       }
     })

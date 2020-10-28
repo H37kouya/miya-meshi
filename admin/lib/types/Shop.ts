@@ -77,6 +77,8 @@ export type Shop = {
   totalNumberOfSeats: string
   // 個室
   privateRoom: string
+  // インスタ埋め込み
+  instaIframe: string
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

@@ -34,7 +34,9 @@
               <v-lazy>
                 <ContactShopTable :shop="shop" />
               </v-lazy>
+            </div>
 
+            <div class="d-md-none">
               <div class="my-4">
                 <adsbygoogle
                   ad-slot="6047159759"
@@ -46,6 +48,10 @@
 
         <v-col cols="12" md="4" class="px-0 px-md-3 pt-0 pt-md-3">
           <ShopContactField :shop="shop" :type="type" />
+
+          <div v-if="shop.instaIframe" class="mt-8 px-4 px-md-0">
+            <div v-html="shop.instaIframe" />
+          </div>
 
           <div class="my-4">
             <adsbygoogle
