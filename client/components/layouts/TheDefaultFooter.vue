@@ -5,6 +5,7 @@
     <div>
       <adsbygoogle
         ad-slot="6047159759"
+        :ad-style="{ display: 'block', width: '100%' }"
       />
     </div>
 
