@@ -34,12 +34,24 @@
               <v-lazy>
                 <ContactShopTable :shop="shop" />
               </v-lazy>
+
+              <div>
+                <adsbygoogle
+                  ad-slot="6047159759"
+                />
+              </div>
             </div>
           </div>
         </v-col>
 
         <v-col cols="12" md="4" class="px-0 px-md-3 pt-0 pt-md-3">
           <ShopContactField :shop="shop" :type="type" />
+
+          <div>
+            <adsbygoogle
+              ad-slot="7220123703"
+            />
+          </div>
         </v-col>
       </v-row>
     </v-container>

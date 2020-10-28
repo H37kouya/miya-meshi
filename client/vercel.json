@@ -32,6 +32,11 @@
       "dest": "/favicon.ico"
     },
     {
+      "src": "/ads.txt",
+      "headers": { "cache-control": "public, max-age=31536000" },
+      "dest": "/ads.txt"
+    },
+    {
       "src": "/no-image.png",
       "headers": { "cache-control": "public, max-age=31536000" },
       "dest": "/no-image.png"
