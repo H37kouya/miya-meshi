@@ -23,7 +23,10 @@ export type Shop = {
   tel?: string|number,
   imageLink?: string,
   subImageLink?: string[],
+  // メニュー写真
   menuImageLink?: string[],
+  // 店舗外眼写真
+  appearanceImageLink?: string[],
   facebookLink?: string,
   homepageLink?: string,
   instaLink?: string,
