@@ -80,7 +80,7 @@ export type Shop = {
   // 個室
   privateRoom: string
   // GoToEat可能かどうか
-  canGoToEat: string
+  canGoToEat: boolean
   // インスタ埋め込み
   instaIframe: string
   createdAt?: Date|Object,
