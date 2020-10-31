@@ -82,7 +82,7 @@ export type Shop = {
   // Go To Eat用のリンク
   goToEatLink?: string,
   // GoToEat可能かどうか
-  canGoToEat: string
+  canGoToEat: boolean
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object
