@@ -15,6 +15,7 @@
                 :alt="`${shop.name} - thumnails`"
                 :area="computedShopArea(shop.address)"
                 :can-takeout="shop.canTakeout"
+                :can-go-to-eat="shop.canGoToEat"
                 :to="`/shops/${shop.id}`"
                 :src="shop.imageLink"
                 :name="shop.name"

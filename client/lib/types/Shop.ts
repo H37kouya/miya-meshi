@@ -79,6 +79,10 @@ export type Shop = {
   privateRoom: string
   // インスタ埋め込み
   instaIframe: string
+  // Go To Eat用のリンク
+  goToEatLink?: string,
+  // GoToEat可能かどうか
+  canGoToEat: string
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

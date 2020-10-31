@@ -43,7 +43,11 @@
 
     <div class="mt-2">
       <v-chip-group>
-        <v-chip v-if="canTakeout" small outlined>
+        <v-chip v-if="canGoToEat" x-small outlined>
+          GoToEat
+        </v-chip>
+
+        <v-chip v-if="canTakeout" x-small outlined>
           テイクアウト可
         </v-chip>
       </v-chip-group>
@@ -73,6 +77,11 @@ export default defineComponent({
     area: {
       type: String,
       default: undefined
+    },
+
+    canGoToEat: {
+      type: Boolean,
+      default: false
     },
 
     canTakeout: {

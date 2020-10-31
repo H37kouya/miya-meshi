@@ -87,8 +87,8 @@
 
               <v-card-text>
                 <v-row>
-                  <v-col cols="12" md="6" class="pt-0">
-                    <v-card-subtitle>
+                  <v-col cols="12" md="4" class="pt-0">
+                    <v-card-subtitle class="px-2">
                       テイクアウト可能店舗かどうか
                     </v-card-subtitle>
 
@@ -99,14 +99,26 @@
                     />
                   </v-col>
 
-                  <v-col cols="12" md="6" class="pt-0">
-                    <v-card-subtitle>
+                  <v-col cols="12" md="4" class="pt-0">
+                    <v-card-subtitle class="px-2">
                       予約可能店舗かどうか
                     </v-card-subtitle>
 
                     <v-switch
                       v-model="state.shop.canReservation"
                       :label="state.shop.canReservation ? '可能' : '不可能'"
+                      class="mt-0"
+                    />
+                  </v-col>
+
+                  <v-col cols="12" md="4" class="pt-0">
+                    <v-card-subtitle class="px-2">
+                      GoToEatを行っているかどうか
+                    </v-card-subtitle>
+
+                    <v-switch
+                      v-model="state.shop.canGoToEat"
+                      :label="state.shop.canGoToEat ? '実施中' : '非実施'"
                       class="mt-0"
                     />
                   </v-col>
@@ -393,6 +405,12 @@
                   :label="ShopJa.YOUTUBE_LINK"
                   prepend-inner-icon="mdi-youtube"
                 />
+
+                <LinkTextField
+                  v-model="state.shop.goToEatLink"
+                  label="Go To Eat"
+                  prepend-inner-icon="mdi-alpha-g-box-outline"
+                />
               </v-col>
             </v-row>
           </v-card-text>
@@ -494,6 +512,7 @@ export default defineComponent({
         twitterLink: undefined,
         uberEatsLink: undefined,
         youtubeLink: undefined,
+        goToEatLink: undefined,
         priority: 3,
         priceRange: undefined,
         public: true,
@@ -530,6 +549,7 @@ export default defineComponent({
         totalNumberOfSeats: undefined,
         privateRoom: undefined,
         instaIframe: undefined,
+        canGoToEat: false,
         displayMode: DisplayMode.DEFAULT
       }
     })
