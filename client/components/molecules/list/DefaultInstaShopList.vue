@@ -15,6 +15,7 @@
                 :alt="shop.name"
                 :area="computedShopArea(shop.address)"
                 :can-takeout="shop.canTakeout"
+                :can-go-to-eat="shop.canGoToEat"
                 :prefix-name="shop.prefixName"
                 :name="shop.name"
                 :to="`/shops/${shop.id}`"
