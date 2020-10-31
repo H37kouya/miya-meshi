@@ -438,6 +438,14 @@
               label="メニュー画像"
               @input="(v) => state.shop.menuImageLink = v"
             />
+
+            <UploadMultipleImageFile
+              :default-image="DEFAULT_IMAGE"
+              :path="uuid.appearanceImages.map((appearanceImage) => `/shop_appearances/${appearanceImage}`)"
+              :past-image-link="state.shop.appearanceImageLink"
+              label="店舗外観"
+              @input="(v) => state.shop.appearanceImageLink = v"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -550,6 +558,18 @@ export default defineComponent({
         privateRoom: undefined,
         instaIframe: undefined,
         canGoToEat: false,
+        appearanceImageLink: [
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE
+        ],
         displayMode: DisplayMode.DEFAULT
       }
     })
@@ -558,6 +578,18 @@ export default defineComponent({
       image: createUUID(),
       menuImage: createUUID(),
       menuImages: [
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID()
+      ],
+      appearanceImages: [
+        createUUID(),
+        createUUID(),
+        createUUID(),
+        createUUID(),
         createUUID(),
         createUUID(),
         createUUID(),
