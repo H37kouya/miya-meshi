@@ -77,6 +77,12 @@ export type Shop = {
   totalNumberOfSeats: string
   // 個室
   privateRoom: string
+  // インスタ埋め込み
+  instaIframe: string
+  // Go To Eat用のリンク
+  goToEatLink?: string,
+  // GoToEat可能かどうか
+  canGoToEat: boolean
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

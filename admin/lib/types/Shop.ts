@@ -30,6 +30,8 @@ export type Shop = {
   twitterLink?: string,
   uberEatsLink?: string,
   youtubeLink?: string,
+  // Go To Eat用のリンク
+  goToEatLink?: string,
   // 優先度
   priority: number,
   // 価格帯
@@ -77,6 +79,10 @@ export type Shop = {
   totalNumberOfSeats: string
   // 個室
   privateRoom: string
+  // GoToEat可能かどうか
+  canGoToEat: boolean
+  // インスタ埋め込み
+  instaIframe: string
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object
