@@ -24,8 +24,7 @@ export default defineComponent({
     const { areas } = useArea(context.root)
 
     useMeta({
-      title: 'みやメシ応援隊',
-      titleTemplate: undefined,
+      title: '宇都宮の新たなグルメサイト',
       meta: [
         { hid: 'og:type', property: 'og:type', content: 'website' }
       ]
