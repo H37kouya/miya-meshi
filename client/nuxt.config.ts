@@ -11,8 +11,8 @@ const nuxtConfig: NuxtConfig = {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    titleTemplate: '%s - ' + 'みやメシ応援隊',
-    title: 'みやメシ応援隊',
+    titleTemplate: '%s - ' + 'みやメシ.com',
+    title: 'みやメシ.com',
     htmlAttrs: {
       lang: 'ja',
       prefix: 'og: http://ogp.me/ns#'
@@ -27,7 +27,7 @@ const nuxtConfig: NuxtConfig = {
       },
       { name: 'robots', content: process.env.TEST_ENV ? 'noindex' : 'index' },
       { hid: 'og:description', property: 'og:description', content: '宇都宮にあるテイクアウトできる飲食店を応援します。宇都宮の飲食店をテイクアウトし美味しいお店を発信していきます' },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'みやメシ応援隊' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'みやメシ.com' },
       { hid: 'og:image', property: 'og:image', content: '/s/icon.png' },
       { hid: 'og:url', property: 'og:url', content: 'https://miyameshi.com' },
       { hid: 'og:type', property: 'og:type', content: 'article' },
