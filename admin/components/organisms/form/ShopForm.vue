@@ -549,7 +549,7 @@ export default defineComponent({
         timeZone: [],
         nameKana: undefined,
         access: undefined,
-        canReservation: false,
+        canReservation: true,
         reservervationMaxNumber: undefined,
         creditCard: undefined,
         aboutSmoking: undefined,
