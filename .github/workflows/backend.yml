@@ -29,6 +29,7 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+      working-directory: ./backend
     - name: artisan コマンドが正しく実行されるか
       run: |
         php artisan cache:clear
@@ -39,5 +40,6 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: backend/vendor/bin/phpunit
+        DB_DATABASE: backend/database/database.sqlite
+      run: vendor/bin/phpunit
+      working-directory: ./backend
