@@ -14,14 +14,14 @@
 
     <v-row>
       <v-col cols="12">
-        <PostDataTable :keywords="state.posts" @delete="onDelete" />
+        <PostDataTable :posts="state.posts" @delete="onDelete" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Post } from '@/lib'
 import { getSelectionPostList } from '@/src/infra/backend/SelectionPost'
 
@@ -33,12 +33,14 @@ export default defineComponent({
       posts: [] as Post[]
     })
 
-    onMounted(async () => {
-      state.posts = await getSelectionPostList(
+    watchEffect(async () => {
+      const data = await getSelectionPostList(
         context.root.$config.API_URL,
         context.root.$config.API_TOKEN,
         context.root.$axios
       )
+
+      state.posts = data.records
     })
 
     const onDelete = () => {}

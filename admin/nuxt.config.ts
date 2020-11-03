@@ -18,8 +18,8 @@ const nuxtConfig: NuxtConfig  = {
 
   publicRuntimeConfig: {
     CLIENT_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://miyameshi.com',
-    API_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : '',
-    API_TOKEN: process.env.NODE_ENV !== 'production' ? '1234567890aa' : ''
+    API_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : process.env.API_URL,
+    API_TOKEN: process.env.NODE_ENV !== 'production' ? '1234567890aa' : process.env.API_TOKEN
   },
   /*
   ** Headers of the page

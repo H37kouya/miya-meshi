@@ -1,11 +1,10 @@
 <template>
   <editor
     ref="toastuiEditor"
-    :initialValue="valueModel"
     :options="editorOptions"
     height="500px"
-    initialEditType="wysiwyg"
-    previewStyle="vertical"
+    initial-edit-type="wysiwyg"
+    preview-style="vertical"
     @change="onEditorChange"
   />
 </template>
@@ -60,7 +59,7 @@ export default {
 
   data() {
     return {
-      editorText: ''
+      count: 0
     }
   },
 
@@ -80,6 +79,15 @@ export default {
   methods: {
     onEditorChange(newVal) {
       this.valueModel = this.$refs.toastuiEditor.invoke('getHtml')
+    }
+  },
+
+  watch: {
+    value() {
+      if (this.count < 2) {
+        this.$refs.toastuiEditor.invoke('setHtml', this.value)
+        this.count++
+      }
     }
   }
 }

@@ -87,7 +87,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Dish, Post } from '@/lib'
 import { v4 as createUUID } from 'uuid'
 
@@ -104,6 +104,11 @@ export default defineComponent({
     post: {
       type: Object,
       default: undefined
+    },
+
+    initital: {
+      type: Boolean,
+      default: true
     }
   },
 

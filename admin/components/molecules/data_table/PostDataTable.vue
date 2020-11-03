@@ -4,6 +4,9 @@
     :items="state.posts"
     class="elevation-1"
   >
+    <template #item.release="{ item }">
+      {{ item.release ? '公開' : '非公開' }}
+    </template>
     <template #item.edit="{ item }">
       <v-btn :to="`/post/${item.id}/edit`" color="orange" dark>
         編集する
