@@ -19,9 +19,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Post } from '@/lib'
-import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { getSelectionPost, updateSelectionPost as updateDBPost } from '@/src/infra/backend/SelectionPost'
 
 export default defineComponent({

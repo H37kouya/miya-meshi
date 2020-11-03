@@ -87,8 +87,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Dish, Post } from '@/lib'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { Post } from '@/lib'
 import { v4 as createUUID } from 'uuid'
 
 type State = {
