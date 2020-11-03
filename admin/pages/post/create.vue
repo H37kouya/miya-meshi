@@ -29,13 +29,13 @@ export default defineComponent({
   setup (_: unknown, context: SetupContext) {
     const createPost = async (post: Post) => {
       await createDBDPost(
-        {} as Post,
+        post,
         context.root.$config.API_URL,
         context.root.$config.API_TOKEN,
         context.root.$axios
       )
 
-      return await context.root.$router.push('/blog')
+      return await context.root.$router.push('/post')
     }
 
     return {

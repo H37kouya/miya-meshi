@@ -41,15 +41,33 @@ export const getSelectionPost = async (
       'Authorization': `Bearer ${apiToken}`
     }
   })
-  console.log(data)
 
   return data
 }
 
-export const createSelectionPost = (post: Post, apiBaseUrl: string, apiToken: string, $axios: NuxtAxiosInstance) => {
-  console.log('hoge')
+export const createSelectionPost = async (
+  post: Post,
+  apiBaseUrl: string = 'http://localhost:8000',
+  apiToken: string,
+  $axios: NuxtAxiosInstance
+) => {
+  await $axios.$post(`${apiBaseUrl}/api/admin/selection-post`, post, {
+    headers: {
+      'Authorization': `Bearer ${apiToken}`
+    }
+  })
 }
 
-export const updateSelectionPost = (post: Post, apiBaseUrl: string, apiToken: string, $axios: NuxtAxiosInstance) => {
-
+export const updateSelectionPost = async (
+  id: number,
+  post: Post,
+  apiBaseUrl: string = 'http://localhost:8000',
+  apiToken: string,
+  $axios: NuxtAxiosInstance
+) => {
+  await $axios.$put(`${apiBaseUrl}/api/admin/selection-post/${id}`, post, {
+    headers: {
+      'Authorization': `Bearer ${apiToken}`
+    }
+  })
 }

@@ -34,6 +34,7 @@ export default defineComponent({
 
     const editPost = async (post: Post) => {
       updateDBPost(
+        Number(context.root.$route.params.id),
         post,
         context.root.$config.API_URL,
         context.root.$config.API_TOKEN,
