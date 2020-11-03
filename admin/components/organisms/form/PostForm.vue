@@ -71,7 +71,7 @@
 
           <div>
             <EditorTextField
-              v-model="state.post.content"
+              v-model="state.post.contents"
             />
           </div>
         </v-card>
@@ -112,7 +112,7 @@ export default defineComponent({
       post: {
         title: '',
         description: '',
-        content: 'ブログを書き始めよう',
+        contents: 'ブログを書き始めよう',
         image: '',
         release: true
       } as Post

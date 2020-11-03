@@ -21,14 +21,14 @@
 <script lang="ts">
 import { defineComponent, SetupContext } from '@vue/composition-api'
 import { createSelectionPost as createDBDPost } from '@/src/infra/backend/SelectionPost'
-import { Dish, Post } from '@/lib'
+import { Post } from '@/lib'
 
 export default defineComponent({
   middleware: 'admin-auth',
 
   setup (_: unknown, context: SetupContext) {
     const createPost = async (post: Post) => {
-      await createDBDPost(context.root.$axios)
+      await createDBDPost({} as Post, context.root.$config.API_URL, context.root.$axios)
 
       return await context.root.$router.push('/blog')
     }
