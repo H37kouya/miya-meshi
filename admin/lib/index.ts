@@ -1,4 +1,4 @@
-import { Area, Dish, Keyword, Menu, News, PriceRange, Shop } from './types'
+import { Area, Dish, Keyword, Menu, News, PriceRange, Shop, Post } from './types'
 import Enum from './enum'
 
 export {
@@ -9,5 +9,6 @@ export {
   News,
   PriceRange,
   Shop,
+  Post,
   Enum
 }
