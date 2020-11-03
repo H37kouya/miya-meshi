@@ -29,7 +29,6 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-      working-directory: ./backend
     - name: artisan コマンドが正しく実行されるか
       run: |
         php artisan cache:clear
