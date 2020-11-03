@@ -2,7 +2,7 @@ export type Post = {
   id: number
   title: string
   description: string
-  longText: string
+  content: string
   image: string
   release: boolean
 }

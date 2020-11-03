@@ -10,36 +10,77 @@
                   v-model="state.post.title"
                   label="ブログタイトル"
                   outlined
+                  maxlength="50"
+                  counter
+                  placeholder="宇都宮でおすすめな女子会居酒屋3店舗！"
                 />
 
                 <v-text-field
                   v-model="state.post.description"
-                  label="概要 (50文字以下)"
+                  label="概要"
                   outlined
+                  maxlength="50"
+                  counter
                   placeholder="宇都宮でおすすめな女子会居酒屋3店舗！〇〇なお店はおすすめ。"
                 />
               </v-col>
 
               <v-col cols="4">
-                <v-switch
-                  v-model="state.post.release"
-                  :label="state.post.release ? '公開' : '非公開'"
-                  class="mt-0"
-                />
+                <v-row>
+                  <v-col cols="6" class="py-0">
+                    <v-card-subtitle class="py-0">
+                      公開設定
+                    </v-card-subtitle>
+
+                    <v-switch
+                      v-model="state.post.release"
+                      :label="state.post.release ? '公開' : '非公開'"
+                      class="mt-0"
+                    />
+                  </v-col>
+
+                  <v-col cols="6" class="py-0">
+                    <div class="d-flex justify-end">
+                      <v-btn type="submit" color="primary" large>
+                        追加
+                      </v-btn>
+                    </div>
+                  </v-col>
+                </v-row>
+
+                <v-row>
+                  <v-col cols="12" class="py-0">
+                    <UploadImageFile
+                      :path="`/post/${uuid}`"
+                      :past-image-link="state.post.image"
+                      @input="(v) => state.post.image = v"
+                    />
+                  </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12">
+        <v-card outlined class="mb-8">
+          <v-card-subtitle>
+            ブログコンテンツ
+          </v-card-subtitle>
 
           <div>
-            <EditorTextField />
-          </div>
-
-          <div class="d-flex justify-end">
-            <v-btn type="submit" color="primary" large>
-              追加
-            </v-btn>
+            <EditorTextField
+              v-model="state.post.content"
+            />
           </div>
         </v-card>
+
+        <div class="d-flex justify-end">
+          <v-btn type="submit" color="primary" large>
+            追加
+          </v-btn>
+        </div>
       </v-col>
     </v-row>
   </v-form>
@@ -48,6 +89,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Dish, Post } from '@/lib'
+import { v4 as createUUID } from 'uuid'
 
 type State = {
   post: Post
@@ -70,7 +112,7 @@ export default defineComponent({
       post: {
         title: '',
         description: '',
-        longText: '',
+        content: 'ブログを書き始めよう',
         image: '',
         release: true
       } as Post
@@ -82,10 +124,13 @@ export default defineComponent({
       }
     })
 
+    const uuid = createUUID()
+
     const onSubmit = () => context.emit('submit', state.post)
 
     return {
       state,
+      uuid,
       onSubmit
     }
   }
