@@ -7,4 +7,5 @@ Route::middleware('auth:api')->group(function() {
     Route::post('/selection-post', 'Api\Admin\SelectionPost\RegisterSelectionPostController')->name('admin.selectionPost.register');
     Route::get('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\ShowSelectionPostController')->name('admin.selectionPost.show');
     Route::put('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\UpdateSelectionPostController')->name('admin.selectionPost.update');
+    Route::delete('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\DeleteSelectionPostController')->name('admin.selectionPost.delete');
 });

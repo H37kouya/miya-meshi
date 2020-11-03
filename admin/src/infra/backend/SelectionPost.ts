@@ -71,3 +71,16 @@ export const updateSelectionPost = async (
     }
   })
 }
+
+export const deleteSelectionPost = async (
+  id: number,
+  apiBaseUrl: string = 'http://localhost:8000',
+  apiToken: string,
+  $axios: NuxtAxiosInstance
+) => {
+  await $axios.$delete(`${apiBaseUrl}/api/admin/selection-post/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${apiToken}`
+    }
+  })
+}

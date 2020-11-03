@@ -23,7 +23,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Post } from '@/lib'
-import { getSelectionPostList } from '@/src/infra/backend/SelectionPost'
+import { deleteSelectionPost, getSelectionPostList } from '@/src/infra/backend/SelectionPost'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -43,7 +43,16 @@ export default defineComponent({
       state.posts = data.records
     })
 
-    const onDelete = () => {}
+    const onDelete = (id: number) => {
+      deleteSelectionPost(
+        id,
+        context.root.$config.API_URL,
+        context.root.$config.API_TOKEN,
+        context.root.$axios
+      )
+
+      state.posts = state.posts.filter((post: Post) => post.id !== id)
+    }
 
     return {
       onDelete,
