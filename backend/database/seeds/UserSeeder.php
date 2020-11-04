@@ -16,14 +16,14 @@ class UserSeeder extends Seeder
         $user->create([
             'name'           => 'tester1',
             'api_token'      => '1234567890aa',
-            'remember_token' => $user->createRememberToken(),
+            'remember_token' => 'remember1234567890aa',
             'active'         => true
         ]);
 
         $user->create([
             'name'           => 'tester2',
             'api_token'      => '1234567890bb',
-            'remember_token' => $user->createRememberToken(),
+            'remember_token' => 'remember1234567890bb',
             'active'         => false
         ]);
     }

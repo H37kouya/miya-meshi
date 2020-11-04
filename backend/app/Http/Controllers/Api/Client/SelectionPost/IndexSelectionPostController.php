@@ -33,8 +33,6 @@ class IndexSelectionPostController extends Controller
 
         $paginateSelectionPost = $this->_paginateSelectionPostUsecase->invoke($serach);
 
-        return response()->json([
-            $paginateSelectionPost
-        ]);
+        return response()->json($paginateSelectionPost);
     }
 }

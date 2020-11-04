@@ -37,6 +37,10 @@ class User extends Authenticatable
         'active'
     ];
 
+    protected $casts = [
+        'active' => 'boolean'
+    ];
+
     /**
      * Remember Token生成
      *

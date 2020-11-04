@@ -8,9 +8,10 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^2.0",
         "lampager/lampager-laravel": "^0.4.6",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0"
