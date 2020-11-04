@@ -56,6 +56,29 @@ $ make admin-dev
 
 - [Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
 
+## Testing
+
+### Client Test
+
+``` shell
+# jest test
+$ npm test
+```
+
+### Admin Test
+
+``` shell
+# jest test
+$ npm test
+```
+
+### Backend Test
+
+``` shell
+# Laravel test
+$ vendor/bin/phpunit
+```
+
 ## Docs
 
 - [DB テーブル定義 (Cloud FireStore 定義)](./.docs/CloudFirestore.md)
