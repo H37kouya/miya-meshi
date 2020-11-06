@@ -65,4 +65,14 @@ class SelectionPost extends Model
     {
         return $this->hasMany(SelectionPostArea::class);
     }
+
+    /**
+     * Relation to SelectionPostShop
+     *
+     * @return HasMany
+     */
+    public function selectionPostShops(): HasMany
+    {
+        return $this->hasMany(SelectionPostShop::class);
+    }
 }

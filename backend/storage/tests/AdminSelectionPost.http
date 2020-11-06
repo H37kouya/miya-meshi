@@ -41,14 +41,20 @@ Authorization: Bearer 1234567890aa
 Accept: application/json
 
 {
-    "title": "テスト投稿",
+    "title": "テスト投稿100",
     "description": "テスト投稿しました！",
     "contents": "テスト投稿しました！あいうえお",
     "release": false,
     "firebase_area_ids": [
         "aaa",
         "bbb",
-        "ccc"
+        "ccc",
+        "www"
+    ],
+    "firebase_shop_ids": [
+        "bbb",
+        "ccc",
+        "www"
     ]
 }
 
@@ -69,5 +75,10 @@ Accept: application/json
         "aaa",
         "bbb",
         "ddd"
+    ],
+    "firebase_shop_ids": [
+        "bbb",
+        "ccc",
+        "www"
     ]
 }

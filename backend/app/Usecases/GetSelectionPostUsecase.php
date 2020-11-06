@@ -25,18 +25,23 @@ class GetSelectionPostUsecase
         int $selectionPostId,
         bool $onlyRelease = true
     ): array {
-        $selectionPostQuery = $this->_selectionPost->with('selectionPostAreas');
-        /** @var SelectionPost $selectionPost */
-        $selectionPost = $onlyRelease
-            ? $selectionPostQuery->whereRelease(true)->findOrFail($selectionPostId)
-            : $selectionPostQuery->findOrFail($selectionPostId);
+        $selectionPost = $this->_selectionPost
+            ->with(['selectionPostAreas', 'selectionPostShops'])
+            ->when($onlyRelease, function($query) {
+                $query->whereRelease(true);
+            })->findOrFail($selectionPostId);
 
         $firebaseAreaIds = $selectionPost->selectionPostAreas->map(
             fn ($selectionPostArea) => $selectionPostArea->firebase_area_id
         );
+        $firebaseShopIds = $selectionPost->selectionPostShops->map(
+            fn ($selectionPostShop) => $selectionPostShop->firebase_shop_id
+        );
         // いらないkeyの削除
         Arr::forget($selectionPost, 'selectionPostAreas');
+        Arr::forget($selectionPost, 'selectionPostShops');
         Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
+        Arr::set($selectionPost, 'firebase_shop_ids', $firebaseShopIds);
 
         return $selectionPost->toArray();
     }
