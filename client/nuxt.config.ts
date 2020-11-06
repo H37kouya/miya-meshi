@@ -38,6 +38,9 @@ const nuxtConfig: NuxtConfig = {
       { rel: 'shortcut icon', href: '/favicon.ico' }
     ]
   },
+  publicRuntimeConfig: {
+    API_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : process.env.API_URL
+  },
   /*
   ** Global CSS
   */

@@ -7,6 +7,7 @@ import { Menu } from './Menu'
 import { News } from './News'
 import { PriceRange } from './PriceRange'
 import { Shop } from './Shop'
+import { Post } from './Post'
 
 export {
   Area,
@@ -17,5 +18,6 @@ export {
   Menu,
   News,
   PriceRange,
-  Shop
+  Shop,
+  Post
 }
