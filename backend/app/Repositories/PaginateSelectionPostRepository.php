@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\SelectionPost;
 use App\Models\SelectionPostArea;
+use App\Models\SelectionPostShop;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
@@ -63,8 +64,10 @@ class PaginateSelectionPostRepository
             ->all();
 
         $firebaseAreaIds = $this->getFirebaseAreaIds($selectionPostIds);
-        $mappedRecords = $selectionPostRecords->map(function($_selectionPost) use ($firebaseAreaIds) {
+        $firebaseShopIds = $this->getFirebaseShopIds($selectionPostIds);
+        $mappedRecords = $selectionPostRecords->map(function($_selectionPost) use ($firebaseAreaIds, $firebaseShopIds) {
             Arr::set($_selectionPost, 'firebase_areas_ids', Arr::get($firebaseAreaIds, Arr::get($_selectionPost, 'id', null), null));
+            Arr::set($_selectionPost, 'firebase_shops_ids', Arr::get($firebaseShopIds, Arr::get($_selectionPost, 'id', null), null));
             return $_selectionPost;
         })->toArray();
 
@@ -91,6 +94,29 @@ class PaginateSelectionPostRepository
                                 ->map(fn ($_selectionPostAreas) =>
                                     (new Collection($_selectionPostAreas))->map(
                                         fn ($_selectionPostArea) => $_selectionPostArea['firebase_area_id']
+                                    )->toArray()
+                                )->all();
+        return $selectionPostAreas;
+    }
+
+    /**
+     * FirebaseShopIdsを取得する
+     *
+     * @param string[] $selectionPostIds
+     * @return array
+     * @example [
+     *   'selectionPostId' => ['firebaseShopId', 'firebaseShopId', 'firebaseShopId'],
+     *   'selectionPostId' => ['firebaseShopId', 'firebaseShopId', 'firebaseShopId']
+     * ]
+     */
+    protected function getFirebaseShopIds(array $selectionPostIds): array
+    {
+        $selectionPostAreas = SelectionPostShop::whereIn('selection_post_id', $selectionPostIds)
+                                ->get(['selection_post_id', 'firebase_shop_id'])
+                                ->groupBy('selection_post_id')
+                                ->map(fn ($_selectionPostShops) =>
+                                    (new Collection($_selectionPostShops))->map(
+                                        fn ($_selectionPostShop) => $_selectionPostShop['firebase_shop_id']
                                     )->toArray()
                                 )->all();
         return $selectionPostAreas;

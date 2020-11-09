@@ -4,6 +4,7 @@ namespace App\Usecases;
 
 use App\Repositories\UpdateSelectionPostAreaRepository;
 use App\Repositories\UpdateSelectionPostRepository;
+use App\Repositories\UpdateSelectionPostShopRepository;
 use Illuminate\Support\Arr;
 
 class UpdateSelectionPostUsecase
@@ -12,12 +13,16 @@ class UpdateSelectionPostUsecase
 
     private UpdateSelectionPostAreaRepository $_updateSelectionPostAreaRepository;
 
+    private UpdateSelectionPostShopRepository $_updateSelectionPostShopRepository;
+
     public function __construct(
         UpdateSelectionPostRepository $updateSelectionPostRepository,
-        UpdateSelectionPostAreaRepository $updateSelectionPostAreaRepository
+        UpdateSelectionPostAreaRepository $updateSelectionPostAreaRepository,
+        UpdateSelectionPostShopRepository $updateSelectionPostShopRepository
     ) {
         $this->_updateSelectionPostRepository = $updateSelectionPostRepository;
         $this->_updateSelectionPostAreaRepository = $updateSelectionPostAreaRepository;
+        $this->_updateSelectionPostShopRepository = $updateSelectionPostShopRepository;
     }
 
     /**
@@ -38,7 +43,13 @@ class UpdateSelectionPostUsecase
             $this->getFirebaseAreaIds($inputs)
         );
 
+        $firebaseShopIds = $this->_updateSelectionPostShopRepository->invoke(
+            $selectionPostId,
+            $this->getFirebaseShopIds($inputs)
+        );
+
         Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
+        Arr::set($selectionPost, 'firebase_shop_ids', $firebaseShopIds);
 
         return $selectionPost;
     }
@@ -54,5 +65,18 @@ class UpdateSelectionPostUsecase
         $firebaseAreaIds = Arr::get($inputs, 'firebase_area_ids', []);
 
         return Arr::where($firebaseAreaIds, fn ($value, $key) => is_string($value));
+    }
+
+    /**
+     * inputsからfirebase_shop_idsを取得する
+     *
+     * @param array $inputs
+     * @return string[]
+     */
+    protected function getFirebaseShopIds(array $inputs): array
+    {
+        $firebaseShopIds = Arr::get($inputs, 'firebase_shop_ids', []);
+
+        return Arr::where($firebaseShopIds, fn ($value, $key) => is_string($value));
     }
 }
