@@ -7,9 +7,39 @@
     <v-container class="pa-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
-          <MainText>
-            ブログ一覧
-          </MainText>
+          <div class="post-title">
+            <MainText>
+              {{ post.title }}
+            </MainText>
+          </div>
+
+          <v-container>
+            <div>
+              <p class="mb-0 post-updatedat">
+                <time :datetime="post.updatedAt" class="d-flex align-center">
+                  <v-icon class="mr-1">mdi-clock-time-four</v-icon><span>{{ formatUpdatedAt }}</span>
+                </time>
+              </p>
+            </div>
+          </v-container>
+
+          <div v-if="post.image">
+            <div class="d-flex justify-center">
+              <v-img
+                max-width="600px"
+                :alt="`${post.title} - サムネイル`"
+                :src="post.image"
+              />
+            </div>
+          </div>
+
+          <v-container id="post_content">
+            <div class="post-description">
+              <p>{{ post.description }}</p>
+            </div>
+
+            <div v-html="post.contents" />
+          </v-container>
         </v-col>
 
         <v-col cols="12" md="4" class="d-none d-md-block pt-0">
@@ -33,6 +63,9 @@
 <script lang="ts">
 import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { Breadcrumb } from '@/lib'
+import { usePost } from '@/src/CompositonFunctions/posts/UsePost'
+import { Context } from '@nuxt/types'
+import dayjs from 'dayjs'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -40,11 +73,23 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
-  watchQuery: ['page'],
+  validate (ctx: Context) {
+    return Number.isInteger(Number(ctx.params.id))
+  },
 
   setup (_, context: SetupContext) {
+    const postId = computed(() => {
+      return Number(context.root.$route.params.id)
+    })
+
+    const { post } = usePost(postId.value, context.root.$config.API_URL, context.root.$axios)
+
+    const formatUpdatedAt = computed(() => dayjs(post.value.updatedAt).format('YYYY年MM月DD日'))
+
     return {
-      breadcrumbs
+      breadcrumbs,
+      formatUpdatedAt,
+      post
     }
   },
 
@@ -55,41 +100,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.shop-list-title {
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-.header-shop-list-container {
-  @include mq(sm) {
-    background: #faf8f5;
-  }
-}
-
-.sales-title {
-  h3 {
-    font-size: 1.1rem;
-    font-weight: bolder;
-  }
-}
-
-.area-container {
-  border: 1rem #faf8f5 solid;
-}
-
-.area-title {
-  font-size: 1.1rem;
-  font-weight: bolder;
-  padding: 1rem;
-}
-
-.search-now-location {
-  color: #5a5041;
+.post-title {
   background: #faf8f5;
+}
+
+.post-description {
   font-weight: bolder;
 }
 
-.to-keyword-detail {
+.post-updatedat {
   font-size: 0.8rem;
 }
 </style>

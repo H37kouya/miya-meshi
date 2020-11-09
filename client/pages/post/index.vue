@@ -7,9 +7,27 @@
     <v-container class="pa-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
-          <MainText>
-            ブログ一覧
-          </MainText>
+          <div class="post-title">
+            <MainText>
+              ブログ一覧
+            </MainText>
+          </div>
+
+          <div class="border-b border-dark-gray">
+            <h3 class="pl-4 pt-4">
+              最新の投稿
+            </h3>
+          </div>
+
+          <v-row>
+            <template v-for="(post, key) in paginationPost.records">
+              <v-col :key="key" cols="12" sm="6">
+                <BlogCard
+                  :post="post"
+                />
+              </v-col>
+            </template>
+          </v-row>
         </v-col>
 
         <v-col cols="12" md="4" class="d-none d-md-block pt-0">
@@ -53,7 +71,13 @@ export default defineComponent({
   },
 
   head: () => ({
-    title: 'お店から探す'
+    title: 'ブログ一覧'
   })
 })
 </script>
+
+<style lang="scss" scoped>
+.post-title {
+  background: #faf8f5;
+}
+</style>
