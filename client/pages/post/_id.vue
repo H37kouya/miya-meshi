@@ -27,6 +27,7 @@
             <div class="d-flex justify-center">
               <v-img
                 max-width="600px"
+                width="100%"
                 :alt="`${post.title} - サムネイル`"
                 :src="post.image"
               />
