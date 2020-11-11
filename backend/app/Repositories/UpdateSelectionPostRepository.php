@@ -39,6 +39,7 @@ class UpdateSelectionPostRepository
             $selectionPost->fill([
                 'title'       => $inputs['title'],
                 'contents'    => Arr::get($inputs, 'contents', null),
+                'image'       => Arr::get($inputs, 'image', null),
                 'description' => Arr::get($inputs, 'description', null),
                 'release'     => Arr::get($inputs, 'release', false),
             ])->save();
