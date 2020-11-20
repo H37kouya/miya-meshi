@@ -25,6 +25,9 @@
 
               <div v-if="state.area">
                 <p class="mb-0">
+                  <v-icon color="#d4573c" small>
+                    mdi-map-marker
+                  </v-icon>
                   {{ state.area.name }}
                 </p>
               </div>
@@ -47,7 +50,9 @@
               <p>{{ post.description }}</p>
             </div>
 
-            <div v-html="post.contents" />
+            <div class="post-main-content">
+              <div v-html="post.contents" />
+            </div>
           </v-container>
         </v-col>
 
@@ -135,6 +140,7 @@ export default defineComponent({
 
 .post-description {
   font-weight: bolder;
+  font-size: 1rem;
 }
 
 .post-updatedat {
