@@ -14,12 +14,20 @@
           </div>
 
           <v-container>
-            <div>
-              <p class="mb-0 post-updatedat">
-                <time :datetime="post.updatedAt" class="d-flex align-center">
-                  <v-icon class="mr-1">mdi-clock-time-four</v-icon><span>{{ formatUpdatedAt }}</span>
-                </time>
-              </p>
+            <div class="d-flex justify-space-between">
+              <div>
+                <p class="mb-0 post-updatedat">
+                  <time :datetime="post.updatedAt" class="d-flex align-center">
+                    <v-icon class="mr-1">mdi-clock-time-four</v-icon><span>{{ formatUpdatedAt }}</span>
+                  </time>
+                </p>
+              </div>
+
+              <div v-if="state.area">
+                <p class="mb-0">
+                  {{ state.area.name }}
+                </p>
+              </div>
             </div>
           </v-container>
 
@@ -62,15 +70,16 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
-import { Breadcrumb } from '@/lib'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@nuxtjs/composition-api'
+import dayjs from 'dayjs'
+import { Area, Breadcrumb } from '@/lib'
 import { usePost } from '@/src/CompositonFunctions/posts/UsePost'
 import { Context } from '@nuxt/types'
-import dayjs from 'dayjs'
+import { getAreaByID } from '@/src/infra/firestore/Area'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
-  { text: 'ブログ一覧', to: '/post' }
+  { exact: true, text: 'ブログ一覧', to: '/post' }
 ] as Breadcrumb[]
 
 export default defineComponent({
@@ -79,6 +88,10 @@ export default defineComponent({
   },
 
   setup (_, context: SetupContext) {
+    const state = reactive({
+      area: {} as Area|undefined
+    })
+
     const postId = computed(() => {
       return Number(context.root.$route.params.id)
     })
@@ -87,8 +100,23 @@ export default defineComponent({
 
     const formatUpdatedAt = computed(() => dayjs(post.value.updatedAt).format('YYYY年MM月DD日'))
 
+    const newBreadcrumbs = computed(() => [
+      ...breadcrumbs,
+      {
+        text: post.value.title,
+        to: `/post/${context.root.$route.params.id}`
+      }
+    ])
+
+    watchEffect(async () => {
+      state.area = post.value && post.value.firebase_area_ids && post.value.firebase_area_ids.length > 0
+        ? await getAreaByID(context.root.$fireStore, post.value.firebase_area_ids[0])
+        : undefined
+    })
+
     return {
-      breadcrumbs,
+      state,
+      breadcrumbs: newBreadcrumbs,
       formatUpdatedAt,
       post
     }

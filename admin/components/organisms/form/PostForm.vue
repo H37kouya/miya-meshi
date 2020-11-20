@@ -101,14 +101,14 @@
 
               <div class="ml-4" style="max-width: 300px;">
                 <v-select
-                  :value="state.firebaseAreaId"
+                  v-model="state.post.firebase_area_ids"
                   :items="areaSelectItems"
                   item-text="text"
                   item-value="value"
                   prepend-icon="mdi-map"
                   label="エリア一覧"
                   outlined
-                  @input="(v) => { state.firebaseAreaId = v }"
+                  multiple
                 />
               </div>
             </v-card>
@@ -133,7 +133,6 @@ import { v4 as createUUID } from 'uuid'
 type State = {
   post: Partial<Post>
   tab: any
-  firebaseAreaId: string
 }
 
 type Props = {
@@ -170,23 +169,19 @@ export default defineComponent({
         firebase_area_ids: [],
         firebase_shop_ids: []
       } as Partial<Post>,
-      tab: '',
-      firebaseAreaId: ''
+      tab: ''
     })
 
     watchEffect(() => {
       if (props.post) {
         state.post = props.post
-        state.firebaseAreaId = props.post.firebase_area_ids && props.post.firebase_area_ids.length > 0 ? props.post.firebase_area_ids[0] : ''
       }
     })
 
     const uuid = createUUID()
 
     const onSubmit = () => {
-      let post = state.post
-      post.firebase_area_ids = state.firebaseAreaId ? [state.firebaseAreaId] : post.firebase_area_ids
-      context.emit('submit', post)
+      context.emit('submit', state.post)
     }
 
     const areaSelectItems = computed(() => props.areas.map((area: Area) => ({

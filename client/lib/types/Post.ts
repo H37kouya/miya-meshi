@@ -7,4 +7,6 @@ export type Post = {
   release: boolean
   createdAt: string
   updatedAt: string
+  firebase_area_ids: string[]
+  firebase_shop_ids: string[]
 }
