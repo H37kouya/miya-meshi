@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
-use Exception;
+use App\Models\SelectionPostShop;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class CreateSelectionPostShopRepository
 {
@@ -21,25 +20,17 @@ class CreateSelectionPostShopRepository
         int $selectionPostId,
         array $firebaseShopIds
     ): array {
-        try {
-            DB::beginTransaction();
-            $now = Carbon::now();
+        $now = Carbon::now();
 
-            $data = (new Collection($firebaseShopIds))->map(fn(string $firebaseShopId) => [
-                'selection_post_id' => $selectionPostId,
-                'firebase_shop_id'  => $firebaseShopId,
-                'created_at'        => $now,
-                'updated_at'        => $now,
-            ])->all();
+        $data = (new Collection($firebaseShopIds))->map(fn(string $firebaseShopId) => [
+            'selection_post_id' => $selectionPostId,
+            'firebase_shop_id'  => $firebaseShopId,
+            'created_at'        => $now,
+            'updated_at'        => $now,
+        ])->all();
 
-            DB::table('selection_post_shops')->insert($data);
+        SelectionPostShop::insert($data);
 
-            DB::commit();
-
-            return $firebaseShopIds;
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return $firebaseShopIds;
     }
 }

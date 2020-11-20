@@ -3,6 +3,9 @@
 namespace App\Usecases;
 
 use App\Repositories\CreateUserRepository;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CreateUserUsecase
 {
@@ -25,6 +28,16 @@ class CreateUserUsecase
     public function invoke(
         string $name
     ): array {
-        return $this->_createUserRepository->invoke($name);
+        DB::beginTransaction();
+        try {
+            $user = $this->_createUserRepository->invoke($name);
+            DB::commit();
+
+            return $user;
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::debug($e);
+            throw $e;
+        }
     }
 }

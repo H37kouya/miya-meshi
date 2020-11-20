@@ -3,9 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\SelectionPost;
-use Exception;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 class CreateSelectionPostRepository
 {
@@ -29,24 +27,15 @@ class CreateSelectionPostRepository
     public function invoke(
         array $inputs
     ): array {
-        try {
-            DB::beginTransaction();
+        /** @var SelectionPost $selectionPost */
+        $selectionPost = $this->_selectionPost->create([
+            'title'       => $inputs['title'],
+            'contents'    => Arr::get($inputs, 'contents', null),
+            'image'       => Arr::get($inputs, 'image', null),
+            'description' => Arr::get($inputs, 'description', null),
+            'release'     => Arr::get($inputs, 'release', false),
+        ]);
 
-            /** @var SelectionPost $selectionPost */
-            $selectionPost = $this->_selectionPost->create([
-                'title'       => $inputs['title'],
-                'contents'    => Arr::get($inputs, 'contents', null),
-                'image'       => Arr::get($inputs, 'image', null),
-                'description' => Arr::get($inputs, 'description', null),
-                'release'     => Arr::get($inputs, 'release', false),
-            ]);
-
-            DB::commit();
-
-            return $selectionPost->toArray();
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return $selectionPost->toArray();
     }
 }

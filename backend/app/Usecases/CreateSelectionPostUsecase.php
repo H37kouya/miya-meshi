@@ -5,7 +5,10 @@ namespace App\Usecases;
 use App\Repositories\CreateSelectionPostAreaRepository;
 use App\Repositories\CreateSelectionPostRepository;
 use App\Repositories\CreateSelectionPostShopRepository;
+use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CreateSelectionPostUsecase
 {
@@ -34,17 +37,27 @@ class CreateSelectionPostUsecase
     public function invoke(
         array $inputs
     ): array {
-        $selectionPost = $this->_createSelectionPostRepository->invoke($inputs);
+        DB::beginTransaction();
 
-        $firebaseAreaIds = $this->_createSelectionPostAreaRepository->invoke(
-            $selectionPost["id"],
-            $this->getFirebaseAreaIds($inputs)
-        );
+        try {
+            $selectionPost = $this->_createSelectionPostRepository->invoke($inputs);
 
-        $firebaseShopIds = $this->_createSelectionPostShopRepository->invoke(
-            $selectionPost["id"],
-            $this->getFirebaseShopIds($inputs)
-        );
+            $firebaseAreaIds = $this->_createSelectionPostAreaRepository->invoke(
+                $selectionPost["id"],
+                $this->getFirebaseAreaIds($inputs)
+            );
+
+            $firebaseShopIds = $this->_createSelectionPostShopRepository->invoke(
+                $selectionPost["id"],
+                $this->getFirebaseShopIds($inputs)
+            );
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::debug($e);
+            throw $e;
+        }
 
         Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
         Arr::set($selectionPost, 'firebase_shop_ids', $firebaseShopIds);
