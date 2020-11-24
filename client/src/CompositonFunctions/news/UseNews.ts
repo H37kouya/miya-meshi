@@ -34,6 +34,7 @@ export const useNews = (apiBaseUrl: string, $axios: NuxtAxiosInstance) => {
 const postToNews = (post: Post): News => {
   return {
     hashtags: [],
+    href: '',
     to: `/post/${post.id}`,
     src: post.image,
     text: post.description,

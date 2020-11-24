@@ -11,6 +11,6 @@ export {
   News,
   PriceRange,
   Shop,
-  Post
+  Post,
   Enum
 }

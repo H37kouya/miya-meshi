@@ -57,6 +57,27 @@
         </v-col>
 
         <v-col cols="12" md="4" class="d-none d-md-block pt-0">
+          <div class="border-md-4 border-gray mb-8">
+            <MainText id="news" :level="2">
+              新着情報
+            </MainText>
+
+            <v-row class="mx-0 mb-4" justify="center">
+              <template v-for="(news, key) in newsList">
+                <v-col :key="`news${key}`" cols="12" class="px-0 pt-0">
+                  <NewsField
+                    :alt="news.hashtags[0]"
+                    :href="news.href"
+                    :to="news.to"
+                    :hashtags="news.hashtags"
+                    :src="news.src"
+                    :text="news.text"
+                  />
+                </v-col>
+              </template>
+            </v-row>
+          </div>
+
           <div>
             <v-card href="https://forms.gle/gAknXAaCrfsr8UdA8" target="_blank" rel="noopener" flat>
               <v-img src="/s/recruitment-shop.png" alt="掲載希望の方はこちら" />
@@ -81,6 +102,7 @@ import { Area, Breadcrumb } from '@/lib'
 import { usePost } from '@/src/CompositonFunctions/posts/UsePost'
 import { Context } from '@nuxt/types'
 import { getAreaByID } from '@/src/infra/firestore/Area'
+import { useNews } from '~/src/CompositonFunctions/news/UseNews'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -100,6 +122,8 @@ export default defineComponent({
     const postId = computed(() => {
       return Number(context.root.$route.params.id)
     })
+
+    const { newsList } = useNews(context.root.$config.API_URL, context.root.$axios)
 
     const { post } = usePost(postId.value, context.root.$config.API_URL, context.root.$axios)
 
@@ -121,6 +145,7 @@ export default defineComponent({
 
     return {
       state,
+      newsList,
       breadcrumbs: newBreadcrumbs,
       formatUpdatedAt,
       post
