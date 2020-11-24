@@ -99,7 +99,7 @@ const breadcrumbs = [
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const { newsList } = useNews(context.root.$config.API_URL, context.root.$axios)
+    const { newsList } = useNews(process.env.API_URL || '', context.root.$axios)
 
     useMeta({
       title: 'みやメシ応援隊とは',
