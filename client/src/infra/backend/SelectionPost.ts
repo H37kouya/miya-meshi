@@ -10,7 +10,7 @@ export type PaginationPost = {
 }
 
 export const getSelectionPostList = async (
-  apiBaseUrl: string = 'http://localhost:8000',
+  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ): Promise<PaginationPost> => {
   type AxiosGetType = PaginationPost
@@ -24,7 +24,7 @@ export const getSelectionPostList = async (
 }
 
 export const getSelectionPostListByNews = async (
-  apiBaseUrl: string = 'http://localhost:8000',
+  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ): Promise<PaginationPost> => {
   type AxiosGetType = PaginationPost
@@ -39,7 +39,7 @@ export const getSelectionPostListByNews = async (
 
 export const getSelectionPost = async (
   id: number,
-  apiBaseUrl: string = 'http://localhost:8000',
+  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ): Promise<Post> => {
   type AxiosGetType = {
