@@ -12,21 +12,26 @@
 
     <v-row>
       <v-col cols="12">
-        <PostForm @submit="createPost" />
+        <PostForm :areas="state.areas" @submit="createPost" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { createSelectionPost as createDBDPost } from '@/src/infra/backend/SelectionPost'
-import { Post } from '@/lib'
+import { Area, Post } from '@/lib'
+import { getAreaList } from '~/src/infra/firestore/Area'
 
 export default defineComponent({
   middleware: 'admin-auth',
 
   setup (_: unknown, context: SetupContext) {
+    const state = reactive({
+      areas: [] as Area[]
+    })
+
     const createPost = async (post: Post) => {
       await createDBDPost(
         post,
@@ -38,8 +43,13 @@ export default defineComponent({
       return await context.root.$router.push('/post')
     }
 
+    watchEffect(async () => {
+      state.areas = await getAreaList(context.root.$fireStore)
+    })
+
     return {
-      createPost
+      createPost,
+      state
     }
   }
 })

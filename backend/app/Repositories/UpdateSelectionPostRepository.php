@@ -31,24 +31,16 @@ class UpdateSelectionPostRepository
         int $selectionPostId,
         array $inputs
     ): array {
-        try {
-            DB::beginTransaction();
+        /** @var SelectionPost $selectionPost */
+        $selectionPost = $this->_selectionPost->findOrFail($selectionPostId);
+        $selectionPost->fill([
+            'title'       => $inputs['title'],
+            'contents'    => Arr::get($inputs, 'contents', null),
+            'image'       => Arr::get($inputs, 'image', null),
+            'description' => Arr::get($inputs, 'description', null),
+            'release'     => Arr::get($inputs, 'release', false),
+        ])->save();
 
-            /** @var SelectionPost $selectionPost */
-            $selectionPost = $this->_selectionPost->findOrFail($selectionPostId);
-            $selectionPost->fill([
-                'title'       => $inputs['title'],
-                'contents'    => Arr::get($inputs, 'contents', null),
-                'description' => Arr::get($inputs, 'description', null),
-                'release'     => Arr::get($inputs, 'release', false),
-            ])->save();
-
-            DB::commit();
-
-            return $selectionPost->toArray();
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return $selectionPost->toArray();
     }
 }

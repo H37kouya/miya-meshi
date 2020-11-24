@@ -19,7 +19,7 @@ import { getShopListByInstaNumber } from '~/src/infra/firestore/Shop'
 export default defineComponent({
   setup (_, context: SetupContext) {
     const { recommendShops } = useRecommendShop(context.root)
-    const { newsList } = useNews()
+    const { newsList } = useNews(context.root.$config.API_URL, context.root.$axios)
     const { shops } = useShop(context.root, 500)
     const { areas } = useArea(context.root)
 

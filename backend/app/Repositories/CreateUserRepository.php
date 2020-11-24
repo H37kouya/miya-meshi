@@ -17,26 +17,17 @@ class CreateUserRepository
 
     public function invoke(string $name): array
     {
-        try {
-            DB::beginTransaction();
+        /** @var User $user */
+        $user = $this->_user->create([
+            'name'           => $name,
+            'api_token'      => $this->_user->createApiToken(),
+            'remember_token' => $this->_user->createRememberToken(),
+            'active'         => true
+        ]);
 
-            /** @var User $user */
-            $user = $this->_user->create([
-                'name'           => $name,
-                'api_token'      => $this->_user->createApiToken(),
-                'remember_token' => $this->_user->createRememberToken(),
-                'active'         => true
-            ]);
-
-            DB::commit();
-
-            return [
-                'name'      => $user->name,
-                'api_token' => $user->api_token
-            ];
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        return [
+            'name'      => $user->name,
+            'api_token' => $user->api_token
+        ];
     }
 }

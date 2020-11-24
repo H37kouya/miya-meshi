@@ -5,7 +5,10 @@ namespace App\Usecases;
 use App\Repositories\UpdateSelectionPostAreaRepository;
 use App\Repositories\UpdateSelectionPostRepository;
 use App\Repositories\UpdateSelectionPostShopRepository;
+use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UpdateSelectionPostUsecase
 {
@@ -36,17 +39,27 @@ class UpdateSelectionPostUsecase
         int $selectionPostId,
         array $inputs
     ): array {
-        $selectionPost = $this->_updateSelectionPostRepository->invoke($selectionPostId, $inputs);
+        DB::beginTransaction();
 
-        $firebaseAreaIds = $this->_updateSelectionPostAreaRepository->invoke(
-            $selectionPostId,
-            $this->getFirebaseAreaIds($inputs)
-        );
+        try {
+            $selectionPost = $this->_updateSelectionPostRepository->invoke($selectionPostId, $inputs);
 
-        $firebaseShopIds = $this->_updateSelectionPostShopRepository->invoke(
-            $selectionPostId,
-            $this->getFirebaseShopIds($inputs)
-        );
+            $firebaseAreaIds = $this->_updateSelectionPostAreaRepository->invoke(
+                $selectionPostId,
+                $this->getFirebaseAreaIds($inputs)
+            );
+
+            $firebaseShopIds = $this->_updateSelectionPostShopRepository->invoke(
+                $selectionPostId,
+                $this->getFirebaseShopIds($inputs)
+            );
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::debug($e);
+            throw $e;
+        }
 
         Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
         Arr::set($selectionPost, 'firebase_shop_ids', $firebaseShopIds);

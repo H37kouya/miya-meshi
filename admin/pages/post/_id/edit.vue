@@ -12,7 +12,7 @@
 
     <v-row>
       <v-col cols="12">
-        <PostForm :post="state.post" @submit="editPost" />
+        <PostForm :areas="state.areas" :post="state.post" @submit="editPost" />
       </v-col>
     </v-row>
   </v-container>
@@ -20,14 +20,16 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Post } from '@/lib'
+import { Area, Post } from '@/lib'
 import { getSelectionPost, updateSelectionPost as updateDBPost } from '@/src/infra/backend/SelectionPost'
+import { getAreaList } from '~/src/infra/firestore/Area'
 
 export default defineComponent({
   middleware: 'admin-auth',
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
+      areas: [] as Area[],
       post: {} as Post
     })
 
@@ -42,6 +44,11 @@ export default defineComponent({
 
       return await context.root.$router.push('/post')
     }
+
+    watchEffect(async () => {
+      state.areas = await getAreaList(context.root.$fireStore)
+    })
+
 
     watchEffect(async () => {
       state.post = await getSelectionPost(

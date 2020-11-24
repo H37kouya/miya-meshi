@@ -64,17 +64,60 @@
       </v-col>
 
       <v-col cols="12">
-        <v-card outlined class="mb-8">
-          <v-card-subtitle>
+        <v-tabs v-model="state.tab" grow>
+          <v-tab>
             ブログコンテンツ
-          </v-card-subtitle>
+          </v-tab>
 
-          <div>
-            <EditorTextField
-              v-model="state.post.contents"
-            />
-          </div>
-        </v-card>
+          <v-tab>
+            店舗・エリア
+          </v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="state.tab">
+          <v-tab-item>
+            <v-card outlined class="mb-8">
+              <v-card-subtitle>
+                ブログコンテンツ
+              </v-card-subtitle>
+
+              <div>
+                <EditorTextField
+                  v-model="state.post.contents"
+                />
+              </div>
+            </v-card>
+          </v-tab-item>
+
+          <v-tab-item>
+            <v-card width="100%" outlined class="mb-8">
+              <v-card-subtitle>
+                店舗選択
+              </v-card-subtitle>
+
+              <div>
+                <p class="mb-0">店舗選択機能は現在作成中</p>
+              </div>
+
+              <v-card-subtitle>
+                エリア選択
+              </v-card-subtitle>
+
+              <div class="ml-4" style="max-width: 300px;">
+                <v-select
+                  v-model="state.post.firebase_area_ids"
+                  :items="areaSelectItems"
+                  item-text="text"
+                  item-value="value"
+                  prepend-icon="mdi-map"
+                  label="エリア一覧"
+                  outlined
+                  multiple
+                />
+              </div>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
 
         <div class="d-flex justify-end">
           <v-btn type="submit" color="primary" large>
@@ -87,20 +130,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Post } from '@/lib'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { Area, Post } from '@/lib'
 import { v4 as createUUID } from 'uuid'
 
 type State = {
-  post: Post
+  post: Partial<Post>
+  tab: any
 }
 
 type Props = {
+  areas: Area[]
   post?: Post
 }
 
 export default defineComponent({
   props: {
+    areas: {
+      type: Array,
+      default: () => []
+    },
+
     post: {
       type: Object,
       default: undefined
@@ -119,8 +169,11 @@ export default defineComponent({
         description: '',
         contents: 'ブログを書き始めよう',
         image: '',
-        release: true
-      } as Post
+        release: true,
+        firebase_area_ids: [],
+        firebase_shop_ids: []
+      } as Partial<Post>,
+      tab: ''
     })
 
     watchEffect(() => {
@@ -131,9 +184,17 @@ export default defineComponent({
 
     const uuid = createUUID()
 
-    const onSubmit = () => context.emit('submit', state.post)
+    const onSubmit = () => {
+      context.emit('submit', state.post)
+    }
+
+    const areaSelectItems = computed(() => props.areas.map((area: Area) => ({
+      text: area.name,
+      value: area.id
+    })))
 
     return {
+      areaSelectItems,
       state,
       uuid,
       onSubmit

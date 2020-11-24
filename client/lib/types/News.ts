@@ -1,6 +1,8 @@
 export type News = {
   hashtags?: string[],
-  href: string,
+  href?: string,
+  to?: string
   src: string,
-  text: string
+  text: string,
+  title: string
 }

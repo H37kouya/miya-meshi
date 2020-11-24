@@ -47,6 +47,7 @@ class SelectionPost extends Model
         'title',
         'description',
         'contents',
+        'image',
         'release'
     ];
 

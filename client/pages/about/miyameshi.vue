@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { Breadcrumb } from '@/lib'
 
@@ -98,8 +98,8 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
-  setup () {
-    const { newsList } = useNews()
+  setup (_, context: SetupContext) {
+    const { newsList } = useNews(context.root.$config.API_URL, context.root.$axios)
 
     useMeta({
       title: 'みやメシ応援隊とは',
