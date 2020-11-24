@@ -6,7 +6,7 @@ type State = {
   paginationPost: PaginationPost
 }
 
-export const usePostList = (apiBaseUrl: string = 'https://miyameshi.com', $axios: NuxtAxiosInstance) => {
+export const usePostList = (apiBaseUrl: string = 'https://api.miyameshi.com', $axios: NuxtAxiosInstance) => {
   const state = reactive<State>({
     paginationPost: {} as PaginationPost
   })
