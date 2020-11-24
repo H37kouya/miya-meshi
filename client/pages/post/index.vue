@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { Breadcrumb } from '@/lib'
 import { usePostList } from '@/src/CompositonFunctions/posts/UsePostList'
 
