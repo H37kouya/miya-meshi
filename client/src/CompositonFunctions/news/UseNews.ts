@@ -1,30 +1,32 @@
 import { reactive, toRefs, watchEffect } from '@nuxtjs/composition-api'
 import { News, Post } from '@/lib'
 import NewsList from '@/assets/json/NewsList.json'
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
-import { getSelectionPostListByNews } from '~/src/infra/backend/SelectionPost'
+// import { NuxtAxiosInstance } from '@nuxtjs/axios'
+// import { getSelectionPostListByNews } from '~/src/infra/backend/SelectionPost'
 
 type State = {
   newsList: News[]
 }
-export const useNews = (apiBaseUrl: string, $axios: NuxtAxiosInstance) => {
+
+// apiBaseUrl: string, $axios: NuxtAxiosInstance
+export const useNews = () => {
   const state = reactive<State>({
-    newsList: [] as News[]
+    newsList: NewsList.data as News[]
   })
 
-  watchEffect(async () => {
-    const newsList = await getSelectionPostListByNews(apiBaseUrl, $axios)
-    const newses = newsList.records.map((post: Post) => postToNews(post))
+  // watchEffect(async () => {
+  //   const newsList = await getSelectionPostListByNews(apiBaseUrl, $axios)
+  //   const newses = newsList.records.map((post: Post) => postToNews(post))
 
-    if (newsList.records.length === 3) {
-      state.newsList = newses
-    } else {
-      state.newsList = [
-        ...newses,
-        ...NewsList.data as News[]
-      ].slice(0, 3)
-    }
-  })
+  //   if (newsList.records.length === 3) {
+  //     state.newsList = newses
+  //   } else {
+  //     state.newsList = [
+  //       ...newses,
+  //       ...NewsList.data as News[]
+  //     ].slice(0, 3)
+  //   }
+  // })
 
   return {
     ...toRefs(state)
