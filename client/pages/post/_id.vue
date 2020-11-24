@@ -123,7 +123,7 @@ export default defineComponent({
       return Number(context.root.$route.params.id)
     })
 
-    const { newsList } = useNews(process.env.API_URL || '', context.root.$axios)
+    const { newsList } = useNews()
 
     const { post } = usePost(postId.value, process.env.API_URL || '', context.root.$axios)
 
