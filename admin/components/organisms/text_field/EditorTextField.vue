@@ -2,7 +2,7 @@
   <editor
     ref="toastuiEditor"
     :options="editorOptions"
-    height="500px"
+    height="700px"
     initial-edit-type="wysiwyg"
     preview-style="vertical"
     @change="onEditorChange"
