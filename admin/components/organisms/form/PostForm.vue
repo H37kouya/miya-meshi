@@ -95,6 +95,10 @@
                 店舗選択
               </v-card-subtitle>
 
+              <div>
+                <p class="mb-0">店舗選択機能は現在作成中</p>
+              </div>
+
               <v-card-subtitle>
                 エリア選択
               </v-card-subtitle>
