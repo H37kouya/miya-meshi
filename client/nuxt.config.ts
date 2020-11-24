@@ -41,6 +41,9 @@ const nuxtConfig: NuxtConfig = {
   publicRuntimeConfig: {
     API_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'https://api.miyemeshi.com'
   },
+  privateRuntimeConfig: {
+    API_URL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : 'https://api.miyemeshi.com'
+  },
   /*
   ** Global CSS
   */
