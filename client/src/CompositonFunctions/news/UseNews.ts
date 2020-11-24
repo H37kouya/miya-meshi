@@ -16,7 +16,7 @@ export const useNews = (apiBaseUrl: string, $axios: NuxtAxiosInstance) => {
     const newsList = await getSelectionPostListByNews(apiBaseUrl, $axios)
     const newses = newsList.records.map((post: Post) => postToNews(post))
 
-    if (newsList.records && newsList.records.length === 3) {
+    if (newsList.records.length === 3) {
       state.newsList = newses
     } else {
       state.newsList = [
