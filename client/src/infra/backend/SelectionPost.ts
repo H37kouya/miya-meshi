@@ -23,6 +23,20 @@ export const getSelectionPostList = async (
   return data
 }
 
+export const getSelectionPostListByNews = async (
+  apiBaseUrl: string = 'http://localhost:8000',
+  $axios: NuxtAxiosInstance
+): Promise<PaginationPost> => {
+  type AxiosGetType = PaginationPost
+  const data = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post`, {
+    params: {
+      limit: 3
+    }
+  })
+
+  return data
+}
+
 export const getSelectionPost = async (
   id: number,
   apiBaseUrl: string = 'http://localhost:8000',
