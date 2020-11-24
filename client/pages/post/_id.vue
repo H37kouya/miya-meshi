@@ -125,7 +125,7 @@ export default defineComponent({
 
     const { newsList } = useNews()
 
-    const { post } = usePost(postId.value, process.env.API_URL || '', context.root.$axios)
+    const { post } = usePost(postId.value, process.env.API_URL, context.root.$axios)
 
     const formatUpdatedAt = computed(() => dayjs(post.value.updatedAt).format('YYYY年MM月DD日'))
 

@@ -7,7 +7,11 @@ type State = {
   post: Post
 }
 
-export const usePost = (id: number, apiBaseUrl: string, $axios: NuxtAxiosInstance) => {
+export const usePost = (
+  id: number,
+  apiBaseUrl: string = 'https://api.miyameshi.com',
+  $axios: NuxtAxiosInstance
+) => {
   const state = reactive<State>({
     post: {} as Post
   })

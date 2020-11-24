@@ -62,7 +62,7 @@ export default defineComponent({
   watchQuery: ['page'],
 
   setup (_, context: SetupContext) {
-    const { paginationPost } = usePostList(process.env.API_URL || '', context.root.$axios)
+    const { paginationPost } = usePostList(process.env.API_URL, context.root.$axios)
 
     return {
       breadcrumbs,
