@@ -49,11 +49,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .post-title {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: bolder;
+
+  @include mq(sm) {
+    font-size: 1.2rem;
+  }
 }
 
 .post-description {
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 </style>
