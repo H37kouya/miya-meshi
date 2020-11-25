@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, SetupContext, useContext, useMeta } from '@nuxtjs/composition-api'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -18,10 +18,12 @@ import { getShopListByInstaNumber } from '~/src/infra/firestore/Shop'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
+    const ctx = useContext()
+
     const { recommendShops } = useRecommendShop(context.root)
     const { newsList } = useNews()
     const { shops } = useShop(context.root, 500)
-    const { areas } = useArea(context.root)
+    const { areas } = useArea(ctx.store)
 
     useMeta({
       title: '宇都宮の新たなグルメサイト',

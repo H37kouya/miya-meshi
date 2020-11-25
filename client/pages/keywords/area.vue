@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext, useMeta } from '@nuxtjs/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext, useContext, useMeta } from '@nuxtjs/composition-api'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Breadcrumb } from '@/lib'
@@ -43,8 +43,9 @@ export default defineComponent({
     const state = reactive<State>({
       areaSelectedID: [] as string[]
     })
+    const ctx = useContext()
 
-    const { areas, nowArea, onUpdateNowArea } = useArea(context.root)
+    const { areas, nowArea, onUpdateNowArea } = useArea(ctx.store)
     const { dishes } = useDish(context.root)
 
     onMounted(() => {

@@ -84,7 +84,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { computed, defineComponent, SetupContext, useContext } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -104,7 +104,8 @@ export default defineComponent({
   watchQuery: ['page'],
 
   setup (_, context: SetupContext) {
-    const { areas, nowArea, onUpdateNowArea } = useArea(context.root)
+    const ctx = useContext()
+    const { areas, nowArea, onUpdateNowArea } = useArea(ctx.store)
 
     const { shops } = useShop(context.root)
     const { screenMd } = useGetScreenSize()

@@ -3,13 +3,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, SetupContext, useContext, useMeta } from '@nuxtjs/composition-api'
 import { useInstaShop } from '@/src/CompositonFunctions/shops/UseInstaShop'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 
 export default defineComponent({
   setup (_, context: SetupContext) {
-    const { areas } = useArea(context.root)
+    const ctx = useContext()
+
+    const { areas } = useArea(ctx.store)
     const { instaShops } = useInstaShop(context.root)
 
     useMeta({

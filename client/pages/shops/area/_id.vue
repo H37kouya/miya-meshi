@@ -98,7 +98,8 @@ export default defineComponent({
   watchQuery: ['page'],
 
   setup (_, context: SetupContext) {
-    const { areas, nowArea, onUpdateNowArea } = useArea(context.root)
+    const ctx = useContext()
+    const { areas, nowArea, onUpdateNowArea } = useArea(ctx.store)
     const { error } = useContext()
 
     const { shops } = useShop(context.root)
