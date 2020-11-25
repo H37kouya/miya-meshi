@@ -7,7 +7,7 @@
     <v-container class="pa-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
-          <div id="title1 title2" class="header-shop-list-container">
+          <div id="title1" class="header-shop-list-container">
             <div class="d-md-none">
               <MainText>
                 {{ selectedArea }}から探す
@@ -95,8 +95,6 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
-  watchQuery: ['page'],
-
   setup () {
     const { store, redirect, params, query, error } = useContext()
     const { areas, nowArea, onUpdateNowArea } = useArea(store)
@@ -379,7 +377,9 @@ export default defineComponent({
     }
   },
 
-  head: {}
+  head: {},
+
+  watchQuery: ['page']
 })
 </script>
 

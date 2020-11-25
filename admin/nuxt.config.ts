@@ -87,7 +87,8 @@ const nuxtConfig: NuxtConfig  = {
     '@nuxtjs/axios',
     '@nuxtjs/device',
     '@nuxtjs/firebase',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'vue-scrollto/nuxt'
   ],
   /*
   ** Axios module configuration

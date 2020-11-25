@@ -59,8 +59,6 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
-  watchQuery: ['page'],
-
   setup () {
     const { $axios } = useContext()
     const { paginationPost } = usePostList(process.env.API_URL, $axios)

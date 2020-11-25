@@ -73,6 +73,11 @@ export default {
           to: '/area'
         },
         {
+          icon: 'mdi-post',
+          title: 'ブログ一覧',
+          to: '/post'
+        },
+        {
           icon: 'mdi-cog',
           title: '設定',
           to: '/settings'

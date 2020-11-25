@@ -7,9 +7,9 @@
     <v-container class="pa-0">
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 py-0">
-          <div class="header-shop-list-container">
+          <div id="title1" class="header-shop-list-container">
             <div v-if="!screenMd" class="d-md-none">
-              <MainText id="title1 title2">
+              <MainText>
                 お店から探す
               </MainText>
             </div>
@@ -101,8 +101,6 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
-  watchQuery: ['page'],
-
   setup () {
     const { store, redirect, query } = useContext()
     const { areas, nowArea, onUpdateNowArea } = useArea(store)
@@ -383,7 +381,9 @@ export default defineComponent({
 
   head: () => ({
     title: 'お店から探す'
-  })
+  }),
+
+  watchQuery: ['page']
 })
 </script>
 
