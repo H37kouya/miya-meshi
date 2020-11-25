@@ -42,6 +42,10 @@
       </v-col>
 
       <v-col cols="6" sm="3">
+        <PostAdminButton />
+      </v-col>
+
+      <v-col cols="6" sm="3">
         <SettingsAdminButton />
       </v-col>
 
