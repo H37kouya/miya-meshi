@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, useMeta } from '@nuxtjs/composition-api'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { Breadcrumb } from '@/lib'
 
