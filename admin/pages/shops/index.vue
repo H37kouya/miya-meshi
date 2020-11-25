@@ -80,7 +80,9 @@
           </v-form>
         </div>
 
-        <AdminShopListCard :shops="pagination.shops" />
+        <div id="shop_list">
+          <AdminShopListCard :shops="pagination.shops" />
+        </div>
 
         <div v-if="pagination.totalVisible !== 1" class="pt-4">
           <v-pagination
@@ -97,6 +99,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
 import { MetaInfo } from 'vue-meta'
+import VueScrollTo from 'vue-scrollto'
 import { Shop } from '@/lib'
 import { getShopList } from '@/src/infra/firestore/Shop'
 import { isArray } from '@/src/utils/Array'
@@ -176,8 +179,8 @@ export default defineComponent({
 
     const pagination = computed(() => {
       return {
-        shops: filterShops.value.slice((nowPage.value - 1) * 10, nowPage.value * 10),
-        totalVisible: Math.floor(filterShops.value.length / 10) + 1
+        shops: filterShops.value.slice((nowPage.value - 1) * 15, nowPage.value * 15),
+        totalVisible: Math.floor(filterShops.value.length / 15) + 1
       }
     })
 
@@ -192,7 +195,11 @@ export default defineComponent({
     })
 
     const onPagination = async (page: number) => {
-      return await context.root.$router.push({
+      VueScrollTo.scrollTo('#shop_list', {
+        offset: -120
+      })
+
+      await context.root.$router.push({
         path: '/shops',
         query: {
           page: String(page),
