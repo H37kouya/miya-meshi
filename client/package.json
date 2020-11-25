@@ -28,7 +28,8 @@
     "dayjs": "^1.9.6",
     "firebase": "^7.23.0",
     "nuxt": "^2.14.7",
-    "nuxt-leaflet": "0.0.22"
+    "nuxt-leaflet": "0.0.22",
+    "vue-scrollto": "^2.20.0"
   },
   "devDependencies": {
     "@mdi/font": "^5.8.55",

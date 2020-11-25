@@ -1,5 +1,5 @@
 <template>
-  <div class="u-light-grey-background white-md-background">
+  <div id="shop_list" class="u-light-grey-background white-md-background">
     <v-container class="pb-2">
       <div v-if="maxItem" class="text-right">
         <p class="mb-1 display-count">
@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, reactive, SetupContext, watch } from '@nuxtjs/composition-api'
+import VueScrollto from 'vue-scrollto'
 import { Area, Shop } from '@/lib'
 import { computedShortShopAddress, getShopAreaByAddress } from '@/src/utils/Shop'
 
@@ -136,10 +137,13 @@ export default defineComponent({
     })
 
     const onPagination = async (page: number) => {
+      VueScrollto.scrollTo('#shop_list', {
+        offset: -200
+      })
+
       if (props.query.areas && props.query.areas.length === 1) {
         return await context.root.$router.push({
           path: `/shops/area/${props.query.areas[0]}`,
-          hash: context.root.$route.hash === 'title1' ? 'title2' : 'title1',
           query: {
             page: String(page),
             dishes: props.query.dishes,
@@ -151,7 +155,6 @@ export default defineComponent({
 
       return await context.root.$router.push({
         path: '/shops',
-        hash: context.root.$route.hash === 'title1' ? 'title2' : 'title1',
         query: {
           page: String(page),
           areas: props.query.areas,
