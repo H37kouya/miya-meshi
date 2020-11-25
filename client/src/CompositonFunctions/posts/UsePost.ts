@@ -1,5 +1,5 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
-import { reactive, toRefs, useAsync } from '@nuxtjs/composition-api'
+import { reactive, toRefs, watchEffect } from '@nuxtjs/composition-api'
 import { Post } from '~/lib'
 import { getSelectionPost } from '~/src/infra/backend/SelectionPost'
 
@@ -16,9 +16,9 @@ export const usePost = (
     post: {} as Post
   })
 
-  useAsync(async () => {
+  watchEffect(async () => {
     state.post = await getSelectionPost(id, apiBaseUrl, $axios)
-  }, 'usePost')
+  })
 
   return {
     ...toRefs(state)
