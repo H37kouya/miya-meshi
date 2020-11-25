@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext, useContext, useMeta } from '@nuxtjs/composition-api'
+import { computed, defineComponent, onMounted, reactive, useContext, useMeta } from '@nuxtjs/composition-api'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Breadcrumb } from '@/lib'
@@ -39,17 +39,17 @@ type State = {
 }
 
 export default defineComponent({
-  setup (_, context: SetupContext) {
+  setup () {
     const state = reactive<State>({
       areaSelectedID: [] as string[]
     })
-    const ctx = useContext()
+    const { store, query } = useContext()
 
-    const { areas, nowArea, onUpdateNowArea } = useArea(ctx.store)
-    const { dishes } = useDish(context.root)
+    const { areas, nowArea, onUpdateNowArea } = useArea(store)
+    const { dishes } = useDish(store)
 
     onMounted(() => {
-      const _areaQuery = context.root.$route.query.areas
+      const _areaQuery = query.value.areas
       if (isArray(_areaQuery)) {
         state.areaSelectedID = nullOrStringArrayToStringArray(_areaQuery)
       } else {
@@ -58,9 +58,9 @@ export default defineComponent({
     })
 
     const nowQuery = computed(() => {
-      const _canTakeout = context.root.$route.query.canTakeout
-      const _dishesQuery = context.root.$route.query.dishes
-      const _timezonesQuery = context.root.$route.query.timezones
+      const _canTakeout = query.value.canTakeout
+      const _dishesQuery = query.value.dishes
+      const _timezonesQuery = query.value.timezones
 
       return {
         dishes: _dishesQuery,
@@ -70,9 +70,9 @@ export default defineComponent({
     })
 
     const to = computed(() => {
-      const _canTakeout = context.root.$route.query.canTakeout
-      const _dishesQuery = context.root.$route.query.dishes
-      const _timezonesQuery = context.root.$route.query.timezones
+      const _canTakeout = query.value.canTakeout
+      const _dishesQuery = query.value.dishes
+      const _timezonesQuery = query.value.timezones
 
       if (state.areaSelectedID.length === 0) {
         return {

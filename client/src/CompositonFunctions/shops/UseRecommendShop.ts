@@ -1,9 +1,12 @@
-import { reactive, SetupContext, toRefs, watchEffect } from '@nuxtjs/composition-api'
+import { reactive, toRefs, watchEffect } from '@nuxtjs/composition-api'
 import { Shop } from '@/lib'
 import { getShopList } from '@/src/infra/firestore/Shop'
 
-export const useRecommendShop = ({ $fireStore }: SetupContext['root']) => {
-  const state = reactive({
+type State = {
+  recommendShops: Shop[]
+}
+export const useRecommendShop = ($fireStore: firebase.firestore.Firestore) => {
+  const state = reactive<State>({
     recommendShops: [] as Shop[]
   })
 

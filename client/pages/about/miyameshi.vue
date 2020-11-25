@@ -98,7 +98,7 @@ const breadcrumbs = [
 ] as Breadcrumb[]
 
 export default defineComponent({
-  setup (_, context: SetupContext) {
+  setup () {
     const { newsList } = useNews()
 
     useMeta({

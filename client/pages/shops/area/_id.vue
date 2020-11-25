@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
+import { computed, defineComponent, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -97,17 +97,16 @@ const breadcrumbs = [
 export default defineComponent({
   watchQuery: ['page'],
 
-  setup (_, context: SetupContext) {
-    const ctx = useContext()
-    const { areas, nowArea, onUpdateNowArea } = useArea(ctx.store)
-    const { error } = useContext()
+  setup () {
+    const { store, redirect, params, query, error } = useContext()
+    const { areas, nowArea, onUpdateNowArea } = useArea(store)
 
-    const { shops } = useShop(context.root)
+    const { shops } = useShop(store)
     const { screenMd } = useGetScreenSize()
-    const { dishes } = useDish(context.root)
+    const { dishes } = useDish(store)
 
     watchEffect(() => {
-      const areasQuery = context.root.$route.params.id
+      const areasQuery = params.value.id
       if (areas.value.length > 0) {
         const _areas = filterAreasByID(areas.value, areasQuery)
         if (_areas.length === 0) {
@@ -119,7 +118,7 @@ export default defineComponent({
     })
 
     const nowPage = computed(() => {
-      const page = context.root.$route.query.page
+      const page = query.value.page
       if (isArray(page)) {
         return 1
       }
@@ -129,7 +128,7 @@ export default defineComponent({
     })
 
     const searchAreasAndCanTakeout = computed(() => {
-      const _canTakeout = context.root.$route.query.canTakeout
+      const _canTakeout = query.value.canTakeout
       if (isArray(_canTakeout)) {
         return [
           ...searchAreas.value,
@@ -151,10 +150,10 @@ export default defineComponent({
       ]
     })
 
-    const searchAreas = computed(() => [context.root.$route.params.id])
+    const searchAreas = computed(() => [params.value.id])
 
     const searchDishes = computed(() => {
-      const _searchDishes = context.root.$route.query.dishes
+      const _searchDishes = query.value.dishes
       if (isArray(_searchDishes)) {
         return nullOrStringArrayToStringArray(_searchDishes)
       }
@@ -167,7 +166,7 @@ export default defineComponent({
     })
 
     const searchTimezones = computed(() => {
-      const _searchTimezones = context.root.$route.query.timezones
+      const _searchTimezones = query.value.timezones
       if (isArray(_searchTimezones)) {
         return nullOrStringArrayToStringArray(_searchTimezones)
       }
@@ -180,7 +179,7 @@ export default defineComponent({
     })
 
     const onChangeSearch = async (value: string[]) => {
-      const query = {
+      const _query = {
         areas: [] as string[],
         timezones: [] as string[]
       } as {
@@ -191,45 +190,45 @@ export default defineComponent({
 
       for (const v of value) {
         if (v.includes('canTakeout')) {
-          query.canTakeout = 'true'
+          _query.canTakeout = 'true'
         } else if (['morning', 'lunch', 'night'].includes(v)) {
-          query.timezones && query.timezones.push(v)
+          _query.timezones && _query.timezones.push(v)
         } else {
-          query.areas && query.areas.push(v)
+          _query.areas && _query.areas.push(v)
         }
       }
 
-      const _dishes = context.root.$route.query.dishes
+      const _dishes = query.value.dishes
 
-      if (query.areas && query.areas.length === 1) {
-        return await context.root.$router.push({
-          path: `/shops/area/${query.areas}`,
+      if (_query.areas && _query.areas.length === 1) {
+        return await redirect({
+          path: `/shops/area/${_query.areas}`,
           query: {
             dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
-            timezones: query.timezones && query.timezones.length > 0 ? query.timezones : undefined,
-            canTakeout: query.canTakeout
+            timezones: _query.timezones && _query.timezones.length > 0 ? _query.timezones : undefined,
+            canTakeout: _query.canTakeout
           }
         })
       }
 
-      return await context.root.$router.push({
+      return await redirect({
         path: '/shops',
         query: {
-          areas: query.areas && query.areas.length > 0 ? query.areas : undefined,
+          areas: _query.areas && _query.areas.length > 0 ? _query.areas : undefined,
           dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
-          timezones: query.timezones && query.timezones.length > 0 ? query.timezones : undefined,
-          canTakeout: query.canTakeout
+          timezones: _query.timezones && _query.timezones.length > 0 ? _query.timezones : undefined,
+          canTakeout: _query.canTakeout
         }
       })
     }
 
     const onChangeSearchAreas = async (areas: string[]) => {
-      const _canTakeout = context.root.$route.query.canTakeout
-      const _dishes = context.root.$route.query.dishes
-      const _timezones = context.root.$route.query.timezones
+      const _canTakeout = query.value.canTakeout
+      const _dishes = query.value.dishes
+      const _timezones = query.value.timezones
 
       if (areas.length === 1) {
-        return await context.root.$router.push({
+        return await redirect({
           path: `/shops/area/${areas[0]}`,
           query: {
             dishes: isArray(_dishes) && _dishes.length > 0 ? _dishes : undefined,
@@ -239,7 +238,7 @@ export default defineComponent({
         })
       }
 
-      return await context.root.$router.push({
+      return await redirect({
         path: '/shops',
         query: {
           areas,
@@ -251,11 +250,11 @@ export default defineComponent({
     }
 
     const onChangeSearcDishes = async (dishes: string[]) => {
-      const _canTakeout = context.root.$route.query.canTakeout
-      const _area = context.root.$route.params.id
-      const _timezones = context.root.$route.query.timezones
+      const _canTakeout = query.value.canTakeout
+      const _area = params.value.id
+      const _timezones = query.value.timezones
 
-      return await context.root.$router.push({
+      return await redirect({
         path: `/shops/area/${_area}`,
         query: {
           dishes,
@@ -266,7 +265,7 @@ export default defineComponent({
     }
 
     const filterAreas = computed(() => {
-      const areasQuery = context.root.$route.params.id
+      const areasQuery = params.value.id
       return filterAreasByID(areas.value, areasQuery)
     })
 
@@ -278,7 +277,7 @@ export default defineComponent({
     })
 
     const filterShopsByCanTakeout = computed(() => {
-      const _canTakeout = context.root.$route.query.canTakeout
+      const _canTakeout = query.value.canTakeout
       if (isString(_canTakeout)) {
         return filterShopsByArea.value.filter((shop: Shop) => shop.canTakeout)
       }
@@ -323,10 +322,10 @@ export default defineComponent({
     })
 
     const nowQuery = computed(() => {
-      const _canTakeout = context.root.$route.query.canTakeout
-      const _areas = context.root.$route.params.id
-      const _dishes = context.root.$route.query.dishes
-      const _timezones = context.root.$route.query.timezones
+      const _canTakeout = query.value.canTakeout
+      const _areas = params.value.id
+      const _dishes = query.value.dishes
+      const _timezones = query.value.timezones
 
       return {
         areas: [_areas],

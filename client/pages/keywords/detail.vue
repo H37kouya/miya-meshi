@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext, useContext, useMeta } from '@nuxtjs/composition-api'
+import { computed, defineComponent, onMounted, reactive, useContext, useMeta } from '@nuxtjs/composition-api'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useDish } from '@/src/CompositonFunctions/dishes/UseDishes'
 import { Breadcrumb, Time } from '@/lib'
@@ -82,7 +82,7 @@ type State = {
 }
 
 export default defineComponent({
-  setup (_, context: SetupContext) {
+  setup () {
     const state = reactive<State>({
       areaSelectedID: [] as string[],
       dishSelectedID: [] as string[],
@@ -92,15 +92,15 @@ export default defineComponent({
         'night'
       ] as string[]
     })
-    const ctx = useContext()
+    const { store, query } = useContext()
 
-    const { areas } = useArea(ctx.store)
-    const { dishes } = useDish(context.root)
+    const { areas } = useArea(store)
+    const { dishes } = useDish(store)
 
     onMounted(() => {
-      const _areaQuery = context.root.$route.query.areas
-      const _dishesQuery = context.root.$route.query.dishes
-      const _timezonesQuery = context.root.$route.query.timezones
+      const _areaQuery = query.value.areas
+      const _dishesQuery = query.value.dishes
+      const _timezonesQuery = query.value.timezones
       if (isArray(_areaQuery)) {
         state.areaSelectedID = nullOrStringArrayToStringArray(_areaQuery)
       }
@@ -158,7 +158,7 @@ export default defineComponent({
     }
 
     const to = computed(() => {
-      const _canTakeout = context.root.$route.query.canTakeout
+      const _canTakeout = query.value.canTakeout
 
       return {
         path: '/shops',
