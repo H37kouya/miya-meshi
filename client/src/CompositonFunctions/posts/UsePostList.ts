@@ -1,5 +1,5 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
-import { reactive, toRefs, useAsync } from '@nuxtjs/composition-api'
+import { reactive, toRefs, watchEffect } from '@nuxtjs/composition-api'
 import { getSelectionPostList, PaginationPost } from '~/src/infra/backend/SelectionPost'
 
 type State = {
@@ -11,9 +11,9 @@ export const usePostList = (apiBaseUrl: string = 'https://api.miyameshi.com', $a
     paginationPost: {} as PaginationPost
   })
 
-  useAsync(async () => {
+  watchEffect(async () => {
     state.paginationPost = await getSelectionPostList(apiBaseUrl, $axios)
-  }, 'usePostList')
+  })
 
   return {
     ...toRefs(state)
