@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
+import { defineComponent, useContext } from '@nuxtjs/composition-api'
 import { Breadcrumb } from '@/lib'
 import { usePostList } from '@/src/CompositonFunctions/posts/UsePostList'
 
@@ -61,8 +61,9 @@ const breadcrumbs = [
 export default defineComponent({
   watchQuery: ['page'],
 
-  setup (_, context: SetupContext) {
-    const { paginationPost } = usePostList(process.env.API_URL, context.root.$axios)
+  setup () {
+    const { $axios } = useContext()
+    const { paginationPost } = usePostList(process.env.API_URL, $axios)
 
     return {
       breadcrumbs,

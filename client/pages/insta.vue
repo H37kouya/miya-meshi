@@ -3,14 +3,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useMeta } from '@nuxtjs/composition-api'
 import { useInstaShop } from '@/src/CompositonFunctions/shops/UseInstaShop'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 
 export default defineComponent({
-  setup (_, context: SetupContext) {
-    const { areas } = useArea(context.root)
-    const { instaShops } = useInstaShop(context.root)
+  setup () {
+    const { store } = useContext()
+
+    const { areas } = useArea(store)
+    const { instaShops } = useInstaShop(store)
 
     useMeta({
       title: 'インスタからのおすすめ'

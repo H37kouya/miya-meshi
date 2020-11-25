@@ -96,7 +96,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@nuxtjs/composition-api'
+import { computed, defineComponent, reactive, useContext, watchEffect } from '@nuxtjs/composition-api'
 import dayjs from 'dayjs'
 import { Area, Breadcrumb } from '@/lib'
 import { usePost } from '@/src/CompositonFunctions/posts/UsePost'
@@ -114,18 +114,17 @@ export default defineComponent({
     return Number.isInteger(Number(ctx.params.id))
   },
 
-  setup (_, context: SetupContext) {
+  setup () {
     const state = reactive({
       area: {} as Area|undefined
     })
+    const ctx = useContext()
 
-    const postId = computed(() => {
-      return Number(context.root.$route.params.id)
-    })
+    const postId = computed(() => Number(ctx.params.value.id))
 
     const { newsList } = useNews()
 
-    const { post } = usePost(postId.value, process.env.API_URL, context.root.$axios)
+    const { post } = usePost(postId.value, process.env.API_URL, ctx.$axios)
 
     const formatUpdatedAt = computed(() => dayjs(post.value.updatedAt).format('YYYY年MM月DD日'))
 
@@ -133,13 +132,13 @@ export default defineComponent({
       ...breadcrumbs,
       {
         text: post.value.title,
-        to: `/post/${context.root.$route.params.id}`
+        to: `/post/${ctx.params.value.id}`
       }
     ])
 
     watchEffect(async () => {
       state.area = post.value && post.value.firebase_area_ids && post.value.firebase_area_ids.length > 0
-        ? await getAreaByID(context.root.$fireStore, post.value.firebase_area_ids[0])
+        ? await getAreaByID(ctx.$fireStore, post.value.firebase_area_ids[0])
         : undefined
     })
 
