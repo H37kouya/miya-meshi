@@ -90,15 +90,7 @@
           </v-tab-item>
 
           <v-tab-item>
-            <v-card width="100%" outlined class="mb-8">
-              <v-card-subtitle>
-                店舗選択
-              </v-card-subtitle>
-
-              <div>
-                <p class="mb-0">店舗選択機能は現在作成中</p>
-              </div>
-
+            <v-card width="100%" outlined class="mb-8 pb-4">
               <v-card-subtitle>
                 エリア選択
               </v-card-subtitle>
@@ -113,6 +105,65 @@
                   label="エリア一覧"
                   outlined
                   multiple
+                />
+              </div>
+
+              <v-card-subtitle>
+                店舗選択
+              </v-card-subtitle>
+
+              <div class="ml-4 pa-4 mb-4" style="border: 1px solid #333; border-radius: 5px;">
+                <p class="mb-0" style="font-size: 14px;">店舗検索</p>
+
+                <v-row>
+                  <v-col cols="12" md="4">
+                    <div>
+                      <v-text-field
+                        v-model="state.search.shopName"
+                        outlined
+                        hide-details
+                        label="店舗名で検索"
+                      />
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12" md="4">
+                    <div>
+                      <v-select
+                        v-model="state.search.areaIds"
+                        :items="areaSelectItems"
+                        prepend-icon="mdi-map"
+                        label="エリア名で検索"
+                        outlined
+                        hide-details
+                      />
+                    </div>
+                  </v-col>
+
+                  <v-col cols="12" md="4">
+                    <div>
+                      <v-text-field
+                        v-model.number="state.search.instaNumber"
+                        label="インスタ番号"
+                        outlined
+                        hide-details
+                        type="number"
+                        clearable
+                      />
+                    </div>
+                  </v-col>
+                </v-row>
+              </div>
+
+              <div class="ml-4" style="max-width: 300px;">
+                <v-select
+                  v-model="state.post.firebase_shop_ids"
+                  :items="shopSelectItems"
+                  prepend-icon="mdi-store"
+                  label="店舗一覧"
+                  outlined
+                  multiple
+                  hide-details
                 />
               </div>
             </v-card>
@@ -131,22 +182,36 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Area, Post } from '@/lib'
+import { Area, Post, Shop } from '@/lib'
 import { v4 as createUUID } from 'uuid'
+import { filterShopsByAreas } from '~/src/utils/Shop'
+import { isString } from '~/src/utils/String'
+import { filterAreasByID } from '~/src/utils/Area'
 
 type State = {
   post: Partial<Post>
   tab: any
+  search: {
+    shopName: string
+    areaIds: string[]
+    instaNumber: number
+  }
 }
 
 type Props = {
   areas: Area[]
+  shops: Shop[]
   post?: Post
 }
 
 export default defineComponent({
   props: {
     areas: {
+      type: Array,
+      default: () => []
+    },
+
+    shops: {
       type: Array,
       default: () => []
     },
@@ -173,7 +238,12 @@ export default defineComponent({
         firebase_area_ids: [],
         firebase_shop_ids: []
       } as Partial<Post>,
-      tab: ''
+      tab: '',
+      search: {
+        shopName: '',
+        areaIds: [],
+        instaNumber: 0
+      }
     })
 
     watchEffect(() => {
@@ -188,13 +258,45 @@ export default defineComponent({
       context.emit('submit', state.post)
     }
 
+    const filterShops = computed(() => {
+      if (!state.search.shopName && state.search.areaIds.length === 0 && state.search.instaNumber === 0) {
+        return props.shops
+      }
+
+      const _nameToLower = isString(state.search.shopName) ? state.search.shopName.toLowerCase() : ''
+      const shops = props.shops.filter((shop: Shop) => {
+        if (_nameToLower && shop.name && !shop.name.toLowerCase().includes(_nameToLower)) {
+          return false
+        }
+
+        if (state.search.instaNumber !== 0 && state.search.instaNumber !== shop.instaNumber) {
+          return false
+        }
+
+        return true
+      })
+
+      if (state.search.areaIds.length > 0) {
+        const areas = filterAreasByID(props.areas, state.search.areaIds)
+        return filterShopsByAreas(shops, areas)
+      } else {
+        return shops
+      }
+    })
+
     const areaSelectItems = computed(() => props.areas.map((area: Area) => ({
       text: area.name,
       value: area.id
     })))
 
+    const shopSelectItems = computed(() => filterShops.value.map((shop: Shop) => ({
+      text: `${shop.name} - ${shop.prefixName}`,
+      value: shop.id
+    })))
+
     return {
       areaSelectItems,
+      shopSelectItems,
       state,
       uuid,
       onSubmit
