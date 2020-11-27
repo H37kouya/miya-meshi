@@ -12,7 +12,7 @@
 
     <v-row>
       <v-col cols="12">
-        <PostForm :areas="state.areas" :post="state.post" @submit="editPost" />
+        <PostForm :areas="state.areas" :shops="state.shops" :post="state.post" @submit="editPost" />
       </v-col>
     </v-row>
   </v-container>
@@ -20,9 +20,10 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
-import { Area, Post } from '@/lib'
+import { Area, Post, Shop } from '@/lib'
 import { getSelectionPost, updateSelectionPost as updateDBPost } from '@/src/infra/backend/SelectionPost'
 import { getAreaList } from '~/src/infra/firestore/Area'
+import { getShopList } from '~/src/infra/firestore/Shop'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -30,7 +31,8 @@ export default defineComponent({
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
       areas: [] as Area[],
-      post: {} as Post
+      post: {} as Post,
+      shops: [] as Shop[]
     })
 
     const editPost = async (post: Post) => {
@@ -46,9 +48,13 @@ export default defineComponent({
     }
 
     watchEffect(async () => {
-      state.areas = await getAreaList(context.root.$fireStore)
+      const [areas, shops] = await Promise.all([
+        getAreaList(context.root.$fireStore),
+        getShopList(context.root.$fireStore, 0)
+      ])
+      state.areas = areas
+      state.shops = shops
     })
-
 
     watchEffect(async () => {
       state.post = await getSelectionPost(

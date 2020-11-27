@@ -1,16 +1,16 @@
 <template>
   <nuxt-link :to="`/post/${post.id}`" class="text-decoration-none">
-    <v-card v-bind="$attrs" class="pos-relative" :flat="screenMd">
-      <v-img
-        :alt="`${post.title} - サムネイル`"
-        :aspect-ratio="screenMd ? 1.73 : 1.2"
-        :src="post.image ? post.image : 'no-image.png'"
-        min-height="80px"
-      />
-    </v-card>
-
     <div class="px-4 px-sm-0">
-      <h4 class="mb-0 post-title u-black--text max-text-height-1">
+      <v-card v-bind="$attrs" class="pos-relative" :flat="screenMd">
+        <v-img
+          :alt="`${post.title} - サムネイル`"
+          :aspect-ratio="1.73"
+          :src="post.image ? post.image : 'no-image.png'"
+          min-height="80px"
+        />
+      </v-card>
+
+      <h4 class="my-1 post-title u-black--text max-text-height-2">
         {{ post.title }}
       </h4>
 
@@ -49,8 +49,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .post-title {
-  font-size: 0.9rem;
-  font-weight: bolder;
+  font-size: 1.1rem;
+  font-weight: bold;
 
   @include mq(sm) {
     font-size: 1.2rem;
@@ -58,6 +58,6 @@ export default defineComponent({
 }
 
 .post-description {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 </style>

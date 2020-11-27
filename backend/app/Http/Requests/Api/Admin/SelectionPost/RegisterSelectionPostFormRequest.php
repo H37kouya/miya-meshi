@@ -24,8 +24,8 @@ class RegisterSelectionPostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'               => 'required | string | max:50',
-            'description'         => 'string | nullable | max:50',
+            'title'               => 'required | string | max:100',
+            'description'         => 'string | nullable | max:100',
             'contents'            => 'string | nullable',
             'image'               => 'url | nullable | max:255',
             'release'             => 'required | boolean',

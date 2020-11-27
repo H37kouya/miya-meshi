@@ -12,7 +12,7 @@
 
     <v-row>
       <v-col cols="12">
-        <PostForm :areas="state.areas" @submit="createPost" />
+        <PostForm :areas="state.areas" :shops="state.shops" @submit="createPost" />
       </v-col>
     </v-row>
   </v-container>
@@ -21,15 +21,17 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { createSelectionPost as createDBDPost } from '@/src/infra/backend/SelectionPost'
-import { Area, Post } from '@/lib'
+import { Area, Post, Shop } from '@/lib'
 import { getAreaList } from '~/src/infra/firestore/Area'
+import { getShopList } from '~/src/infra/firestore/Shop'
 
 export default defineComponent({
   middleware: 'admin-auth',
 
   setup (_: unknown, context: SetupContext) {
     const state = reactive({
-      areas: [] as Area[]
+      areas: [] as Area[],
+      shops: [] as Shop[]
     })
 
     const createPost = async (post: Post) => {
@@ -44,7 +46,12 @@ export default defineComponent({
     }
 
     watchEffect(async () => {
-      state.areas = await getAreaList(context.root.$fireStore)
+      const [areas, shops] = await Promise.all([
+        getAreaList(context.root.$fireStore),
+        getShopList(context.root.$fireStore, 0)
+      ])
+      state.areas = areas
+      state.shops = shops
     })
 
     return {
