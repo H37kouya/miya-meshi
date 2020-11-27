@@ -19,7 +19,7 @@
                   v-model="state.post.description"
                   label="概要"
                   outlined
-                  maxlength="50"
+                  maxlength="100"
                   counter
                   placeholder="宇都宮でおすすめな女子会居酒屋3店舗！〇〇なお店はおすすめ。"
                 />
