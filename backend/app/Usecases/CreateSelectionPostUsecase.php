@@ -7,6 +7,7 @@ use App\Repositories\CreateSelectionPostRepository;
 use App\Repositories\CreateSelectionPostShopRepository;
 use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -53,6 +54,7 @@ class CreateSelectionPostUsecase
             );
 
             DB::commit();
+            Cache::flush();
         } catch (Exception $e) {
             DB::rollBack();
             Log::debug($e);

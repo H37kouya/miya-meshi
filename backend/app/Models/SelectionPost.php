@@ -38,6 +38,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereRelease($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereTitle($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SelectionPostShop[] $selectionPostShops
+ * @property-read int|null $selection_post_shops_count
  */
 class SelectionPost extends Model
 {

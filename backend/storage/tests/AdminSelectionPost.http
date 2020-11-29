@@ -44,7 +44,7 @@ Accept: application/json
     "title": "テスト投稿100",
     "description": "テスト投稿しました！",
     "contents": "テスト投稿しました！あいうえお",
-    "release": false,
+    "release": true,
     "firebase_area_ids": [
         "aaa",
         "bbb",

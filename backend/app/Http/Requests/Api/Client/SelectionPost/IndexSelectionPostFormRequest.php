@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Admin\SelectionPost;
+namespace App\Http\Requests\Api\Client\SelectionPost;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,6 @@ class IndexSelectionPostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'releases'   => 'array|nullable',
             'limit'      => 'integer|nullable',
             'id'         => 'integer|nullable',
             'created_at' => 'string|nullable',

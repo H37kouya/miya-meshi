@@ -3,6 +3,7 @@
 namespace App\Usecases;
 
 use App\Repositories\DeleteSelectionPostRepository;
+use Illuminate\Support\Facades\Cache;
 
 class DeleteSelectionPostUsecase
 {
@@ -26,5 +27,6 @@ class DeleteSelectionPostUsecase
     public function invoke(int $id)
     {
         $this->_deleteSelectionPostRepository->invoke($id);
+        Cache::flush();
     }
 }

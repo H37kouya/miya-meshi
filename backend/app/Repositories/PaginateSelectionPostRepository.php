@@ -35,17 +35,15 @@ class PaginateSelectionPostRepository
         isset($created_at) && $cursor['created_at'] = $created_at;
 
         // Release
-        $releasesCount = count($releases);
-        if ($releasesCount === 1) {
-            $selectionPostQuery = SelectionPost::whereRelease($releases[0]);
-        } else if ($releasesCount === 2) {
-            $selectionPostQuery = new SelectionPost();
-        } else if ($releasesCount > 2) {
+        if (count($releases) > 2) {
             throw new InvalidArgumentException('$releasesの配列の個数は最大2個までです。');
         }
 
         // Create Pagination
-        $selectionPost = $selectionPostQuery
+        $selectionPost = SelectionPost::
+            when(count($releases) === 1, function($query) use ($releases) {
+                $query->whereRelease($releases[0]);
+            })
             ->lampager()
             ->forward()
             ->limit($limit)

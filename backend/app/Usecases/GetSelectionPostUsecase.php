@@ -2,16 +2,16 @@
 
 namespace App\Usecases;
 
-use App\Models\SelectionPost;
-use Illuminate\Support\Arr;
+use App\Repositories\GetSelectionPostRepository;
+use Illuminate\Support\Facades\Cache;
 
-class GetSelectionPostUsecase
+class GetSelectionPostUsecase extends BaseSelectionPostUsecase
 {
-    private SelectionPost $_selectionPost;
+    private GetSelectionPostRepository $_getSelectionPostRepository;
 
-    public function __construct(SelectionPost $selectionPost)
+    public function __construct(GetSelectionPostRepository $getSelectionPostRepository)
     {
-        $this->_selectionPost = $selectionPost;
+        $this->_getSelectionPostRepository = $getSelectionPostRepository;
     }
 
     /**
@@ -25,24 +25,10 @@ class GetSelectionPostUsecase
         int $selectionPostId,
         bool $onlyRelease = true
     ): array {
-        $selectionPost = $this->_selectionPost
-            ->with(['selectionPostAreas', 'selectionPostShops'])
-            ->when($onlyRelease, function($query) {
-                $query->whereRelease(true);
-            })->findOrFail($selectionPostId);
-
-        $firebaseAreaIds = $selectionPost->selectionPostAreas->map(
-            fn ($selectionPostArea) => $selectionPostArea->firebase_area_id
+        return Cache::remember(
+            self::CACHE_GET.$selectionPostId,
+            120,
+            fn () => $this->_getSelectionPostRepository->invoke($selectionPostId, $onlyRelease)
         );
-        $firebaseShopIds = $selectionPost->selectionPostShops->map(
-            fn ($selectionPostShop) => $selectionPostShop->firebase_shop_id
-        );
-        // いらないkeyの削除
-        Arr::forget($selectionPost, 'selectionPostAreas');
-        Arr::forget($selectionPost, 'selectionPostShops');
-        Arr::set($selectionPost, 'firebase_area_ids', $firebaseAreaIds);
-        Arr::set($selectionPost, 'firebase_shop_ids', $firebaseShopIds);
-
-        return $selectionPost->toArray();
     }
 }
