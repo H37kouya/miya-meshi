@@ -4,6 +4,7 @@ namespace App\Usecases;
 
 use App\Repositories\CreateUserRepository;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -32,6 +33,7 @@ class CreateUserUsecase
         try {
             $user = $this->_createUserRepository->invoke($name);
             DB::commit();
+            Cache::flush();
 
             return $user;
         } catch (Exception $e) {
