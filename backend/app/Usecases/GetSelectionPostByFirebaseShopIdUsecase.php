@@ -3,8 +3,9 @@
 namespace App\Usecases;
 
 use App\Repositories\GetSelectionPostByFirebaseShopIdRepository;
+use Cache;
 
-class GetSelectionPostByFirebaseShopIdUsecase
+class GetSelectionPostByFirebaseShopIdUsecase extends BaseSelectionPostUsecase
 {
     private GetSelectionPostByFirebaseShopIdRepository $_getSelectionPostByFirebaseShopIdRepository;
 
@@ -26,7 +27,10 @@ class GetSelectionPostByFirebaseShopIdUsecase
      */
     public function invoke(string $firebaseShopId)
     {
-        return $this->_getSelectionPostByFirebaseShopIdRepository
-            ->invoke($firebaseShopId);
+        return Cache::remember(
+            self::CACHE_GET_BY_FIREBASE_SHOP_ID.$firebaseShopId,
+            120,
+            fn () => $this->_getSelectionPostByFirebaseShopIdRepository->invoke($firebaseShopId)
+        );
     }
 }
