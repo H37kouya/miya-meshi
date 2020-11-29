@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 // Selection Post
 Route::get('/selection-post', 'Api\Client\SelectionPost\IndexSelectionPostController');
 Route::get('/selection-post/{selectionPostId}', 'Api\Client\SelectionPost\ShowSelectionPostController');
+Route::get('/selection-post/firebase-shop-id/{firebaseShopId}', 'Api\Client\SelectionPost\IndexByFirebaseShopIdSelectionPostController');
 
 Route::middleware('auth:api')->group(function() {
 
