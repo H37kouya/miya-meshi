@@ -3,7 +3,7 @@
 namespace App\Usecases;
 
 use App\Repositories\GetSelectionPostByFirebaseShopIdRepository;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 
 class GetSelectionPostByFirebaseShopIdUsecase extends BaseSelectionPostUsecase
 {
