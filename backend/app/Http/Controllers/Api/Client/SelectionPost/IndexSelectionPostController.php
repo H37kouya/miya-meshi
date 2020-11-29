@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Client\SelectionPost;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Client\SelectionPost\IndexSelectionPostFormRequest;
 use App\Usecases\PaginateSelectionPostUsecase;
-use Illuminate\Http\Request;
 
 class IndexSelectionPostController extends Controller
 {
@@ -21,14 +21,14 @@ class IndexSelectionPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(IndexSelectionPostFormRequest $request)
     {
         $serach = [
             'releases'   => [true],
             'limit'      => $request->query('limit', 10),
             'id'         => $request->query('id', null),
             'created_at' => $request->query('created_at', null),
-            'updated_at' => $request->query('updated_at', null)
+            'updated_at' => $request->query('updated_at', null),
         ];
 
         $paginateSelectionPost = $this->_paginateSelectionPostUsecase->invoke($serach);
