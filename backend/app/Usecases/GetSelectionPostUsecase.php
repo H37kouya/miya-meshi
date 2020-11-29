@@ -25,6 +25,7 @@ class GetSelectionPostUsecase
         int $selectionPostId,
         bool $onlyRelease = true
     ): array {
+        /** @var SelectionPost */
         $selectionPost = $this->_selectionPost
             ->with(['selectionPostAreas', 'selectionPostShops'])
             ->when($onlyRelease, function($query) {
