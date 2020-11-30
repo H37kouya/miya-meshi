@@ -25,7 +25,13 @@
     </template>
 
     <template v-if="menuImages.length > 0">
-      <MenuImageShopField :src="menuImages" />
+      <div>
+        <ShopText :level="2">
+          メニュー
+        </ShopText>
+
+        <MenuImageShopField :src="menuImages" />
+      </div>
     </template>
   </div>
 </template>
