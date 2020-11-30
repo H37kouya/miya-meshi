@@ -7,6 +7,7 @@
     <ShopidTemplate
       :area="area"
       :shop="shop"
+      :posts="selectionPosts"
       :menus="menus"
       :type="type"
     />
@@ -21,6 +22,7 @@ import { getMenuListByShopID } from '@/src/infra/firestore/Menu'
 import { isString } from '@/src/utils/String'
 import { ActionType } from '@/store/areas'
 import { getShopArea } from '~/src/utils/Shop'
+import { getSelectionPostByFirebaseShopId } from '~/src/infra/backend/SelectionPost'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -44,8 +46,12 @@ interface Computed {
 }
 
 export default Vue.extend<State, Method, Computed>({
-  async asyncData({ $fireStore, params, error }) {
-    const shop = await getShopByID($fireStore, params.id)
+  async asyncData({ $axios, $fireStore, params, error }) {
+    const [shop, selectionPosts] = await Promise.all([
+      getShopByID($fireStore, params.id),
+      getSelectionPostByFirebaseShopId(params.id, process.env.API_URL, $axios)
+    ])
+
     if (!shop) {
       return error({
         statusCode: 404,
@@ -54,7 +60,8 @@ export default Vue.extend<State, Method, Computed>({
     }
 
     return {
-      shop
+      shop,
+      selectionPosts
     }
   },
 

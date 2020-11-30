@@ -8,7 +8,9 @@
           </h3>
         </div>
 
-        <p class="cotact-tel mb-0 px-4 py-2">{{ shop.tel }}</p>
+        <p class="cotact-tel mb-0 px-4 py-2">
+          {{ shop.tel }}
+        </p>
       </div>
 
       <div v-if="type !== 'contact' && shop.latitude && shop.longitude" class="border-b-4 border-gray">
@@ -21,6 +23,25 @@
         <div class="pa-2">
           <LazyMap :latitude="shop.latitude" :longitude="shop.longitude" />
         </div>
+      </div>
+    </div>
+
+    <div v-if="type !== 'top' && posts.length > 0">
+      <div class="border-b border-dark-gray">
+        <h3 class="contact-title pt-4 px-4 pb-2">
+          このお店の記事を見る
+        </h3>
+      </div>
+
+      <div v-for="post in posts" :key="post.id" class="my-4">
+        <nuxt-link :to="`/post/${post.id}`" class="d-flex align-center text-decoration-none">
+          <v-img :src="post.image" :alt="`${post.title} - サムネイル - みやメシ.com`" width="120px" />
+          <div>
+            <h4 class="post-title">
+              {{ post.title }}
+            </h4>
+          </div>
+        </nuxt-link>
       </div>
     </div>
 
@@ -40,11 +61,12 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { Shop } from '@/lib'
+import { Post, Shop } from '@/lib'
 import { shopToSnsLinks } from '@/src/utils/SnsLinks'
 
 type Props = {
-  shop: Shop,
+  shop: Shop
+  posts: Post[]
   type: 'dish'|'pic'|'contact'|'top'
 }
 export default defineComponent({
@@ -52,6 +74,11 @@ export default defineComponent({
     shop: {
       type: Object,
       default: undefined
+    },
+
+    posts: {
+      type: Array,
+      default: () => []
     },
 
     type: {
@@ -79,5 +106,10 @@ export default defineComponent({
 .cotact-tel {
   font-size: 1.5rem;
   font-weight: bolder;
+}
+
+.post-title {
+  font-size: 0.9rem;
+  color: #333 !important;
 }
 </style>

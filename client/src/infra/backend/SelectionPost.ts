@@ -49,3 +49,16 @@ export const getSelectionPost = async (
 
   return data
 }
+
+export const getSelectionPostByFirebaseShopId = async (
+  firebaseShopId: string,
+  apiBaseUrl: string = 'https://api.miyameshi.com',
+  $axios: NuxtAxiosInstance
+): Promise<Post[]> => {
+  type AxiosGetType = {
+    data: Post[]
+  }
+  const { data } = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post/firebase-shop-id/${firebaseShopId}`)
+
+  return data
+}

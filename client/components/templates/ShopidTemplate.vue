@@ -8,7 +8,7 @@
       <v-row class="mx-0">
         <v-col cols="12" md="8" class="px-0 px-md-3 pt-0 pt-md-3">
           <template v-if="type === 'top'">
-            <ShopTypeTopField :shop="shop" :menus="menus" />
+            <ShopTypeTopField :shop="shop" :menus="menus" :posts="posts" />
           </template>
 
           <template v-else-if="type === 'dish'">
@@ -47,7 +47,7 @@
         </v-col>
 
         <v-col cols="12" md="4" class="px-0 px-md-3 pt-0 pt-md-3">
-          <ShopContactField :shop="shop" :type="type" />
+          <ShopContactField :posts="posts" :shop="shop" :type="type" />
 
           <div v-if="shop.instaIframe" class="mt-8 px-4 px-md-0">
             <div v-html="shop.instaIframe" />
@@ -66,7 +66,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { Breadcrumb, Shop, Menu, Area } from '@/lib'
+import { Breadcrumb, Shop, Menu, Area, Post } from '@/lib'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -76,7 +76,8 @@ const breadcrumbs = [
 type Props = {
   area?: Area,
   shop: Shop,
-  menus: Menu[],
+  menus: Menu[]
+  posts: Post[]
   type: 'dish'|'pic'|'contact'|'top'
 }
 
@@ -93,6 +94,11 @@ export default defineComponent({
     },
 
     menus: {
+      type: Array,
+      default: () => []
+    },
+
+    posts: {
       type: Array,
       default: () => []
     },
