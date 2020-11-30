@@ -50,8 +50,70 @@
               <p>{{ post.description }}</p>
             </div>
 
-            <div class="post-main-content">
-              <div v-html="post.contents" />
+            <div v-if="state.shops.length > 0">
+              <div id="shop_list_top" class="border-b border-dark-gray">
+                <h2 class="shop-title">
+                  注目のお店
+                </h2>
+              </div>
+
+              <v-row>
+                <v-col v-for="shop in state.shops.slice(0, screenSm ? 3 : 2)" :key="shop.id" cols="6" sm="4">
+                  <ShopCard
+                    :alt="`${shop.name} - thumnails`"
+                    :area="computedShopArea(shop.address)"
+                    :can-takeout="shop.canTakeout"
+                    :can-go-to-eat="shop.canGoToEat"
+                    :to="`/shops/${shop.id}`"
+                    :src="shop.imageLink"
+                    :name="shop.name"
+                    :prefix-name="shop.prefixName"
+                    :price-range="shop.priceRange"
+                  />
+                </v-col>
+              </v-row>
+
+              <div v-if="visibleAllShopLink" class="d-flex justify-end">
+                <v-btn small color="#1976d2" text class="text-right" @click="toShopListBottom">
+                  全てのお店を見る ↓
+                </v-btn>
+              </div>
+            </div>
+
+            <div v-if="post.contents">
+              <div id="post_content_start" class="border-b border-dark-gray">
+                <h2 class="shop-title">
+                  本文
+                </h2>
+              </div>
+
+              <div class="post-main-content">
+                <div v-html="post.contents" />
+              </div>
+            </div>
+
+            <div v-if="post.contents && state.shops.length > 0" class="mt-4">
+              <div id="shop_list_bottom" class="border-b border-dark-gray">
+                <h2 class="shop-title">
+                  注目のお店
+                </h2>
+              </div>
+
+              <v-row>
+                <v-col v-for="shop in state.shops" :key="shop.id" cols="6" sm="4">
+                  <ShopCard
+                    :alt="`${shop.name} - thumnails`"
+                    :area="computedShopArea(shop.address)"
+                    :can-takeout="shop.canTakeout"
+                    :can-go-to-eat="shop.canGoToEat"
+                    :to="`/shops/${shop.id}`"
+                    :src="shop.imageLink"
+                    :name="shop.name"
+                    :prefix-name="shop.prefixName"
+                    :price-range="shop.priceRange"
+                  />
+                </v-col>
+              </v-row>
             </div>
           </v-container>
         </v-col>
@@ -96,13 +158,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, useContext, watchEffect } from '@nuxtjs/composition-api'
+import { computed, defineComponent, reactive, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
 import dayjs from 'dayjs'
-import { Area, Breadcrumb } from '@/lib'
+import VueScrollto from 'vue-scrollto'
+import { Area, Breadcrumb, Shop } from '@/lib'
 import { usePost } from '@/src/CompositonFunctions/posts/UsePost'
 import { Context } from '@nuxt/types'
 import { getAreaByID } from '@/src/infra/firestore/Area'
 import { useNews } from '~/src/CompositonFunctions/news/UseNews'
+import { getShopByIDs } from '~/src/infra/firestore/Shop'
+import { computedShortShopAddress, getShopAreaByAddress } from '~/src/utils/Shop'
+import { useArea } from '~/src/CompositonFunctions/areas/UseArea'
+import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -116,7 +183,8 @@ export default defineComponent({
 
   setup () {
     const state = reactive({
-      area: {} as Area|undefined
+      area: {} as Area|undefined,
+      shops: [] as Shop[]
     })
     const ctx = useContext()
 
@@ -125,6 +193,14 @@ export default defineComponent({
     const { newsList } = useNews()
 
     const { post } = usePost(postId.value, process.env.API_URL, ctx.$axios)
+
+    const { areas } = useArea(ctx.store)
+
+    const { screenSm } = useGetScreenSize()
+
+    const toShopListBottom = () => {
+      VueScrollto.scrollTo('#shop_list_bottom')
+    }
 
     const formatUpdatedAt = computed(() => dayjs(post.value.updatedAt).format('YYYY年MM月DD日'))
 
@@ -136,30 +212,73 @@ export default defineComponent({
       }
     ])
 
+    const computedShopArea = computed(() => {
+      return (address: Shop['address']) => {
+        if (areas.value) {
+          const area = getShopAreaByAddress(address, areas.value)
+          if (area) {
+            return area.name
+          }
+        }
+
+        if (address) {
+          if (address.includes('宇都宮')) {
+            return computedShortShopAddress(address)
+          } else {
+            return '宇都宮市外'
+          }
+        }
+
+        return undefined
+      }
+    })
+
+    const visibleAllShopLink = computed(() => {
+      const max = screenSm ? 3 : 2
+      return state.shops.length > max
+    })
+
+    useMeta({
+      title: post.value.title || 'ブログ'
+    })
+
     watchEffect(async () => {
       state.area = post.value && post.value.firebase_area_ids && post.value.firebase_area_ids.length > 0
         ? await getAreaByID(ctx.$fireStore, post.value.firebase_area_ids[0])
         : undefined
     })
 
+    watchEffect(async () => {
+      if (post.value.firebase_shop_ids && post.value.firebase_shop_ids.length > 0) {
+        state.shops = await getShopByIDs(ctx.$fireStore, ctx.$fireStoreObj, post.value.firebase_shop_ids)
+      }
+    })
+
     return {
       state,
+      screenSm,
       newsList,
+      visibleAllShopLink,
+      computedShopArea,
       breadcrumbs: newBreadcrumbs,
       formatUpdatedAt,
-      post
+      post,
+      toShopListBottom
     }
   },
 
-  head: () => ({
-    title: 'お店から探す'
-  })
+  head: {}
 })
 </script>
 
 <style lang="scss" scoped>
 .post-title {
   background: #faf8f5;
+}
+
+.shop-title {
+  font-size: 1rem;
+  font-weight: bolder;
 }
 
 .post-description {

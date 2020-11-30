@@ -72,6 +72,24 @@ export const getShopByID = async (
   return firestoreDocDataToShop(doc)
 }
 
+export const getShopByIDs = async (
+  $fireStore: firebase.firestore.Firestore,
+  $fireStoreObj: typeof firebase.firestore,
+  ids: string[]
+) => {
+  const list = await $fireStore
+    .collection(SHOP_COLLECTION_NAME)
+    .where($fireStoreObj.FieldPath.documentId(), 'in', ids)
+    .get()
+
+  const shops = [] as Shop[]
+  list.forEach((doc) => {
+    const shop = firestoreDocDataToShop(doc)
+    shop && shops.push(shop)
+  })
+  return shops
+}
+
 /**
  * FirebaseのデータをShop型に変換
  *
