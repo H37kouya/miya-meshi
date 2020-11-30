@@ -11,13 +11,14 @@ export type PaginationPost = {
 
 export const getSelectionPostList = async (
   apiBaseUrl: string = 'https://api.miyameshi.com',
-  $axios: NuxtAxiosInstance
+  $axios: NuxtAxiosInstance,
+  limit: number = 1000
 ): Promise<PaginationPost> => {
   type AxiosGetType = PaginationPost
 
   const data = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post`, {
     params: {
-      limit: 1000
+      limit
     }
   })
   return data

@@ -3,27 +3,38 @@
     :insta-shops="instaShops"
     :areas="areas"
     :shops="recommendShops"
+    :posts="state.posts"
     :news-list="newsList"
     :max-shop-count="shops.length"
   />
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
 import { useNews } from '@/src/CompositonFunctions/news/UseNews'
 import { useRecommendShop } from '@/src/CompositonFunctions/shops/UseRecommendShop'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { getShopListByInstaNumber } from '~/src/infra/firestore/Shop'
+import { Post } from '~/lib'
+import { getSelectionPostList } from '~/src/infra/backend/SelectionPost'
 
 export default defineComponent({
   setup () {
-    const { store, $fireStore } = useContext()
+    const state = reactive({
+      posts: [] as Post[]
+    })
+    const { store, $axios, $fireStore } = useContext()
 
     const { recommendShops } = useRecommendShop($fireStore)
     const { newsList } = useNews()
     const { shops } = useShop(store, 500)
     const { areas } = useArea(store)
+
+    watchEffect(async () => {
+      const { records } = await getSelectionPostList(process.env.API_URL, $axios, 4)
+      state.posts = records
+    })
 
     useMeta({
       title: '宇都宮の新たなグルメサイト',
@@ -35,6 +46,7 @@ export default defineComponent({
     return {
       areas,
       recommendShops,
+      state,
       shops,
       newsList
     }
