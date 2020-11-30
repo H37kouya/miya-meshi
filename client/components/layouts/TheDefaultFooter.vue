@@ -2,11 +2,13 @@
   <footer
     class="pa-0"
   >
-    <div>
-      <adsbygoogle
-        ad-slot="6047159759"
-        :ad-style="{ display: 'block', width: '100%' }"
-      />
+    <div class="text-center">
+      <div>
+        <adsbygoogle
+          ad-slot="6047159759"
+          :ad-style="{ display: 'block', width: '100%' }"
+        />
+      </div>
     </div>
 
     <RecruitmentFooterField />

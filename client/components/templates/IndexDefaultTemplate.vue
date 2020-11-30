@@ -31,15 +31,53 @@
       <v-col cols="12" md="8" class="py-0 pt-md-3 px-0 px-md-3">
         <DefaultInstaTopPageShopList :areas="areas" :insta-shops="instaShops" />
 
-        <v-lazy>
-          <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
-            今週のおすすめ
-          </MainText>
-        </v-lazy>
+        <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
+          今週のおすすめ
+        </MainText>
 
-        <v-lazy>
-          <DefaultShopList :areas="areas" :shops="shops" justify="start" />
-        </v-lazy>
+        <DefaultShopList :areas="areas" :shops="shops" justify="start" />
+
+        <div class="u-light-grey-background white-md-background pb-2">
+          <div class="d-flex justify-center">
+            <v-container class="text-right pt-0">
+              <p class="mb-0">
+                <nuxt-link to="/post" class="miya-meshi-posts">
+                  もっとみる
+                </nuxt-link>
+              </p>
+            </v-container>
+          </div>
+        </div>
+
+        <template v-if="posts.length === 4">
+          <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
+            ブログを見る
+          </MainText>
+
+          <div>
+            <v-row>
+              <template v-for="(post, key) in posts">
+                <v-col :key="key" cols="12" sm="6">
+                  <BlogCard
+                    :post="post"
+                  />
+                </v-col>
+              </template>
+            </v-row>
+          </div>
+
+          <div class="u-light-grey-background white-md-background pb-2">
+            <div class="d-flex justify-center">
+              <v-container class="text-right pt-0">
+                <p class="mb-0">
+                  <nuxt-link to="/post" class="miya-meshi-posts">
+                    もっとみる
+                  </nuxt-link>
+                </p>
+              </v-container>
+            </div>
+          </div>
+        </template>
       </v-col>
 
       <v-col cols="12" md="4" class="px-0 px-md-4 pt-0 pt-md-3">
@@ -54,12 +92,13 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import { Shop, News, Area } from '@/lib'
+import { Shop, News, Area, Post } from '@/lib'
 
 type Props = {
-  areas: Area[],
-  shops: Shop[],
-  instaShops: Shop[],
+  areas: Area[]
+  shops: Shop[]
+  instaShops: Shop[]
+  posts: Post[]
   newsList: News[]
 }
 
@@ -81,6 +120,11 @@ export default defineComponent({
     },
 
     newsList: {
+      type: Array,
+      default: () => []
+    },
+
+    posts: {
       type: Array,
       default: () => []
     },
@@ -122,6 +166,14 @@ export default defineComponent({
     font-weight: bolder;
     background: #90B496;
     color: $white;
+  }
+}
+
+.miya-meshi-posts {
+  font-size: 0.8rem;
+
+  &::after {
+    content: '→';
   }
 }
 </style>
