@@ -40,6 +40,7 @@ class GetSelectionPostRepository
             'id',
             'title',
             'description',
+            'contents',
             'image',
             'release',
             'created_at',

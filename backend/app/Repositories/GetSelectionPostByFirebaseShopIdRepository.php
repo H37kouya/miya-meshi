@@ -40,6 +40,7 @@ class GetSelectionPostByFirebaseShopIdRepository
                 'title',
                 'description',
                 'image',
+                'contents',
                 'release',
                 'created_at',
                 'updated_at'

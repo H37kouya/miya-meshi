@@ -42,7 +42,7 @@
     </component>
 
     <div class="mt-2">
-      <v-chip-group>
+      <v-chip-group :show-arrows="false">
         <v-chip v-if="canGoToEat" x-small outlined>
           GoToEat
         </v-chip>

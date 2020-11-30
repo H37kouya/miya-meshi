@@ -27,6 +27,8 @@ class IndexByFirebaseShopIdSelectionPostController extends Controller
     {
         $selectionPosts = $this->_getSelectionPostByFirebaseShopIdUsecase->invoke($firebaseShopId);
 
-        return response()->json($selectionPosts);
+        return response()->json([
+            "data" => $selectionPosts
+        ]);
     }
 }

@@ -41,13 +41,24 @@
         <div>
           <ul class="d-flex link-inline-list">
             <li class="link-inline-list-item">
-              <nuxt-link class="sentence text-decoration-none" to="/">トップページ</nuxt-link>
+              <nuxt-link class="sentence text-decoration-none" to="/">
+                トップページ
+              </nuxt-link>
             </li>
             <li class="link-inline-list-item">
-              <nuxt-link class="sentence text-decoration-none" to="/shops">お店から探す</nuxt-link>
+              <nuxt-link class="sentence text-decoration-none" to="/shops">
+                お店から探す
+              </nuxt-link>
             </li>
             <li class="link-inline-list-item">
-              <nuxt-link class="sentence text-decoration-none" to="/insta">インスタからのおすすめ</nuxt-link>
+              <nuxt-link class="sentence text-decoration-none" to="/insta">
+                インスタからのおすすめ
+              </nuxt-link>
+            </li>
+            <li class="link-inline-list-item">
+              <nuxt-link class="sentence text-decoration-none" to="/post">
+                ブログ一覧
+              </nuxt-link>
             </li>
             <li class="link-inline-list-item">
               <a

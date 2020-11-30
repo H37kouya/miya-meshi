@@ -2,27 +2,48 @@
   <div>
     <PcTopShopField :shop="shop" />
 
-    <div v-if="menus.length > 0">
+    <template v-if="menus.length > 0">
+      <div>
+        <ShopText :level="2">
+          おすすめの3品
+        </ShopText>
+
+        <RecommendShopField :menus="menus.slice(0, 3)" />
+      </div>
+    </template>
+
+    <template v-if="posts.length > 0">
       <ShopText :level="2">
-        おすすめの3品
+        このお店の記事を見る
       </ShopText>
 
-      <RecommendShopField :menus="menus.slice(0, 3)" />
+      <v-row>
+        <v-col v-for="post in posts" :key="post.id" cols="12" md="6">
+          <BlogCard :post="post" />
+        </v-col>
+      </v-row>
+    </template>
 
-      <template v-if="menuImages.length > 0">
+    <template v-if="menuImages.length > 0">
+      <div>
+        <ShopText :level="2">
+          メニュー
+        </ShopText>
+
         <MenuImageShopField :src="menuImages" />
-      </template>
-    </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import { Menu, Shop } from '@/lib'
+import { Menu, Post, Shop } from '@/lib'
 
 type Props = {
-  shop: Shop,
+  shop: Shop
   menus: Menu[]
+  posts: Post[]
 }
 export default defineComponent({
   props: {
@@ -32,6 +53,11 @@ export default defineComponent({
     },
 
     menus: {
+      type: Array,
+      default: () => []
+    },
+
+    posts: {
       type: Array,
       default: () => []
     }
