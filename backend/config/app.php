@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Lampager\Laravel\MacroServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
 
         /*
          * Application Service Providers...
