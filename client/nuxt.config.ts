@@ -89,7 +89,12 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/firebase',
     '@nuxtjs/pwa',
     '@nuxtjs/google-adsense',
-    'nuxt-leaflet'
+    'nuxt-leaflet',
+    ['nuxt-bugsnag', {
+      config: {
+        apiKey: process.env.BUGSNAG_API_KEY
+      }
+    }]
   ],
   /*
   ** Axios module configuration

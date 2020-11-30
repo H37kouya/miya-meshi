@@ -88,7 +88,13 @@ const nuxtConfig: NuxtConfig  = {
     '@nuxtjs/device',
     '@nuxtjs/firebase',
     '@nuxtjs/pwa',
-    'vue-scrollto/nuxt'
+    'vue-scrollto/nuxt',
+    ['nuxt-bugsnag', {
+      config: {
+        apiKey: process.env.BUGSNAG_API_KEY,
+        enabledReleaseStages: ['production']
+      }
+    }]
   ],
   /*
   ** Axios module configuration
