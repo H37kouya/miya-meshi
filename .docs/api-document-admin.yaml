@@ -1,0 +1,248 @@
+openapi: 3.0.2
+info:
+  description: |-
+    Miyameshi の API 仕様書
+  version: "1.0.0"
+  title: "Miyameshi"
+servers:
+  - url: http://localhost:8000/api/admin
+tags:
+  - name: "selection-post"
+    description: "ブログ関連API"
+
+paths:
+  /selection-post:
+    get:
+      tags:
+        - selection-post
+      summary: ブログ一覧取得API
+      description: ブログ一覧を取得する
+      parameters:
+        - name: limit
+          in: query
+          description: 取得数
+          schema:
+            type: integer
+            default: 10
+        - name: releases
+          in: query
+          description: 公開設定
+          schema:
+            type: array
+            items:
+              type: "boolean"
+        - name: id
+          in: query
+          description: SelectionPostのID
+          schema:
+            type: integer
+        - name: created_at
+          in: query
+          description: 作成日時 (paginationで使用)
+          schema:
+            type: string
+        - name: updated_at
+          in: query
+          description: 更新日時 (paginationで使用)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - selection-post
+      summary: 新規ブログ追加API
+      description: ブログを追加する
+      requestBody:
+        required: true
+        description: The selection-post to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectionPostObject'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /selection-post/{selectionPostId}:
+    get:
+      tags:
+        - selection-post
+      summary: ブログの個別情報取得API
+      description: |-
+        idはSelectionPostテーブルのID。
+      parameters:
+        - name: selectionPostId
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - selection-post
+      summary: ブログの更新API
+      description: |-
+        idはSelectionPostテーブルのID。
+      parameters:
+        - name: selectionPostId
+          in: path
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        description: The selection-post to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectionPostObject'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - selection-post
+      summary: ブログの削除取得API
+      description: |-
+        idはSelectionPostテーブルのID。
+      parameters:
+        - name: selectionPostId
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    SelectionPostObject:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        contents:
+          type: string
+        image:
+          type: string
+          format: url
+        release:
+          type: boolean
+          default: false
+        firebase_area_ids:
+          type: array
+          items:
+            type: "string"
+        firebase_shop_ids:
+          type: array
+          items:
+            type: "string"
+      required:
+        - title
+    SuccessResponse:
+      type: object
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: ステータスコード
+        message:
+          type: string
+          description: エラーメッセージ
+      required:
+        - code
+        - message
