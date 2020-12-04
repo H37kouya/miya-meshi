@@ -273,7 +273,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext, watch, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watch, watchEffect } from '@vue/composition-api'
 import { Area, Post, Shop } from '@/lib'
 import { v4 as createUUID } from 'uuid'
 import { filterShopsByAreas } from '~/src/utils/Shop'
