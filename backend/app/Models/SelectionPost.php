@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\SelectionPost
@@ -50,14 +51,42 @@ class SelectionPost extends Model
         'description',
         'contents',
         'image',
-        'release'
+        'release',
+        'publish_from',
+        'publish_to'
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'publish_from', 'publish_to'];
 
     protected $casts = [
         'release' => 'boolean'
     ];
+
+    /**
+     * 現在公開中のものを取得する
+     *
+     * @param $query
+     * @param Carbon $now
+     * @return void
+     */
+    public function scopeNowPublicPosts($query, Carbon $now)
+    {
+        return $query->whereRelease(true)
+            ->where(function ($query) use ($now) {
+                $query->where(function ($query) use ($now) {
+                    $query->where('publish_from', '<', $now)->where('publish_to', '>', $now);
+                })
+                ->orWhere(function($query) use($now) {
+                    $query->where('publish_from', '<', $now)->whereNull('publish_to');
+                })
+                ->orWhere(function($query) use($now) {
+                    $query->where('publish_to', '>', $now)->whereNull('publish_from');
+                })
+                ->orWhere(function($query) {
+                    $query->whereNull('publish_from')->whereNull('publish_to');
+                });
+            });
+    }
 
     /**
      * Relation to SelectionPostArea

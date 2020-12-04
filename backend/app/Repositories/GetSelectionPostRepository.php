@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\SelectionPost;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 
 class GetSelectionPostRepository
 {
@@ -34,7 +35,7 @@ class GetSelectionPostRepository
         $selectionPost = $this->_selectionPost
         ->with(['selectionPostAreas', 'selectionPostShops'])
         ->when($onlyRelease, function($query) {
-            $query->whereRelease(true);
+            $query->nowPublicPosts(Carbon::now());
         })->whereId($selectionPostId)
         ->firstOrFail([
             'id',
@@ -43,6 +44,8 @@ class GetSelectionPostRepository
             'contents',
             'image',
             'release',
+            'publish_from',
+            'publish_to',
             'created_at',
             'updated_at'
         ]);
