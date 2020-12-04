@@ -59,6 +59,7 @@ const nuxtConfig: NuxtConfig = {
       src: '@/plugins/vuetify.ts',
       ssr: true
     },
+    { src: '~/plugins/intersection-observer', ssr: false },
     '@/plugins/leaflet'
   ],
   /*
