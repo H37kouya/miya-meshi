@@ -6,6 +6,7 @@ use App\Models\SelectionPost;
 use App\Models\SelectionPostArea;
 use App\Models\SelectionPostShop;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
@@ -15,6 +16,7 @@ class PaginateSelectionPostRepository
      * Selection Postのページネーション取得
      *
      * @param (true|false)[] $releases
+     * @param boolean $onlyRelease 公開中のもののみを取得
      * @param integer $limit
      * @param integer|null $id
      * @param string|null $created_at
@@ -23,6 +25,7 @@ class PaginateSelectionPostRepository
      */
     public function invoke(
         array $releases = [true],
+        bool $onlyRelease = true,
         int $limit = 3,
         ?int $id = null,
         ?string $created_at = null,
@@ -41,7 +44,10 @@ class PaginateSelectionPostRepository
 
         // Create Pagination
         $selectionPost = SelectionPost::
-            when(count($releases) === 1, function($query) use ($releases) {
+            when($onlyRelease, function($query) {
+                $query->nowPublicPosts(Carbon::now());
+            })
+            ->when(count($releases) === 1 && !$onlyRelease, function($query) use ($releases) {
                 $query->whereRelease($releases[0]);
             })
             ->lampager()

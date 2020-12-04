@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeMaxValueSelectionPost extends Migration
+class AddPublishFromAndToColumnSelectionPost extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class ChangeMaxValueSelectionPost extends Migration
     public function up()
     {
         Schema::table('selection_posts', function (Blueprint $table) {
-            $table->string('title', '100')->comment('タイトル')->change();
-            $table->string('description', '100')->nullable()->comment('一言コメント')->change();
+            $table->dateTime('publish_from')->nullable()->comment('公開開始日時');
+            $table->dateTime('publish_to')->nullable()->comment('公開終了日時');
         });
     }
 
@@ -27,8 +27,7 @@ class ChangeMaxValueSelectionPost extends Migration
     public function down()
     {
         Schema::table('selection_posts', function (Blueprint $table) {
-            $table->string('title', '50')->comment('タイトル')->change();
-            $table->string('description', '50')->nullable()->comment('一言コメント')->change();
+            $table->dropColumn(['publish_from', 'publish_to']);
         });
     }
 }

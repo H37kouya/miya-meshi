@@ -37,6 +37,98 @@
                       :label="state.post.release ? '公開' : '非公開'"
                       class="mt-0"
                     />
+
+                    <v-card-subtitle class="py-0">
+                      公開時間
+                    </v-card-subtitle>
+
+                    <v-menu
+                      ref="menu_publish_from"
+                      v-model="state.menu.publish_from"
+                      :close-on-content-click="false"
+                      :return-value.sync="state.publish_from"
+                      label="公開開始日時"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="290px"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="state.publish_from"
+                          :placeholder="state.post.publish_from"
+                          label="公開開始日時"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="state.publish_from"
+                        no-title
+                        scrollable
+                      >
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="state.menu.publish_from = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.menu_publish_from.save(state.publish_from)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-menu>
+
+                    <v-menu
+                      ref="menu_publish_to"
+                      v-model="state.menu.publish_to"
+                      :close-on-content-click="false"
+                      :return-value.sync="state.publish_to"
+                      label="公開終了日時"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="290px"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="state.publish_to"
+                          :placeholder="state.post.publish_to"
+                          label="公開終了日時"
+                          prepend-icon="mdi-calendar"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="state.publish_to"
+                        no-title
+                        scrollable
+                      >
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="state.menu.publish_to = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.menu_publish_to.save(state.publish_to)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
+                    </v-menu>
                   </v-col>
 
                   <v-col cols="6" class="py-0">
@@ -181,7 +273,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watch, watchEffect } from '@vue/composition-api'
 import { Area, Post, Shop } from '@/lib'
 import { v4 as createUUID } from 'uuid'
 import { filterShopsByAreas } from '~/src/utils/Shop'
@@ -191,17 +283,26 @@ import { filterAreasByID } from '~/src/utils/Area'
 type State = {
   post: Partial<Post>
   tab: any
+  menu: {
+    publish_from: any
+    publish_to: any
+  }
   search: {
     shopName: string
     areaIds: string[]
     instaNumber: number
   }
+  publish_from: string|null
+  publish_to: string|null
+  userChangedPublishFrom: boolean
+  userChangedPublishTo: boolean
 }
 
 type Props = {
   areas: Area[]
   shops: Shop[]
   post?: Post
+  type: 'edit'|'create'
 }
 
 export default defineComponent({
@@ -221,6 +322,11 @@ export default defineComponent({
       default: undefined
     },
 
+    type: {
+      type: String,
+      default: 'edit'
+    },
+
     initital: {
       type: Boolean,
       default: true
@@ -235,15 +341,25 @@ export default defineComponent({
         contents: 'ブログを書き始めよう',
         image: '',
         release: true,
+        publish_from: null,
+        publish_to: null,
         firebase_area_ids: [],
         firebase_shop_ids: []
       } as Partial<Post>,
       tab: '',
+      menu: {
+        publish_from: '',
+        publish_to: ''
+      },
       search: {
         shopName: '',
         areaIds: [],
         instaNumber: 0
-      }
+      },
+      publish_from: null,
+      publish_to: null,
+      userChangedPublishFrom: false,
+      userChangedPublishTo: false
     })
 
     watchEffect(() => {
@@ -252,9 +368,24 @@ export default defineComponent({
       }
     })
 
+    watch(() => state.publish_from, () => { state.userChangedPublishFrom = true })
+    watch(() => state.publish_to, () => { state.userChangedPublishTo = true })
+
     const uuid = createUUID()
 
     const onSubmit = () => {
+      if (props.type === 'create') {
+        state.post.publish_from = state.publish_from
+        state.post.publish_to = state.publish_to
+      } else {
+        if (state.userChangedPublishFrom) {
+          state.post.publish_from = state.publish_from
+        }
+
+        if (state.userChangedPublishTo) {
+          state.post.publish_to = state.publish_to
+        }
+      }
       context.emit('submit', state.post)
     }
 

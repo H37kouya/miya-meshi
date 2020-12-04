@@ -34,6 +34,7 @@ class PaginateSelectionPostUsecase extends BaseSelectionPostUsecase
             120,
             fn () => $this->_paginateSelectionPostRepository->invoke(
                 $releases,
+                count($releases) === 1 && $releases[0] === true,
                 $limit,
                 $id,
                 $createdAt,

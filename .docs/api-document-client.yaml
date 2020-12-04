@@ -1,0 +1,130 @@
+openapi: 3.0.2
+info:
+  description: |-
+    Miyameshi の API 仕様書
+  version: "1.0.0"
+  title: "Miyameshi"
+servers:
+  - url: http://localhost:8000/api
+tags:
+  - name: "selection-post"
+    description: "ブログ関連API"
+
+paths:
+  /selection-post:
+    get:
+      tags:
+        - selection-post
+      summary: ブログ一覧取得API
+      description: ブログ一覧を取得する
+      parameters:
+        - name: limit
+          in: query
+          description: 取得数
+          schema:
+            type: integer
+            default: 10
+        - name: id
+          in: query
+          description: SelectionPostのID
+          schema:
+            type: integer
+        - name: created_at
+          in: query
+          description: 作成日時 (paginationで使用)
+          schema:
+            type: string
+        - name: updated_at
+          in: query
+          description: 更新日時 (paginationで使用)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /selection-post/{selectionPostId}:
+    get:
+      tags:
+        - selection-post
+      summary: ブログの個別情報取得API
+      description: |-
+        idはSelectionPostテーブルのID。
+      parameters:
+        - name: selectionPostId
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /selection-post/firebase-shop-id/{firebaseShopId}:
+    get:
+      tags:
+        - selection-post
+      summary: firebaseShopIdによって、ブログ情報取得API
+      description: |-
+        firebaseShopIdはfirebaseに格納されているShop ID
+      parameters:
+        - name: firebaseShopId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: ステータスコード
+        message:
+          type: string
+          description: エラーメッセージ
+      required:
+        - code
+        - message

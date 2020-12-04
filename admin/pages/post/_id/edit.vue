@@ -12,7 +12,7 @@
 
     <v-row>
       <v-col cols="12">
-        <PostForm :areas="state.areas" :shops="state.shops" :post="state.post" @submit="editPost" />
+        <PostForm :areas="state.areas" :shops="state.shops" :post="state.post" @submit="editPost" type="edit" />
       </v-col>
     </v-row>
   </v-container>

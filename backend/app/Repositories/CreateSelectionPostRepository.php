@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\SelectionPost;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 
 class CreateSelectionPostRepository
 {
@@ -27,13 +28,18 @@ class CreateSelectionPostRepository
     public function invoke(
         array $inputs
     ): array {
+        $publishFrom = Arr::get($inputs, 'publish_from', null) ? new Carbon($inputs['publish_from']) : null;
+        $publishTo = Arr::get($inputs, 'publish_to', null) ? new Carbon($inputs['publish_to']) : null;
+
         /** @var SelectionPost $selectionPost */
         $selectionPost = $this->_selectionPost->create([
-            'title'       => $inputs['title'],
-            'contents'    => Arr::get($inputs, 'contents', null),
-            'image'       => Arr::get($inputs, 'image', null),
-            'description' => Arr::get($inputs, 'description', null),
-            'release'     => Arr::get($inputs, 'release', false),
+            'title'        => $inputs['title'],
+            'contents'     => Arr::get($inputs, 'contents', null),
+            'image'        => Arr::get($inputs, 'image', null),
+            'description'  => Arr::get($inputs, 'description', null),
+            'release'      => Arr::get($inputs, 'release', false),
+            'publish_from' => $publishFrom,
+            'publish_to'   => $publishTo,
         ]);
 
         return $selectionPost->toArray();

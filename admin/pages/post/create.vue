@@ -5,14 +5,14 @@
         新しいブログ追加
       </AdminMainText>
 
-      <v-btn to="/blog" color="success">
+      <v-btn to="/post" color="success">
         ブログ一覧へ戻る
       </v-btn>
     </v-row>
 
     <v-row>
       <v-col cols="12">
-        <PostForm :areas="state.areas" :shops="state.shops" @submit="createPost" />
+        <PostForm :areas="state.areas" :shops="state.shops" @submit="createPost" type="create" />
       </v-col>
     </v-row>
   </v-container>
