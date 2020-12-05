@@ -36,6 +36,7 @@ class PaginateSelectionPostRepository
         isset($id) && $cursor['id'] = $id;
         isset($updated_at) && $cursor['updated_at'] = $updated_at;
         isset($created_at) && $cursor['created_at'] = $created_at;
+        $now = Carbon::now();
 
         // Release
         if (count($releases) > 2) {
@@ -69,9 +70,19 @@ class PaginateSelectionPostRepository
 
         $firebaseAreaIds = $this->getFirebaseAreaIds($selectionPostIds);
         $firebaseShopIds = $this->getFirebaseShopIds($selectionPostIds);
-        $mappedRecords = $selectionPostRecords->map(function($_selectionPost) use ($firebaseAreaIds, $firebaseShopIds) {
+        $mappedRecords = $selectionPostRecords->map(function($_selectionPost) use ($firebaseAreaIds, $firebaseShopIds, $now) {
             Arr::set($_selectionPost, 'firebase_areas_ids', Arr::get($firebaseAreaIds, Arr::get($_selectionPost, 'id', null), null));
             Arr::set($_selectionPost, 'firebase_shops_ids', Arr::get($firebaseShopIds, Arr::get($_selectionPost, 'id', null), null));
+            Arr::set(
+                $_selectionPost,
+                'now_public',
+                SelectionPost::getNowPublic(
+                    $_selectionPost['release'],
+                    $_selectionPost['publish_from'],
+                    $_selectionPost['publish_to'],
+                    $now
+                )
+            );
             return $_selectionPost;
         })->toArray();
 

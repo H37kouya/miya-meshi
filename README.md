@@ -93,7 +93,7 @@ $ vendor/bin/phpunit
 $ docker-compose up -d
 
 # dockerのdbコンテナに入る
-$ docker-comopose exec db bash
+$ docker-compose exec db bash
 
 # mysqlにアクセス (password: secret)
 $ mysql -u root -p

@@ -5,7 +5,7 @@
     class="elevation-1"
   >
     <template #item.release="{ item }">
-      {{ item.release ? '公開' : '非公開' }}
+      {{ item.now_public ? '公開' : '非公開' }}
     </template>
     <template #item.edit="{ item }">
       <v-btn :to="`/post/${item.id}/edit`" color="orange" dark>
@@ -41,7 +41,7 @@ export default defineComponent({
 
     const headers = [
       { text: '名前', value: 'title' },
-      { text: '公開設定', value: 'release' },
+      { text: '公開中かどうか', value: 'release' },
       { text: '編集', value: 'edit', sortable: false },
       { text: '削除', value: 'delete', sortable: false }
     ]

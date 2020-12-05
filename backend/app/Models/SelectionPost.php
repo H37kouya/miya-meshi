@@ -63,6 +63,60 @@ class SelectionPost extends Model
     ];
 
     /**
+     * 現在公開中かどうか
+     *
+     * @param boolean $release
+     * @param Carbon|null $publish_from
+     * @param Carbon|null $publish_to
+     * @param Carbon $now
+     * @return boolean
+     */
+    public static function getNowPublic(
+        bool $release,
+        ?Carbon $publish_from,
+        ?Carbon $publish_to,
+        Carbon $now
+    ): bool {
+        if (!$release) {
+            return false;
+        }
+
+        if ($publish_from === null && $publish_to === null) {
+            return true;
+        }
+
+        if ($publish_from->lt($now) && $publish_to === null) {
+            return true;
+        }
+
+        if ($publish_to->gt($now) && $publish_from === null) {
+            return true;
+        }
+
+        if ($publish_to->gt($now) && $publish_from->lt($now)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * 現在公開中かどうか
+     *
+     * @return boolean
+     */
+    public function getNowPublicAttibute(): bool
+    {
+        $now = Carbon::now();
+        return self::getNowPublic(
+            $this->release,
+            $this->publish_from,
+            $this->publish_to,
+            $now
+        );
+    }
+
+    /**
      * 現在公開中のものを取得する
      *
      * @param $query
