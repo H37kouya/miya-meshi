@@ -6,13 +6,13 @@ type State = {
   paginationPost: PaginationPost
 }
 
-export const usePostList = (apiBaseUrl: string = 'https://api.miyameshi.com', $axios: NuxtAxiosInstance) => {
+export const usePostList = ($axios: NuxtAxiosInstance) => {
   const state = reactive<State>({
     paginationPost: {} as PaginationPost
   })
 
   watchEffect(async () => {
-    state.paginationPost = await getSelectionPostList(apiBaseUrl, $axios)
+    state.paginationPost = await getSelectionPostList($axios)
   })
 
   return {

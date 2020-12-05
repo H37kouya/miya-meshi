@@ -49,7 +49,7 @@ export default Vue.extend<State, Method, Computed>({
   async asyncData({ $axios, $fireStore, params, error }) {
     const [shop, selectionPosts] = await Promise.all([
       getShopByID($fireStore, params.id),
-      getSelectionPostByFirebaseShopId(params.id, process.env.API_URL, $axios)
+      getSelectionPostByFirebaseShopId(params.id, $axios)
     ])
 
     if (!shop) {

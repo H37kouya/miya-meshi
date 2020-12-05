@@ -36,14 +36,12 @@ const nuxtConfig: NuxtConfig = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'shortcut icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: '//polyfill.io/v3/polyfill.min.js?features=WebAnimations,IntersectionObserver' }
     ]
   },
-  env: {
-    API_URL: process.env.API_URL || ''
-  },
-  publicRuntimeConfig: {
-    API_URL: process.env.API_URL
-  },
+
   /*
   ** Global CSS
   */
@@ -59,7 +57,6 @@ const nuxtConfig: NuxtConfig = {
       src: '@/plugins/vuetify.ts',
       ssr: true
     },
-    { src: '~/plugins/intersection-observer', ssr: false },
     '@/plugins/leaflet'
   ],
   /*
@@ -101,7 +98,9 @@ const nuxtConfig: NuxtConfig = {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_URL || 'http://localhost:8000'
+  },
   /*
   ** Firebase module configuration
   ** See https://firebase.nuxtjs.org/

@@ -61,7 +61,7 @@ const breadcrumbs = [
 export default defineComponent({
   setup () {
     const { $axios } = useContext()
-    const { paginationPost } = usePostList(process.env.API_URL, $axios)
+    const { paginationPost } = usePostList($axios)
 
     return {
       breadcrumbs,

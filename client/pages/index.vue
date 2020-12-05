@@ -32,7 +32,7 @@ export default defineComponent({
     const { areas } = useArea(store)
 
     watchEffect(async () => {
-      const { records } = await getSelectionPostList(process.env.API_URL, $axios, 4)
+      const { records } = await getSelectionPostList($axios, 4)
       state.posts = records
     })
 
