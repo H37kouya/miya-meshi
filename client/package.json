@@ -27,7 +27,6 @@
     "core-js": "^2.6.11",
     "dayjs": "^1.9.6",
     "firebase": "^7.23.0",
-    "intersection-observer": "^0.11.0",
     "nuxt": "^2.14.7",
     "nuxt-bugsnag": "^4.2.1",
     "nuxt-leaflet": "0.0.22",
