@@ -25,8 +25,8 @@ return [
     * example.comとそのサブドメインを許可: ['https://example.com', 'https://*.example.com']
     */
     'allowed_origins' => [
-        'http://localhost:3000',
-        'http://localhost:3001',
+        env('APP_ENV', 'production') === 'local' ? 'http://localhost:3000' : '',
+        env('APP_ENV', 'production') === 'local' ? 'http://localhost:3001' : '',
         'https://miyameshi.com',
         'https://*.miyameshi.com'
     ],
