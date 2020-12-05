@@ -10,13 +10,12 @@ export type PaginationPost = {
 }
 
 export const getSelectionPostList = async (
-  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance,
   limit: number = 1000
 ): Promise<PaginationPost> => {
   type AxiosGetType = PaginationPost
 
-  const data = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post`, {
+  const data = await $axios.$get<AxiosGetType>('/api/selection-post', {
     params: {
       limit
     }
@@ -25,11 +24,10 @@ export const getSelectionPostList = async (
 }
 
 export const getSelectionPostListByNews = async (
-  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ): Promise<PaginationPost> => {
   type AxiosGetType = PaginationPost
-  const data = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post`, {
+  const data = await $axios.$get<AxiosGetType>('/api/selection-post', {
     params: {
       limit: 3
     }
@@ -40,26 +38,24 @@ export const getSelectionPostListByNews = async (
 
 export const getSelectionPost = async (
   id: number,
-  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ): Promise<Post> => {
   type AxiosGetType = {
     data: Post
   }
-  const { data } = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post/${id}`)
+  const { data } = await $axios.$get<AxiosGetType>(`/api/selection-post/${id}`)
 
   return data
 }
 
 export const getSelectionPostByFirebaseShopId = async (
   firebaseShopId: string,
-  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ): Promise<Post[]> => {
   type AxiosGetType = {
     data: Post[]
   }
-  const { data } = await $axios.$get<AxiosGetType>(`${apiBaseUrl}/api/selection-post/firebase-shop-id/${firebaseShopId}`)
+  const { data } = await $axios.$get<AxiosGetType>(`/api/selection-post/firebase-shop-id/${firebaseShopId}`)
 
   return data
 }

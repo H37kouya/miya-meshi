@@ -9,7 +9,6 @@ type State = {
 
 export const usePost = (
   id: number,
-  apiBaseUrl: string = 'https://api.miyameshi.com',
   $axios: NuxtAxiosInstance
 ) => {
   const state = reactive<State>({
@@ -17,7 +16,7 @@ export const usePost = (
   })
 
   watchEffect(async () => {
-    state.post = await getSelectionPost(id, apiBaseUrl, $axios)
+    state.post = await getSelectionPost(id, $axios)
   })
 
   return {

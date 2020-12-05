@@ -192,7 +192,7 @@ export default defineComponent({
 
     const { newsList } = useNews()
 
-    const { post } = usePost(postId.value, process.env.API_URL, ctx.$axios)
+    const { post } = usePost(postId.value, ctx.$axios)
 
     const { areas } = useArea(ctx.store)
 
