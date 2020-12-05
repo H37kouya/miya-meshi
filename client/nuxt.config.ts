@@ -36,6 +36,9 @@ const nuxtConfig: NuxtConfig = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'shortcut icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: '//polyfill.io/v3/polyfill.min.js?features=WebAnimations,IntersectionObserver' }
     ]
   },
   env: {
