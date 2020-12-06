@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 ]
             );
 
-            factory(User::class, 10)->create();
+            factory(User::class, 3)->create();
 
             DB::commit();
         } catch (Exception $e) {
