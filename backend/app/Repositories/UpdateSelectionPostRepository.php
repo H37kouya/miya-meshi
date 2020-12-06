@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enum\ContentMode;
 use App\Models\SelectionPost;
 use Carbon\Carbon;
 use Exception;
@@ -42,6 +43,8 @@ class UpdateSelectionPostRepository
             'image'        => Arr::get($inputs, 'image', null),
             'description'  => Arr::get($inputs, 'description', null),
             'release'      => Arr::get($inputs, 'release', false),
+            'content_mode' => Arr::get($inputs, 'content_mode', ContentMode::NORMAL),
+            'link'         => Arr::get($inputs, 'link', null),
             'publish_from' => $publishFrom,
             'publish_to'   => $publishTo,
         ])->save();

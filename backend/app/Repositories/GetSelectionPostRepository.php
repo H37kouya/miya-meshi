@@ -43,6 +43,8 @@ class GetSelectionPostRepository
             'description',
             'contents',
             'image',
+            'content_mode',
+            'link',
             'release',
             'publish_from',
             'publish_to',

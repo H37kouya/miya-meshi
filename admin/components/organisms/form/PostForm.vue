@@ -5,7 +5,7 @@
         <v-card outlined>
           <v-card-text>
             <v-row>
-              <v-col cols="8">
+              <v-col cols="12" sm="8">
                 <v-text-field
                   v-model="state.post.title"
                   label="ブログタイトル"
@@ -25,7 +25,7 @@
                 />
               </v-col>
 
-              <v-col cols="4">
+              <v-col cols="12" sm="4">
                 <v-row>
                   <v-col cols="6" class="py-0">
                     <v-card-subtitle class="py-0">
@@ -156,6 +156,50 @@
       </v-col>
 
       <v-col cols="12">
+        <v-row>
+          <v-col cols="12">
+            <v-card outlined>
+              <v-card-text>
+                <v-card-subtitle>
+                  コンテンツモード
+                </v-card-subtitle>
+
+                <div>
+                  <v-radio-group
+                    v-model="state.post.content_mode"
+                    mandatory
+                  >
+                    <v-radio
+                      label="通常モード"
+                      :value="ContentMode.NORMAL"
+                    />
+                    <v-radio
+                      label="コンテンツ無しモード"
+                      :value="ContentMode.NO_CONTENT"
+                    />
+                    <v-radio
+                      label="広告モード"
+                      :value="ContentMode.ADVERTISING"
+                    />
+                  </v-radio-group>
+                </div>
+
+                <div v-if="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(state.post.content_mode)">
+                  <v-text-field
+                    v-model="state.post.link"
+                    label="外部リンク"
+                    outlined
+                    maxlength="255"
+                    counter
+                  />
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+
+      <v-col v-if="state.post.content_mode === ContentMode.NORMAL" cols="12">
         <v-tabs v-model="state.tab" grow>
           <v-tab>
             ブログコンテンツ
@@ -279,6 +323,7 @@ import { v4 as createUUID } from 'uuid'
 import { filterShopsByAreas } from '~/src/utils/Shop'
 import { isString } from '~/src/utils/String'
 import { filterAreasByID } from '~/src/utils/Area'
+import { ContentMode } from '~/lib/enum/ContentMode'
 
 type State = {
   post: Partial<Post>
@@ -343,6 +388,8 @@ export default defineComponent({
         release: true,
         publish_from: null,
         publish_to: null,
+        content_mode: ContentMode.NORMAL,
+        link: '',
         firebase_area_ids: [],
         firebase_shop_ids: []
       } as Partial<Post>,
@@ -430,7 +477,8 @@ export default defineComponent({
       shopSelectItems,
       state,
       uuid,
-      onSubmit
+      onSubmit,
+      ContentMode
     }
   }
 })
