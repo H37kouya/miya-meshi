@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
@@ -14,6 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::beginTransaction();
+        $now = Carbon::now();
 
         try {
             User::insert(
@@ -21,15 +23,21 @@ class UserSeeder extends Seeder
                     'name'           => 'tester1',
                     'api_token'      => '1234567890aa',
                     'remember_token' => 'remember1234567890aa',
-                    'active'         => true
+                    'active'         => true,
+                    'created_at'     => $now,
+                    'updated_at'     => $now,
                 ],
                 [
                     'name'           => 'tester2',
                     'api_token'      => '1234567890bb',
                     'remember_token' => 'remember1234567890bb',
-                    'active'         => false
+                    'active'         => false,
+                    'created_at'     => $now,
+                    'updated_at'     => $now,
                 ]
             );
+
+            factory(User::class, 10)->create();
 
             DB::commit();
         } catch (Exception $e) {
