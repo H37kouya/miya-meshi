@@ -9,5 +9,9 @@ export enum ContentMode {
   /**
    * コンテンツなしモード
    */
-  NO_CONTENT = 'NO_CONTENT'
+  NO_CONTENT = 'NO_CONTENT',
+  /**
+   * 広告モード
+   */
+  ADVERTISING = 'ADVERTISING'
 }

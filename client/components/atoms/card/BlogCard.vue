@@ -1,10 +1,10 @@
 <template>
   <component
-    :is="post.content_mode === ContentMode.NO_CONTENT ? 'a' : 'nuxt-link'"
-    :to="post.content_mode === ContentMode.NO_CONTENT ? undefined : `/post/${post.id}`"
-    :href="post.content_mode === ContentMode.NO_CONTENT ? post.link : undefined"
-    :target="post.content_mode === ContentMode.NO_CONTENT ? '_blank' : undefined"
-    :rel="post.content_mode === ContentMode.NO_CONTENT ? 'noopener' : undefined"
+    :is="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(post.content_mode) ? 'a' : 'nuxt-link'"
+    :to="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(post.content_mode) ? undefined : `/post/${post.id}`"
+    :href="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(post.content_mode) ? post.link : undefined"
+    :target="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(post.content_mode) ? '_blank' : undefined"
+    :rel="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(post.content_mode) ? 'noopener' : undefined"
     class="text-decoration-none"
   >
     <div class="px-4 px-sm-0">
@@ -16,10 +16,12 @@
           min-height="80px"
         />
 
-        <template v-if="post.content_mode === ContentMode.NO_CONTENT && post.link">
+        <template v-if="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(post.content_mode) && post.link">
           <div class="post-number-container">
             <p class="mb-0 post-text">
-              <span class="post-explanation">外部リンク</span>
+              <span class="post-explanation">
+                {{ post.content_mode === ContentMode.ADVERTISING ? '広告' : '外部リンク' }}
+              </span>
             </p>
           </div>
         </template>

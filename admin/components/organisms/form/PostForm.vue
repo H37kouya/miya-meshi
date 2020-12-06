@@ -177,10 +177,14 @@
                       label="コンテンツ無しモード"
                       :value="ContentMode.NO_CONTENT"
                     />
+                    <v-radio
+                      label="広告モード"
+                      :value="ContentMode.ADVERTISING"
+                    />
                   </v-radio-group>
                 </div>
 
-                <div v-if="state.post.content_mode === ContentMode.NO_CONTENT">
+                <div v-if="[ContentMode.NO_CONTENT, ContentMode.ADVERTISING].includes(state.post.content_mode)">
                   <v-text-field
                     v-model="state.post.link"
                     label="外部リンク"

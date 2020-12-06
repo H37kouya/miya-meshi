@@ -30,7 +30,7 @@ class RegisterSelectionPostFormRequest extends FormRequest
             'release'             => 'required | boolean',
             'content_mode'        => [
                 'required',
-                Rule::in([ContentMode::NORMAL, ContentMode::NO_CONTENT]),
+                Rule::in([ContentMode::NORMAL, ContentMode::NO_CONTENT, ContentMode::ADVERTISING]),
             ],
             'description'         => 'string | nullable | max:100',
             'contents'            => 'string | nullable',

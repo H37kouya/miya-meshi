@@ -30,7 +30,7 @@ class UpdateSelectionPostFormRequest extends FormRequest
             'description'         => 'string | nullable | max:100',
             'content_mode'        => [
                 'required',
-                Rule::in([ContentMode::NORMAL, ContentMode::NO_CONTENT]),
+                Rule::in([ContentMode::NORMAL, ContentMode::NO_CONTENT, ContentMode::ADVERTISING]),
             ],
             'contents'            => 'string | nullable',
             'image'               => 'url | nullable | max:255',

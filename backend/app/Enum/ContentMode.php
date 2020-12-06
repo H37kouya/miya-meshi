@@ -16,4 +16,9 @@ class ContentMode
      * コンテンツなし
      */
     public const NO_CONTENT = 'NO_CONTENT';
+
+    /**
+     * 広告
+     */
+    public const ADVERTISING = 'ADVERTISING';
 }
