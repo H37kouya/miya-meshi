@@ -6,6 +6,8 @@ use App\Models\SelectionPost;
 use App\Models\SelectionPostArea;
 use App\Models\SelectionPostShop;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 class GetSelectionPostByFirebaseShopIdRepository
 {
@@ -24,14 +26,15 @@ class GetSelectionPostByFirebaseShopIdRepository
     /**
      * invoke
      *
-     * @return void
+     * @param string $firebaseShopId
+     * @return array
      */
-    public function invoke(string $firebaseShopId)
+    public function invoke(string $firebaseShopId): array
     {
         /** @var SelectionPost[] $founds */
         $founds = $this->_selectionPost
             ->with(['selectionPostShops', 'selectionPostAreas'])
-            ->whereRelease(true)
+            ->nowPublicPosts(Carbon::now())
             ->whereHas('selectionPostShops', function ($query) use ($firebaseShopId) {
                 /** @var \App\Models\SelectionPostShop $query */
                 $query->whereFirebaseShopId($firebaseShopId);
@@ -41,7 +44,11 @@ class GetSelectionPostByFirebaseShopIdRepository
                 'description',
                 'image',
                 'contents',
+                'content_mode',
+                'link',
                 'release',
+                'publish_from',
+                'publish_to',
                 'created_at',
                 'updated_at'
             ]);
@@ -62,6 +69,6 @@ class GetSelectionPostByFirebaseShopIdRepository
             Arr::set($found, 'firebase_shop_ids', $firebaseShopIds);
         }
 
-        return $founds;
+        return (new Collection($founds))->all();
     }
 }

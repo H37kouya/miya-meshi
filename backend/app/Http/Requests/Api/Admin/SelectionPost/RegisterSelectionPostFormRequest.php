@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api\Admin\SelectionPost;
 
+use App\Enum\ContentMode;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterSelectionPostFormRequest extends FormRequest
 {
@@ -25,10 +27,15 @@ class RegisterSelectionPostFormRequest extends FormRequest
     {
         return [
             'title'               => 'required | string | max:100',
+            'release'             => 'required | boolean',
+            'content_mode'        => [
+                'required',
+                Rule::in([ContentMode::NORMAL, ContentMode::NO_CONTENT]),
+            ],
             'description'         => 'string | nullable | max:100',
             'contents'            => 'string | nullable',
             'image'               => 'url | nullable | max:255',
-            'release'             => 'required | boolean',
+            'link'                => 'url | nullable | max:255',
             'firebase_area_ids'   => 'array | nullable',
             'firebase_area_ids.*' => 'string',
             'firebase_shop_ids'   => 'array | nullable',

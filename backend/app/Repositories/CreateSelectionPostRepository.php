@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enum\ContentMode;
 use App\Models\SelectionPost;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -38,6 +39,8 @@ class CreateSelectionPostRepository
             'image'        => Arr::get($inputs, 'image', null),
             'description'  => Arr::get($inputs, 'description', null),
             'release'      => Arr::get($inputs, 'release', false),
+            'content_mode' => Arr::get($inputs, 'content_mode', ContentMode::NORMAL),
+            'link'         => Arr::get($inputs, 'link', null),
             'publish_from' => $publishFrom,
             'publish_to'   => $publishTo,
         ]);

@@ -50,6 +50,8 @@ class SelectionPost extends Model
         'title',
         'description',
         'contents',
+        'content_mode',
+        'link',
         'image',
         'release',
         'publish_from',
