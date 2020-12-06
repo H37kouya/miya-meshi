@@ -156,6 +156,40 @@
       </v-col>
 
       <v-col cols="12">
+        <v-card>
+          <v-card-subtitle>
+            コンテンツモード
+          </v-card-subtitle>
+
+          <div>
+            <v-radio-group
+              v-model="state.post.content_mode"
+              mandatory
+            >
+              <v-radio
+                label="通常モード"
+                :value="ContentMode.NORMAL"
+              />
+              <v-radio
+                label="コンテンツ無しモード"
+                :value="ContentMode.NO_CONTENT"
+              />
+            </v-radio-group>
+          </div>
+
+          <div v-if="state.post.content_mode === ContentMode.NO_CONTENT">
+            <v-text-field
+              v-model="state.post.link"
+              label="外部リンク"
+              outlined
+              maxlength="255"
+              counter
+            />
+          </div>
+        </v-card>
+      </v-col>
+
+      <v-col v-if="state.post.content_mode === ContentMode.NORMAL" cols="12">
         <v-tabs v-model="state.tab" grow>
           <v-tab>
             ブログコンテンツ
@@ -279,6 +313,7 @@ import { v4 as createUUID } from 'uuid'
 import { filterShopsByAreas } from '~/src/utils/Shop'
 import { isString } from '~/src/utils/String'
 import { filterAreasByID } from '~/src/utils/Area'
+import { ContentMode } from '~/lib/enum/ContentMode'
 
 type State = {
   post: Partial<Post>
@@ -343,6 +378,8 @@ export default defineComponent({
         release: true,
         publish_from: null,
         publish_to: null,
+        content_mode: ContentMode.NORMAL,
+        link: '',
         firebase_area_ids: [],
         firebase_shop_ids: []
       } as Partial<Post>,
@@ -430,7 +467,8 @@ export default defineComponent({
       shopSelectItems,
       state,
       uuid,
-      onSubmit
+      onSubmit,
+      ContentMode
     }
   }
 })
