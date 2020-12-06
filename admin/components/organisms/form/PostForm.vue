@@ -5,7 +5,7 @@
         <v-card outlined>
           <v-card-text>
             <v-row>
-              <v-col cols="8">
+              <v-col cols="12" sm="8">
                 <v-text-field
                   v-model="state.post.title"
                   label="ブログタイトル"
@@ -25,7 +25,7 @@
                 />
               </v-col>
 
-              <v-col cols="4">
+              <v-col cols="12" sm="4">
                 <v-row>
                   <v-col cols="6" class="py-0">
                     <v-card-subtitle class="py-0">
@@ -156,37 +156,43 @@
       </v-col>
 
       <v-col cols="12">
-        <v-card>
-          <v-card-subtitle>
-            コンテンツモード
-          </v-card-subtitle>
+        <v-row>
+          <v-col cols="12">
+            <v-card outlined>
+              <v-card-text>
+                <v-card-subtitle>
+                  コンテンツモード
+                </v-card-subtitle>
 
-          <div>
-            <v-radio-group
-              v-model="state.post.content_mode"
-              mandatory
-            >
-              <v-radio
-                label="通常モード"
-                :value="ContentMode.NORMAL"
-              />
-              <v-radio
-                label="コンテンツ無しモード"
-                :value="ContentMode.NO_CONTENT"
-              />
-            </v-radio-group>
-          </div>
+                <div>
+                  <v-radio-group
+                    v-model="state.post.content_mode"
+                    mandatory
+                  >
+                    <v-radio
+                      label="通常モード"
+                      :value="ContentMode.NORMAL"
+                    />
+                    <v-radio
+                      label="コンテンツ無しモード"
+                      :value="ContentMode.NO_CONTENT"
+                    />
+                  </v-radio-group>
+                </div>
 
-          <div v-if="state.post.content_mode === ContentMode.NO_CONTENT">
-            <v-text-field
-              v-model="state.post.link"
-              label="外部リンク"
-              outlined
-              maxlength="255"
-              counter
-            />
-          </div>
-        </v-card>
+                <div v-if="state.post.content_mode === ContentMode.NO_CONTENT">
+                  <v-text-field
+                    v-model="state.post.link"
+                    label="外部リンク"
+                    outlined
+                    maxlength="255"
+                    counter
+                  />
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-col>
 
       <v-col v-if="state.post.content_mode === ContentMode.NORMAL" cols="12">
