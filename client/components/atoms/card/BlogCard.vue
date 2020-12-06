@@ -1,5 +1,12 @@
 <template>
-  <nuxt-link :to="`/post/${post.id}`" class="text-decoration-none">
+  <component
+    :is="post.content_mode === ContentMode.NO_CONTENT ? 'a' : 'nuxt-link'"
+    :to="post.content_mode === ContentMode.NO_CONTENT ? undefined : `/post/${post.id}`"
+    :href="post.content_mode === ContentMode.NO_CONTENT ? post.link : undefined"
+    :target="post.content_mode === ContentMode.NO_CONTENT ? '_blank' : undefined"
+    :rel="post.content_mode === ContentMode.NO_CONTENT ? 'noopener' : undefined"
+    class="text-decoration-none"
+  >
     <div class="px-4 px-sm-0">
       <v-card v-bind="$attrs" class="pos-relative" :flat="screenMd">
         <v-img
@@ -8,6 +15,14 @@
           :src="post.image ? post.image : 'no-image.png'"
           min-height="80px"
         />
+
+        <template v-if="post.content_mode === ContentMode.NO_CONTENT && post.link">
+          <div class="post-number-container">
+            <p class="mb-0 post-text">
+              <span class="post-explanation">外部リンク</span>
+            </p>
+          </div>
+        </template>
       </v-card>
 
       <h4 class="my-1 post-title u-black--text max-text-height-2">
@@ -18,12 +33,13 @@
         <p class="u-black--text post-description">{{ post.description }}</p>
       </div>
     </div>
-  </nuxt-link>
+  </component>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { Post } from '@/lib'
+import { ContentMode } from '@/lib/enum/ContentMode'
 import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
 
 type Props = {
@@ -41,7 +57,8 @@ export default defineComponent({
     const { screenMd } = useGetScreenSize()
 
     return {
-      screenMd
+      screenMd,
+      ContentMode
     }
   }
 })
@@ -59,5 +76,33 @@ export default defineComponent({
 
 .post-description {
   font-size: 0.8rem;
+}
+
+.post-number-container {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.375rem;
+}
+
+.post-text {
+  background: rgba(#000, 60%);
+  border-radius: 4px;
+  color: $white;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  padding: 0.175rem 0.25rem;
+
+  @include mq(sm) {
+    font-size: 0.7rem;
+  }
+
+  @include mq(md) {
+    border-radius: 1px;
+  }
+}
+
+.post-explanation {
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 </style>
