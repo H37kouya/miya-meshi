@@ -87,15 +87,15 @@ class SelectionPost extends Model
             return true;
         }
 
-        if ($publish_from->lt($now) && $publish_to === null) {
+        if ($publish_from && $publish_from->lt($now) && $publish_to === null) {
             return true;
         }
 
-        if ($publish_to->gt($now) && $publish_from === null) {
+        if ($publish_to && $publish_to->gt($now) && $publish_from === null) {
             return true;
         }
 
-        if ($publish_to->gt($now) && $publish_from->lt($now)) {
+        if ($publish_to && $publish_to->gt($now) && $publish_to && $publish_from->lt($now)) {
             return true;
         }
 
