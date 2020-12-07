@@ -20,7 +20,7 @@
           </div>
 
           <v-row>
-            <template v-for="(post, key) in paginationPost.records">
+            <template v-for="(post, key) in posts">
               <v-col :key="key" cols="12" sm="6">
                 <BlogCard
                   :post="post"
@@ -49,29 +49,43 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext } from '@nuxtjs/composition-api'
-import { Breadcrumb } from '@/lib'
-import { usePostList } from '@/src/CompositonFunctions/posts/UsePostList'
+import Vue from 'vue'
+import { AxiosError } from 'axios'
+import { Breadcrumb, Post } from '@/lib'
+import { getSelectionPostList } from '~/src/infra/backend/SelectionPost'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
   { text: 'ブログ一覧', to: '/post' }
 ] as Breadcrumb[]
 
-export default defineComponent({
-  setup () {
-    const { $axios } = useContext()
-    const { paginationPost } = usePostList($axios)
+export default Vue.extend({
+  async asyncData ({ error, $axios }) {
+    try {
+      const posts = await getSelectionPostList($axios)
+      return { posts: posts.records }
+    } catch (_e) {
+      const e = _e as AxiosError<any>
+      if (e.response && e.response.status === 404) {
+        return {
+          records: [] as Post[]
+        }
+      }
 
-    return {
-      breadcrumbs,
-      paginationPost
+      return error({
+        statusCode: 500,
+        message: e.message
+      })
     }
   },
 
   head: () => ({
     title: 'ブログ一覧'
-  })
+  }),
+
+  computed: {
+    breadcrumbs: () => breadcrumbs
+  }
 })
 </script>
 
