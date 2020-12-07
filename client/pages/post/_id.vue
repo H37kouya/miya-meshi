@@ -158,11 +158,11 @@
 </template>
 
 <script lang="ts">
+import { AxiosError } from 'axios'
 import { computed, defineComponent, reactive, useContext, useMeta, watchEffect } from '@nuxtjs/composition-api'
 import dayjs from 'dayjs'
 import VueScrollto from 'vue-scrollto'
-import { Area, Breadcrumb, Shop } from '@/lib'
-import { usePost } from '@/src/CompositonFunctions/posts/UsePost'
+import { Area, Breadcrumb, Shop, Post } from '@/lib'
 import { Context } from '@nuxt/types'
 import { getAreaByID } from '@/src/infra/firestore/Area'
 import { useNews } from '~/src/CompositonFunctions/news/UseNews'
@@ -170,6 +170,7 @@ import { getShopByIDs } from '~/src/infra/firestore/Shop'
 import { computedShortShopAddress, getShopAreaByAddress } from '~/src/utils/Shop'
 import { useArea } from '~/src/CompositonFunctions/areas/UseArea'
 import { useGetScreenSize } from '~/src/CompositonFunctions/utils/UseGetScreenSize'
+import { getSelectionPost } from '~/src/infra/backend/SelectionPost'
 
 const breadcrumbs = [
   { exact: true, text: 'Home', to: '/' },
@@ -186,17 +187,15 @@ export default defineComponent({
       area: {} as Area|undefined,
       shops: [] as Shop[]
     })
-    const ctx = useContext()
-
-    const postId = computed(() => Number(ctx.params.value.id))
-
     const { newsList } = useNews()
 
-    const { post } = usePost(postId.value, ctx.$axios)
+    const ctx = useContext()
 
     const { areas } = useArea(ctx.store)
 
     const { screenSm } = useGetScreenSize()
+
+    const post = computed(() => ctx.store.getters['post/post'] as Post)
 
     const toShopListBottom = () => {
       VueScrollto.scrollTo('#shop_list_bottom')
@@ -264,6 +263,30 @@ export default defineComponent({
       formatUpdatedAt,
       post,
       toShopListBottom
+    }
+  },
+
+  async asyncData ({ $axios, store, params, error }) {
+    store.commit('post/clearPost')
+
+    try {
+      const post = await getSelectionPost(Number(params.id), $axios)
+
+      store.commit('post/setPost', post)
+    } catch (_e) {
+      const e = _e as AxiosError<any>
+
+      if (e.response && e.response.status === 404) {
+        return error({
+          statusCode: 404,
+          message: 'Page Not Found.'
+        })
+      }
+
+      return error({
+        statusCode: 500,
+        message: 'Internal Server Error'
+      })
     }
   },
 

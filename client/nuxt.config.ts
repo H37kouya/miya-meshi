@@ -173,6 +173,10 @@ const nuxtConfig: NuxtConfig = {
         {
           urlPattern: 'https://www.google-analytics.com/analytics.js',
           handler: 'cacheFirst'
+        },
+        {
+          urlPattern: 'https://lorempixel.com/640/480/?(.*)',
+          handler: 'cacheFirst'
         }
       ]
     }
