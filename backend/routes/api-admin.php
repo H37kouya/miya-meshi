@@ -8,4 +8,6 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\ShowSelectionPostController')->name('admin.selectionPost.show');
     Route::put('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\UpdateSelectionPostController')->name('admin.selectionPost.update');
     Route::delete('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\DeleteSelectionPostController')->name('admin.selectionPost.delete');
+
+    Route::get('/shop', 'Api\Admin\Shop\IndexShopController')->name('admin.shop.index');
 });
