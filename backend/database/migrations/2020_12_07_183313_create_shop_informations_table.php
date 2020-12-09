@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopInformationTable extends Migration
+class CreateShopInformationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateShopInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_information', function (Blueprint $table) {
+        Schema::create('shop_informations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('shop_id');
             $table->string('name', 100)->comment('店舗名');
@@ -22,7 +22,7 @@ class CreateShopInformationTable extends Migration
             $table->string('description', 255)->nullable()->comment('一言紹介');
             $table->string('intro', 255)->nullable()->comment('長文紹介');
 
-            $table->integer('prefecture_code')->nullable()->comment('都道府県コード');
+            $table->unsignedInteger('prefecture_code')->nullable()->comment('都道府県コード');
             $table->string('address', 255)->nullable()->comment('住所');
             $table->string('building_name', 100)->nullable()->comment('建物名');
             $table->string('tel', 30)->nullable()->comment('電話番号');
@@ -54,7 +54,7 @@ class CreateShopInformationTable extends Migration
             $table->string('seat', 255)->nullable()->comment('座席');
             $table->string('access', 255)->nullable()->comment('交通アクセス');
             $table->string('regular_holiday', 255)->nullable()->comment('定休日');
-            $table->unsignedSmallInteger('reservervation_max_number', 255)->nullable()->comment('予約最大人数');
+            $table->unsignedSmallInteger('reservervation_max_number')->nullable()->comment('予約最大人数');
             $table->string('credit_card', 255)->nullable()->comment('クレジットカード');
             $table->string('electronic_money', 255)->nullable()->comment('電子マネー');
             $table->string('about_smoking', 255)->nullable()->comment('禁煙・喫煙');
@@ -65,12 +65,12 @@ class CreateShopInformationTable extends Migration
             $table->boolean('can_reservation')->default(false)->comment('予約可能かどうか');
             $table->string('period_of_time', 255)->nullable()->comment('時間帯');
 
-            $table->integer('insta_number')->nullable()->comment('インスタ番号');
+            $table->unsignedInteger('insta_number')->nullable()->comment('インスタ番号');
             $table->string('insta_shop_link')->nullable()->comment('インスタリンク');
             $table->longText('insta_iframe')->nullable()->comment('インスタリンク');
 
-            $table->foreign('shop_id')->references('id')->on('shops');
             $table->timestamps();
+            $table->foreign('shop_id')->references('id')->on('shops');
         });
     }
 
@@ -81,6 +81,6 @@ class CreateShopInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_information');
+        Schema::dropIfExists('shop_informations');
     }
 }

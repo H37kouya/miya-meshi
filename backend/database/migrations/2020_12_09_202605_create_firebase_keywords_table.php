@@ -15,8 +15,8 @@ class CreateFirebaseKeywordsTable extends Migration
     {
         Schema::create('firebase_keywords', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->morphs('firebase_keywordable');
-            $table->string('firebase_keyword_id', '100')->comment('firebase keyword id');
+            $table->morphs('keywordable');
+            $table->string('firebase_keyword_id', 100)->comment('firebase keyword id');
             $table->timestamps();
         });
     }

@@ -25,7 +25,7 @@ class CreateShopMenusTable extends Migration
             $table->string('name', 255)->comment('メニュー名');
             $table->string('description', 255)->nullable()->comment('メニュー概要');
             $table->string('intro', 255)->nullable()->comment('メニュー紹介文');
-            $table->unsignedInteger('price', 255)->nullable()->comment('値段');
+            $table->unsignedInteger('price')->nullable()->comment('値段');
             $table->string('period_of_time', 255)->nullable()->comment('時間帯');
 
             $table->boolean('is_tax_included')->default(true)->comment('税込みかどうか');

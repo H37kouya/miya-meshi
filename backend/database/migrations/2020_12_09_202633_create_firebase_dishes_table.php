@@ -15,8 +15,8 @@ class CreateFirebaseDishesTable extends Migration
     {
         Schema::create('firebase_dishes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->morphs('firebase_dishable');
-            $table->string('firebase_dish_id', '100')->comment('firebase dish id');
+            $table->morphs('dishable');
+            $table->string('firebase_dish_id', 100)->comment('firebase dish id');
             $table->timestamps();
         });
     }
