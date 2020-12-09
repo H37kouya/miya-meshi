@@ -22,7 +22,7 @@ class CreateShopInformationsTable extends Migration
             $table->string('description', 255)->nullable()->comment('一言紹介');
             $table->string('intro', 255)->nullable()->comment('長文紹介');
 
-            $table->unsignedInteger('prefecture_code')->nullable()->comment('都道府県コード');
+            $table->unsignedInteger('pref_code')->nullable()->comment('都道府県コード');
             $table->string('address', 255)->nullable()->comment('住所');
             $table->string('building_name', 100)->nullable()->comment('建物名');
             $table->string('tel', 30)->nullable()->comment('電話番号');
