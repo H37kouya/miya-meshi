@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopInformationsTable extends Migration
+class CreateShopInformationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateShopInformationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_informations', function (Blueprint $table) {
+        Schema::create('shop_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('shop_id');
             $table->string('name', 100)->comment('店舗名');
-            $table->string('name_kane', 100)->comment('店舗名かな');
-            $table->string('prefixName', 100)->nullable()->comment('店舗肩書き');
+            $table->string('name_kana', 100)->nullable()->comment('店舗名かな');
+            $table->string('prefix_name', 100)->nullable()->comment('店舗肩書き');
             $table->string('description', 255)->nullable()->comment('一言紹介');
             $table->string('intro', 255)->nullable()->comment('長文紹介');
 
@@ -67,7 +67,7 @@ class CreateShopInformationsTable extends Migration
 
             $table->unsignedInteger('insta_number')->nullable()->comment('インスタ番号');
             $table->string('insta_shop_link')->nullable()->comment('インスタリンク');
-            $table->longText('insta_iframe')->nullable()->comment('インスタリンク');
+            $table->longText('insta_iframe')->nullable()->comment('インスタ Iframe');
 
             $table->timestamps();
             $table->foreign('shop_id')->references('id')->on('shops');
@@ -81,6 +81,6 @@ class CreateShopInformationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_informations');
+        Schema::dropIfExists('shop_information');
     }
 }
