@@ -27,7 +27,8 @@ class CreateShopInformationTable extends Migration
             $table->string('building_name', 100)->nullable()->comment('建物名');
             $table->string('tel', 30)->nullable()->comment('電話番号');
             $table->string('postal', 30)->nullable()->comment('郵便番号');
-            $table->geometry('location')->nullable()->comment('位置情報');
+            $table->float('location_latitude', 15, 12)->comment('位置情報');
+            $table->float('location_longitude', 15, 12)->comment('位置情報');
 
             $table->string('facebook_link', 255)->nullable()->comment('Facebook URL');
             $table->string('homepage_link', 255)->nullable()->comment('Homepage URL');

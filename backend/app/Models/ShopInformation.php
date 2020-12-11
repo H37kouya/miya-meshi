@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-//use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 
 class ShopInformation extends Model
 {
-    //use SpatialTrait;
-
     protected $fillable = [
         'shop_id',
         'name',
@@ -21,7 +18,8 @@ class ShopInformation extends Model
         'building_name',
         'tel',
         'postal',
-        // 'location',
+        'location_latitude',
+        'location_longitude',
         'facebook_link',
         'homepage_link',
         'insta_link',
@@ -59,5 +57,9 @@ class ShopInformation extends Model
         'insta_iframe',
     ];
 
-    // protected $spatialFields = ['location'];
+    protected $casts = [
+        'can_takeout'     => 'boolean',
+        'can_gotoeat'     => 'boolean',
+        'can_reservation' => 'boolean',
+    ];
 }

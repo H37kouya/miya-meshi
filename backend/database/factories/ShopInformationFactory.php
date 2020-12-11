@@ -20,7 +20,8 @@ $factory->define(ShopInformation::class, fn (Faker $faker, array $attribute) => 
     'building_name' => $faker->boolean() ? '1号館' : null,
     'tel'           => '028-000-0000',
     'postal'        => '320-0818',
-    'location'      => null,
+    'location_latitude'  => 36.55514162148,
+    'location_longitude' => 139.88253160236,
 
     'facebook_link' => $faker->boolean(30) ? 'https://example.com' : null,
     'homepage_link' => $faker->boolean(30) ? 'https://example.com' : null,

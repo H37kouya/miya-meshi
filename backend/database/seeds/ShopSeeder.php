@@ -17,9 +17,6 @@ class ShopSeeder extends Seeder
         factory(Shop::class, $limit)
             ->create()
             ->each(function (Shop $shop) {
-                Log::debug(factory(ShopInformation::class)->make([
-                    'id' => $shop->id
-                ]));
                 $shop->shopInformation()->save(factory(ShopInformation::class)->make([
                     'id' => $shop->id
                 ]));
