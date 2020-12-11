@@ -2,3 +2,9 @@ http://localhost:8000/api/admin/shop?limit=10
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
+
+###
+http://localhost:8000/api/admin/shop/1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json

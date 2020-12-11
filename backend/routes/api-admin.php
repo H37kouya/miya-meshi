@@ -10,4 +10,5 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/selection-post/{selectionPostId}', 'Api\Admin\SelectionPost\DeleteSelectionPostController')->name('admin.selectionPost.delete');
 
     Route::get('/shop', 'Api\Admin\Shop\IndexShopController')->name('admin.shop.index');
+    Route::get('/shop/{shopId}', 'Api\Admin\Shop\GetShopController')->name('admin.shop.show');
 });
