@@ -20,7 +20,7 @@ class GetShopRepository
         $foundShop = Shop::with('shopInformation')
             ->when($onlyRelease, function($query) {
                 $query->nowPublicPosts(Carbon::now());
-            })->whereId($shopId)->first([
+            })->whereId($shopId)->firstOrFail([
                 'id',
                 'release',
                 'publish_from',
