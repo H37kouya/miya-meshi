@@ -16,7 +16,7 @@ class HealthTest extends TestCase
     {
         $response = $this->get('/health');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function testTopTest()

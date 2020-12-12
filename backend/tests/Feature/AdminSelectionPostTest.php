@@ -34,7 +34,7 @@ class AdminSelectionPostTest extends TestCase
             'Authorization' => 'Bearer 1234567890aa'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /**
@@ -48,7 +48,7 @@ class AdminSelectionPostTest extends TestCase
             'Authorization' => 'Bearer 1234567890aa'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /**
@@ -68,7 +68,7 @@ class AdminSelectionPostTest extends TestCase
             'Authorization' => 'Bearer 1234567890aa'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
 
         $this->assertTrue(
             DB::table('selection_posts')
