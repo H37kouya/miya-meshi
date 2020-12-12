@@ -12,4 +12,5 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/shop', 'Api\Admin\Shop\IndexShopController')->name('admin.shop.index');
     Route::post('/shop', 'Api\Admin\Shop\RegisterShopController')->name('admin.shop.register');
     Route::get('/shop/{shopId}', 'Api\Admin\Shop\GetShopController')->name('admin.shop.show');
+    Route::put('/shop/{shopId}', 'Api\Admin\Shop\UpdateShopController')->name('admin.shop.update');
 });

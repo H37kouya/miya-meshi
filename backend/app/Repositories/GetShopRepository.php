@@ -11,12 +11,12 @@ class GetShopRepository
     /**
      * invoke
      *
-     * @return void
+     * @return array
      */
     public function invoke(
         int $shopId,
         bool $onlyRelease = true
-    ) {
+    ): array {
         $foundShop = Shop::with('shopInformation')
             ->when($onlyRelease, function($query) {
                 $query->nowPublicPosts(Carbon::now());

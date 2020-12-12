@@ -22,3 +22,19 @@ Accept: application/json
     "display_mode": "NORMAL",
     "release": false
 }
+
+###
+POST http://localhost:8000/api/admin/shop/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+
+{
+    "_method": "PUT",
+    "name": "testUser2",
+    "name_kana": "あいうえお",
+    "description": "テスト投稿しました！",
+    "display_mode": "NORMAL",
+    "release": false
+}
