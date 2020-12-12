@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\CreateShopUsecase;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,14 @@ class RegisterShopController extends Controller
 {
     private CreateShopUsecase $_createShopUsecase;
 
-    public function __construct(CreateShopUsecase $createShopUsecase)
-    {
+    private ConnectShopAndFirebaseShopUsecase $_connectShopAndFirebaseShopUsecase;
+
+    public function __construct(
+        CreateShopUsecase $createShopUsecase,
+        ConnectShopAndFirebaseShopUsecase $connectShopAndFirebaseShopUsecase
+    ) {
         $this->_createShopUsecase = $createShopUsecase;
+        $this->_connectShopAndFirebaseShopUsecase = $connectShopAndFirebaseShopUsecase;
     }
 
     /**
@@ -23,7 +29,16 @@ class RegisterShopController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $shop = $this->_createShopUsecase->invoke($request->all());
+        $firebaseShopId = $request->get('firebase_shop_id');
+
+        $shop = $this->_createShopUsecase->invoke($request->except(['firebase_shop_id']));
+
+        if ($firebaseShopId) {
+            $this->_connectShopAndFirebaseShopUsecase->invoke(
+                $shop['id'],
+                $firebaseShopId
+            );
+        }
 
         return response()->json([
             'data' => $shop

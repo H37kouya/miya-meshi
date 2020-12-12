@@ -122,4 +122,9 @@ class Shop extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function firebaseShop(): HasOne
+    {
+        return $this->hasOne(FirebaseShop::class);
+    }
 }
