@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Enum\DisplayMode;
+use App\Enum\Models\ShopInformationModel;
+use App\Enum\Models\ShopModel;
 use App\Enum\PrefCode;
 use App\Models\Shop;
 use Illuminate\Support\Arr;
@@ -30,7 +32,7 @@ class UpdateShopRepository
 
         // Shop
         /** @var Shop */
-        $shop = Shop::with('shopInformation')->findOrFail($id);
+        $shop = Shop::with(ShopModel::withShopInformation)->findOrFail($id);
         $shop->update($inputShop);
 
         // ShopInformation
@@ -50,11 +52,11 @@ class UpdateShopRepository
         array $inputs
     ): array {
         return [
-            'release'      => Arr::get($inputs, 'release', true),
-            'publish_from' => Arr::get($inputs, 'publish_from', null),
-            'publish_to'   => Arr::get($inputs, 'publish_to', null),
-            'priority'     => Arr::get($inputs, 'priority', 1),
-            'display_mode' => Arr::get($inputs, 'display_mode', DisplayMode::NORMAL),
+            ShopModel::release      => Arr::get($inputs, ShopModel::release, true),
+            ShopModel::publish_from => Arr::get($inputs, ShopModel::publish_from, null),
+            ShopModel::publish_to   => Arr::get($inputs, ShopModel::publish_to, null),
+            ShopModel::priority     => Arr::get($inputs, ShopModel::priority, 1),
+            ShopModel::display_mode => Arr::get($inputs, ShopModel::display_mode, DisplayMode::NORMAL),
         ];
     }
 
@@ -68,53 +70,53 @@ class UpdateShopRepository
         array $inputs
     ): array {
         return [
-            'name'                      => Arr::get($inputs, 'name', null),
-            'name_kana'                 => Arr::get($inputs, 'name_kana', null),
-            'prefix_name'               => Arr::get($inputs, 'prefix_name', null),
-            'description'               => Arr::get($inputs, 'description', null),
-            'intro'                     => Arr::get($inputs, 'intro', null),
-            'pref_code'                 => Arr::get($inputs, 'pref_code', PrefCode::TOCHIGI),
-            'address'                   => Arr::get($inputs, 'address', null),
-            'building_name'             => Arr::get($inputs, 'building_name', null),
-            'tel'                       => Arr::get($inputs, 'tel', null),
-            'postal'                    => Arr::get($inputs, 'postal', null),
-            'location_latitude'         => Arr::get($inputs, 'location_latitude', null),
-            'location_longitude'        => Arr::get($inputs, 'location_longitude', null),
-            'facebook_link'             => Arr::get($inputs, 'facebook_link', null),
-            'homepage_link'             => Arr::get($inputs, 'homepage_link', null),
-            'insta_link'                => Arr::get($inputs, 'insta_link', null),
-            'line_link'                 => Arr::get($inputs, 'line_link', null),
-            'twitter_link'              => Arr::get($inputs, 'twitter_link', null),
-            'ubereats_link'             => Arr::get($inputs, 'ubereats_link', null),
-            'youtube_link'              => Arr::get($inputs, 'youtube_link', null),
-            'gotoeat_link'              => Arr::get($inputs, 'gotoeat_link', null),
-            'price_range'               => Arr::get($inputs, 'price_range', null),
-            'business_start_hour1'      => Arr::get($inputs, 'business_start_hour1', null),
-            'business_end_hour1'        => Arr::get($inputs, 'business_end_hour1', null),
-            'business_lo_hour1'         => Arr::get($inputs, 'business_lo_hour1', null),
-            'business_start_hour2'      => Arr::get($inputs, 'business_start_hour2', null),
-            'business_end_hour2'        => Arr::get($inputs, 'business_end_hour2', null),
-            'business_lo_hour2'         => Arr::get($inputs, 'business_lo_hour2', null),
-            'business_start_hour3'      => Arr::get($inputs, 'business_start_hour3', null),
-            'business_end_hour3'        => Arr::get($inputs, 'business_end_hour3', null),
-            'business_lo_hour3'         => Arr::get($inputs, 'business_lo_hour3', null),
-            'parking_lot'               => Arr::get($inputs, 'parking_lot', null),
-            'seat'                      => Arr::get($inputs, 'seat', null),
-            'access'                    => Arr::get($inputs, 'access', null),
-            'regular_holiday'           => Arr::get($inputs, 'regular_holiday', null),
-            'reservervation_max_number' => Arr::get($inputs, 'reservervation_max_number', null),
-            'credit_card'               => Arr::get($inputs, 'credit_card', null),
-            'electronic_money'          => Arr::get($inputs, 'electronic_money', null),
-            'about_smoking'             => Arr::get($inputs, 'about_smoking', null),
-            'total_number_of_seats'     => Arr::get($inputs, 'total_number_of_seats', null),
-            'private_room'              => Arr::get($inputs, 'private_room', null),
-            'can_takeout'               => Arr::get($inputs, 'can_takeout', true),
-            'can_gotoeat'               => Arr::get($inputs, 'can_gotoeat', false),
-            'can_reservation'           => Arr::get($inputs, 'can_reservation', true),
-            'period_of_time'            => Arr::get($inputs, 'period_of_time', null),
-            'insta_number'              => Arr::get($inputs, 'insta_number', null),
-            'insta_shop_link'           => Arr::get($inputs, 'insta_shop_link', null),
-            'insta_iframe'              => Arr::get($inputs, 'insta_iframe', null),
+            ShopInformationModel::name                      => Arr::get($inputs, ShopInformationModel::name, null),
+            ShopInformationModel::name_kana                 => Arr::get($inputs, ShopInformationModel::name_kana, null),
+            ShopInformationModel::prefix_name               => Arr::get($inputs, ShopInformationModel::prefix_name, null),
+            ShopInformationModel::description               => Arr::get($inputs, ShopInformationModel::description, null),
+            ShopInformationModel::intro                     => Arr::get($inputs, ShopInformationModel::intro, null),
+            ShopInformationModel::pref_code                 => Arr::get($inputs, ShopInformationModel::pref_code, PrefCode::TOCHIGI),
+            ShopInformationModel::address                   => Arr::get($inputs, ShopInformationModel::address, null),
+            ShopInformationModel::building_name             => Arr::get($inputs, ShopInformationModel::building_name, null),
+            ShopInformationModel::tel                       => Arr::get($inputs, ShopInformationModel::tel, null),
+            ShopInformationModel::postal                    => Arr::get($inputs, ShopInformationModel::postal, null),
+            ShopInformationModel::location_latitude         => Arr::get($inputs, ShopInformationModel::location_latitude, null),
+            ShopInformationModel::location_longitude        => Arr::get($inputs, ShopInformationModel::location_longitude, null),
+            ShopInformationModel::facebook_link             => Arr::get($inputs, ShopInformationModel::facebook_link, null),
+            ShopInformationModel::homepage_link             => Arr::get($inputs, ShopInformationModel::homepage_link, null),
+            ShopInformationModel::insta_link                => Arr::get($inputs, ShopInformationModel::insta_link, null),
+            ShopInformationModel::line_link                 => Arr::get($inputs, ShopInformationModel::line_link, null),
+            ShopInformationModel::twitter_link              => Arr::get($inputs, ShopInformationModel::twitter_link, null),
+            ShopInformationModel::ubereats_link             => Arr::get($inputs, ShopInformationModel::ubereats_link, null),
+            ShopInformationModel::youtube_link              => Arr::get($inputs, ShopInformationModel::youtube_link, null),
+            ShopInformationModel::gotoeat_link              => Arr::get($inputs, ShopInformationModel::gotoeat_link, null),
+            ShopInformationModel::price_range               => Arr::get($inputs, ShopInformationModel::price_range, null),
+            ShopInformationModel::business_start_hour1      => Arr::get($inputs, ShopInformationModel::business_start_hour1, null),
+            ShopInformationModel::business_end_hour1        => Arr::get($inputs, ShopInformationModel::business_end_hour1, null),
+            ShopInformationModel::business_lo_hour1         => Arr::get($inputs, ShopInformationModel::business_lo_hour1, null),
+            ShopInformationModel::business_start_hour2      => Arr::get($inputs, ShopInformationModel::business_start_hour2, null),
+            ShopInformationModel::business_end_hour2        => Arr::get($inputs, ShopInformationModel::business_end_hour2, null),
+            ShopInformationModel::business_lo_hour2         => Arr::get($inputs, ShopInformationModel::business_lo_hour2, null),
+            ShopInformationModel::business_start_hour3      => Arr::get($inputs, ShopInformationModel::business_start_hour3, null),
+            ShopInformationModel::business_end_hour3        => Arr::get($inputs, ShopInformationModel::business_end_hour3, null),
+            ShopInformationModel::business_lo_hour3         => Arr::get($inputs, ShopInformationModel::business_lo_hour3, null),
+            ShopInformationModel::parking_lot               => Arr::get($inputs, ShopInformationModel::parking_lot, null),
+            ShopInformationModel::seat                      => Arr::get($inputs, ShopInformationModel::seat, null),
+            ShopInformationModel::access                    => Arr::get($inputs, ShopInformationModel::access, null),
+            ShopInformationModel::regular_holiday           => Arr::get($inputs, ShopInformationModel::regular_holiday, null),
+            ShopInformationModel::reservervation_max_number => Arr::get($inputs, ShopInformationModel::reservervation_max_number, null),
+            ShopInformationModel::credit_card               => Arr::get($inputs, ShopInformationModel::credit_card, null),
+            ShopInformationModel::electronic_money          => Arr::get($inputs, ShopInformationModel::electronic_money, null),
+            ShopInformationModel::about_smoking             => Arr::get($inputs, ShopInformationModel::about_smoking, null),
+            ShopInformationModel::total_number_of_seats     => Arr::get($inputs, ShopInformationModel::total_number_of_seats, null),
+            ShopInformationModel::private_room              => Arr::get($inputs, ShopInformationModel::private_room, null),
+            ShopInformationModel::can_takeout               => Arr::get($inputs, ShopInformationModel::can_takeout, true),
+            ShopInformationModel::can_gotoeat               => Arr::get($inputs, ShopInformationModel::can_gotoeat, false),
+            ShopInformationModel::can_reservation           => Arr::get($inputs, ShopInformationModel::can_reservation, true),
+            ShopInformationModel::period_of_time            => Arr::get($inputs, ShopInformationModel::period_of_time, null),
+            ShopInformationModel::insta_number              => Arr::get($inputs, ShopInformationModel::insta_number, null),
+            ShopInformationModel::insta_shop_link           => Arr::get($inputs, ShopInformationModel::insta_shop_link, null),
+            ShopInformationModel::insta_iframe              => Arr::get($inputs, ShopInformationModel::insta_iframe, null),
         ];
     }
 }

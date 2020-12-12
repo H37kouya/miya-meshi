@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Enum\Models\ShopInformationModel;
+use App\Enum\Models\ShopModel;
 use App\Models\Shop;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
@@ -17,21 +19,24 @@ class GetShopRepository
         int $shopId,
         bool $onlyRelease = true
     ): array {
-        $foundShop = Shop::with('shopInformation')
+        $foundShop = Shop::with(ShopModel::withShopInformation)
             ->when($onlyRelease, function($query) {
                 $query->nowPublicPosts(Carbon::now());
             })->whereId($shopId)->firstOrFail([
-                'id',
-                'release',
-                'publish_from',
-                'publish_to',
-                'priority'
+                ShopModel::id,
+                ShopModel::release,
+                ShopModel::publish_from,
+                ShopModel::publish_to,
+                ShopModel::priority,
             ])->toArray();
 
-        $shopInformation = Arr::get($foundShop, 'shop_information', []);
-        $mappedShop = Arr::except($foundShop, 'shop_information');
-        $mappedShop['shop_information_id'] = Arr::get($shopInformation, 'id');
-        $mappedShop = array_merge($mappedShop, Arr::except($shopInformation, ['id', 'shop_id']));
+        $shopInformation = Arr::get($foundShop, ShopModel::shop_information, []);
+        $mappedShop = Arr::except($foundShop, ShopModel::shop_information);
+        $mappedShop['shop_information_id'] = Arr::get($shopInformation, ShopInformationModel::id);
+        $mappedShop = array_merge($mappedShop, Arr::except($shopInformation, [
+            ShopInformationModel::id,
+            ShopInformationModel::shop_id
+        ]));
 
         return $mappedShop;
     }

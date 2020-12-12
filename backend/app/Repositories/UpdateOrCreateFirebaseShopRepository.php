@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enum\Models\FirebaseShopModel;
 use App\Models\FirebaseShop;
 
 class UpdateOrCreateFirebaseShopRepository
@@ -16,8 +17,11 @@ class UpdateOrCreateFirebaseShopRepository
         string $firebaseShopId
     ) {
         return FirebaseShop::updateOrCreate(
-            [ 'shop_id' => $shopId ],
-            [ 'shop_id' => $shopId, 'firebase_shop_id' => $firebaseShopId ]
+            [ FirebaseShopModel::shop_id => $shopId ],
+            [
+                FirebaseShopModel::shop_id => $shopId,
+                FirebaseShopModel::firebase_shop_id => $firebaseShopId,
+            ]
         )->toArray();
     }
 }

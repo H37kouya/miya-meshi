@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\Models\ShopModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -14,18 +15,22 @@ class Shop extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'release',
-        'publish_from',
-        'publish_to',
-        'priority',
-        'display_mode'
+        ShopModel::release,
+        ShopModel::publish_from,
+        ShopModel::publish_to,
+        ShopModel::priority,
+        ShopModel::display_mode
     ];
 
-    protected $dates = ['deleted_at', 'publish_from', 'publish_to'];
+    protected $dates = [
+        ShopModel::deleted_at,
+        ShopModel::publish_from,
+        ShopModel::publish_to,
+    ];
 
     protected $casts = [
-        'priority' => 'integer',
-        'release'  => 'boolean'
+        ShopModel::priority => 'integer',
+        ShopModel::release  => 'boolean'
     ];
 
     /**
@@ -94,16 +99,16 @@ class Shop extends Model
         return $query->whereRelease(true)
             ->where(function ($query) use ($now) {
                 $query->where(function ($query) use ($now) {
-                    $query->where('publish_from', '<', $now)->where('publish_to', '>', $now);
+                    $query->where(ShopModel::publish_from, '<', $now)->where(ShopModel::publish_to, '>', $now);
                 })
                 ->orWhere(function($query) use($now) {
-                    $query->where('publish_from', '<', $now)->whereNull('publish_to');
+                    $query->where(ShopModel::publish_from, '<', $now)->whereNull(ShopModel::publish_to);
                 })
                 ->orWhere(function($query) use($now) {
-                    $query->where('publish_to', '>', $now)->whereNull('publish_from');
+                    $query->where(ShopModel::publish_to, '>', $now)->whereNull(ShopModel::publish_from);
                 })
                 ->orWhere(function($query) {
-                    $query->whereNull('publish_from')->whereNull('publish_to');
+                    $query->whereNull(ShopModel::publish_from)->whereNull(ShopModel::publish_to);
                 });
             });
     }
