@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enum\ContentMode;
+use App\Enum\DisplayMode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -57,27 +58,30 @@ class AdminShopPostTest extends TestCase
      *
      * @return void
      */
-    // public function test_Shopを追加できる()
-    // {
-    //     $response = $this->postJson('/api/admin/shop', [
-    //         'title'        => 'hoge1',
-    //         'contents'     => '<p>contents</p>',
-    //         'description'  => 'hoge1description',
-    //         'release'      => true,
-    //         'content_mode' => ContentMode::NORMAL,
-    //     ], [
-    //         'Authorization' => 'Bearer 1234567890aa'
-    //     ]);
+    public function test_Shopを追加できる()
+    {
+        $response = $this->postJson('/api/admin/shop', [
+            'release'      => true,
+            'name'         => 'testUser',
+            'name_kana'    => 'あいうえお',
+            'display_mode' => DisplayMode::NORMAL,
+        ], [
+            'Authorization' => 'Bearer 1234567890aa'
+        ]);
 
-    //     $response->assertCreated();
+        $response->assertOk();
 
-    //     $this->assertTrue(
-    //         DB::table('selection_posts')
-    //             ->where('title', 'hoge1')
-    //             ->where('contents', '<p>contents</p>')
-    //             ->where('description', 'hoge1description')
-    //             ->where('release', true)
-    //             ->exists()
-    //     );
-    // }
+        $this->assertTrue(
+            DB::table('shops')
+                ->where('release', true)
+                ->where('display_mode', DisplayMode::NORMAL)
+                ->exists()
+        );
+        $this->assertTrue(
+            DB::table('shop_information')
+                ->where('name', 'testUser')
+                ->where('name_kana', 'あいうえお')
+                ->exists()
+        );
+    }
 }

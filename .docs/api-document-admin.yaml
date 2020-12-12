@@ -9,6 +9,8 @@ servers:
 tags:
   - name: "selection-post"
     description: "ブログ関連API"
+  - name: "shop"
+    description: "店舗管理API"
 
 paths:
   /selection-post:
@@ -205,6 +207,201 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /shop:
+    get:
+      tags:
+        - shop
+      summary: 店舗一覧取得API
+      description: 店舗一覧を取得する
+      parameters:
+        - name: limit
+          in: query
+          description: 取得数
+          schema:
+            type: integer
+            default: 10
+        - name: releases
+          in: query
+          description: 公開設定
+          schema:
+            type: array
+            items:
+              type: "boolean"
+        - name: id
+          in: query
+          description: ShopのID
+          schema:
+            type: integer
+        - name: created_at
+          in: query
+          description: 作成日時 (paginationで使用)
+          schema:
+            type: string
+        - name: updated_at
+          in: query
+          description: 更新日時 (paginationで使用)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - shop
+      summary: 新規店舗追加API
+      description: 店舗を追加する
+      requestBody:
+        required: true
+        description: The shop to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopObject'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /shop/{shopId}:
+    get:
+      tags:
+        - shop
+      summary: 店舗の個別情報取得API
+      description: |-
+        idはShopテーブルのID。
+      parameters:
+        - name: shopId
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - shop
+      summary: ブログの更新API
+      description: |-
+        idはShopテーブルのID。
+      parameters:
+        - name: shopId
+          in: path
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        description: The shop to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopObject'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - shop
+      summary: ブログの削除取得API
+      description: |-
+        idはShopテーブルのID。
+      parameters:
+        - name: shopId
+          in: path
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        404:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
 components:
   schemas:
     SelectionPostObject:
@@ -232,6 +429,28 @@ components:
             type: "string"
       required:
         - title
+    ShopObject:
+      type: object
+      properties:
+        name:
+          type: string
+        name_kana:
+          type: string
+        description:
+          type: string
+        intro:
+          type: string
+        release:
+          type: boolean
+          default: true
+        publish_from:
+          type: string
+          format: date
+        publish_to:
+          type: string
+          format: date
+      required:
+        - name
     SuccessResponse:
       type: object
     ErrorResponse:
