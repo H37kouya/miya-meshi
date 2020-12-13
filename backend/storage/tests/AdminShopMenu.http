@@ -26,12 +26,11 @@ Accept: application/json
     "description": "テスト投稿しました！",
     "intro": "NORMAL",
     "release": true,
-    "image_link": "ccc",
-    "shop_id": 25
+    "image_link": "ccc"
 }
 
 ###
-POST http://localhost:8000/api/admin/shop/25 HTTP/1.1
+POST http://localhost:8000/api/admin/shop/25/menu/2 HTTP/1.1
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
@@ -39,26 +38,11 @@ Accept: application/json
 
 {
     "_method": "PUT",
-    "name": "testUser2",
-    "name_kana": "あいうえお",
+    "name": "testUser3",
     "description": "テスト投稿しました！",
-    "display_mode": "NORMAL",
+    "intro": "NORMAL",
     "release": true,
-    "image_link": "aaaa",
-    "sub_image_link": [
-        "ddd"
-    ],
-    "appearance_image_link": [
-        "aaa",
-        "bbb",
-        "ddd"
-    ],
-    "menu_image_link": [
-        "aaa",
-        "bbb",
-        "ddd"
-    ],
-    "firebase_shop_id": "aaaaa"
+    "image_link": "ccc"
 }
 
 

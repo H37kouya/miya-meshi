@@ -17,4 +17,5 @@ Route::middleware('auth:api')->group(function() {
 
     Route::get('/shop/{shopId}/menu', 'Api\Admin\ShopMenu\IndexShopMenuController')->name('admin.shopMenu.index');
     Route::post('/shop/{shopId}/menu', 'Api\Admin\ShopMenu\RegisterShopMenuController')->name('admin.shopMenu.register');
+    Route::put('/shop/{shopId}/menu/{shopMenuId}', 'Api\Admin\ShopMenu\UpdateShopMenuController')->name('admin.shopMenu.update');
 });
