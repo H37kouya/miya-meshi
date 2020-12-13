@@ -14,6 +14,7 @@ class ShopModel
     public const created_at = 'created_at';
     public const updated_at = 'updated_at';
     public const shop_information = 'shop_information';
+    public const images = 'images';
 
     public const image_link = 'image_link';
     public const sub_image_link = 'sub_image_link';
@@ -21,4 +22,5 @@ class ShopModel
     public const appearance_image_link = 'appearance_image_link';
 
     public const withShopInformation = 'shopInformation';
+    public const withImages = 'images';
 }
