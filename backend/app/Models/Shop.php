@@ -128,6 +128,26 @@ class Shop extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function scopeImageLink($query)
+    {
+        $query->images->whereImageableName(ShopModel::image_link);
+    }
+
+    public function scopeSubImageLink($query)
+    {
+        $query->images->whereImageableName(ShopModel::sub_image_link);
+    }
+
+    public function scopeMenuImageLink($query)
+    {
+        $query->images->whereImageableName(ShopModel::menu_image_link);
+    }
+
+    public function scopeAppearanceImageLink($query)
+    {
+        $query->images->whereImageableName(ShopModel::appearance_image_link);
+    }
+
     public function firebaseShop(): HasOne
     {
         return $this->hasOne(FirebaseShop::class);

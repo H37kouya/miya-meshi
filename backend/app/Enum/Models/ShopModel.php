@@ -15,5 +15,10 @@ class ShopModel
     public const updated_at = 'updated_at';
     public const shop_information = 'shop_information';
 
+    public const image_link = 'image_link';
+    public const sub_image_link = 'sub_image_link';
+    public const menu_image_link = 'menu_image_link';
+    public const appearance_image_link = 'appearance_image_link';
+
     public const withShopInformation = 'shopInformation';
 }

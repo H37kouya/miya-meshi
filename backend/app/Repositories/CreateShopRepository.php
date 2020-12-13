@@ -12,10 +12,14 @@ use Illuminate\Support\Arr;
 
 class CreateShopRepository
 {
+    private CreateImagesOfShop $_createImagesOfShop;
     private GetShopRepository $_getShopRepository;
 
-    public function __construct(GetShopRepository $getShopRepository)
-    {
+    public function __construct(
+        CreateImagesOfShop $createImagesOfShop,
+        GetShopRepository $getShopRepository
+    ) {
+        $this->_createImagesOfShop = $createImagesOfShop;
         $this->_getShopRepository = $getShopRepository;
     }
 
@@ -29,6 +33,10 @@ class CreateShopRepository
     ) {
         $inputShop = $this->get_shop_by_inputs($inputs);
         $inputShopInformation = $this->get_shop_information_by_inputs($inputs);
+        $inputImageLink = Arr::get($inputs, ShopModel::image_link, null);
+        $inputMenuImageLinks = Arr::get($inputs, ShopModel::menu_image_link, null);
+        $inputAppearanceImageLinks = Arr::get($inputs, ShopModel::appearance_image_link, null);
+        $inputSubImageLinks = Arr::get($inputs, ShopModel::sub_image_link, null);
 
         // Shop
         /** @var Shop */
@@ -37,6 +45,46 @@ class CreateShopRepository
         // ShopInformation
         Arr::set($inputShopInformation, ShopInformationModel::shop_id, $shop->id);
         ShopInformation::create($inputShopInformation);
+
+        $imageLinks = [];
+        // ImageLink
+        if ($inputImageLink) {
+            $imageLinks[] = [
+                CreateImagesOfShop::url            => $inputImageLink,
+                CreateImagesOfShop::imageable_name => ShopModel::image_link,
+            ];
+        }
+
+        if ($inputMenuImageLinks) {
+            foreach ($inputMenuImageLinks as $_inputImageLink) {
+                $imageLinks[] = [
+                    CreateImagesOfShop::url            => $_inputImageLink,
+                    CreateImagesOfShop::imageable_name => ShopModel::menu_image_link,
+                ];
+            }
+        }
+
+        if ($inputAppearanceImageLinks) {
+            foreach ($inputAppearanceImageLinks as $_inputImageLink) {
+                $imageLinks[] = [
+                    CreateImagesOfShop::url            => $_inputImageLink,
+                    CreateImagesOfShop::imageable_name => ShopModel::appearance_image_link,
+                ];
+            }
+        }
+
+        if ($inputSubImageLinks) {
+            foreach ($inputSubImageLinks as $_inputImageLink) {
+                $imageLinks[] = [
+                    CreateImagesOfShop::url            => $_inputImageLink,
+                    CreateImagesOfShop::imageable_name => ShopModel::sub_image_link,
+                ];
+            }
+        }
+
+        if (count($imageLinks) > 0) {
+            $this->_createImagesOfShop->invoke($shop, $imageLinks);
+        }
 
         return $this->_getShopRepository->invoke($shop->id, false);
     }

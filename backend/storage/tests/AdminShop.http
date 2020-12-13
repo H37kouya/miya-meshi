@@ -20,7 +20,13 @@ Accept: application/json
     "name_kana": "あいうえお",
     "description": "テスト投稿しました！",
     "display_mode": "NORMAL",
-    "release": false
+    "release": false,
+    "image_link": "ccc",
+    "menu_image_link": [
+        "aaa",
+        "bbb",
+        "ddd"
+    ]
 }
 
 ###
