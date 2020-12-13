@@ -21,7 +21,7 @@ class GetShopMenusAllRepository
                 ShopMenuModel::withImage
             ])->when($onlyRelease, function($query) {
                 $query->nowPublicPosts(Carbon::now());
-            })->get()->toArray();
+            })->whereShopId($shopId)->get()->toArray();
 
         $mappedShopMenus = [];
         foreach ($shopMenus as $shopMenu) {

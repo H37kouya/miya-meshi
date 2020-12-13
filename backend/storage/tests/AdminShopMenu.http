@@ -10,7 +10,7 @@ Authorization: Bearer 1234567890aa
 Accept: application/json
 
 ###
-http://localhost:8000/api/admin/shop/25/menu
+http://localhost:8000/api/admin/shop/2/menu
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
