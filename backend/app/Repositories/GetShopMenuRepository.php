@@ -23,16 +23,19 @@ class GetShopMenuRepository
                 ShopMenuModel::withImage,
             ])->when($onlyRelease, function($query) {
                 $query->nowPublicPosts(Carbon::now());
-            })->whereShopId($shopMenuId)->first()->toArray();
+            })->whereId($shopMenuId)->first()->toArray();
 
         $imageLink = Arr::get(
+            Arr::get(
                 $foundShopMenu,
                 ShopMenuModel::image
-            );
+            ),
+            ImageModel::url
+        );
 
         $mappedShopMenu = array_merge(
             Arr::except($foundShopMenu, ShopMenuModel::image),
-            [ ShopMenuModel::imageLink => $imageLink ]
+            [ ShopMenuModel::image_link => $imageLink ]
         );
 
         return $mappedShopMenu;

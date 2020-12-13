@@ -21,7 +21,7 @@ class ShopMenuModel
     public const updated_at = 'updated_at';
     public const image = 'image';
 
-    public const imageLink = 'imageLink';
+    public const image_link = 'image_link';
 
     public const withImage = 'image';
 }

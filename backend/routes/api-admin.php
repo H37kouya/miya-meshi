@@ -14,4 +14,6 @@ Route::middleware('auth:api')->group(function() {
     Route::get('/shop/{shopId}', 'Api\Admin\Shop\GetShopController')->name('admin.shop.show');
     Route::put('/shop/{shopId}', 'Api\Admin\Shop\UpdateShopController')->name('admin.shop.update');
     Route::delete('/shop/{shopId}', 'Api\Admin\Shop\DeleteShopController')->name('admin.shop.delete');
+
+    Route::post('/shop/menu', 'Api\Admin\ShopMenu\RegisterShopMenuController')->name('admin.shopMenu.register');
 });
