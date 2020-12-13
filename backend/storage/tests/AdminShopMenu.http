@@ -10,13 +10,13 @@ Authorization: Bearer 1234567890aa
 Accept: application/json
 
 ###
-http://localhost:8000/api/admin/shop/25
+http://localhost:8000/api/admin/shop/25/menu
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
 
 ###
-POST http://localhost:8000/api/admin/shop/menu HTTP/1.1
+POST http://localhost:8000/api/admin/shop/25/menu HTTP/1.1
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
