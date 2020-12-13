@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enum\Models\ShopModel;
 use App\Models\Shop;
 use App\Models\ShopInformation;
 
@@ -15,10 +16,15 @@ class DeleteShopRepository
     public function invoke(
         int $shopId
     ): bool {
-        ShopInformation::whereShopId($shopId)->delete();
-        Shop::whereId($shopId)->firstOrFail([
-            'id'
-        ])->forceDelete();
+        $shop = Shop::with([
+                ShopModel::withImages,
+                ShopModel::withShopInformation
+            ])->whereId($shopId)->firstOrFail([
+                'id'
+            ]);
+        $shop->images()->delete();
+        $shop->shopInformation()->delete();
+        $shop->forceDelete();
 
         return true;
     }

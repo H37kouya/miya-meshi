@@ -8,7 +8,7 @@ use App\Usecases\GetShopUsecase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-class GetShopController extends Controller
+class ShowShopController extends Controller
 {
     private GetShopUsecase $_getShopUsecase;
 
