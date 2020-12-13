@@ -5,6 +5,116 @@ namespace App\Models;
 use App\Enum\Models\ShopInformationModel;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\ShopInformation
+ *
+ * @property int $id
+ * @property int $shop_id
+ * @property string $name 店舗名
+ * @property string|null $name_kana 店舗名かな
+ * @property string|null $prefix_name 店舗肩書き
+ * @property string|null $description 一言紹介
+ * @property string|null $intro 長文紹介
+ * @property int|null $pref_code 都道府県コード
+ * @property string|null $address 住所
+ * @property string|null $building_name 建物名
+ * @property string|null $tel 電話番号
+ * @property string|null $postal 郵便番号
+ * @property float|null $location_latitude 位置情報
+ * @property float|null $location_longitude 位置情報
+ * @property string|null $facebook_link Facebook URL
+ * @property string|null $homepage_link Homepage URL
+ * @property string|null $insta_link Instagram URL
+ * @property string|null $line_link Line URL
+ * @property string|null $twitter_link Twitter URL
+ * @property string|null $ubereats_link Ubereats URL
+ * @property string|null $youtube_link Youtube URL
+ * @property string|null $gotoeat_link Go To Eat URL
+ * @property string|null $price_range 価格帯
+ * @property string|null $business_start_hour1 営業開始時間1
+ * @property string|null $business_end_hour1 営業終了時間1
+ * @property string|null $business_lo_hour1 ラストオーダー1
+ * @property string|null $business_start_hour2 営業開始時間2
+ * @property string|null $business_end_hour2 営業終了時間2
+ * @property string|null $business_lo_hour2 ラストオーダー2
+ * @property string|null $business_start_hour3 営業開始時間3
+ * @property string|null $business_end_hour3 営業終了時間3
+ * @property string|null $business_lo_hour3 ラストオーダー3
+ * @property string|null $parking_lot 駐車場
+ * @property string|null $seat 座席
+ * @property string|null $access 交通アクセス
+ * @property string|null $regular_holiday 定休日
+ * @property int|null $reservervation_max_number 予約最大人数
+ * @property string|null $credit_card クレジットカード
+ * @property string|null $electronic_money 電子マネー
+ * @property string|null $about_smoking 禁煙・喫煙
+ * @property string|null $total_number_of_seats 総席数
+ * @property string|null $private_room 個室
+ * @property bool $can_takeout テイクアウト可能
+ * @property bool $can_gotoeat Go To Eat実施店舗かどうか
+ * @property bool $can_reservation 予約可能かどうか
+ * @property string|null $period_of_time 時間帯
+ * @property int|null $insta_number インスタ番号
+ * @property string|null $insta_shop_link インスタリンク
+ * @property string|null $insta_iframe インスタ Iframe
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereAboutSmoking($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereAccess($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBuildingName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessEndHour1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessEndHour2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessEndHour3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessLoHour1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessLoHour2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessLoHour3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessStartHour1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessStartHour2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereBusinessStartHour3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereCanGotoeat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereCanReservation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereCanTakeout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereCreditCard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereElectronicMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereFacebookLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereGotoeatLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereHomepageLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereInstaIframe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereInstaLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereInstaNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereInstaShopLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereIntro($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereLineLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereLocationLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereLocationLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereNameKana($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereParkingLot($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation wherePeriodOfTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation wherePostal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation wherePrefCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation wherePrefixName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation wherePriceRange($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation wherePrivateRoom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereRegularHoliday($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereReservervationMaxNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereSeat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereShopId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereTel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereTotalNumberOfSeats($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereTwitterLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereUbereatsLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereYoutubeLink($value)
+ * @mixin \Eloquent
+ */
 class ShopInformation extends Model
 {
     protected $fillable = [

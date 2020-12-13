@@ -7,6 +7,46 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Carbon;
 
+/**
+ * App\Models\ShopMenu
+ *
+ * @property int $id
+ * @property int $shop_id
+ * @property int $release 公開設定
+ * @property string|null $publish_from 公開開始日時
+ * @property string|null $publish_to 公開終了日時
+ * @property int $priority 優先度
+ * @property string $name メニュー名
+ * @property string|null $description メニュー概要
+ * @property string|null $intro メニュー紹介文
+ * @property int|null $price 値段
+ * @property string|null $period_of_time 時間帯
+ * @property int $is_tax_included 税込みかどうか
+ * @property int $can_takeout テイクアウト可能かどうか
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read \App\Models\Image|null $image
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu nowPublicPosts(\Illuminate\Support\Carbon $now)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereCanTakeout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereIntro($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereIsTaxIncluded($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu wherePeriodOfTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu wherePriority($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu wherePublishFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu wherePublishTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereRelease($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereShopId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ShopMenu whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class ShopMenu extends Model
 {
     protected $fillable = [
