@@ -62,7 +62,8 @@ Accept: application/json
         "aaa",
         "bbb",
         "ddd"
-    ]
+    ],
+    "firebase_shop_id": "aaaaa"
 }
 
 

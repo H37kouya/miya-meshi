@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin\Shop;
 
+use App\Enum\Models\ShopModel;
 use App\Http\Controllers\Controller;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\CreateShopUsecase;
@@ -35,13 +36,15 @@ class RegisterShopController extends Controller
 
         if ($firebaseShopId) {
             $this->_connectShopAndFirebaseShopUsecase->invoke(
-                $shop['id'],
+                $shop[ShopModel::id],
                 $firebaseShopId
             );
         }
 
         return response()->json([
-            'data' => $shop
+            'data' => array_merge($shop, [
+                'firebase_shop_id' => $firebaseShopId
+            ])
         ]);
     }
 }

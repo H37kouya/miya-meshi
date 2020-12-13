@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\Admin\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\FirebaseShop;
 use App\Usecases\GetShopUsecase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class GetShopController extends Controller
 {
@@ -23,8 +25,16 @@ class GetShopController extends Controller
      */
     public function __invoke(Request $request, int $shopId)
     {
+        $firebaseShopId = Arr::get(
+            FirebaseShop::whereShopId($shopId)->first(['firebase_shop_id']),
+            'firebase_shop_id'
+        );
+
         return [
-            "data" => $this->_getShopUsecase->invoke($shopId, false)
+            "data" => array_merge(
+                $this->_getShopUsecase->invoke($shopId, false),
+                [ 'firebase_shop_id' => $firebaseShopId ]
+            )
         ];
     }
 }
