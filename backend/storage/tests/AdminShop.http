@@ -36,7 +36,7 @@ Accept: application/json
 }
 
 ###
-POST http://localhost:8000/api/admin/shop/1 HTTP/1.1
+POST http://localhost:8000/api/admin/shop/25 HTTP/1.1
 content-type: application/json
 Authorization: Bearer 1234567890aa
 Accept: application/json
@@ -48,7 +48,21 @@ Accept: application/json
     "name_kana": "あいうえお",
     "description": "テスト投稿しました！",
     "display_mode": "NORMAL",
-    "release": false
+    "release": true,
+    "image_link": "aaaa",
+    "sub_image_link": [
+        "ddd"
+    ],
+    "appearance_image_link": [
+        "aaa",
+        "bbb",
+        "ddd"
+    ],
+    "menu_image_link": [
+        "aaa",
+        "bbb",
+        "ddd"
+    ]
 }
 
 

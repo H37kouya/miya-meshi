@@ -23,6 +23,8 @@ class GetShopController extends Controller
      */
     public function __invoke(Request $request, int $shopId)
     {
-        return $this->_getShopUsecase->invoke($shopId, false);
+        return [
+            "data" => $this->_getShopUsecase->invoke($shopId, false)
+        ];
     }
 }

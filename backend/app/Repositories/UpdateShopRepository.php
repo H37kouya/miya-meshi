@@ -26,7 +26,7 @@ class UpdateShopRepository
     public function invoke(
         int $id,
         array $inputs
-    ): array {
+    ) {
         $inputShop = $this->get_shop_by_inputs($inputs);
         $inputShopInformation = $this->get_shop_information_by_inputs($inputs);
 
@@ -39,7 +39,7 @@ class UpdateShopRepository
         Arr::set($inputShopInformation, 'shop_id', $shop->id);
         $shop->shopInformation->update($inputShopInformation);
 
-        return $this->_getShopRepository->invoke($shop->id, false);
+        return;
     }
 
     /**
