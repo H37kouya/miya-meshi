@@ -3,7 +3,7 @@
 namespace App\Usecases;
 
 use App\Enum\Models\ShopModel;
-use App\Repositories\CreateImagesOfShop;
+use App\Repositories\CreateImagesOfShopRepository;
 use App\Repositories\GetShopRepository;
 use App\Repositories\UpdateImageOfShopRepository;
 use App\Repositories\UpdateShopRepository;
@@ -74,16 +74,16 @@ class UpdateShopUsecase
         // ImageLink
         if ($inputImageLink) {
             $imageLinks[] = [
-                CreateImagesOfShop::url            => $inputImageLink,
-                CreateImagesOfShop::imageable_name => ShopModel::image_link,
+                CreateImagesOfShopRepository::url            => $inputImageLink,
+                CreateImagesOfShopRepository::imageable_name => ShopModel::image_link,
             ];
         }
 
         if ($inputMenuImageLinks) {
             foreach ($inputMenuImageLinks as $_inputImageLink) {
                 $imageLinks[] = [
-                    CreateImagesOfShop::url            => $_inputImageLink,
-                    CreateImagesOfShop::imageable_name => ShopModel::menu_image_link,
+                    CreateImagesOfShopRepository::url            => $_inputImageLink,
+                    CreateImagesOfShopRepository::imageable_name => ShopModel::menu_image_link,
                 ];
             }
         }
@@ -91,8 +91,8 @@ class UpdateShopUsecase
         if ($inputAppearanceImageLinks) {
             foreach ($inputAppearanceImageLinks as $_inputImageLink) {
                 $imageLinks[] = [
-                    CreateImagesOfShop::url            => $_inputImageLink,
-                    CreateImagesOfShop::imageable_name => ShopModel::appearance_image_link,
+                    CreateImagesOfShopRepository::url            => $_inputImageLink,
+                    CreateImagesOfShopRepository::imageable_name => ShopModel::appearance_image_link,
                 ];
             }
         }
@@ -100,8 +100,8 @@ class UpdateShopUsecase
         if ($inputSubImageLinks) {
             foreach ($inputSubImageLinks as $_inputImageLink) {
                 $imageLinks[] = [
-                    CreateImagesOfShop::url            => $_inputImageLink,
-                    CreateImagesOfShop::imageable_name => ShopModel::sub_image_link,
+                    CreateImagesOfShopRepository::url            => $_inputImageLink,
+                    CreateImagesOfShopRepository::imageable_name => ShopModel::sub_image_link,
                 ];
             }
         }

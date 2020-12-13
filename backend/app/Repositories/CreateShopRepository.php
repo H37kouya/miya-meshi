@@ -12,14 +12,14 @@ use Illuminate\Support\Arr;
 
 class CreateShopRepository
 {
-    private CreateImagesOfShop $_createImagesOfShop;
+    private CreateImagesOfShopRepository $_createImagesOfShopRepository;
     private GetShopRepository $_getShopRepository;
 
     public function __construct(
-        CreateImagesOfShop $createImagesOfShop,
+        CreateImagesOfShopRepository $createImagesOfShopRepository,
         GetShopRepository $getShopRepository
     ) {
-        $this->_createImagesOfShop = $createImagesOfShop;
+        $this->_createImagesOfShopRepository = $createImagesOfShopRepository;
         $this->_getShopRepository = $getShopRepository;
     }
 
@@ -50,16 +50,16 @@ class CreateShopRepository
         // ImageLink
         if ($inputImageLink) {
             $imageLinks[] = [
-                CreateImagesOfShop::url            => $inputImageLink,
-                CreateImagesOfShop::imageable_name => ShopModel::image_link,
+                CreateImagesOfShopRepository::url            => $inputImageLink,
+                CreateImagesOfShopRepository::imageable_name => ShopModel::image_link,
             ];
         }
 
         if ($inputMenuImageLinks) {
             foreach ($inputMenuImageLinks as $_inputImageLink) {
                 $imageLinks[] = [
-                    CreateImagesOfShop::url            => $_inputImageLink,
-                    CreateImagesOfShop::imageable_name => ShopModel::menu_image_link,
+                    CreateImagesOfShopRepository::url            => $_inputImageLink,
+                    CreateImagesOfShopRepository::imageable_name => ShopModel::menu_image_link,
                 ];
             }
         }
@@ -67,8 +67,8 @@ class CreateShopRepository
         if ($inputAppearanceImageLinks) {
             foreach ($inputAppearanceImageLinks as $_inputImageLink) {
                 $imageLinks[] = [
-                    CreateImagesOfShop::url            => $_inputImageLink,
-                    CreateImagesOfShop::imageable_name => ShopModel::appearance_image_link,
+                    CreateImagesOfShopRepository::url            => $_inputImageLink,
+                    CreateImagesOfShopRepository::imageable_name => ShopModel::appearance_image_link,
                 ];
             }
         }
@@ -76,14 +76,14 @@ class CreateShopRepository
         if ($inputSubImageLinks) {
             foreach ($inputSubImageLinks as $_inputImageLink) {
                 $imageLinks[] = [
-                    CreateImagesOfShop::url            => $_inputImageLink,
-                    CreateImagesOfShop::imageable_name => ShopModel::sub_image_link,
+                    CreateImagesOfShopRepository::url            => $_inputImageLink,
+                    CreateImagesOfShopRepository::imageable_name => ShopModel::sub_image_link,
                 ];
             }
         }
 
         if (count($imageLinks) > 0) {
-            $this->_createImagesOfShop->invoke($shop, $imageLinks);
+            $this->_createImagesOfShopRepository->invoke($shop, $imageLinks);
         }
 
         return $this->_getShopRepository->invoke($shop->id, false);

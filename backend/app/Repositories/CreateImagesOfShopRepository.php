@@ -6,7 +6,7 @@ use App\Enum\Models\ImageModel;
 use App\Models\Shop;
 use Illuminate\Support\Arr;
 
-class CreateImagesOfShop
+class CreateImagesOfShopRepository
 {
     public const imageable_name = ImageModel::imageable_name;
     public const url = ImageModel::url;

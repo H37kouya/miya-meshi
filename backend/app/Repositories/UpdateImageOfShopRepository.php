@@ -6,11 +6,11 @@ use App\Models\Shop;
 
 class UpdateImageOfShopRepository
 {
-    private CreateImagesOfShop $_createImagesOfShop;
+    private CreateImagesOfShopRepository $_createImagesOfShopRepository;
     private DeleteImageOfShopRepository $_deleteImageOfShopRepository;
 
-    public const imageable_name = CreateImagesOfShop::imageable_name;
-    public const url = CreateImagesOfShop::url;
+    public const imageable_name = CreateImagesOfShopRepository::imageable_name;
+    public const url = CreateImagesOfShopRepository::url;
 
     /**
      * Create a new repository instance.
@@ -18,10 +18,10 @@ class UpdateImageOfShopRepository
      * @return void
      */
     public function __construct(
-        CreateImagesOfShop $createImagesOfShop,
+        CreateImagesOfShopRepository $createImagesOfShopRepository,
         DeleteImageOfShopRepository $deleteImageOfShopRepository
     ) {
-        $this->_createImagesOfShop = $createImagesOfShop;
+        $this->_createImagesOfShopRepository = $createImagesOfShopRepository;
         $this->_deleteImageOfShopRepository = $deleteImageOfShopRepository;
     }
 
@@ -45,7 +45,7 @@ class UpdateImageOfShopRepository
         $this->_deleteImageOfShopRepository->invoke($shop);
 
         if (count($insertUrls) > 0) {
-            $this->_createImagesOfShop->invoke($shop, $insertUrls);
+            $this->_createImagesOfShopRepository->invoke($shop, $insertUrls);
         }
     }
 }
