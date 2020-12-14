@@ -17,18 +17,20 @@ class UpdateShopMenuRepository
     public function invoke(int $shopMenuId, array $inputs)
     {
         $inputShopMenu = $this->get_shop_menu_by_inputs($inputs);
+        $imageLink = Arr::get($inputs, ShopMenuModel::image_link);
 
         $shopMenu = ShopMenu::with([
                 ShopMenuModel::withImage,
             ])->whereId($shopMenuId)->firstOrFail();
-        \Log::debug($shopMenu);
         $shopMenu->update($inputShopMenu);
 
         $shopMenu->image()->delete();
-        $shopMenu->image()->create([
-            ImageModel::url            => Arr::get($inputs, ShopMenuModel::image_link),
-            ImageModel::imageable_name => ShopMenuModel::image_link,
-        ]);
+        if ($imageLink) {
+            $shopMenu->image()->create([
+                ImageModel::url            => $imageLink,
+                ImageModel::imageable_name => ShopMenuModel::image_link,
+            ]);
+        }
     }
 
     /**

@@ -613,7 +613,6 @@ export default defineComponent({
       default: 'edit'
     },
 
-
     priceRangeList: {
       type: Array,
       default: []
