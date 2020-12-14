@@ -35,8 +35,7 @@ import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
 import { Dish, Keyword, Shop, Menu } from '@/lib'
-import { getShopByID } from '@/src/infra/firestore/Shop'
-import { getMenuByID } from '@/src/infra/firestore/Menu'
+import { getMenuByID, editMenu as editDBMenu } from '@/src/infra/backend/Menu'
 import { getDishList } from '@/src/infra/firestore/Dish'
 import { getKeywordList } from '@/src/infra/firestore/Keyword'
 
@@ -49,26 +48,35 @@ export default defineComponent({
       menu: {} as Menu,
       dishes: [] as Dish[],
       keywords: [] as Keyword[],
-      id: computed(() => context.root.$route.params.id)
+      shopId: computed(() => context.root.$route.params.id),
+      shopMenuId: computed(() => context.root.$route.params.menuId),
     })
 
-    const createMenu = async (menu: MenuFormState['menu']) => {
-      await context.root.$fireStore.collection('menus').doc(state.menu.id).update({
-        ...removeUndefinedFromObject(menu),
-        updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
-      })
+    const createMenu = async (menu: Menu) => {
+      await editDBMenu(
+        context.root.$config.API_TOKEN,
+        menu,
+        state.shopId,
+        state.shopMenuId,
+        context.root.$axios
+      )
 
-      return await context.root.$router.push(`/shops/${state.menu.shopID}`)
+      return await context.root.$router.push(`/shops/${state.shopId}`)
     }
 
     watchEffect(async () => {
-      state.menu = await getMenuByID(context.root.$fireStore, state.id)
       const [shop, dishes, keywords] = await Promise.all([
-        getShopByID(context.root.$fireStore, state.menu.shopID),
+        getMenuByID(
+          state.shopId,
+          state.shopMenuId,
+          context.root.$config.API_TOKEN,
+          context.root.$axios
+        ),
         getDishList(context.root.$fireStore),
         getKeywordList(context.root.$fireStore)
       ])
       state.shop = shop
+      state.menu = shop.shop_menu
       state.dishes = dishes
       state.keywords = keywords
     })

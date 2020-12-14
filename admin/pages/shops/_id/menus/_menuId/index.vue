@@ -15,7 +15,7 @@
     <v-row class="mt-4">
       <v-col v-if="state.shop.id" cols="6" md="3">
         <CardButton
-          :to="`/shops/${state.shop.id}`"
+          :to="`/shops/${state.shopId}`"
           color="orange lighten-4"
           text="店舗を見る"
           text-color="grey"
@@ -25,7 +25,7 @@
 
       <v-col cols="6" md="3">
         <CardButton
-          :to="`/menus/${state.id}/edit`"
+          :to="`/shops/${state.shopId}/menus/${state.shopMenuId}/edit`"
           color="green lighten-4"
           text="メニュー編集"
           text-color="grey"
@@ -51,10 +51,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, reactive, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent, onMounted, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Shop, Menu, Enum } from '@/lib'
-import { getShopByID } from '@/src/infra/firestore/Shop'
-import { deleteMenu, getMenuByID } from '@/src/infra/firestore/Menu'
+import { deleteMenu, getMenuByID } from '@/src/infra/backend/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -63,16 +62,28 @@ export default defineComponent({
     const state = reactive({
       shop: { type: Enum.Type.SHOP } as Shop,
       menu: { type: Enum.Type.MENU } as Menu,
-      id: computed(() => context.root.$route.params.id)
+      shopId: computed(() => context.root.$route.params.id),
+      shopMenuId: computed(() => context.root.$route.params.menuId),
     })
 
-    onMounted(async () => {
-      state.menu = await getMenuByID(context.root.$fireStore, state.id)
-      state.shop = await getShopByID(context.root.$fireStore, state.menu.shopID)
+    watchEffect(async () => {
+      const shop = await getMenuByID(
+        state.shopId,
+        state.shopMenuId,
+        context.root.$config.API_TOKEN,
+        context.root.$axios
+      )
+      state.shop = shop
+      state.menu = shop.shop_menu
     })
 
     const onDelete = async () => {
-      await deleteMenu(context.root.$fireStore, state.id)
+      await deleteMenu(
+        context.root.$config.API_TOKEN,
+        state.shopId,
+        state.shopMenuId,
+        context.root.$axios
+      )
 
       return context.root.$router.push(`/shops/${state.shop.id}`)
     }

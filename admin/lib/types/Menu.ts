@@ -6,22 +6,22 @@ import {
 export type Menu = {
   type: Type.MENU,
   id: string,
-  shopID: string,
+  shop_id: string,
   name?: string,
   description?: string,
   intro?: string,
   image?: string,
   price?: number,
-  public: boolean,
-  isTaxIncluded?: boolean,
-  canTakeout?: boolean,
+  release: boolean,
+  is_tax_included?: boolean,
+  can_takeout?: boolean,
   priority: number,
   dishes: string[],
   keywords: string[],
-  timeZone?: string[],
-  createdAt?: Date|Object,
-  updatedAt?: Date|Object,
-  deletedAt?: Date|Object
+  period_of_time?: string[],
+  created_at?: Date|Object,
+  updated_at?: Date|Object,
+  deleted_at?: Date|Object
 }
 
 export const DEFAULT_IMAGE = '/no-image.png'

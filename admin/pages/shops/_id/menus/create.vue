@@ -33,8 +33,9 @@ import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/compo
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
-import { Dish, Keyword, Shop } from '@/lib'
-import { getShopByID } from '@/src/infra/firestore/Shop'
+import { Dish, Keyword, Menu, Shop } from '@/lib'
+import { getShopByID } from '@/src/infra/backend/Shop'
+import { createMenu as createDBMenu } from '@/src/infra/backend/Menu'
 import { getDishList } from '@/src/infra/firestore/Dish'
 import { getKeywordList } from '@/src/infra/firestore/Keyword'
 
@@ -56,22 +57,15 @@ export default defineComponent({
       })
     }
 
-    const createMenu = async (menus: MenuFormState['menu']) => {
-      const addData = {
-        shopID,
-        ...removeUndefinedFromObject(menus),
-        createdAt: context.root.$fireStoreObj.FieldValue.serverTimestamp(),
-        updatedAt: context.root.$fireStoreObj.FieldValue.serverTimestamp()
-      } as firebase.firestore.DocumentData
-
-      await context.root.$fireStore.collection('menus').add(addData)
+    const createMenu = async (menu: Menu) => {
+      await createDBMenu(menu, shopID, context.root.$config.API_TOKEN, context.root.$axios)
 
       return await context.root.$router.push(`/shops/${shopID}`)
     }
 
     watchEffect(async () => {
       const [shop, dishes, keywords] = await Promise.all([
-        getShopByID(context.root.$fireStore, shopID),
+        getShopByID(shopID, context.root.$config.API_TOKEN, context.root.$axios),
         getDishList(context.root.$fireStore),
         getKeywordList(context.root.$fireStore)
       ])

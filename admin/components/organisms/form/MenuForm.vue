@@ -54,10 +54,104 @@
 
           <v-card-text class="pb-0">
             <v-switch
-              v-model="state.menu.public"
-              :label="state.menu.public ? '公開' : '非公開'"
+              v-model="state.menu.release"
+              :label="state.menu.release ? '公開' : '非公開'"
               class="mt-0"
             />
+          </v-card-text>
+
+          <v-card-subtitle class="py-0">
+            公開時間
+          </v-card-subtitle>
+
+          <v-card-text>
+            <v-menu
+              ref="menu_publish_from"
+              v-model="state.menuPublish.publish_from"
+              :close-on-content-click="false"
+              :return-value.sync="state.publish_from"
+              label="公開開始日時"
+              transition="scale-transition"
+              offset-y
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="state.publish_from"
+                  :placeholder="state.menu.publish_from"
+                  label="公開開始日時"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="state.publish_from"
+                no-title
+                scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="state.menuPublish.publish_from = false"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.menu_publish_from.save(state.publish_from)"
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
+
+            <v-menu
+              ref="menu_publish_to"
+              v-model="state.menuPublish.publish_to"
+              :close-on-content-click="false"
+              :return-value.sync="state.publish_to"
+              label="公開終了日時"
+              transition="scale-transition"
+              offset-y
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="state.publish_to"
+                  :placeholder="state.menu.publish_to"
+                  label="公開終了日時"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="state.publish_to"
+                no-title
+                scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="state.menuPublish.publish_to = false"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.menu_publish_to.save(state.publish_to)"
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
           </v-card-text>
 
           <v-card-subtitle>優先度</v-card-subtitle>
@@ -133,7 +227,7 @@
 
               <v-col cols="12" sm="4">
                 <v-select
-                  v-model="state.menu.timeZone"
+                  v-model="state.menu.period_of_time"
                   :items="timeZoneSelect"
                   :menu-props="{ maxHeight: '400' }"
                   label="時間帯"
@@ -183,6 +277,7 @@ type Props = {
   dishes: Dish[],
   keywords: Keyword[],
   menu?: Menu
+  type: 'edit'|'create'
 }
 
 export default defineComponent({
@@ -198,48 +293,57 @@ export default defineComponent({
     },
 
     menu: {
+      type: Object,
       default: undefined,
-      validator (v) {
-        return isMenu(v)
-      }
+    },
+
+    type: {
+      type: String,
+      default: 'edit'
     }
   },
 
   setup (props: Props, context: SetupContext) {
-    const state = reactive<MenuFormState>({
+    const state = reactive({
       menu: {
-        name: undefined,
-        description: undefined,
-        intro: undefined,
+        name: '',
+        description: '',
+        intro: '',
         image: DEFAULT_IMAGE,
-        public: true,
+        release: true,
         dishes: [] as string[],
         keywords: [''] as string[],
         price: 0,
         priority: 3,
-        isTaxIncluded: false,
-        canTakeout: true,
-        timeZone: [] as string[]
-      }
+        is_tax_included: false,
+        can_takeout: true,
+        period_of_time: [] as string[]
+      } as Menu,
+      publish_from: null,
+      publish_to: null,
+      menuPublish: {
+        publish_from: '',
+        publish_to: ''
+      },
+      userChangedPublishFrom: false,
+      userChangedPublishTo: false
     })
 
     const uuid = createUUID()
 
     watch(() => props.menu, (newVal, _) => {
-      console.log(newVal)
-      console.log(state.menu.keywords)
       state.menu.name = newVal ? newVal.name : state.menu.name
       state.menu.description = newVal ? newVal.description : state.menu.description
       state.menu.intro = newVal ? newVal.intro : state.menu.intro
       state.menu.image = newVal ? newVal.image : state.menu.image
-      state.menu.public = newVal ? newVal.public : state.menu.public
+      state.menu.release = newVal ? newVal.release : state.menu.release
       state.menu.price = newVal ? newVal.price : state.menu.price
       state.menu.priority = newVal ? newVal.priority : state.menu.priority
-      state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
-      state.menu.canTakeout = newVal ? newVal.canTakeout : state.menu.canTakeout
+      state.menu.is_tax_included = newVal ? newVal.is_tax_included : state.menu.is_tax_included
+      state.menu.can_takeout = newVal ? newVal.can_takeout : state.menu.can_takeout
       state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
       state.menu.keywords = newVal && newVal.keywords ? newVal.keywords : state.menu.keywords
-      state.menu.timeZone = newVal ? newVal.timeZone : state.menu.timeZone
+      state.menu.period_of_time = newVal ? newVal.period_of_time : state.menu.period_of_time
     })
 
     const dishesListForSelect = computed(() => {
@@ -260,7 +364,24 @@ export default defineComponent({
       return ['朝', '昼', '夜']
     })
 
-    const onSubmit = () => context.emit('submit', state.menu)
+    const onSubmit = () => {
+      if (props.type === 'create') {
+        state.menu.publish_from = state.publish_from
+        state.menu.publish_to = state.publish_to
+      } else {
+        if (state.userChangedPublishFrom) {
+          state.menu.publish_from = state.publish_from
+        }
+
+        if (state.userChangedPublishTo) {
+          state.menu.publish_to = state.publish_to
+        }
+      }
+      context.emit('submit', state.menu)
+    }
+
+    watch(() => state.publish_from, () => { state.userChangedPublishFrom = true })
+    watch(() => state.publish_to, () => { state.userChangedPublishTo = true })
 
     return {
       dishesListForSelect,
