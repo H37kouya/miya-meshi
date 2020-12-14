@@ -51,18 +51,13 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const [shop, menus] = await Promise.all([
-        getShopByID(context.root.$route.params.id, context.root.$config.API_TOKEN, context.root.$axios),
-        getMenuListByShopID(context.root.$fireStore, state.id, 12, true)
-      ])
+      const shop = await getShopByID(context.root.$route.params.id, context.root.$config.API_TOKEN, context.root.$axios)
       state.shop = shop
-      state.menus = menus
+      state.menus = shop.shop_menus
     })
 
     const onDelete = async () => {
-      const menuIDs = state.menus.map(menu => menu.id)
       await Promise.all([
-        deleteMultipleMenu(context.root.$fireStore, menuIDs),
         deleteShop(context.root.$config.API_TOKEN, state.id, context.root.$axios)
       ])
 

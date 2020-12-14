@@ -19,11 +19,11 @@ class GetShopMenusAllUsecase
     }
 
     /**
-     * invoke
+     * 店舗メニュー一覧を取得
      *
-     * @return void
+     * @return array
      */
-    public function invoke(int $shopId, bool $onlyRelease = true)
+    public function invoke(int $shopId, bool $onlyRelease = true): array
     {
         return $this->_getShopMenusAllRepository->invoke($shopId, $onlyRelease);
     }

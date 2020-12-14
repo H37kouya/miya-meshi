@@ -11,11 +11,13 @@ use Illuminate\Support\Carbon;
 class GetShopMenusAllRepository
 {
     /**
-     * invoke
+     * 店舗メニューをすべて取得する
      *
-     * @return void
+     * @param int $shopId 店舗ID
+     * @param bool $onlyRelease 公開設定
+     * @return array
      */
-    public function invoke(int $shopId, bool $onlyRelease = true)
+    public function invoke(int $shopId, bool $onlyRelease = true): array
     {
         $shopMenus = ShopMenu::with([
                 ShopMenuModel::withImage

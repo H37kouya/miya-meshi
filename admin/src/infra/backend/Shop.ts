@@ -1,5 +1,5 @@
 import { NuxtAxiosInstance } from "@nuxtjs/axios"
-import { Shop } from "~/lib"
+import { Menu, Shop } from "~/lib"
 import { Type } from "~/lib/enum"
 
 export type PaginationPost = {
@@ -102,7 +102,9 @@ export const getShopByID = async (
   $axios: NuxtAxiosInstance
 ) => {
   type AxiosGetType = {
-    data: Shop
+    data: Shop & {
+      shop_menus: Menu[]
+    }
   }
   const { data } = await $axios.$get<AxiosGetType>(`/api/admin/shop/${id}`, {
     headers: {
@@ -113,5 +115,7 @@ export const getShopByID = async (
   return {
     ...data,
     type: Type.SHOP
-  } as Shop
+  } as Shop & {
+    shop_menus: Menu[]
+  }
 }
