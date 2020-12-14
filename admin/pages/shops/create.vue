@@ -25,7 +25,7 @@
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { MetaInfo } from 'vue-meta'
-import { createShop as createDBShop } from '@/src/infra/firestore/Shop'
+import { createShop as createDBShop } from '@/src/infra/backend/Shop'
 import { Dish, PriceRange, Keyword } from '@/lib'
 import { getPriceRangeList } from '@/src/infra/firestore/PriceRange'
 import { getDishList } from '@/src/infra/firestore/Dish'
@@ -42,7 +42,7 @@ export default defineComponent({
     })
 
     const createShop = async (shop: any) => {
-      await createDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop)
+      await createDBShop(shop, context.root.$config.API_TOKEN, context.root.$axios)
 
       return await context.root.$router.push('/shops')
     }

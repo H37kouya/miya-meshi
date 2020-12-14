@@ -13,6 +13,10 @@ use Illuminate\Support\Collection;
 
 class PaginateShopRepository
 {
+    public const limit = 'limit';
+
+    public const only_release = 'only_release';
+
     /**
      * invoke
      *

@@ -1,8 +1,8 @@
 <template>
   <v-card class="mt-4">
     <v-list two-line>
-      <template v-for="(shop, idx) in state.shops">
-        <v-list-item :key="shop.id" :to="`/shops/${shop.id}`">
+      <template v-for="(shop, idx) in shops">
+        <v-list-item :key="`shop${shop.id}`" :to="`/shops/${shop.id}`">
           <v-list-item-avatar>
             <v-img v-if="shop.imageLink" :src="shop.imageLink" :alt="`${shop.name}`" />
           </v-list-item-avatar>
@@ -43,12 +43,12 @@
         </v-list-item>
 
         <v-divider
-          v-if="idx + 1 < state.shops.length"
-          :key="idx"
+          v-if="idx + 1 < shops.length"
+          :key="`divider-${idx}`"
         />
       </template>
 
-      <template v-if="state.shops.length === 0">
+      <template v-if="shops.length === 0">
         <div>
           <p class="mb-0 text-center pa-8">
             条件に見合うお店が見つかりませんでした。
@@ -81,20 +81,6 @@ export default defineComponent({
       validator (arr: any[]): arr is Shop[] {
         return arr.every(v => isShop(v))
       }
-    }
-  },
-
-  setup (props: Props, context: SetupContext) {
-    const state = reactive({
-      shops: props.shops as Shop[]
-    })
-
-    watch(() => props.shops, (newVal, _) => {
-      state.shops = newVal
-    })
-
-    return {
-      state
     }
   }
 })

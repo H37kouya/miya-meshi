@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Dish, Shop, PriceRange, Keyword } from '@/lib'
-import { editShop as editDBShop, getShopByID } from '@/src/infra/firestore/Shop'
+import { editShop as editDBShop, getShopByID } from '@/src/infra/backend/Shop'
 import { MetaInfo } from 'vue-meta'
 import { formatShopAddress } from '@/src/utils/Shop'
 import { getPriceRangeList } from '@/src/infra/firestore/PriceRange'
@@ -46,7 +46,7 @@ export default defineComponent({
     const editShop = async (shop: any) => {
       shop.address = formatShopAddress(shop.address)
 
-      await editDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop, state.shop.id)
+      await editDBShop(context.root.$config.API_TOKEN, state.shop.id,  shop, context.root.$axios)
 
       return await context.root.$router.push('/shops')
     }
@@ -54,7 +54,7 @@ export default defineComponent({
     watchEffect(async () => {
       const [dishes, shop, priceRangeList, keywords] = await Promise.all([
         getDishList(context.root.$fireStore),
-        getShopByID(context.root.$fireStore, context.root.$route.params.id),
+        getShopByID(context.root.$route.params.id, context.root.$config.API_TOKEN, context.root.$axios),
         getPriceRangeList(context.root.$fireStore),
         getKeywordList(context.root.$fireStore)
       ])

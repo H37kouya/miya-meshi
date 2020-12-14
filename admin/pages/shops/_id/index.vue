@@ -37,7 +37,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
 import { Shop, Menu } from '@/lib'
-import { deleteShop, getShopByID } from '@/src/infra/firestore/Shop'
+import { deleteShop, getShopByID } from '@/src/infra/backend/Shop'
 import { deleteMultipleMenu, getMenuListByShopID } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
@@ -52,7 +52,7 @@ export default defineComponent({
 
     onMounted(async () => {
       const [shop, menus] = await Promise.all([
-        getShopByID(context.root.$fireStore, state.id),
+        getShopByID(context.root.$route.params.id, context.root.$config.API_TOKEN, context.root.$axios),
         getMenuListByShopID(context.root.$fireStore, state.id, 12, true)
       ])
       state.shop = shop
@@ -63,7 +63,7 @@ export default defineComponent({
       const menuIDs = state.menus.map(menu => menu.id)
       await Promise.all([
         deleteMultipleMenu(context.root.$fireStore, menuIDs),
-        deleteShop(context.root.$fireStore, state.id)
+        deleteShop(context.root.$config.API_TOKEN, state.id, context.root.$axios)
       ])
 
       await context.root.$router.push('/shops')
