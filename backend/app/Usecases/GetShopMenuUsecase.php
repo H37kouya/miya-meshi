@@ -2,20 +2,20 @@
 
 namespace App\Usecases;
 
-use App\Repositories\GetShopRepository;
+use App\Repositories\GetShopMenuRepository;
 
 class GetShopMenuUsecase
 {
-    private GetShopRepository $_getShopRepository;
+    private GetShopMenuRepository $_getShopMenuRepository;
 
     /**
      * Create a new usecase instance.
      *
      * @return void
      */
-    public function __construct(GetShopRepository $getShopRepository)
+    public function __construct(GetShopMenuRepository $getShopMenuRepository)
     {
-        $this->_getShopRepository = $getShopRepository;
+        $this->_getShopMenuRepository = $getShopMenuRepository;
     }
 
     /**
@@ -25,6 +25,6 @@ class GetShopMenuUsecase
      */
     public function invoke(int $shopMenuId, bool $onlyRelease = true)
     {
-        return $this->_getShopRepository->invoke($shopMenuId);
+        return $this->_getShopMenuRepository->invoke($shopMenuId, $onlyRelease);
     }
 }
