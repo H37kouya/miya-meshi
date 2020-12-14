@@ -15,6 +15,7 @@
         :dishes="state.dishes"
         :keywords="state.keywords"
         :price-range-list="state.priceRangeList"
+        type="create"
         @submit="createShop"
       />
     </v-row>

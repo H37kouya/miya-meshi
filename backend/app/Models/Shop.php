@@ -73,6 +73,10 @@ class Shop extends Model
         ShopModel::release  => 'boolean'
     ];
 
+    protected $appends = [
+        'nowPublic'
+    ];
+
     /**
      * 現在公開中かどうか
      *
@@ -116,7 +120,7 @@ class Shop extends Model
      *
      * @return boolean
      */
-    public function getNowPublicAttibute(): bool
+    public function getNowPublicAttribute(): bool
     {
         $now = Carbon::now();
         return self::getNowPublic(

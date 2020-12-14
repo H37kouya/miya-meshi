@@ -41,6 +41,100 @@
                   class="mt-0"
                 />
               </v-card-text>
+
+              <v-card-subtitle class="py-0">
+                公開時間
+              </v-card-subtitle>
+
+              <v-card-text>
+                <v-menu
+                  ref="menu_publish_from"
+                  v-model="state.menu.publish_from"
+                  :close-on-content-click="false"
+                  :return-value.sync="state.publish_from"
+                  label="公開開始日時"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="state.publish_from"
+                      :placeholder="state.shop.publish_from"
+                      label="公開開始日時"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="state.publish_from"
+                    no-title
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="state.menu.publish_from = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.menu_publish_from.save(state.publish_from)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+
+                <v-menu
+                  ref="menu_publish_to"
+                  v-model="state.menu.publish_to"
+                  :close-on-content-click="false"
+                  :return-value.sync="state.publish_to"
+                  label="公開終了日時"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="state.publish_to"
+                      :placeholder="state.shop.publish_to"
+                      label="公開終了日時"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="state.publish_to"
+                    no-title
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="state.menu.publish_to = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.menu_publish_to.save(state.publish_to)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+              </v-card-text>
             </v-col>
 
             <v-col class="py-2 py-sm-4" cols="6">
@@ -492,6 +586,7 @@ type Props = {
   dishes: Dish[],
   keywords: Keyword[],
   priceRangeList: PriceRange[]
+  type: 'edit'|'create'
 }
 
 export default defineComponent({
@@ -513,6 +608,12 @@ export default defineComponent({
       }
     },
 
+    type: {
+      type: String,
+      default: 'edit'
+    },
+
+
     priceRangeList: {
       type: Array,
       default: []
@@ -520,7 +621,7 @@ export default defineComponent({
   },
 
   setup (props: Props, context: SetupContext) {
-    const state = reactive<ShopFormState>({
+    const state = reactive({
       shop: {
         prefix_name: '',
         name: '',
@@ -594,7 +695,15 @@ export default defineComponent({
           DEFAULT_IMAGE
         ],
         display_mode: DisplayMode.DEFAULT
-      }
+      } as Partial<Shop>,
+      publish_from: null,
+      publish_to: null,
+      menu: {
+        publish_from: '',
+        publish_to: ''
+      },
+      userChangedPublishFrom: false,
+      userChangedPublishTo: false
     })
 
     const uuid = {
@@ -672,7 +781,24 @@ export default defineComponent({
       state.shop = newVal ? newVal : state.shop
     })
 
-    const onSubmit = () => context.emit('submit', state.shop)
+    watch(() => state.publish_from, () => { state.userChangedPublishFrom = true })
+    watch(() => state.publish_to, () => { state.userChangedPublishTo = true })
+
+    const onSubmit = () => {
+      if (props.type === 'create') {
+        state.shop.publish_from = state.publish_from
+        state.shop.publish_to = state.publish_to
+      } else {
+        if (state.userChangedPublishFrom) {
+          state.shop.publish_from = state.publish_from
+        }
+
+        if (state.userChangedPublishTo) {
+          state.shop.publish_to = state.publish_to
+        }
+      }
+      context.emit('submit', state.shop)
+    }
 
     return {
       DEFAULT_IMAGE,

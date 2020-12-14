@@ -16,6 +16,7 @@
         :shop="state.shop"
         :keywords="state.keywords"
         :price-range-list="state.priceRangeList"
+        type="edit"
         @submit="editShop"
       />
     </v-row>

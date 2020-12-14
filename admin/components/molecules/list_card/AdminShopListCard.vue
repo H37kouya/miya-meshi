@@ -9,8 +9,8 @@
 
           <v-list-item-content>
             <v-list-item-title>
-              <v-icon :color="shop.public ? 'success' : 'grey'">
-                {{ shop.public ? 'mdi-check-circle' : 'mdi-alert-circle' }}
+              <v-icon :color="shop.nowPublic ? 'success' : 'grey'">
+                {{ shop.nowPublic ? 'mdi-check-circle' : 'mdi-alert-circle' }}
               </v-icon>
 
               <template v-if="shop.instaNumber">

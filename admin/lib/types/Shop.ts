@@ -85,6 +85,8 @@ export type Shop = {
   can_gotoeat: boolean
   // インスタ埋め込み
   insta_iframe: string
+  publish_from: string|null
+  publish_to: string|null
   created_at?: Date|Object,
   deleted_at?: Date|Object,
   updated_at?: Date|Object
