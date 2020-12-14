@@ -447,7 +447,7 @@ export default defineComponent({
           return false
         }
 
-        if (state.search.instaNumber !== 0 && state.search.instaNumber !== shop.instaNumber) {
+        if (state.search.instaNumber !== 0 && state.search.instaNumber !== shop.insta_number) {
           return false
         }
 
@@ -468,7 +468,7 @@ export default defineComponent({
     })))
 
     const shopSelectItems = computed(() => filterShops.value.map((shop: Shop) => ({
-      text: `${shop.name} - ${shop.prefixName}`,
+      text: `${shop.name} - ${shop.prefix_name}`,
       value: shop.id
     })))
 

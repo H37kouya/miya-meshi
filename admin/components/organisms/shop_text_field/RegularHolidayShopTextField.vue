@@ -17,7 +17,7 @@ import { useModel } from '~/src/CompositonFunctions/utils/UseModel'
 import { useCounter } from '~/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value: Shop['regularHoliday']
+  value: Shop['regular_holiday']
 }
 
 export default defineComponent({

@@ -31,6 +31,7 @@ import { formatShopAddress } from '@/src/utils/Shop'
 import { getPriceRangeList } from '@/src/infra/firestore/PriceRange'
 import { getDishList } from '@/src/infra/firestore/Dish'
 import { getKeywordList } from '@/src/infra/firestore/Keyword'
+import { DEFAULT_IMAGE } from '~/src/types/Menu'
 
 export default defineComponent({
   middleware: 'admin-auth',
@@ -58,10 +59,31 @@ export default defineComponent({
         getPriceRangeList(context.root.$fireStore),
         getKeywordList(context.root.$fireStore)
       ])
-      state.shop = shop
       state.priceRangeList = priceRangeList
       state.dishes = dishes
       state.keywords = keywords
+
+      if (!shop.appearance_image_link || shop.appearance_image_link.length !== 10) {
+        const loop = shop.appearance_image_link
+          ? 10 - shop.appearance_image_link.length
+          : 10
+        shop.appearance_image_link = shop.appearance_image_link || []
+        for (let i = 0; i < loop; i++) {
+          shop.appearance_image_link.push(DEFAULT_IMAGE)
+        }
+      }
+
+      if (!shop.menu_image_link || shop.menu_image_link.length !== 6) {
+        const loop = shop.menu_image_link
+          ? 6 - shop.menu_image_link.length
+          : 6
+        shop.menu_image_link = shop.menu_image_link || []
+        for (let i = 0; i < loop; i++) {
+          shop.menu_image_link.push(DEFAULT_IMAGE)
+        }
+      }
+
+      state.shop = shop
     })
 
     return {

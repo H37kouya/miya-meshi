@@ -17,7 +17,7 @@ import { Shop as ShopJa } from '@/lang/ja/Shop'
 import { useCounter } from '@/src/CompositonFunctions/utils/UseCounter'
 
 type Props = {
-  value?: Shop['buildingName']
+  value?: Shop['building_name']
 }
 
 export default defineComponent({

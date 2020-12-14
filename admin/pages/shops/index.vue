@@ -164,7 +164,7 @@ export default defineComponent({
           return false
         }
 
-        if ((_public === true || _public === false) && shop.public !== _public) {
+        if ((_public === true || _public === false) && shop.release !== _public) {
           return false
         }
 
@@ -172,7 +172,7 @@ export default defineComponent({
           return false
         }
 
-        if (_instaNumber && _instaNumber !== shop.instaNumber) {
+        if (_instaNumber && _instaNumber !== shop.insta_number) {
           return false
         }
 
