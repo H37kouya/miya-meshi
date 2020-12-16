@@ -50,6 +50,7 @@ class PaginateSelectionPostRepository
             ->when(count($releases) === 1 && !$onlyRelease, function($query) use ($releases) {
                 $query->whereRelease($releases[0]);
             })->select([
+                'id',
                 'title',
                 'description',
                 'content_mode',
