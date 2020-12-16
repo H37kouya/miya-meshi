@@ -44,13 +44,21 @@ class PaginateSelectionPostRepository
         }
 
         // Create Pagination
-        $selectionPost = SelectionPost::
-            when($onlyRelease, function($query) {
+        $selectionPost = SelectionPost::when($onlyRelease, function($query) {
                 $query->nowPublicPosts(Carbon::now());
             })
             ->when(count($releases) === 1 && !$onlyRelease, function($query) use ($releases) {
                 $query->whereRelease($releases[0]);
-            })
+            })->select([
+                'title',
+                'description',
+                'content_mode',
+                'link',
+                'image',
+                'release',
+                'publish_from',
+                'publish_to'
+            ])
             ->lampager()
             ->forward()
             ->limit($limit)
