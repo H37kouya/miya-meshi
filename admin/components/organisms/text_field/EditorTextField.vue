@@ -13,37 +13,8 @@
 import 'codemirror/lib/codemirror.css'
 import '@toast-ui/editor/dist/toastui-editor.css'
 import { Editor } from '@toast-ui/vue-editor'
-
-const defaultOptions = {
-  minHeight: '200px',
-  language: 'ja',
-  useCommandShortcut: true,
-  useDefaultHTMLSanitizer: true,
-  usageStatistics: false,
-  hideModeSwitch: false,
-  toolbarItems: [
-    'heading',
-    'bold',
-    'italic',
-    'strike',
-    'divider',
-    'hr',
-    'quote',
-    'divider',
-    'ul',
-    'ol',
-    'task',
-    'indent',
-    'outdent',
-    'divider',
-    'table',
-    'image',
-    'link',
-    'divider',
-    'code',
-    'codeblock'
-  ]
-}
+import Compressor from 'compressorjs'
+import { v4 as createUUID } from 'uuid'
 
 export default {
   components: {
@@ -59,13 +30,79 @@ export default {
 
   data() {
     return {
-      count: 0
+      count: 0,
+      fileLoading: 0,
+      editorOptions: {
+        minHeight: '200px',
+        language: 'ja',
+        useCommandShortcut: true,
+        useDefaultHTMLSanitizer: true,
+        usageStatistics: false,
+        hideModeSwitch: false,
+        toolbarItems: [
+          'heading',
+          'bold',
+          'italic',
+          'strike',
+          'divider',
+          'hr',
+          'quote',
+          'divider',
+          'ul',
+          'ol',
+          'task',
+          'indent',
+          'outdent',
+          'divider',
+          'table',
+          'image',
+          'link',
+          'divider',
+          'code',
+          'codeblock'
+        ],
+        hooks: {
+          addImageBlobHook: (blob, callback) => {
+            const uuid = createUUID()
+            const storageRef = this.$fireStorage.ref(`upload/selection-post/${uuid}`)
+            console.log(blob)
+            const payload = {
+              quality: 0.8,
+              maxWidth: 600,
+              maxHeight: 600,
+              mimeType: 'image/jpeg',
+              success(blob) {
+                // ここに成功時の処理を書く。次。
+                const uploadTask = storageRef.put(blob)
+                uploadTask.on('state_changed',
+                  (snapshot) => {
+                    // this.fileLoading = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                  },
+                  (err) => {
+                    console.log(err)
+                  },
+                  () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                      // this.fileLoading = 0
+                      // state.thumbnail = downloadURL
+                      callback(downloadURL, blob.name || 'みやメシ.com')
+                    })
+                  }
+                )
+              },
+              error(err) {
+                console.log(err.message)
+              }
+            }
+
+            new Compressor(blob, payload)
+          }
+        }
+      }
     }
   },
 
   computed: {
-    editorOptions: () => defaultOptions,
-
     valueModel: {
       get() {
         return this.value
