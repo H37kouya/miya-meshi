@@ -8,10 +8,11 @@
               <v-col cols="12" sm="8">
                 <v-text-field
                   v-model="state.post.title"
-                  label="ブログタイトル"
+                  label="ブログタイトル (必須)"
                   outlined
                   maxlength="50"
                   counter
+                  required
                   placeholder="宇都宮でおすすめな女子会居酒屋3店舗！"
                 />
 
