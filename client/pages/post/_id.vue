@@ -53,7 +53,7 @@
             <div v-if="state.shops.length > 0">
               <div id="shop_list_top" class="border-b border-dark-gray">
                 <h2 class="shop-title">
-                  注目のお店
+                  対象店舗
                 </h2>
               </div>
 
@@ -95,7 +95,7 @@
             <div v-if="post.contents && state.shops.length > 0" class="mt-4">
               <div id="shop_list_bottom" class="border-b border-dark-gray">
                 <h2 class="shop-title">
-                  注目のお店
+                  対象店舗
                 </h2>
               </div>
 
