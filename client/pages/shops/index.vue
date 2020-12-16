@@ -41,8 +41,8 @@
 
             <DefaultShopList
               :areas="areas"
-              :shops="filterShopsByTime"
-              :max-item="filterShopsByTime.length"
+              :shops="filterShopsByName"
+              :max-item="filterShopsByName.length"
               :now-page="nowPage"
               :query="nowQuery"
             />
@@ -50,6 +50,10 @@
         </v-col>
 
         <v-col cols="12" md="4" class="d-none d-md-block pt-0">
+          <SearchNameField
+            v-model="state.searchName"
+          />
+
           <SearchAreaField
             :areas="areas"
             :now-area="nowArea"
@@ -84,7 +88,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, useContext } from '@nuxtjs/composition-api'
+import { computed, defineComponent, reactive, useContext } from '@nuxtjs/composition-api'
 import { Breadcrumb, Shop } from '@/lib'
 import { useArea } from '@/src/CompositonFunctions/areas/UseArea'
 import { useShop } from '@/src/CompositonFunctions/shops/UseShop'
@@ -104,6 +108,10 @@ export default defineComponent({
   setup () {
     const { store, redirect, query } = useContext()
     const { areas, nowArea, onUpdateNowArea } = useArea(store)
+
+    const state = reactive({
+      searchName: ''
+    })
 
     const { shops } = useShop(store)
     const { screenMd } = useGetScreenSize()
@@ -325,6 +333,28 @@ export default defineComponent({
       })
     })
 
+    const filterShopsByName = computed(() => {
+      const shops = filterShopsByTime.value
+
+      if (!state.searchName) {
+        return shops
+      }
+
+      const _nameToLower = state.searchName.toLowerCase()
+      return shops.filter((shop: Shop) => {
+        if (_nameToLower && shop.name && !shop.name.toLowerCase().includes(_nameToLower)) {
+          return false
+        }
+
+        if (_nameToLower && shop.nameKana && !shop.nameKana.toLowerCase().includes(_nameToLower)) {
+          return false
+        }
+
+
+        return true
+      })
+    })
+
     const nowQuery = computed(() => {
       const _canTakeout = query.value.canTakeout
       const _areas = query.value.areas
@@ -360,9 +390,10 @@ export default defineComponent({
       areas,
       breadcrumbs,
       dishes,
+      state,
       nowArea,
       nowQuery,
-      filterShopsByTime,
+      filterShopsByName,
       screenMd,
       shops,
       searchAreas,
