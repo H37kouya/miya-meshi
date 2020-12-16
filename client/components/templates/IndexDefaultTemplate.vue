@@ -32,10 +32,6 @@
         <DefaultInstaTopPageShopList :areas="areas" :insta-shops="instaShops" />
 
         <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
-          今週のおすすめ
-        </MainText>
-
-        <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
           ブログを見る
         </MainText>
 
@@ -62,6 +58,10 @@
             </v-container>
           </div>
         </div>
+
+        <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
+          今週のおすすめ
+        </MainText>
 
         <DefaultShopList :areas="areas" :shops="shops" justify="start" />
 
