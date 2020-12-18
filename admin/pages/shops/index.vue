@@ -172,7 +172,7 @@ export default defineComponent({
           return false
         }
 
-        if (_instaNumber && _instaNumber !== shop.insta_number) {
+        if (_instaNumber && _instaNumber !== shop.instaNumber) {
           return false
         }
 

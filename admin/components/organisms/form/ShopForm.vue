@@ -15,7 +15,7 @@
             />
 
             <v-text-field
-              v-model="state.shop.name_lana"
+              v-model="state.shop.nameKana"
               :label="`店舗よみ(かな)`"
               placeholder="みやめしおうえんたい"
               type="text"
@@ -48,10 +48,10 @@
 
               <v-card-text>
                 <v-menu
-                  ref="menu_publish_from"
-                  v-model="state.menu.publish_from"
+                  ref="menu_publishFrom"
+                  v-model="state.menu.publishFrom"
                   :close-on-content-click="false"
-                  :return-value.sync="state.publish_from"
+                  :return-value.sync="state.publishFrom"
                   label="公開開始日時"
                   transition="scale-transition"
                   offset-y
@@ -59,8 +59,8 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="state.publish_from"
-                      :placeholder="state.shop.publish_from"
+                      v-model="state.publishFrom"
+                      :placeholder="state.shop.publishFrom"
                       label="公開開始日時"
                       prepend-icon="mdi-calendar"
                       readonly
@@ -69,7 +69,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="state.publish_from"
+                    v-model="state.publishFrom"
                     no-title
                     scrollable
                   >
@@ -77,14 +77,14 @@
                     <v-btn
                       text
                       color="primary"
-                      @click="state.menu.publish_from = false"
+                      @click="state.menu.publishFrom = false"
                     >
                       Cancel
                     </v-btn>
                     <v-btn
                       text
                       color="primary"
-                      @click="$refs.menu_publish_from.save(state.publish_from)"
+                      @click="$refs.menu_publishFrom.save(state.publishFrom)"
                     >
                       OK
                     </v-btn>
@@ -92,10 +92,10 @@
                 </v-menu>
 
                 <v-menu
-                  ref="menu_publish_to"
-                  v-model="state.menu.publish_to"
+                  ref="menu_publishTo"
+                  v-model="state.menu.publishTo"
                   :close-on-content-click="false"
-                  :return-value.sync="state.publish_to"
+                  :return-value.sync="state.publishTo"
                   label="公開終了日時"
                   transition="scale-transition"
                   offset-y
@@ -103,8 +103,8 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="state.publish_to"
-                      :placeholder="state.shop.publish_to"
+                      v-model="state.publishTo"
+                      :placeholder="state.shop.publishTo"
                       label="公開終了日時"
                       prepend-icon="mdi-calendar"
                       readonly
@@ -113,7 +113,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="state.publish_to"
+                    v-model="state.publishTo"
                     no-title
                     scrollable
                   >
@@ -121,14 +121,14 @@
                     <v-btn
                       text
                       color="primary"
-                      @click="state.menu.publish_to = false"
+                      @click="state.menu.publishTo = false"
                     >
                       Cancel
                     </v-btn>
                     <v-btn
                       text
                       color="primary"
-                      @click="$refs.menu_publish_to.save(state.publish_to)"
+                      @click="$refs.menu_publishTo.save(state.publishTo)"
                     >
                       OK
                     </v-btn>
@@ -141,14 +141,14 @@
               <v-card-subtitle class="py-2 py-sm-4">公開モード</v-card-subtitle>
               <v-card-text class="pb-0">
                 <v-switch
-                  v-model="state.shop.display_mode"
-                  :label="state.shop.display_mode === displayMode.SIMPLE ? '簡易掲載' : '通常公開'"
+                  v-model="state.shop.displayMode"
+                  :label="state.shop.displayMode === displayMode.SIMPLE ? '簡易掲載' : '通常公開'"
                   :true-value="displayMode.DEFAULT"
                   :false-value="displayMode.SIMPLE"
                   class="mt-0"
                 />
               </v-card-text>
-              <p class="font-small mb-0">現在、「{{ state.shop.display_mode === displayMode.SIMPLE ? '簡易掲載' : '通常公開' }}」です。</p>
+              <p class="font-small mb-0">現在、「{{ state.shop.displayMode === displayMode.SIMPLE ? '簡易掲載' : '通常公開' }}」です。</p>
             </v-col>
           </v-row>
 
@@ -187,8 +187,8 @@
                     </v-card-subtitle>
 
                     <v-switch
-                      v-model="state.shop.can_takeout"
-                      :label="state.shop.can_takeout ? '可能' : '不可能'"
+                      v-model="state.shop.canTakeout"
+                      :label="state.shop.canTakeout ? '可能' : '不可能'"
                       class="mt-0"
                     />
                   </v-col>
@@ -199,8 +199,8 @@
                     </v-card-subtitle>
 
                     <v-switch
-                      v-model="state.shop.can_reservation"
-                      :label="state.shop.can_reservation ? '可能' : '不可能'"
+                      v-model="state.shop.canReservation"
+                      :label="state.shop.canReservation ? '可能' : '不可能'"
                       class="mt-0"
                     />
                   </v-col>
@@ -211,8 +211,8 @@
                     </v-card-subtitle>
 
                     <v-switch
-                      v-model="state.shop.can_gotoeat"
-                      :label="state.shop.can_gotoeat ? '実施中' : '非実施'"
+                      v-model="state.shop.canGotoeat"
+                      :label="state.shop.canGotoeat ? '実施中' : '非実施'"
                       class="mt-0"
                     />
                   </v-col>
@@ -255,7 +255,7 @@
                 </v-row>
 
                 <v-text-field
-                  v-model.number="state.shop.reservervation_max_number"
+                  v-model.number="state.shop.reservervationMaxNumber"
                   label="予約最大人数"
                   placeholder="10"
                   outlined
@@ -263,14 +263,14 @@
                 />
 
                 <v-text-field
-                  v-model.number="state.shop.credit_card"
+                  v-model.number="state.shop.creditCard"
                   label="クレジットカード"
                   placeholder="非対応"
                   outlined
                 />
 
                 <v-text-field
-                  v-model.number="state.shop.electronic_money"
+                  v-model.number="state.shop.electronicMoney"
                   label="電子マネー"
                   placeholder="Suicaなどの交通系電子マネー"
                   outlined
@@ -281,52 +281,52 @@
             <v-col cols="12" sm="4" class="mt-0">
               <v-card-text>
                 <DialogWithTimePicker
-                  v-model="state.shop.business_start_hour1"
+                  v-model="state.shop.businessStartHour1"
                   label="営業開始時間1"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_end_hour1"
+                  v-model="state.shop.businessEndHour1"
                   label="営業終了時間1"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_lo_hour1"
+                  v-model="state.shop.businessLoHour1"
                   label="ラストオーダー1"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_start_hour2"
+                  v-model="state.shop.businessStartHour2"
                   label="営業開始時間2"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_end_hour2"
+                  v-model="state.shop.businessEndHour2"
                   label="営業終了時間2"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_lo_hour2"
+                  v-model="state.shop.businessLoHour2"
                   label="ラストオーダー2"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_start_hour3"
+                  v-model="state.shop.businessStartHour3"
                   label="営業開始時間3"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_end_hour3"
+                  v-model="state.shop.businessEndHour3"
                   label="営業終了時間3"
                 />
 
                 <DialogWithTimePicker
-                  v-model="state.shop.business_lo_hour3"
+                  v-model="state.shop.businessLoHour3"
                   label="ラストオーダー3"
                 />
 
                 <RegularHolidayShopTextField
-                  v-model="state.shop.regular_holiday"
+                  v-model="state.shop.regularHoliday"
                 />
 
                 <SeatShopTextField
@@ -334,7 +334,7 @@
                 />
 
                 <v-text-field
-                  v-model="state.shop.private_room"
+                  v-model="state.shop.privateRoom"
                   label="個室"
                   placeholder="個室4室あります"
                   maxlength="50"
@@ -342,7 +342,7 @@
                 />
 
                 <v-text-field
-                  v-model="state.shop.about_smoking"
+                  v-model="state.shop.aboutSmoking"
                   label="禁煙・喫煙"
                   placeholder="全席禁煙"
                   maxlength="50"
@@ -432,7 +432,7 @@
 
           <v-card-text>
             <v-text-field
-              v-model.number="state.shop.insta_number"
+              v-model.number="state.shop.instaNumber"
               :label="ShopJa.INSTA_NUMBER"
               type="number"
               prefix="No."
@@ -440,12 +440,12 @@
             />
 
             <LinkTextField
-              v-model="state.shop.insta_shop_link"
+              v-model="state.shop.instaShopLink"
               :label="ShopJa.INSTA_SHOP_LINK"
             />
 
             <v-textarea
-              v-model="state.shop.insta_iframe"
+              v-model="state.shop.instaIframe"
               label="インスタ埋め込み"
               outlined
               hide-details
@@ -456,7 +456,7 @@
             </div>
 
             <div>
-              <div v-html="state.shop.insta_iframe" />
+              <div v-html="state.shop.instaIframe" />
             </div>
           </v-card-text>
         </v-card>
@@ -472,25 +472,25 @@
             <v-row>
               <v-col cols="12" sm="6" class="pb-0 pb-sm-3">
                 <LinkTextField
-                  v-model="state.shop.facebook_link"
+                  v-model="state.shop.facebookLink"
                   :label="ShopJa.FACEBOOK_LINK"
                   prepend-inner-icon="mdi-facebook"
                 />
 
                 <LinkTextField
-                  v-model="state.shop.insta_link"
+                  v-model="state.shop.instaLink"
                   :label="ShopJa.INSTA_LINK"
                   prepend-inner-icon="mdi-instagram"
                 />
 
                 <LinkTextField
-                  v-model="state.shop.twitter_link"
+                  v-model="state.shop.twitterLink"
                   :label="ShopJa.TWITTER_LINK"
                   prepend-inner-icon="mdi-twitter"
                 />
 
                 <LinkTextField
-                  v-model="state.shop.ubereats_link"
+                  v-model="state.shop.ubereatsLink"
                   :label="ShopJa.UBER_EATS_LINK"
                   prepend-inner-icon="mdi-alpha-u-box-outline"
                 />
@@ -498,25 +498,25 @@
 
               <v-col cols="12" sm="6" class="pt-0 pt-sm-3">
                 <LinkTextField
-                  v-model="state.shop.homepage_link"
+                  v-model="state.shop.homepageLink"
                   :label="ShopJa.HOMEPAGE_LINK"
                   prepend-inner-icon="mdi-home-circle"
                 />
 
                 <LinkTextField
-                  v-model="state.shop.line_link"
+                  v-model="state.shop.lineLink"
                   :label="ShopJa.LINE_LINK"
                   prepend-inner-icon="mdi-alpha-l-box-outline"
                 />
 
                 <LinkTextField
-                  v-model="state.shop.youtube_link"
+                  v-model="state.shop.youtubeLink"
                   :label="ShopJa.YOUTUBE_LINK"
                   prepend-inner-icon="mdi-youtube"
                 />
 
                 <LinkTextField
-                  v-model="state.shop.gotoeat_link"
+                  v-model="state.shop.gotoeatLink"
                   label="Go To Eat"
                   prepend-inner-icon="mdi-alpha-g-box-outline"
                 />
@@ -543,17 +543,17 @@
             <UploadMultipleImageFile
               :default-image="DEFAULT_IMAGE"
               :path="uuid.menuImages.map((menuImage) => `/shops/${menuImage}`)"
-              :past-image-link="state.shop.menu_image_link"
+              :past-image-link="state.shop.menuImageLink"
               label="メニュー画像"
-              @input="(v) => state.shop.menu_image_link = v"
+              @input="(v) => state.shop.menuImageLink = v"
             />
 
             <UploadMultipleImageFile
               :default-image="DEFAULT_IMAGE"
               :path="uuid.appearanceImages.map((appearanceImage) => `/shop_appearances/${appearanceImage}`)"
-              :past-image-link="state.shop.appearance_image_link"
+              :past-image-link="state.shop.appearanceImageLink"
               label="店舗外観"
-              @input="(v) => state.shop.appearance_image_link = v"
+              @input="(v) => state.shop.appearanceImageLink = v"
             />
           </v-card-text>
         </v-card>
@@ -635,35 +635,35 @@ export default defineComponent({
           DEFAULT_IMAGE,
           DEFAULT_IMAGE
         ],
-        facebook_link: '',
-        homepage_link: '',
-        insta_link: '',
-        line_link: '',
-        twitter_link: '',
-        ubereats_link: '',
-        youtube_link: '',
-        gotoeat_link: '',
+        facebookLink: '',
+        homepageLink: '',
+        instaLink: '',
+        lineLink: '',
+        twitterLink: '',
+        ubereatsLink: '',
+        youtubeLink: '',
+        gotoeatLink: '',
         priority: 3,
-        price_range: '',
+        priceRange: '',
         release: true,
         address: '',
-        building_name: '',
+        buildingName: '',
         postal: '',
         tel: '',
-        can_takeout: true,
-        insta_number: 0,
-        insta_shop_link: '',
-        business_start_hour1: null,
-        business_end_hour1: null,
-        business_lo_hour1: null,
-        business_start_hour2: null,
-        business_end_hour2: null,
-        business_lo_hour2: null,
-        business_start_hour3: null,
-        business_end_hour3: null,
-        business_lo_hour3: null,
-        parking_lot: '',
-        regular_holiday: '',
+        canTakeout: true,
+        instaNumber: 0,
+        instaShopLink: '',
+        businessStartHour1: null,
+        businessEndHour1: null,
+        businessLoHour1: null,
+        businessStartHour2: null,
+        businessEndHour2: null,
+        businessLoHour2: null,
+        businessStartHour3: null,
+        businessEndHour3: null,
+        businessLoHour3: null,
+        parkingLot: '',
+        regularHoliday: '',
         seat: '',
         dishes: [] as string[],
         keywords: [] as string[],
@@ -672,16 +672,16 @@ export default defineComponent({
         timeZone: [],
         name_kana: '',
         access: '',
-        can_reservation: true,
-        reservervation_max_number: '',
-        credit_card: '',
-        about_smoking: '',
-        electronic_money: '',
-        total_number_of_seats: '',
-        private_room: '',
-        insta_iframe: '',
-        can_gotoeat: false,
-        appearance_image_link: [
+        canReservation: true,
+        reservervationMaxNumber: '',
+        creditCard: '',
+        aboutSmoking: '',
+        electronicMoney: '',
+        totalNumberOfSeats: '',
+        privateRoom: '',
+        instaIframe: '',
+        canGotoeat: false,
+        appearanceImageLink: [
           DEFAULT_IMAGE,
           DEFAULT_IMAGE,
           DEFAULT_IMAGE,
@@ -693,13 +693,13 @@ export default defineComponent({
           DEFAULT_IMAGE,
           DEFAULT_IMAGE
         ],
-        display_mode: DisplayMode.DEFAULT
+        displayMode: DisplayMode.DEFAULT
       } as Partial<Shop>,
-      publish_from: null,
-      publish_to: null,
+      publishFrom: null,
+      publishTo: null,
       menu: {
-        publish_from: '',
-        publish_to: ''
+        publishFrom: '',
+        publishTo: ''
       },
       userChangedPublishFrom: false,
       userChangedPublishTo: false
@@ -780,20 +780,20 @@ export default defineComponent({
       state.shop = newVal ? newVal : state.shop
     })
 
-    watch(() => state.publish_from, () => { state.userChangedPublishFrom = true })
-    watch(() => state.publish_to, () => { state.userChangedPublishTo = true })
+    watch(() => state.publishFrom, () => { state.userChangedPublishFrom = true })
+    watch(() => state.publishTo, () => { state.userChangedPublishTo = true })
 
     const onSubmit = () => {
       if (props.type === 'create') {
-        state.shop.publish_from = state.publish_from
-        state.shop.publish_to = state.publish_to
+        state.shop.publishFrom = state.publishFrom
+        state.shop.publishTo = state.publishTo
       } else {
         if (state.userChangedPublishFrom) {
-          state.shop.publish_from = state.publish_from
+          state.shop.publishFrom = state.publishFrom
         }
 
         if (state.userChangedPublishTo) {
-          state.shop.publish_to = state.publish_to
+          state.shop.publishTo = state.publishTo
         }
       }
       context.emit('submit', state.shop)

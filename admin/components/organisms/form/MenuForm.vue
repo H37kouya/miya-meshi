@@ -66,10 +66,10 @@
 
           <v-card-text>
             <v-menu
-              ref="menu_publish_from"
-              v-model="state.menuPublish.publish_from"
+              ref="menu_publishFrom"
+              v-model="state.menuPublish.publishFrom"
               :close-on-content-click="false"
-              :return-value.sync="state.publish_from"
+              :return-value.sync="state.publishFrom"
               label="公開開始日時"
               transition="scale-transition"
               offset-y
@@ -77,8 +77,8 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="state.publish_from"
-                  :placeholder="state.menu.publish_from"
+                  v-model="state.publishFrom"
+                  :placeholder="state.menu.publishFrom"
                   label="公開開始日時"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -87,7 +87,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="state.publish_from"
+                v-model="state.publishFrom"
                 no-title
                 scrollable
               >
@@ -95,14 +95,14 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="state.menuPublish.publish_from = false"
+                  @click="state.menuPublish.publishFrom = false"
                 >
                   Cancel
                 </v-btn>
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu_publish_from.save(state.publish_from)"
+                  @click="$refs.menu_publishFrom.save(state.publishFrom)"
                 >
                   OK
                 </v-btn>
@@ -110,10 +110,10 @@
             </v-menu>
 
             <v-menu
-              ref="menu_publish_to"
-              v-model="state.menuPublish.publish_to"
+              ref="menu_publishTo"
+              v-model="state.menuPublish.publishTo"
               :close-on-content-click="false"
-              :return-value.sync="state.publish_to"
+              :return-value.sync="state.publishTo"
               label="公開終了日時"
               transition="scale-transition"
               offset-y
@@ -121,8 +121,8 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="state.publish_to"
-                  :placeholder="state.menu.publish_to"
+                  v-model="state.publishTo"
+                  :placeholder="state.menu.publishTo"
                   label="公開終了日時"
                   prepend-icon="mdi-calendar"
                   readonly
@@ -131,7 +131,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="state.publish_to"
+                v-model="state.publishTo"
                 no-title
                 scrollable
               >
@@ -139,14 +139,14 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="state.menuPublish.publish_to = false"
+                  @click="state.menuPublish.publishTo = false"
                 >
                   Cancel
                 </v-btn>
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu_publish_to.save(state.publish_to)"
+                  @click="$refs.menu_publishTo.save(state.publishTo)"
                 >
                   OK
                 </v-btn>
@@ -227,7 +227,7 @@
 
               <v-col cols="12" sm="4">
                 <v-select
-                  v-model="state.menu.period_of_time"
+                  v-model="state.menu.periodOfTime"
                   :items="timeZoneSelect"
                   :menu-props="{ maxHeight: '400' }"
                   label="時間帯"
@@ -315,17 +315,17 @@ export default defineComponent({
         keywords: [''] as string[],
         price: 0,
         priority: 3,
-        is_tax_included: false,
-        can_takeout: true,
-        period_of_time: [] as string[],
-        publish_from: '',
-        publish_to: '',
+        isTaxIncluded: false,
+        canTakeout: true,
+        periodOfTime: [] as string[],
+        publishFrom: '',
+        publishTo: '',
       } as Menu,
-      publish_from: null,
-      publish_to: null,
+      publishFrom: null,
+      publishTo: null,
       menuPublish: {
-        publish_from: '',
-        publish_to: ''
+        publishFrom: '',
+        publishTo: ''
       },
       userChangedPublishFrom: false,
       userChangedPublishTo: false
@@ -341,13 +341,13 @@ export default defineComponent({
       state.menu.release = newVal ? newVal.release : state.menu.release
       state.menu.price = newVal ? newVal.price : state.menu.price
       state.menu.priority = newVal ? newVal.priority : state.menu.priority
-      state.menu.is_tax_included = newVal ? newVal.is_tax_included : state.menu.is_tax_included
-      state.menu.can_takeout = newVal ? newVal.can_takeout : state.menu.can_takeout
+      state.menu.isTaxIncluded = newVal ? newVal.isTaxIncluded : state.menu.isTaxIncluded
+      state.menu.canTakeout = newVal ? newVal.canTakeout : state.menu.canTakeout
       state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
       state.menu.keywords = newVal && newVal.keywords ? newVal.keywords : state.menu.keywords
-      state.menu.period_of_time = newVal ? newVal.period_of_time : state.menu.period_of_time
-      state.menu.publish_from = newVal ? newVal.publish_from : state.menu.publish_from
-      state.menu.publish_to = newVal ? newVal.publish_to : state.menu.publish_to
+      state.menu.periodOfTime = newVal ? newVal.periodOfTime : state.menu.periodOfTime
+      state.menu.publishFrom = newVal ? newVal.publishFrom : state.menu.publishFrom
+      state.menu.publishTo = newVal ? newVal.publishTo : state.menu.publishTo
     })
 
     const dishesListForSelect = computed(() => {
@@ -370,22 +370,22 @@ export default defineComponent({
 
     const onSubmit = () => {
       if (props.type === 'create') {
-        state.menu.publish_from = state.publish_from
-        state.menu.publish_to = state.publish_to
+        state.menu.publishFrom = state.publishFrom
+        state.menu.publishTo = state.publishTo
       } else {
         if (state.userChangedPublishFrom) {
-          state.menu.publish_from = state.publish_from
+          state.menu.publishFrom = state.publishFrom
         }
 
         if (state.userChangedPublishTo) {
-          state.menu.publish_to = state.publish_to
+          state.menu.publishTo = state.publishTo
         }
       }
       context.emit('submit', state.menu)
     }
 
-    watch(() => state.publish_from, () => { state.userChangedPublishFrom = true })
-    watch(() => state.publish_to, () => { state.userChangedPublishTo = true })
+    watch(() => state.publishFrom, () => { state.userChangedPublishFrom = true })
+    watch(() => state.publishTo, () => { state.userChangedPublishTo = true })
 
     return {
       dishesListForSelect,

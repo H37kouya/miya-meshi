@@ -64,23 +64,23 @@ export default defineComponent({
       state.dishes = dishes
       state.keywords = keywords
 
-      if (!shop.appearance_image_link || shop.appearance_image_link.length !== 10) {
-        const loop = shop.appearance_image_link
-          ? 10 - shop.appearance_image_link.length
+      if (!shop.appearanceImageLink || shop.appearanceImageLink.length !== 10) {
+        const loop = shop.appearanceImageLink
+          ? 10 - shop.appearanceImageLink.length
           : 10
-        shop.appearance_image_link = shop.appearance_image_link || []
+        shop.appearanceImageLink = shop.appearanceImageLink || []
         for (let i = 0; i < loop; i++) {
-          shop.appearance_image_link.push(DEFAULT_IMAGE)
+          shop.appearanceImageLink.push(DEFAULT_IMAGE)
         }
       }
 
-      if (!shop.menu_image_link || shop.menu_image_link.length !== 6) {
-        const loop = shop.menu_image_link
-          ? 6 - shop.menu_image_link.length
+      if (!shop.menuImageLink || shop.menuImageLink.length !== 6) {
+        const loop = shop.menuImageLink
+          ? 6 - shop.menuImageLink.length
           : 6
-        shop.menu_image_link = shop.menu_image_link || []
+        shop.menuImageLink = shop.menuImageLink || []
         for (let i = 0; i < loop; i++) {
-          shop.menu_image_link.push(DEFAULT_IMAGE)
+          shop.menuImageLink.push(DEFAULT_IMAGE)
         }
       }
 

@@ -447,7 +447,7 @@ export default defineComponent({
           return false
         }
 
-        if (state.search.instaNumber !== 0 && state.search.instaNumber !== shop.insta_number) {
+        if (state.search.instaNumber !== 0 && state.search.instaNumber !== shop.instaNumber) {
           return false
         }
 
