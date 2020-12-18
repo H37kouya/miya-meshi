@@ -317,7 +317,9 @@ export default defineComponent({
         priority: 3,
         is_tax_included: false,
         can_takeout: true,
-        period_of_time: [] as string[]
+        period_of_time: [] as string[],
+        publish_from: '',
+        publish_to: '',
       } as Menu,
       publish_from: null,
       publish_to: null,
@@ -344,6 +346,8 @@ export default defineComponent({
       state.menu.dishes = newVal ? newVal.dishes : state.menu.dishes
       state.menu.keywords = newVal && newVal.keywords ? newVal.keywords : state.menu.keywords
       state.menu.period_of_time = newVal ? newVal.period_of_time : state.menu.period_of_time
+      state.menu.publish_from = newVal ? newVal.publish_from : state.menu.publish_from
+      state.menu.publish_to = newVal ? newVal.publish_to : state.menu.publish_to
     })
 
     const dishesListForSelect = computed(() => {

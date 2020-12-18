@@ -11,7 +11,7 @@
         </AdminMainText>
       </div>
 
-      <v-btn :to="`/shops/${state.shop.id}`">
+      <v-btn :to="`/shops/${state.shopId}`">
         店舗へ戻る
       </v-btn>
     </v-row>
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
 import { MenuFormState } from '@/src/types/MenuFormState'
@@ -46,26 +46,19 @@ export default defineComponent({
     const state = reactive({
       shop: {} as Shop,
       dishes: [] as Dish[],
-      keywords: [] as Keyword[]
+      keywords: [] as Keyword[],
+      shopID: computed(() => context.root.$route.params.id)
     })
 
-    const shopID = context.root.$route.query.shopid as string|null
-
-    if (!shopID || shopID === 'undefined') {
-      return context.root.$nuxt.error({
-        statusCode: 404
-      })
-    }
-
     const createMenu = async (menu: Menu) => {
-      await createDBMenu(menu, shopID, context.root.$config.API_TOKEN, context.root.$axios)
+      await createDBMenu(menu, state.shopID, context.root.$config.API_TOKEN, context.root.$axios)
 
-      return await context.root.$router.push(`/shops/${shopID}`)
+      return await context.root.$router.push(`/shops/${state.shopID}`)
     }
 
     watchEffect(async () => {
       const [shop, dishes, keywords] = await Promise.all([
-        getShopByID(shopID, context.root.$config.API_TOKEN, context.root.$axios),
+        getShopByID(state.shopID, context.root.$config.API_TOKEN, context.root.$axios),
         getDishList(context.root.$fireStore),
         getKeywordList(context.root.$fireStore)
       ])

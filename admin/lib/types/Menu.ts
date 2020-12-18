@@ -19,6 +19,8 @@ export type Menu = {
   dishes: string[],
   keywords: string[],
   period_of_time?: string[],
+  publish_from: string|null
+  publish_to: string|null
   created_at?: Date|Object,
   updated_at?: Date|Object,
   deleted_at?: Date|Object

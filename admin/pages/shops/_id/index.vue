@@ -28,7 +28,7 @@
 
     <v-row>
       <v-col cols="12">
-        <AdminMenuListCard :shopid="state.shop.id" :menus="state.menus" />
+        <AdminMenuListCard :shopid="state.id" :menus="state.menus" />
       </v-col>
     </v-row>
   </v-container>
@@ -51,7 +51,7 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const shop = await getShopByID(context.root.$route.params.id, context.root.$config.API_TOKEN, context.root.$axios)
+      const shop = await getShopByID(state.id, context.root.$config.API_TOKEN, context.root.$axios)
       state.shop = shop
       state.menus = shop.shop_menus
     })
