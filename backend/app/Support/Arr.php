@@ -25,4 +25,24 @@ class Arr extends ArrSupport
         }
         return $results;
     }
+
+    /**
+     * key名をスネークケースに変更
+     *
+     * @param array $array
+     * @param string $delimiter
+     * @return array
+     */
+    public static function snake_keys(array $array, string $delimiter = '_'): array
+    {
+        $results = [];
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $results[Str::snake($key, $delimiter)] = static::snake_keys($value);
+            } else {
+                $results[Str::snake($key, $delimiter)] = $value;
+            }
+        }
+        return $results;
+    }
 }
