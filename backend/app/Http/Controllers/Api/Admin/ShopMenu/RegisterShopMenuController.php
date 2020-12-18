@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin\ShopMenu;
 
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use App\Usecases\CreateShopMenuUsecase;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,11 @@ class RegisterShopMenuController extends Controller
      */
     public function __invoke(Request $request, int $shopId)
     {
-        return $this->_createShopMenuUsecase->invoke(
+        $data = $this->_createShopMenuUsecase->invoke(
             $shopId,
             $request->all()
         );
+
+        return Arr::camel_keys($data);
     }
 }

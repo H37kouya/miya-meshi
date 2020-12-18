@@ -3,7 +3,7 @@
 namespace App\Usecases;
 
 use App\Repositories\PaginateShopRepository;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 
 class PaginateShopUsecase
 {

@@ -7,7 +7,7 @@ use App\Enum\Models\ShopInformationModel;
 use App\Enum\Models\ShopModel;
 use App\Enum\PrefCode;
 use App\Models\Shop;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 
 class UpdateShopRepository
 {

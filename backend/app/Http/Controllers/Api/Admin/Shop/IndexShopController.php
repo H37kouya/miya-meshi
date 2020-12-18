@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin\Shop;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\Shop\IndexShopFormRequest;
 use App\Usecases\PaginateShopUsecase;
+use App\Support\Arr;
 
 class IndexShopController extends Controller
 {
@@ -25,6 +26,7 @@ class IndexShopController extends Controller
             'updated_at'   => $request->query('updated_at', null)
         ];
 
-        return $this->_paginateShopUsecase->invoke($serach);
+        $paginateShops = $this->_paginateShopUsecase->invoke($serach);
+        return Arr::camel_keys($paginateShops);
     }
 }

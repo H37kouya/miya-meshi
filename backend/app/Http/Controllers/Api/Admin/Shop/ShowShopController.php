@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api\Admin\Shop;
 use App\Enum\Models\FirebaseShopModel;
 use App\Http\Controllers\Controller;
 use App\Models\FirebaseShop;
+use App\Support\Arr;
 use App\Usecases\GetShopMenusAllUsecase;
 use App\Usecases\GetShopUsecase;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
 class ShowShopController extends Controller
 {
@@ -41,12 +41,12 @@ class ShowShopController extends Controller
 
         $shopMenus = $this->_getShopMenusAllUsecase->invoke($shopId, false);
 
-        return [
+        return Arr::camel_keys([
             "data" => array_merge(
                 $shop,
                 [ FirebaseShopModel::firebase_shop_id => $firebaseShopId ],
                 [ 'shop_menus' => $shopMenus ]
             )
-        ];
+        ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin\ShopMenu;
 
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use App\Usecases\GetShopMenuUsecase;
 use App\Usecases\GetShopUsecase;
 use Illuminate\Http\Request;
@@ -30,11 +31,12 @@ class ShowShopMenuController extends Controller
     {
         $shop = $this->_getShopUsecase->invoke($shopId, false);
         $shopMenu = $this->_getShopMenuUsecase->invoke($shopMenuId, false);
-        return [
+
+        return Arr::camel_keys([
             'data' => array_merge(
                 $shop,
                 [ 'shop_menu' => $shopMenu ]
             )
-        ];
+        ]);
     }
 }

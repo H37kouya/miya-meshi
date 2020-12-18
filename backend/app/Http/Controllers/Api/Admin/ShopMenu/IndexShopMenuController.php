@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin\ShopMenu;
 
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use App\Usecases\GetShopMenusAllUsecase;
 use Illuminate\Http\Request;
 
@@ -23,8 +24,8 @@ class IndexShopMenuController extends Controller
      */
     public function __invoke(Request $request, int $shopId)
     {
-        return [
+        return Arr::camel_keys([
             "data" => $this->_getShopMenusAllUsecase->invoke($shopId, false)
-        ];
+        ]);
     }
 }

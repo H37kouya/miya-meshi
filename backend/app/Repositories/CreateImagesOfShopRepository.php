@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Enum\Models\ImageModel;
 use App\Models\Shop;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 
 class CreateImagesOfShopRepository
 {

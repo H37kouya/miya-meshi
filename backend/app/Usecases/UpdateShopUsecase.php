@@ -8,7 +8,7 @@ use App\Repositories\GetShopRepository;
 use App\Repositories\UpdateImageOfShopRepository;
 use App\Repositories\UpdateShopRepository;
 use Exception;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 

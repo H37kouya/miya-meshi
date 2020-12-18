@@ -3,7 +3,7 @@
 namespace App\Usecases;
 
 use App\Repositories\PaginateSelectionPostRepository;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
 class PaginateSelectionPostUsecase extends BaseSelectionPostUsecase

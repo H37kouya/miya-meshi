@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin\Shop;
 
 use App\Enum\Models\ShopModel;
 use App\Http\Controllers\Controller;
+use App\Support\Arr;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\CreateShopUsecase;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class RegisterShopController extends Controller
             );
         }
 
-        return response()->json([
+        return Arr::camel_keys([
             'data' => array_merge($shop, [
                 'firebase_shop_id' => $firebaseShopId
             ])
