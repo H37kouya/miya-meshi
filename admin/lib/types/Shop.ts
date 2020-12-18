@@ -7,7 +7,7 @@ export type Shop = {
   // 店舗名
   name?: string,
   // 店名(かな)
-  name_kana: string,
+  nameKana: string,
   // 店舗肩書き
   prefix_name?: string,
   // 一言紹介
@@ -17,77 +17,77 @@ export type Shop = {
   // 住所
   address?: string,
   // 建物名
-  building_name?: string,
+  buildingName?: string,
   // 郵便番号
   postal?: string|number,
   // 電話番号
   tel?: string|number,
-  image_link?: string,
-  sub_image_link?: string[],
+  imageLink?: string,
+  subImageLink?: string[],
   // メニュー写真
-  menu_image_link?: string[],
+  menuImageLink?: string[],
   // 店舗外眼写真
-  appearance_image_link?: string[],
-  facebook_link?: string,
-  homepage_link?: string,
-  insta_link?: string,
-  line_link?: string,
-  twitter_link?: string,
-  ubereats_link?: string,
-  youtube_link?: string,
+  appearanceImageLink?: string[],
+  facebookLink?: string,
+  homepageLink?: string,
+  instaLink?: string,
+  lineLink?: string,
+  twitterLink?: string,
+  ubereatsLink?: string,
+  youtubeLink?: string,
   // Go To Eat用のリンク
-  gotoeat_link?: string,
+  gotoeatLink?: string,
   // 優先度
   priority: number,
   // 価格帯
-  price_range?: string,
+  priceRange?: string,
   // 公開設定
   release: boolean,
-  business_start_hour1?: string|Date|null,
-  business_end_hour1?: string|Date|null,
-  business_lo_hour1?: string|Date|null,
-  business_start_hour2?: string|Date|null,
-  business_end_hour2?: string|Date|null,
-  business_lo_hour2?: string|Date|null,
-  business_start_hour3?: string|Date|null,
-  business_end_hour3?: string|Date|null,
-  business_lo_hour3?: string|Date|null,
-  parking_lot?: string,
-  regular_holiday?: string,
+  businessStartHour1?: string|Date|null,
+  businessEndHour1?: string|Date|null,
+  businessLoHour1?: string|Date|null,
+  businessStartHour2?: string|Date|null,
+  businessEndHour2?: string|Date|null,
+  businessLoHour2?: string|Date|null,
+  businessStartHour3?: string|Date|null,
+  businessEndHour3?: string|Date|null,
+  businessLoHour3?: string|Date|null,
+  parkingLot?: string,
+  regularHoliday?: string,
   seat?: string,
   // テイクアウト可能かどうか
-  can_takeout: boolean,
-  insta_shop_link?: string,
-  insta_number?: number,
+  canTakeout: boolean,
+  instaShopLink?: string,
+  instaNumber?: number,
   latitude?: number,
   longitude?: number,
   keywords: string[],
   dishes?: string[],
   timeZone?: string[],
-  display_mode?: DisplayModeType,
+  displayMode?: DisplayModeType,
   // 交通
   access: string,
   // 予約可否
-  can_reservation: boolean,
+  canReservation: boolean,
   // 予約最大人数
-  reservervation_max_number: string
+  reservervationMaxNumber: string
   // クレジットカード
-  credit_card: string
+  creditCard: string
   // 禁煙・喫煙
-  about_smoking: string
+  aboutSmoking: string
   // 電子マネー
-  electronic_money: string
+  electronicMoney: string
   // 総席数
-  total_number_of_seats: string
+  totalNumberOfSeats: string
   // 個室
-  private_room: string
+  privateRoom: string
   // GoToEat可能かどうか
-  can_gotoeat: boolean
+  canGotoeat: boolean
   // インスタ埋め込み
-  insta_iframe: string
-  publish_from: string|null
-  publish_to: string|null
-  created_at?: Date|Object,
-  deleted_at?: Date|Object,
-  updated_at?: Date|Object
+  instaIframe: string
+  publishFrom: string|null
+  publishTo: string|null
+  createdAt?: Date|Object,
+  deletedAt?: Date|Object,
+  updatedAt?: Date|Object
 }
