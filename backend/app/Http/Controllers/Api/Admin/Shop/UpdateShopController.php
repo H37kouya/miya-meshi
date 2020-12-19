@@ -32,7 +32,7 @@ class UpdateShopController extends Controller
     {
         $firebaseShopId = $request->get('firebase_shop_id');
 
-        $shop = $this->_updateShopUsecase->invoke($shopId, $request->all());
+        $shop = $this->_updateShopUsecase->invoke($shopId, Arr::snake_keys($request->all()));
 
         if ($firebaseShopId) {
             $this->_connectShopAndFirebaseShopUsecase->invoke(

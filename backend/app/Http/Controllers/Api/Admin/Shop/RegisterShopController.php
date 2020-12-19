@@ -33,7 +33,7 @@ class RegisterShopController extends Controller
     {
         $firebaseShopId = $request->get('firebase_shop_id');
 
-        $shop = $this->_createShopUsecase->invoke($request->except(['firebase_shop_id']));
+        $shop = $this->_createShopUsecase->invoke(Arr::snake_keys($request->except(['firebase_shop_id'])));
 
         if ($firebaseShopId) {
             $this->_connectShopAndFirebaseShopUsecase->invoke(

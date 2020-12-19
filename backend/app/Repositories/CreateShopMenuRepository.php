@@ -4,8 +4,9 @@ namespace App\Repositories;
 
 use App\Enum\Models\ImageModel;
 use App\Enum\Models\ShopMenuModel;
-use App\Models\ShopMenu;
+use App\Models\Shop;
 use App\Support\Arr;
+use Illuminate\Support\Collection;
 
 class CreateShopMenuRepository
 {
@@ -28,9 +29,11 @@ class CreateShopMenuRepository
      */
     public function invoke(int $shopId, array $inputs): array
     {
+        /** @var Shop $shop */
+        $shop = Shop::findOrFail($shopId);
         $inputShopMenu = $this->get_shop_menu_by_inputs($shopId, $inputs);
         $inputImageLink = Arr::get($inputs, ShopMenuModel::image_link);
-        $shopMenu = ShopMenu::create($inputShopMenu);
+        $shopMenu = $shop->shopMenus()->create($inputShopMenu);
 
         if ($inputImageLink) {
             $shopMenu->image()->create([
@@ -52,7 +55,7 @@ class CreateShopMenuRepository
         int $shopId,
         array $inputs
     ): array {
-        return [
+        return (new Collection([
             ShopMenuModel::shop_id        => $shopId,
             ShopMenuModel::name            => Arr::get($inputs, ShopMenuModel::name, null),
             ShopMenuModel::release         => Arr::get($inputs, ShopMenuModel::release, true),
@@ -65,6 +68,6 @@ class CreateShopMenuRepository
             ShopMenuModel::period_of_time  => Arr::get($inputs, ShopMenuModel::period_of_time, null),
             ShopMenuModel::is_tax_included => Arr::get($inputs, ShopMenuModel::is_tax_included, true),
             ShopMenuModel::can_takeout     => Arr::get($inputs, ShopMenuModel::can_takeout, true),
-        ];
+        ]))->filter(fn ($val, $key) => !is_array($val))->all();
     }
 }
