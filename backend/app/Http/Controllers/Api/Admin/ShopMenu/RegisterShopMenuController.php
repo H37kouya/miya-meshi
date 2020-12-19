@@ -28,9 +28,9 @@ class RegisterShopMenuController extends Controller
     {
         $data = $this->_createShopMenuUsecase->invoke(
             $shopId,
-            Arr::snake_keys($request->except(Arr::camel_keys([
+            $request->exceptToSnakeKeysByCamelKeys([
                 ShopMenuModel::period_of_time,
-            ])))
+            ])
         );
 
         return Arr::camel_keys($data);

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\Admin\Shop;
 
+use App\Enum\Models\FirebaseShopModel;
 use App\Enum\Models\ShopModel;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Admin\Shop\UpdateShopFormRequest;
 use App\Support\Arr;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\UpdateShopUsecase;
@@ -28,11 +30,16 @@ class UpdateShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, int $shopId)
+    public function __invoke(UpdateShopFormRequest $request, int $shopId)
     {
-        $firebaseShopId = $request->get('firebase_shop_id');
+        $firebaseShopId = $request->getByCamelKey(FirebaseShopModel::firebase_shop_id);
 
-        $shop = $this->_updateShopUsecase->invoke($shopId, Arr::snake_keys($request->all()));
+        $shop = $this->_updateShopUsecase->invoke(
+            $shopId,
+            $request->exceptToSnakeKeysByCamelKeys([
+                FirebaseShopModel::firebase_shop_id
+            ])
+        );
 
         if ($firebaseShopId) {
             $this->_connectShopAndFirebaseShopUsecase->invoke(
@@ -43,7 +50,7 @@ class UpdateShopController extends Controller
 
         return Arr::camel_keys([
             'data' => array_merge($shop, [
-                'firebase_shop_id' => $firebaseShopId
+                FirebaseShopModel::firebase_shop_id => $firebaseShopId
             ]),
         ]);
     }

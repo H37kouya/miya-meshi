@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Api\Admin\Shop;
 
+use App\Enum\Models\FirebaseShopModel;
 use App\Enum\Models\ShopModel;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Admin\Shop\RegisterShopFormRequest;
 use App\Support\Arr;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\CreateShopUsecase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RegisterShopController extends Controller
 {
@@ -29,11 +32,15 @@ class RegisterShopController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(RegisterShopFormRequest $request)
     {
-        $firebaseShopId = $request->get('firebase_shop_id');
+        $firebaseShopId = $request->getByCamelKey(FirebaseShopModel::firebase_shop_id);
 
-        $shop = $this->_createShopUsecase->invoke(Arr::snake_keys($request->except(['firebase_shop_id'])));
+        $shop = $this->_createShopUsecase->invoke(
+            $request->exceptToSnakeKeysByCamelKeys([
+                FirebaseShopModel::firebase_shop_id
+            ])
+        );
 
         if ($firebaseShopId) {
             $this->_connectShopAndFirebaseShopUsecase->invoke(
@@ -44,7 +51,7 @@ class RegisterShopController extends Controller
 
         return Arr::camel_keys([
             'data' => array_merge($shop, [
-                'firebase_shop_id' => $firebaseShopId
+                FirebaseShopModel::firebase_shop_id => $firebaseShopId
             ])
         ]);
     }

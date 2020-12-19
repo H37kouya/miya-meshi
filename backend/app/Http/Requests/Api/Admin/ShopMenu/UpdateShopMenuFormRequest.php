@@ -3,11 +3,11 @@
 namespace App\Http\Requests\Api\Admin\ShopMenu;
 
 use App\Enum\Models\ShopMenuModel;
+use App\Http\Requests\Traits\JsonRequest;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Traits\JsonRequest;
 
-class RegisterShopMenuFormRequest extends FormRequest
+class UpdateShopMenuFormRequest extends FormRequest
 {
     use JsonRequest;
 
