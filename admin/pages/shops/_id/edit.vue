@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts">
+import { AxiosError } from 'axios'
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { Dish, Shop, PriceRange, Keyword } from '@/lib'
 import { editShop as editDBShop, getShopByID } from '@/src/infra/backend/Shop'
@@ -42,15 +43,27 @@ export default defineComponent({
       dishes: [] as Dish[],
       shop: { } as Shop,
       keywords: [] as Keyword[],
-      priceRangeList: [] as PriceRange[]
+      priceRangeList: [] as PriceRange[],
+      errors: {} as any
     })
 
     const editShop = async (shop: any) => {
-      shop.address = formatShopAddress(shop.address)
+      try {
+        shop.address = formatShopAddress(shop.address)
 
-      await editDBShop(context.root.$config.API_TOKEN, state.shop.id,  shop, context.root.$axios)
+        await editDBShop(context.root.$config.API_TOKEN, state.shop.id,  shop, context.root.$axios)
 
-      return await context.root.$router.push('/shops')
+        return await context.root.$router.push('/shops')
+      } catch (_e) {
+        const e = _e as AxiosError<any>
+
+        if (e.response && e.response.status === 422) {
+          state.errors = e.response.data
+          return
+        }
+
+        console.error(e)
+      }
     }
 
     watchEffect(async () => {

@@ -23,6 +23,7 @@
 </template>
 
 <script lang="ts">
+import { AxiosError } from 'axios'
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { MetaInfo } from 'vue-meta'
@@ -39,13 +40,25 @@ export default defineComponent({
     const state = reactive({
       dishes: [] as Dish[],
       keywords: [] as Keyword[],
-      priceRangeList: [] as PriceRange[]
+      priceRangeList: [] as PriceRange[],
+      errors: {} as any
     })
 
     const createShop = async (shop: any) => {
-      await createDBShop(shop, context.root.$config.API_TOKEN, context.root.$axios)
+      try {
+        await createDBShop(shop, context.root.$config.API_TOKEN, context.root.$axios)
 
-      return await context.root.$router.push('/shops')
+        return await context.root.$router.push('/shops')
+      } catch (_e) {
+        const e = _e as AxiosError<any>
+
+        if (e.response && e.response.status === 422) {
+          state.errors = e.response.data
+          return
+        }
+
+        console.error(e)
+      }
     }
 
     watchEffect(async () => {

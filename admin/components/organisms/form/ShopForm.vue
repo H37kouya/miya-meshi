@@ -622,12 +622,12 @@ export default defineComponent({
   setup (props: Props, context: SetupContext) {
     const state = reactive({
       shop: {
-        prefix_name: '',
+        prefixName: '',
         name: '',
         description: '',
         intro: '',
-        image_link: DEFAULT_IMAGE,
-        menu_image_link: [
+        imageLink: DEFAULT_IMAGE,
+        menuImageLink: [
           DEFAULT_IMAGE,
           DEFAULT_IMAGE,
           DEFAULT_IMAGE,
@@ -670,7 +670,7 @@ export default defineComponent({
         latitude: 0,
         longitude: 0,
         timeZone: [],
-        name_kana: '',
+        nameKana: '',
         access: '',
         canReservation: true,
         reservervationMaxNumber: '',
