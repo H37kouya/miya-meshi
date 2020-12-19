@@ -3,10 +3,10 @@ import { Menu, Shop } from "~/lib"
 import { Type } from "~/lib/enum"
 
 export type PaginationPost = {
-  has_next: false
-  has_previous: null
-  next_cursor: null
-  previous_cursor: null
+  hasNext: false
+  hasPrevious: null
+  nextCursor: null
+  previousCursor: null
   records: Shop[]
 }
 
@@ -82,7 +82,7 @@ export const getMenuByID = async (
 ) => {
   type AxiosGetType = {
     data: Shop & {
-      shop_menu: Menu
+      shopMenu: Menu
     }
   }
   const { data } = await $axios.$get<AxiosGetType>(`/api/admin/shop/${shopID}/menu/${shopMenuID}`, {
@@ -95,6 +95,6 @@ export const getMenuByID = async (
     ...data,
     type: Type.SHOP
   } as Shop & {
-    shop_menu: Menu
+    shopMenu: Menu
   }
 }

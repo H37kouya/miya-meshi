@@ -35,6 +35,8 @@ class UpdateShopMenuUsecase
     {
         DB::beginTransaction();
 
+        \Log::debug($inputs);
+
         try {
             $this->_updateShopMenuRepository->invoke($shopMenuId, $inputs);
 

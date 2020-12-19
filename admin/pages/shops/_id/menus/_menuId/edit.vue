@@ -76,7 +76,7 @@ export default defineComponent({
         getKeywordList(context.root.$fireStore)
       ])
       state.shop = shop
-      state.menu = shop.shop_menu
+      state.menu = shop.shopMenu
       state.dishes = dishes
       state.keywords = keywords
     })

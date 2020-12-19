@@ -65,6 +65,7 @@ class ShopMenu extends Model
     ];
 
     protected $casts = [
+        ShopMenuModel::release         => 'boolean',
         ShopMenuModel::is_tax_included => 'boolean',
         ShopMenuModel::can_takeout     => 'boolean',
     ];

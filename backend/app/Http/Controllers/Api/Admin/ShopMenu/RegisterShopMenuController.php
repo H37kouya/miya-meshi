@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\Admin\ShopMenu;
 
+use App\Enum\Models\ShopMenuModel;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Admin\ShopMenu\RegisterShopMenuFormRequest;
 use App\Support\Arr;
 use App\Usecases\CreateShopMenuUsecase;
 use Illuminate\Http\Request;
@@ -22,11 +24,13 @@ class RegisterShopMenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, int $shopId)
+    public function __invoke(RegisterShopMenuFormRequest $request, int $shopId)
     {
         $data = $this->_createShopMenuUsecase->invoke(
             $shopId,
-            $request->all()
+            Arr::snake_keys($request->except(Arr::camel_keys([
+                ShopMenuModel::period_of_time,
+            ])))
         );
 
         return Arr::camel_keys($data);

@@ -24,9 +24,9 @@ class CreateShopMenuRepository
     /**
      * invoke
      *
-     * @return void
+     * @return array
      */
-    public function invoke(int $shopId, array $inputs)
+    public function invoke(int $shopId, array $inputs): array
     {
         $inputShopMenu = $this->get_shop_menu_by_inputs($shopId, $inputs);
         $inputImageLink = Arr::get($inputs, ShopMenuModel::image_link);

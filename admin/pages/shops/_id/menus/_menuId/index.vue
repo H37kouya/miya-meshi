@@ -74,7 +74,7 @@ export default defineComponent({
         context.root.$axios
       )
       state.shop = shop
-      state.menu = shop.shop_menu
+      state.menu = shop.shopMenu
     })
 
     const onDelete = async () => {

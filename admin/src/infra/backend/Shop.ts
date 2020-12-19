@@ -103,7 +103,7 @@ export const getShopByID = async (
 ) => {
   type AxiosGetType = {
     data: Shop & {
-      shop_menus: Menu[]
+      shopMenus: Menu[]
     }
   }
   const { data } = await $axios.$get<AxiosGetType>(`/api/admin/shop/${id}`, {
@@ -116,6 +116,6 @@ export const getShopByID = async (
     ...data,
     type: Type.SHOP
   } as Shop & {
-    shop_menus: Menu[]
+    shopMenus: Menu[]
   }
 }

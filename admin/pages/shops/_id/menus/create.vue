@@ -29,6 +29,7 @@
 </template>
 
 <script lang="ts">
+import { AxiosError } from 'axios'
 import { computed, defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { removeUndefinedFromObject } from '@/src/utils/Object'
 import { MetaInfo } from 'vue-meta'
@@ -47,13 +48,25 @@ export default defineComponent({
       shop: {} as Shop,
       dishes: [] as Dish[],
       keywords: [] as Keyword[],
-      shopID: computed(() => context.root.$route.params.id)
+      shopID: computed(() => context.root.$route.params.id),
+      errors: {}
     })
 
     const createMenu = async (menu: Menu) => {
-      await createDBMenu(menu, state.shopID, context.root.$config.API_TOKEN, context.root.$axios)
+      try {
+        await createDBMenu(menu, state.shopID, context.root.$config.API_TOKEN, context.root.$axios)
 
-      return await context.root.$router.push(`/shops/${state.shopID}`)
+        return await context.root.$router.push(`/shops/${state.shopID}`)
+      } catch (_e) {
+        const e = _e as AxiosError<any>
+
+        if (e.response && e.response.status === 422) {
+          state.errors = e.response.data
+          return
+        }
+
+        console.error(e)
+      }
     }
 
     watchEffect(async () => {

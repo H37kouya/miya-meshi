@@ -29,12 +29,12 @@ class CreateShopMenuUsecase
     /**
      * invoke
      *
-     * @return void
+     * @return array
      */
     public function invoke(
         int $shopId,
         array $inputs
-    ) {
+    ): array {
         DB::beginTransaction();
 
         try {

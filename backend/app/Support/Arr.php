@@ -38,7 +38,7 @@ class Arr extends ArrSupport
         $results = [];
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $results[Str::snake($key, $delimiter)] = static::snake_keys($value);
+                $results[Str::snake($key, $delimiter)] = static::snake_keys($value, $delimiter);
             } else {
                 $results[Str::snake($key, $delimiter)] = $value;
             }

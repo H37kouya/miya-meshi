@@ -53,7 +53,7 @@ export default defineComponent({
     onMounted(async () => {
       const shop = await getShopByID(state.id, context.root.$config.API_TOKEN, context.root.$axios)
       state.shop = shop
-      state.menus = shop.shop_menus
+      state.menus = shop.shopMenus
     })
 
     const onDelete = async () => {

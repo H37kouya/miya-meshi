@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Api\Admin\ShopMenu;
 
 use App\Enum\Models\ShopMenuModel;
+use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class RegisterShopMenuFormRequest extends FormRequest
 {
@@ -25,19 +25,20 @@ class RegisterShopMenuFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            ShopMenuModel::release         => 'required|boolean',
-            ShopMenuModel::publish_from    => 'string|nullable',
-            ShopMenuModel::publish_to      => 'string|nullable',
-            ShopMenuModel::priority        => 'integer|nullable',
-            ShopMenuModel::name            => 'requierd|string|max:255',
-            ShopMenuModel::description     => 'required|string|max:255',
-            ShopMenuModel::intro           => 'required|string|max:255',
-            ShopMenuModel::price           => 'required|integer|min:0',
-            ShopMenuModel::period_of_time  => 'required|string',
-            ShopMenuModel::is_tax_included => 'required|boolean',
-            ShopMenuModel::can_takeout     => 'required|boolean',
-            ShopMenuModel::image_link      => 'string|nullable',
-        ];
+        return Arr::camel_keys([
+            ShopMenuModel::release             => 'required|boolean',
+            ShopMenuModel::publish_from        => 'string|nullable',
+            ShopMenuModel::publish_to          => 'string|nullable',
+            ShopMenuModel::priority            => 'integer|nullable',
+            ShopMenuModel::name                => 'required|string|max:255',
+            ShopMenuModel::description         => 'string|max:255',
+            ShopMenuModel::intro               => 'string|max:255',
+            ShopMenuModel::price               => 'integer|min:0',
+            ShopMenuModel::period_of_time      => 'array',
+            ShopMenuModel::period_of_time.'.*' => 'string',
+            ShopMenuModel::is_tax_included     => 'required|boolean',
+            ShopMenuModel::can_takeout         => 'required|boolean',
+            ShopMenuModel::image_link          => 'string|nullable',
+        ]);
     }
 }

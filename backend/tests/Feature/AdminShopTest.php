@@ -61,10 +61,10 @@ class AdminShopPostTest extends TestCase
     public function test_Shopを追加できる()
     {
         $response = $this->postJson('/api/admin/shop', [
-            'release'      => true,
-            'name'         => 'testUser',
-            'name_kana'    => 'あいうえお',
-            'display_mode' => DisplayMode::NORMAL,
+            'release'       => true,
+            'name'          => 'testUser',
+            'nameKana'      => 'あいうえお',
+            'displayMode'   => DisplayMode::NORMAL,
         ], [
             'Authorization' => 'Bearer 1234567890aa'
         ]);
