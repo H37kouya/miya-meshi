@@ -37,19 +37,35 @@
 
 > Laravel 6 / PHP 7.4 / MySQL
 
-## Environment
+## Environment setup
 
 環境変数については[こちら](./.docs/AboutEnvironment.md)を参照
 
 ``` shell
-# メイン画面と管理者画面の同時起動
-$ make dev
-
 # メイン画面起動
-$ make client-dev
+$ cd client && npm i
 
-# 管理者画面の起動
-$ make admin-dev
+$ npm run dev
+
+# 管理者画面起動
+$ cd admin && npm i
+
+$ npm run dev
+
+# API起動
+$ cd backend
+
+$ docker-compose up -d
+
+$ php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+$ composer install
+
+$ php artisan key:generate
+
+$ php artisan config:cache
+
+$ php artisan serve
 ```
 
 ### Windows
