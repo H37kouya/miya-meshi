@@ -51,6 +51,6 @@ class PriceRange
             self::BETWEEN_3000_AND_5000,
             self::BETWEEN_5000_AND_10000,
             self::OVER_10000,
-        ]
+        ];
     }
 }
