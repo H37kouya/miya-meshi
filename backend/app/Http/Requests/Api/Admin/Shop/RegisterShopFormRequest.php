@@ -6,6 +6,7 @@ use App\Enum\DisplayMode;
 use App\Enum\Models\FirebaseShopModel;
 use App\Enum\Models\ShopInformationModel;
 use App\Enum\Models\ShopModel;
+use App\Enum\PriceRange;
 use App\Http\Requests\Traits\JsonRequest;
 use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
@@ -67,7 +68,9 @@ class RegisterShopFormRequest extends FormRequest
             ShopInformationModel::youtube_link         => 'string|url|nullable|max:255',
             ShopInformationModel::ubereats_link        => 'string|url|nullable|max:255',
             ShopInformationModel::gotoeat_link         => 'string|url|nullable|max:255',
-            ShopInformationModel::price_range          => 'nullable',
+            ShopInformationModel::price_range          => [
+                'string', 'nullable', Rule::in(PriceRange::getAll())
+            ],
             ShopInformationModel::business_start_hour1 => 'string|nullable|max:255',
             ShopInformationModel::business_end_hour1   => 'string|nullable|max:255',
             ShopInformationModel::business_lo_hour1    => 'string|nullable|max:255',
