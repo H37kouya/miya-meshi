@@ -1,7 +1,7 @@
 import * as TestFunc from '@/enum/DisplayMode'
 
 describe('Enum DisplayMode', () => {
-  it('isNORMAL', () => {
+  it('isNormal', () => {
     expect(TestFunc.DisplayMode.NORMAL).toBe('NORMAL')
     expect(TestFunc.isDisplayMode('NORMAL')).toBeTruthy()
     expect(TestFunc.isNormal('NORMAL')).toBeTruthy()

@@ -150,7 +150,7 @@ class MakeEnumForTs extends Command
         foreach ($reflectionClass->getConstants() as $key => $value) {
             $keyStudly = Str::studly(strtolower($key));
 
-            $keyValueTest .= "  it('is{$key}', () => {\n";
+            $keyValueTest .= "  it('is{$keyStudly}', () => {\n";
             $keyValueTest .= "    expect(TestFunc.{$className}.{$key}).toBe('{$value}')\n";
             $keyValueTest .= "    expect(TestFunc.is{$className}('{$value}')).toBeTruthy()\n";
             $keyValueTest .= "    expect(TestFunc.is{$keyStudly}('{$value}')).toBeTruthy()\n";
