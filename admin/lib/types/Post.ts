@@ -1,4 +1,4 @@
-import { ContentMode } from "../enum/ContentMode";
+import { ContentMode } from "../enum/api/ContentMode";
 
 export type Post = {
   id: number
