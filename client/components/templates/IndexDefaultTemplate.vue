@@ -32,10 +32,20 @@
         <DefaultInstaTopPageShopList :areas="areas" :insta-shops="instaShops" />
 
         <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
-          今週のおすすめ
+          ブログを見る
         </MainText>
 
-        <DefaultShopList :areas="areas" :shops="shops" justify="start" />
+        <div>
+          <v-row>
+            <template v-for="(post, key) in posts">
+              <v-col :key="key" cols="12" sm="6">
+                <BlogCard
+                  :post="post"
+                />
+              </v-col>
+            </template>
+          </v-row>
+        </div>
 
         <div class="u-light-grey-background white-md-background pb-2">
           <div class="d-flex justify-center">
@@ -49,35 +59,23 @@
           </div>
         </div>
 
-        <template v-if="posts.length === 4">
-          <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
-            ブログを見る
-          </MainText>
+        <MainText id="recommend_for_weekend" :level="2" class="border-b border-dark-gray">
+          今週のおすすめ
+        </MainText>
 
-          <div>
-            <v-row>
-              <template v-for="(post, key) in posts">
-                <v-col :key="key" cols="12" sm="6">
-                  <BlogCard
-                    :post="post"
-                  />
-                </v-col>
-              </template>
-            </v-row>
-          </div>
+        <DefaultShopList :areas="areas" :shops="shops" justify="start" />
 
-          <div class="u-light-grey-background white-md-background pb-2">
-            <div class="d-flex justify-center">
-              <v-container class="text-right pt-0">
-                <p class="mb-0">
-                  <nuxt-link to="/post" class="miya-meshi-posts">
-                    もっとみる
-                  </nuxt-link>
-                </p>
-              </v-container>
-            </div>
+        <div class="u-light-grey-background white-md-background pb-2">
+          <div class="d-flex justify-center">
+            <v-container class="text-right pt-0">
+              <p class="mb-0">
+                <nuxt-link to="/shops" class="miya-meshi-posts">
+                  もっとみる
+                </nuxt-link>
+              </p>
+            </v-container>
           </div>
-        </template>
+        </div>
       </v-col>
 
       <v-col cols="12" md="4" class="px-0 px-md-4 pt-0 pt-md-3">

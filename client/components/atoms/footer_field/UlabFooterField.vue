@@ -15,13 +15,15 @@
         <ul class="d-flex link-inline-list border-black pa-0 mb-2">
           <li>
             <a
-              href="https://note.com/kazuma7/n/n75fb0175270d"
+              href="https://ulab-uu.com/about/"
+              target="_blank"
               class="sentence link-inline-list-item"
             >U-labとは？</a>
           </li>
           <li>
             <a
               href="https://uu-circle20.firebaseapp.com/"
+              target="_blank"
               class="sentence link-inline-list-item"
             >宇大サークルビラ一覧</a>
           </li>
