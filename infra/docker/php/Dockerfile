@@ -1,6 +1,8 @@
 FROM php:7.4-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
+ARG APCU_VERSION=5.1.19
+
 # timezone environment
 ENV TZ=UTC \
   # locale
@@ -44,5 +46,8 @@ RUN apt-get update && \
 
 COPY ./php-fpm.d/zzz-www.conf /usr/local/etc/php-fpm.d/zzz-www.conf
 COPY ./php.ini /usr/local/etc/php/php.ini
+
+RUN pecl install apcu-${APCU_VERSION} && docker-php-ext-enable apcu
+
 
 WORKDIR /work/backend
