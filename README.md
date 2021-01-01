@@ -53,19 +53,7 @@ $ cd admin && npm i
 $ npm run dev
 
 # API起動
-$ cd backend
-
-$ docker-compose up -d
-
-$ php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-$ composer install
-
-$ php artisan key:generate
-
-$ php artisan config:cache
-
-$ php artisan serve
+$ make init
 ```
 
 ### Windows
@@ -108,11 +96,8 @@ $ docker-compose exec app composer test
 # Dockerコンテナ立ち上げ
 $ docker-compose up -d
 
-# dockerのdbコンテナに入る
-$ docker-compose exec db bash
-
-# mysqlにアクセス (password: secret)
-$ mysql -u root -p
+# SQLコンテナに入る
+$ make sql
 ```
 
 ### .vueファイル内でimportのパス解決ができないとき
