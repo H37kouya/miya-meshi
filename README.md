@@ -76,7 +76,7 @@ $ npm test
 
 ``` shell
 # Laravel test
-$ vendor/bin/phpunit
+$ docker-compose exec app composer test
 ```
 
 ## Docs

@@ -48,6 +48,11 @@ paths:
           description: 更新日時 (paginationで使用)
           schema:
             type: string
+        - name: content-type
+          in: header
+          schema:
+            type: string
+            default: application/json
       responses:
         200:
           description: OK
@@ -66,6 +71,12 @@ paths:
         - selection-post
       summary: 新規ブログ追加API
       description: ブログを追加する
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
       requestBody:
         required: true
         description: The selection-post to create.
@@ -100,6 +111,16 @@ paths:
           schema:
             type: integer
           required: true
+        - name: content-type
+          in: header
+          schema:
+            type: string
+            default: application/json
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
       responses:
         200:
           description: OK
@@ -137,6 +158,11 @@ paths:
           schema:
             type: integer
           required: true
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
       requestBody:
         required: true
         description: The selection-post to create.
@@ -181,6 +207,11 @@ paths:
           schema:
             type: integer
           required: true
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
       responses:
         200:
           description: OK
@@ -260,6 +291,12 @@ paths:
         - shop
       summary: 新規店舗追加API
       description: 店舗を追加する
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
       requestBody:
         required: true
         description: The shop to create.
@@ -326,6 +363,11 @@ paths:
       description: |-
         idはShopテーブルのID。
       parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
         - name: shopId
           in: path
           schema:
@@ -375,6 +417,11 @@ paths:
           schema:
             type: integer
           required: true
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
       responses:
         200:
           description: OK
@@ -465,3 +512,11 @@ components:
       required:
         - code
         - message
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: Credentials or access token for API
+
+security:
+  - Bearer: []

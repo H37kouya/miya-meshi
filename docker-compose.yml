@@ -1,6 +1,7 @@
 version: "3.8"
 volumes:
   php-fpm-socket:
+  pma-session-store:
   db-store:
   vendor-store:
   node_modules-store:
@@ -29,3 +30,21 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
+
+  cs:
+    image: herloct/php-cs-fixer
+    volumes:
+      - ./backend:/project
+
+  pma:
+    image: phpmyadmin/phpmyadmin:5.0.2
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=secret
+    ports:
+      - 8080:80
+    volumes:
+      - pma-session-store:/sessions
+    depends_on:
+      - db
