@@ -6,6 +6,7 @@ use App\Enum\DisplayMode;
 use App\Enum\Models\FirebaseShopModel;
 use App\Enum\Models\ShopInformationModel;
 use App\Enum\Models\ShopModel;
+use App\Enum\PeriodOfTime;
 use App\Enum\PriceRange;
 use App\Http\Requests\Traits\JsonRequest;
 use App\Support\Arr;
@@ -94,6 +95,10 @@ class RegisterShopFormRequest extends FormRequest
             ShopInformationModel::can_gotoeat           => 'required|boolean',
             ShopInformationModel::can_reservation       => 'required|boolean',
             ShopInformationModel::period_of_time        => 'array|nullable',
+            ShopInformationModel::period_of_time.'*'    => [
+                'string',
+                Rule::in([PeriodOfTime::MORNING, PeriodOfTime::LUNCH, PeriodOfTime::NIGHT, PeriodOfTime::ALL_TIME])
+            ],
             ShopInformationModel::insta_number          => 'integer|nullable|min:0',
             ShopInformationModel::insta_shop_link       => 'url|nullable',
             ShopInformationModel::insta_iframe          => 'nullable|max:100000',
