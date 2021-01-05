@@ -35,7 +35,7 @@
 
 ### Backend
 
-> Laravel 6 / PHP 7.4 / MySQL
+> Laravel 6 / PHP 7.4 / MySQL / Node.js 12.20.1
 
 ## Environment setup
 
