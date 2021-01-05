@@ -7,9 +7,11 @@ use App\Enum\Models\ShopModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\Shop\RegisterShopFormRequest;
 use App\Support\Arr;
+use App\Usecases\ConnectShopAndFirebaseKeywordUsecase;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\CreateShopUsecase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class RegisterShopController extends Controller
@@ -18,12 +20,16 @@ class RegisterShopController extends Controller
 
     private ConnectShopAndFirebaseShopUsecase $_connectShopAndFirebaseShopUsecase;
 
+    private ConnectShopAndFirebaseKeywordUsecase $_connectShopAndFirebaseKeywordUsecase;
+
     public function __construct(
         CreateShopUsecase $createShopUsecase,
-        ConnectShopAndFirebaseShopUsecase $connectShopAndFirebaseShopUsecase
+        ConnectShopAndFirebaseShopUsecase $connectShopAndFirebaseShopUsecase,
+        ConnectShopAndFirebaseKeywordUsecase $connectShopAndFirebaseKeywordUsecase
     ) {
         $this->_createShopUsecase = $createShopUsecase;
         $this->_connectShopAndFirebaseShopUsecase = $connectShopAndFirebaseShopUsecase;
+        $this->_connectShopAndFirebaseKeywordUsecase = $connectShopAndFirebaseKeywordUsecase;
     }
 
     /**
@@ -35,6 +41,7 @@ class RegisterShopController extends Controller
     public function __invoke(RegisterShopFormRequest $request)
     {
         $firebaseShopId = $request->getByCamelKey(FirebaseShopModel::firebase_shop_id);
+        $firebaseKeywordIds = $request->getByCamelKey('firebase_keyword_ids', []);
 
         $shop = $this->_createShopUsecase->invoke(
             $request->exceptToSnakeKeysByCamelKeys([
@@ -49,9 +56,17 @@ class RegisterShopController extends Controller
             );
         }
 
+        if (count($firebaseKeywordIds) > 0) {
+            $this->_connectShopAndFirebaseKeywordUsecase->invoke(
+                $shop[ShopModel::id],
+                $firebaseKeywordIds
+            );
+        }
+
         return Arr::camel_keys([
             'data' => array_merge($shop, [
-                FirebaseShopModel::firebase_shop_id => $firebaseShopId
+                FirebaseShopModel::firebase_shop_id => $firebaseShopId,
+                'firebase_keyword_ids'              => $firebaseKeywordIds,
             ])
         ]);
     }
