@@ -56,14 +56,10 @@ class RegisterShopController extends Controller
             );
         }
 
-        Log::debug($firebaseKeywordIds);
-
-        if (count($firebaseKeywordIds) > 0) {
-            $this->_connectShopAndFirebaseKeywordUsecase->invoke(
-                $shop[ShopModel::id],
-                $firebaseKeywordIds
-            );
-        }
+        $this->_connectShopAndFirebaseKeywordUsecase->invoke(
+            $shop[ShopModel::id],
+            $firebaseKeywordIds
+        );
 
         return Arr::camel_keys([
             'data' => array_merge($shop, [

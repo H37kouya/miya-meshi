@@ -22,6 +22,9 @@ class ConnectShopAndFirebaseKeywordUsecase
             /** @var Shop $shop */
             $shop = Shop::findOrFail($shopId);
 
+            // 昔保存した値を削除
+            $shop->firebaseKeyword()->delete();
+
             foreach ($firebase_keyword_ids as $firebase_keyword_id) {
                 $shop->firebaseKeyword()->create([
                     FirebaseKeywordModel::firebase_keyword_id => $firebase_keyword_id,

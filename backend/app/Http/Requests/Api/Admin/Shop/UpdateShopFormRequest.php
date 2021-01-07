@@ -95,6 +95,8 @@ class UpdateShopFormRequest extends FormRequest
             ShopInformationModel::insta_shop_link       => 'url|nullable',
             ShopInformationModel::insta_iframe          => 'nullable|max:100000',
             FirebaseShopModel::firebase_shop_id         => 'string|nullable|max:255',
+            'firebase_keyword_ids'                      => 'array|nullable',
+            'firebase_keyword_ids.*'                    => 'string',
         ]);
     }
 }
