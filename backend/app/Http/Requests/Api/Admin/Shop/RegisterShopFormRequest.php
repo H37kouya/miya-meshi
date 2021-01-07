@@ -46,11 +46,11 @@ class RegisterShopFormRequest extends FormRequest
             ],
             ShopModel::image_link                      => 'string|url|nullable',
             ShopModel::sub_image_link                  => 'array|nullable',
-            ShopModel::sub_image_link.'.*'             => 'string|url|max:255',
+            ShopModel::sub_image_link . '.*'             => 'string|url|max:255',
             ShopModel::menu_image_link                 => 'array|nullable',
-            ShopModel::menu_image_link.'.*'            => 'string|url|max:255',
+            ShopModel::menu_image_link . '.*'            => 'string|url|max:255',
             ShopModel::appearance_image_link           => 'array|nullable',
-            ShopModel::appearance_image_link.'.*'      => 'string|url|max:255',
+            ShopModel::appearance_image_link . '.*'      => 'string|url|max:255',
             ShopInformationModel::name                 => 'required|string',
             ShopInformationModel::name_kana            => 'string|nullable|max:100',
             ShopInformationModel::prefix_name          => 'string|nullable|max:100',
@@ -96,7 +96,7 @@ class RegisterShopFormRequest extends FormRequest
             ShopInformationModel::can_gotoeat           => 'required|boolean',
             ShopInformationModel::can_reservation       => 'required|boolean',
             ShopInformationModel::period_of_time        => 'array|nullable',
-            ShopInformationModel::period_of_time.'*'    => [
+            ShopInformationModel::period_of_time . '*'    => [
                 'string',
                 Rule::in([PeriodOfTime::MORNING, PeriodOfTime::LUNCH, PeriodOfTime::NIGHT, PeriodOfTime::ALL_TIME])
             ],
@@ -106,6 +106,9 @@ class RegisterShopFormRequest extends FormRequest
             FirebaseShopModel::firebase_shop_id         => 'string|nullable|max:255',
             'firebase_keyword_ids'                      => 'array|nullable',
             'firebase_keyword_ids.*'                    => 'string',
+            'firebase_dish_ids'                      => 'array|nullable',
+            'firebase_dish_ids.*'                    => 'string'
+            //.*は配列内の全要素を指す.(.0で最初の要素)
         ]);
     }
 }
