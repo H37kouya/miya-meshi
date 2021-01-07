@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enum\Models\ShopInformationModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * App\Models\ShopInformation
@@ -173,4 +174,14 @@ class ShopInformation extends Model
         ShopInformationModel::can_gotoeat     => 'boolean',
         ShopInformationModel::can_reservation => 'boolean',
     ];
+
+    public function firebaseKeywords(): MorphMany
+    {
+        return $this->morphMany(FirebaseKeywords::class, 'keywordable');
+    }
+
+    public function firebaseDishes(): MorphMany
+    {
+        return $this->morphMany(firebaseDishes::class, 'dishable');
+    }
 }
