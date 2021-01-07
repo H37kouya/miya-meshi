@@ -14,7 +14,7 @@ class ConnectShopAndFirebaseKeywordUsecase
      *
      * @return void
      */
-    public function invoke(int $shopId, array $firebase_keyword_ids): array
+    public function invoke(int $shopId, array $firebase_keyword_ids): void
     {
         DB::beginTransaction();
 

@@ -56,6 +56,8 @@ class RegisterShopController extends Controller
             );
         }
 
+        Log::debug($firebaseKeywordIds);
+
         if (count($firebaseKeywordIds) > 0) {
             $this->_connectShopAndFirebaseKeywordUsecase->invoke(
                 $shop[ShopModel::id],
