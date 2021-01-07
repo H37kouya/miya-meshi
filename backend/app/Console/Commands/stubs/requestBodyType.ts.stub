@@ -1,0 +1,21 @@
+/**
+ * リクエストボディ
+ */
+export interface {{ $className }} {
+    type: '{{ $className }}'
+{{ $requestBodyObject }}
+}
+
+/**
+ * バリデーションエラー
+ */
+export interface {{ $className }}ValidationError {
+    type: '{{ $className }}ValidationError'
+    error: {
+{{ $validationObject }}
+    }
+    message: string
+}
+
+export const is{{ $className }} = (v: any) => v.type === '{{ $className }}'
+export const is{{ $className }}ValidationError = (v: any) => v.type === '{{ $className }}ValidationError'
