@@ -10,7 +10,6 @@ use App\Support\Arr;
 use App\Usecases\ConnectShopAndFirebaseKeywordUsecase;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\UpdateShopUsecase;
-use Illuminate\Http\Request;
 
 class UpdateShopController extends Controller
 {

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Support\Arr;
 use App\Usecases\GetShopMenusAllUsecase;
 use Illuminate\Http\Request;
-use Log;
 
 class IndexShopMenuController extends Controller
 {
@@ -25,7 +24,6 @@ class IndexShopMenuController extends Controller
      */
     public function __invoke(Request $request, int $shopId)
     {
-        Log::debug('aaa');
         return Arr::camel_keys([
             "data" => $this->_getShopMenusAllUsecase->invoke($shopId, false)
         ]);

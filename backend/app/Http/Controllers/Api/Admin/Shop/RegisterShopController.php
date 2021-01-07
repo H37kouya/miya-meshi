@@ -10,9 +10,6 @@ use App\Support\Arr;
 use App\Usecases\ConnectShopAndFirebaseKeywordUsecase;
 use App\Usecases\ConnectShopAndFirebaseShopUsecase;
 use App\Usecases\CreateShopUsecase;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class RegisterShopController extends Controller
 {
