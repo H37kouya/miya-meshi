@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\PeriodOfTime;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,6 +12,8 @@ class CreateShopInformationTable extends Migration
      *
      * @return void
      */
+    // PeriodOfTimeに許す値を配列に格納する
+    private $PeriodOfTime = [PeriodOfTime::MORNING, PeriodOfTime::LUNCH, PeriodOfTime::NIGHT, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::LUNCH_AND_NIGHT, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, PeriodOfTime::ALL_TIME];
     public function up()
     {
         Schema::create('shop_information', function (Blueprint $table) {
@@ -64,7 +67,7 @@ class CreateShopInformationTable extends Migration
             $table->boolean('can_takeout')->default(true)->comment('テイクアウト可能');
             $table->boolean('can_gotoeat')->default(false)->comment('Go To Eat実施店舗かどうか');
             $table->boolean('can_reservation')->default(false)->comment('予約可能かどうか');
-            $table->string('period_of_time', 255)->nullable()->comment('時間帯');
+            $table->enum('period_of_time', $this->PeriodOfTime)->nullable()->comment('時間帯');
 
             $table->unsignedInteger('insta_number')->nullable()->comment('インスタ番号');
             $table->string('insta_shop_link')->nullable()->comment('インスタリンク');
