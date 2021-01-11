@@ -2,7 +2,6 @@
 
 namespace App\Usecases;
 
-use App\Enum\PeriodOfTime;
 use App\Repositories\CreateShopRepository;
 use Exception;
 use Illuminate\Support\Facades\Cache;

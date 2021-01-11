@@ -9,6 +9,7 @@ use App\Enum\PrefCode;
 use App\Models\Shop;
 use App\Models\ShopInformation;
 use App\Support\Arr;
+use App\Enum\PeriodOfTime;
 
 class CreateShopRepository
 {
@@ -42,9 +43,9 @@ class CreateShopRepository
         /** @var Shop */
         $shop = Shop::create($inputShop);
 
-        // ShopInformation
-        Arr::set($inputShopInformation, ShopInformationModel::shop_id, $shop->id);
-        ShopInformation::create($inputShopInformation);
+        // ShopInformation()
+        Arr::set($inputShopInformation, ShopInformationModel::shop_id, $shop->id); //DBの1行に対して外部キーのshop_idを追加
+        ShopInformation::create($inputShopInformation); //DBへ登録(create)
 
         $imageLinks = [];
         // ImageLink
@@ -160,7 +161,7 @@ class CreateShopRepository
             ShopInformationModel::can_takeout               => Arr::get($inputs, ShopInformationModel::can_takeout, true),
             ShopInformationModel::can_gotoeat               => Arr::get($inputs, ShopInformationModel::can_gotoeat, false),
             ShopInformationModel::can_reservation           => Arr::get($inputs, ShopInformationModel::can_reservation, true),
-            ShopInformationModel::period_of_time            => Arr::get($inputs, ShopInformationModel::period_of_time, null),
+            ShopInformationModel::period_of_time            => PeriodOfTime::arr_to_string(Arr::get($inputs, ShopInformationModel::period_of_time, null)),
             ShopInformationModel::insta_number              => Arr::get($inputs, ShopInformationModel::insta_number, null),
             ShopInformationModel::insta_shop_link           => Arr::get($inputs, ShopInformationModel::insta_shop_link, null),
             ShopInformationModel::insta_iframe              => Arr::get($inputs, ShopInformationModel::insta_iframe, null),
