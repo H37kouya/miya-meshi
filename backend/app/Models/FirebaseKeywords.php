@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\Models\FirebaseKeywordModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,5 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FirebaseKeywords extends Model
 {
-    //
+    protected $fillable = [
+        FirebaseKeywordModel::firebase_keyword_id,
+    ];
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Admin\Shop;
 
 use App\Enum\DisplayMode;
+use App\Enum\Models\FirebaseKeywordModel;
 use App\Enum\Models\FirebaseShopModel;
 use App\Enum\Models\ShopInformationModel;
 use App\Enum\Models\ShopModel;
@@ -103,6 +104,8 @@ class RegisterShopFormRequest extends FormRequest
             ShopInformationModel::insta_shop_link       => 'url|nullable',
             ShopInformationModel::insta_iframe          => 'nullable|max:100000',
             FirebaseShopModel::firebase_shop_id         => 'string|nullable|max:255',
+            'firebase_keyword_ids'                      => 'array|nullable',
+            'firebase_keyword_ids.*'                    => 'string',
         ]);
     }
 }
