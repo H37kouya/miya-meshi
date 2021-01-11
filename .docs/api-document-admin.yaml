@@ -481,23 +481,264 @@ components:
       properties:
         name:
           type: string
-        name_kana:
+          default: 'かっこいい店'
+        nameKana:
           type: string
+          default: 'かっこいいみせ'
+        prefixName:
+          type: string
+          default: '居酒屋'
         description:
           type: string
+          default: '宇都宮1の居酒屋です'
         intro:
           type: string
+          default: '宇都宮1の居酒屋です'
+        priority:
+          type: number
+          default: 1
         release:
           type: boolean
           default: true
-        publish_from:
+        publishFrom:
           type: string
           format: date
-        publish_to:
+          default: null
+        publishTo:
           type: string
           format: date
+          default: null
+        displayMode:
+          type: string
+          default: 'NORMAL'
+        imageLink:
+          type: string
+          nullable: true
+          default: 'https://example.com'
+        subImageLink:
+          type: array
+          nullable: true
+          default: ['https://example.com']
+          items:
+            type: string
+        menuImageLink:
+          type: array
+          nullable: true
+          default: ['https://example.com']
+          items:
+            type: string
+        appearanceImageLink:
+          type: array
+          nullable: true
+          default: ['https://example.com']
+          items:
+            type: string
+        tel:
+          type: string
+          nullable: true
+          default: 000-0000-0000
+        postal:
+          type: string
+          nullable: true
+          default: 321-0000
+        address:
+          type: string
+          nullable: true
+          default: '栃木県宇都宮市旭'
+        buildingName:
+          type: string
+          nullable: true
+          default: 'アパート名'
+        locationLatitude:
+          type: number
+          nullable: true
+          format: float
+          default: 0
+        locationLongitude:
+          type: number
+          nullable: true
+          format: float
+          default: 0
+        facebookLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        instaLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        homepageLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        twitterLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        lineLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        youtubeLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        ubereatsLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        gotoeatLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        priceRange:
+          type: string
+          nullable: true
+          default: 'UNDER_500'
+          enum:
+            - 'UNDER_500'
+            - 'BETWEEN_500_AND_1000'
+            - 'BETWEEN_1000_AND_2000'
+            - 'BETWEEN_2000_AND_3000'
+            - 'BETWEEN_3000_AND_5000'
+            - 'BETWEEN_5000_AND_10000'
+            - 'OVER_10000'
+        businessStartHour1:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessEndHour1:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessLoHour1:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessStartHour2:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessEndHour2:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessLoHour2:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessStartHour3:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessEndHour3:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        businessLoHour3:
+          type: string
+          nullable: true
+          default: '18:00:00'
+        parkingLot:
+          type: string
+          nullable: true
+          default: '4つあります'
+        seat:
+          type: string
+          nullable: true
+          default: '40席'
+        access:
+          type: string
+          nullable: true
+          default: '宇都宮駅から徒歩5分'
+        regularHoliday:
+          type: string
+          nullable: true
+          default: '年末年始・祝日'
+        reservervationMaxNumber:
+          type: number
+          nullable: true
+          default: 4
+        creditCard:
+          type: string
+          nullable: true
+          default: '未対応'
+        electronicMoney:
+          type: string
+          nullable: true
+          default: '未対応'
+        aboutSmoking:
+          type: string
+          nullable: true
+          default: '未対応'
+        totalNumberOfSeats:
+          type: string
+          nullable: true
+          default: '未対応'
+        privateRoom:
+          type: string
+          nullable: true
+          default: '未対応'
+        canTakeout:
+          type: boolean
+          default: false
+        canGotoeat:
+          type: boolean
+          default: false
+        canReservation:
+          type: boolean
+          default: false
+        periodOfTime:
+          type: array
+          nullable: true
+          default: ['LUNCH']
+          items:
+            type: string
+            enum:
+              - 'MORNING'
+              - 'LUNCH'
+              - 'NIGHT'
+              - 'ALL_TIME'
+        instaNumber:
+          type: number
+          nullable: true
+          default: 0
+        instaShopLink:
+          type: string
+          nullable: true
+          format: uri
+          default: 'https://example.com'
+        instaIframe:
+          type: string
+          nullable: true
+          default: '<iframe></iframe>'
+        firebaseShopId:
+          type: string
+          nullable: true
+          default: 'aaa'
+        firebaseKeywordIds:
+          type: array
+          nullable: true
+          default: ['aaa']
+          items:
+            type: string
+        firebaseDishIds:
+          type: array
+          nullable: true
+          default: ['aaa']
+          items:
+            type: string
       required:
         - name
+        - displayMode
     SuccessResponse:
       type: object
     ErrorResponse:
