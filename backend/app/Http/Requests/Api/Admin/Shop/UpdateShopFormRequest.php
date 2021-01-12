@@ -43,11 +43,11 @@ class UpdateShopFormRequest extends FormRequest
             ],
             ShopModel::image_link                      => 'string|url|nullable',
             ShopModel::sub_image_link                  => 'array|nullable',
-            ShopModel::sub_image_link.'.*'             => 'string|url|max:255',
+            ShopModel::sub_image_link . '.*'             => 'string|url|max:255',
             ShopModel::menu_image_link                 => 'array|nullable',
-            ShopModel::menu_image_link.'.*'            => 'string|url|max:255',
+            ShopModel::menu_image_link . '.*'            => 'string|url|max:255',
             ShopModel::appearance_image_link           => 'array|nullable',
-            ShopModel::appearance_image_link.'.*'      => 'string|url|max:255',
+            ShopModel::appearance_image_link . '.*'      => 'string|url|max:255',
             ShopInformationModel::name                 => 'required|string',
             ShopInformationModel::name_kana            => 'string|nullable|max:100',
             ShopInformationModel::prefix_name          => 'string|nullable|max:100',
@@ -97,6 +97,8 @@ class UpdateShopFormRequest extends FormRequest
             FirebaseShopModel::firebase_shop_id         => 'string|nullable|max:255',
             'firebase_keyword_ids'                      => 'array|nullable',
             'firebase_keyword_ids.*'                    => 'string',
+            'firebase_dish_ids'                      => 'array|nullable',
+            'firebase_dish_ids.*'                    => 'string',
         ]);
     }
 }
