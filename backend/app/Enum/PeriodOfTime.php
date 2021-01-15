@@ -39,12 +39,18 @@ class PeriodOfTime
      */
     public const ALL_TIME = 'ALL_TIME';
 
-
+    // 引数$arrはフロントからの入力値。ex.:$arr=["MORNING","LUNCH"]:MORNING_AND_LUNCH
+    //DB入力に際して配列で受けた入力値を，文字列にする関数である
     public static function arr_to_string(array $arr): string
     {
         $isMorning = in_array(self::MORNING, $arr);
         $isLunch = in_array(self::LUNCH, $arr);
         $isNight = in_array(self::NIGHT, $arr);
+        $isAllTime = in_array(self::ALL_TIME, $arr);
+
+        if ($isAllTime) {
+            return self::ALL_TIME;
+        }
 
         if ($isMorning && $isLunch && $isNight) {
             return self::MORNING_AND_LUNCH_AND_NIGHT;
@@ -58,7 +64,7 @@ class PeriodOfTime
             return self::LUNCH_AND_NIGHT;
         }
 
-        if ($isMorning || $isMorning || $isNight) {
+        if ($isMorning || $isLunch || $isNight) {
             return $arr[0];
         }
 

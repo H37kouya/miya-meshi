@@ -146,15 +146,15 @@ class Shop extends Model
                 $query->where(function ($query) use ($now) {
                     $query->where(ShopModel::publish_from, '<', $now)->where(ShopModel::publish_to, '>', $now);
                 })
-                ->orWhere(function($query) use($now) {
-                    $query->where(ShopModel::publish_from, '<', $now)->whereNull(ShopModel::publish_to);
-                })
-                ->orWhere(function($query) use($now) {
-                    $query->where(ShopModel::publish_to, '>', $now)->whereNull(ShopModel::publish_from);
-                })
-                ->orWhere(function($query) {
-                    $query->whereNull(ShopModel::publish_from)->whereNull(ShopModel::publish_to);
-                });
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where(ShopModel::publish_from, '<', $now)->whereNull(ShopModel::publish_to);
+                    })
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where(ShopModel::publish_to, '>', $now)->whereNull(ShopModel::publish_from);
+                    })
+                    ->orWhere(function ($query) {
+                        $query->whereNull(ShopModel::publish_from)->whereNull(ShopModel::publish_to);
+                    });
             });
     }
 
@@ -201,5 +201,10 @@ class Shop extends Model
     public function firebaseKeyword(): MorphMany
     {
         return $this->morphMany(FirebaseKeywords::class, 'keywordable');
+    }
+    //morphmanyは複数テーブルからidで検索をかける
+    public function firebaseDish(): MorphMany
+    {
+        return $this->morphMany(FirebaseDishes::class, 'dishable');
     }
 }

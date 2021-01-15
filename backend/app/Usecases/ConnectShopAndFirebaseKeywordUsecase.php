@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ConnectShopAndFirebaseKeywordUsecase
 {
     /**
-     * invoke
+     * (mysql)shopテーブルのidとfirebase_keywordテーブルのidを紐づける
      *
      * @return void
      */
@@ -22,7 +22,7 @@ class ConnectShopAndFirebaseKeywordUsecase
             /** @var Shop $shop */
             $shop = Shop::findOrFail($shopId);
 
-            // 昔保存した値を削除
+            // 昔保存した値を削除。更新時のかぶり防止。
             $shop->firebaseKeyword()->delete();
 
             foreach ($firebase_keyword_ids as $firebase_keyword_id) {
@@ -34,7 +34,7 @@ class ConnectShopAndFirebaseKeywordUsecase
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
-            throw $e;
+            throw $e; //Laravelが例外インスタンスを拾ってくれる
         }
     }
 }

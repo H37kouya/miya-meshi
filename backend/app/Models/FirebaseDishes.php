@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\Models\FirebaseDishModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,5 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FirebaseDishes extends Model
 {
-    //
+    protected $fillable = [
+        FirebaseDishModel::firebase_dish_id,
+    ];
 }
