@@ -17,7 +17,7 @@ class UpdateShopController extends Controller
     private ConnectShopAndFirebaseShopUsecase $_connectShopAndFirebaseShopUsecase;
     private ConnectShopAndFirebaseKeywordUsecase $_connectShopAndFirebaseKeywordUsecase;
     private UpdateShopUsecase $_updateShopUsecase;
-    private ConnectShopAndFirebaseDishUsecase $_connectshopandfirebasedishusecase;
+    private ConnectShopAndFirebaseDishUsecase $_connectShopandFirebaseDishUsecase;
 
     public function __construct(
         ConnectShopAndFirebaseShopUsecase $connectShopAndFirebaseShopUsecase,
@@ -28,7 +28,7 @@ class UpdateShopController extends Controller
         $this->_connectShopAndFirebaseShopUsecase = $connectShopAndFirebaseShopUsecase;
         $this->_connectShopAndFirebaseKeywordUsecase = $connectShopAndFirebaseKeywordUsecase;
         $this->_updateShopUsecase = $updateShopUsecase;
-        $this->_connectshopandfirebasedishusecase;
+        $this->_connectShopandFirebaseDishUsecase = $connectShopAndFirebaseDishUsecase;
     }
 
     /**

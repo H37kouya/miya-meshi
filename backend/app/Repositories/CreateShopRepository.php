@@ -1,5 +1,5 @@
 <?php
-
+//shopテーブル・shopInformationテーブルに登録を行うファイル
 namespace App\Repositories;
 
 use App\Enum\DisplayMode;
