@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin\Shop;
 
 use App\Enum\Models\FirebaseShopModel;
+use App\Enum\Models\FirebaseDishModel;
 use App\Enum\Models\ShopModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\Shop\UpdateShopFormRequest;
@@ -17,7 +18,7 @@ class UpdateShopController extends Controller
     private ConnectShopAndFirebaseShopUsecase $_connectShopAndFirebaseShopUsecase;
     private ConnectShopAndFirebaseKeywordUsecase $_connectShopAndFirebaseKeywordUsecase;
     private UpdateShopUsecase $_updateShopUsecase;
-    private ConnectShopAndFirebaseDishUsecase $_connectShopandFirebaseDishUsecase;
+    private ConnectShopAndFirebaseDishUsecase $_connectShopAndFirebaseDishUsecase;
 
     public function __construct(
         ConnectShopAndFirebaseShopUsecase $connectShopAndFirebaseShopUsecase,
@@ -28,7 +29,7 @@ class UpdateShopController extends Controller
         $this->_connectShopAndFirebaseShopUsecase = $connectShopAndFirebaseShopUsecase;
         $this->_connectShopAndFirebaseKeywordUsecase = $connectShopAndFirebaseKeywordUsecase;
         $this->_updateShopUsecase = $updateShopUsecase;
-        $this->_connectShopandFirebaseDishUsecase = $connectShopAndFirebaseDishUsecase;
+        $this->_connectShopAndFirebaseDishUsecase = $connectShopAndFirebaseDishUsecase;
     }
 
     /**
@@ -47,7 +48,7 @@ class UpdateShopController extends Controller
             $request->exceptToSnakeKeysByCamelKeys([
                 FirebaseShopModel::firebase_shop_id
             ])
-        ); //ここは何をしている??
+        ); //MySQLDBに既に登録されている店舗情報を更新する
 
         if ($firebaseShopId) {
             $this->_connectShopAndFirebaseShopUsecase->invoke(
@@ -59,16 +60,17 @@ class UpdateShopController extends Controller
         $this->_connectShopAndFirebaseKeywordUsecase->invoke(
             $shop[ShopModel::id],
             $firebaseKeywordIds
-        ); //DBにKeyWordIdを追加
-        $this->_connectshopandfirebasedishusecase->invoke(
+        ); //DBにKeyWordIdを更新
+        $this->_connectShopAndFirebaseDishUseCase->invoke(
             $shop[ShopModel::id],
             $firebaseDishIds
-        ); //DBにDishIdも追加
+        ); //DBにDishIdも更新
 
         return Arr::camel_keys([
             'data' => array_merge($shop, [
                 FirebaseShopModel::firebase_shop_id => $firebaseShopId,
                 'firebase_keyword_ids'              => $firebaseKeywordIds,
+                'firebase_dish_ids'              => $firebaseDishIds
             ]),
         ]);
     }
