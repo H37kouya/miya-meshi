@@ -226,8 +226,16 @@ const nuxtConfig: NuxtConfig = {
           '@firebase/firestore': 'commonjs @firebase/firestore'
         }
       }
-    }
-  }
+    },
+  },
+
+  typescript: {
+    typeCheck: {
+      typescript: {
+        memoryLimit: 8192,
+      },
+    },
+  },
 }
 
 export default nuxtConfig

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const fs = require('fs')
 const GSI: { [key: string]: string } = require('../assets/json/muni-fulu.js')
 

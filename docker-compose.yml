@@ -17,7 +17,7 @@ services:
   web:
     build: ./infra/docker/nginx
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - php-fpm-socket:/var/run/php-fpm
       - ./backend:/work/backend
