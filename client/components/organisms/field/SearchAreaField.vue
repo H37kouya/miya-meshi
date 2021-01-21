@@ -6,7 +6,7 @@
 
     <div>
       <v-btn
-        :disabled="(nowArea !== undefined && value.includes(nowArea.id)) || false"
+        :disabled="(nowArea === undefined || !value.includes(nowArea.id)) || false"
         color="#faf8f5"
         depressed
         width="100%"
