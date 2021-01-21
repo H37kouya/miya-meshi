@@ -6,7 +6,7 @@
 
     <div>
       <v-btn
-        :disabled="(nowArea && value.includes(nowArea.id)) || false"
+        :disabled="(nowArea === undefined || !value.includes(nowArea.id)) || false"
         color="#faf8f5"
         depressed
         width="100%"
@@ -61,8 +61,8 @@ import { defineComponent, SetupContext } from '@nuxtjs/composition-api'
 import { Area } from '@/lib'
 
 type Props = {
-  areas: Area[],
-  nowArea: Area,
+  areas: Area[]
+  nowArea?: Area
   value: string[]
 }
 
@@ -92,9 +92,15 @@ export default defineComponent({
     const onUpdateNowArea = () => context.emit('updateNowArea')
 
     const onSearchNowLocation = () => {
+      if (props.nowArea === undefined) {
+        alert("位置情報が許可されていないか、宇都宮市街にいる可能性があります。")
+        return
+      }
+
       const _value = props.value.slice()
-      if (!_value.find((v: string) => v === props.nowArea.id)) {
-        _value.push(props.nowArea.id)
+      const nowArea = props.nowArea
+      if (!_value.find((v: string) => v === nowArea.id)) {
+        _value.push(nowArea.id)
       }
 
       return onChange(_value)

@@ -21,7 +21,7 @@
             </div>
 
             <div>
-              <SearchAreaAndKyewordField
+              <SearchAreaAndKeywordField
                 :area="nowArea"
                 :value="searchAreasAndCanTakeout"
                 :to-keyword-detail="toKeywordDetail"

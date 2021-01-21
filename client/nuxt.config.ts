@@ -226,7 +226,7 @@ const nuxtConfig: NuxtConfig = {
           '@firebase/firestore': 'commonjs @firebase/firestore'
         }
       }
-    }
+    },
   }
 }
 
