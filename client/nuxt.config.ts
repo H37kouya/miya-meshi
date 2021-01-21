@@ -220,22 +220,14 @@ const nuxtConfig: NuxtConfig = {
   build: {
     extractCSS: true,
     extend (config, { isDev, isClient, isServer }) {
-      if (isServer) {
+      if (!isDev && isServer) {
         config.externals = {
           '@firebase/app': 'commonjs @firebase/app',
           '@firebase/firestore': 'commonjs @firebase/firestore'
         }
       }
     },
-  },
-
-  typescript: {
-    typeCheck: {
-      typescript: {
-        memoryLimit: 8192,
-      },
-    },
-  },
+  }
 }
 
 export default nuxtConfig
