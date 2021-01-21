@@ -220,7 +220,7 @@ const nuxtConfig: NuxtConfig = {
   build: {
     extractCSS: true,
     extend (config, { isDev, isClient, isServer }) {
-      if (!isDev && isServer) {
+      if (isServer) {
         config.externals = {
           '@firebase/app': 'commonjs @firebase/app',
           '@firebase/firestore': 'commonjs @firebase/firestore'
