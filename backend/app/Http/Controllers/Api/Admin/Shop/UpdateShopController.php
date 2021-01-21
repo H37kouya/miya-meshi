@@ -61,7 +61,7 @@ class UpdateShopController extends Controller
             $shop[ShopModel::id],
             $firebaseKeywordIds
         ); //DBにKeyWordIdを更新
-        $this->_connectShopAndFirebaseDishUseCase->invoke(
+        $this->_connectShopAndFirebaseDishUsecase->invoke(
             $shop[ShopModel::id],
             $firebaseDishIds
         ); //DBにDishIdも更新
