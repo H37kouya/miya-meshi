@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Enum\Models\ShopInformationModel;
+use App\Enum\PeriodOfTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Collection;
 
 /**
  * App\Models\ShopInformation
@@ -183,5 +185,50 @@ class ShopInformation extends Model
     public function firebaseDishes(): MorphMany
     {
         return $this->morphMany(firebaseDishes::class, 'dishable');
+    }
+
+    public function scopeWhereAllPeriodOfTime($query, array $period_of_time)
+    {
+        $searchPeriodOfTimes = [];
+
+        if (in_array(PeriodOfTime::ALL_TIME, $period_of_time, true)) {
+            $searchPeriodOfTimes[] = PeriodOfTime::ALL_TIME;
+        }
+
+        if (in_array(
+            [PeriodOfTime::MORNING, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT],
+            $period_of_time,
+            true)
+        ) {
+            $searchPeriodOfTimes[] =  PeriodOfTime::MORNING;
+            $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH;
+            $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT;
+        }
+
+        if (in_array(
+            [PeriodOfTime::LUNCH, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::LUNCH_AND_NIGHT,  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT],
+            $period_of_time,
+            true)
+        ) {
+            $searchPeriodOfTimes[] =  PeriodOfTime::LUNCH;
+            $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH;
+            $searchPeriodOfTimes[] =  PeriodOfTime::LUNCH_AND_NIGHT;
+            $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT;
+        }
+
+        if (in_array(
+            [PeriodOfTime::NIGHT, PeriodOfTime::LUNCH_AND_NIGHT, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT],
+            $period_of_time,
+            true)
+        ) {
+            $searchPeriodOfTimes[] =  PeriodOfTime::NIGHT;
+            $searchPeriodOfTimes[] =  PeriodOfTime::LUNCH_AND_NIGHT;
+            $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT;
+        }
+
+        $newSearchPeriodOfTimes = (new Collection($searchPeriodOfTimes))->unique()->values()->toArray();
+        $query->when(count($newSearchPeriodOfTimes) > 0, function ($query) use ($newSearchPeriodOfTimes) {{
+            $query->wherePeriodOfTime($newSearchPeriodOfTimes);
+        }});
     }
 }
