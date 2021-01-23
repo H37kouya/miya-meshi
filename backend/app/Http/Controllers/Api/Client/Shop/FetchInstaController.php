@@ -14,14 +14,15 @@ class FetchInstaController extends Controller
     {
         $limit = $request->query('limit', '10');
         $shops = Shop::with([
-            "shopInformation"
-            => function ($query) {
-                $query->orderBy("insta_number", "desc")->get(); //instaNumberに関して降順で取得する
-            }, "images"
+            "shopInformation", 
+            "images"
             => function ($query) {
                 $query->where("imageable_name", "image_link")->get();
             }
-        ])->nowPublicPosts(Carbon::now())->limit($limit)->get(); //現在公開中のshopを$requestで指定された件数まで取得する
+        ])->nowPublicPosts(Carbon::now())
+        ->join('shop_information', 'shop_information.shop_id', '=', 'shops.id')
+        ->orderBY('shop_information.insta_number', 'desc')
+        ->limit($limit)->get(); //現在公開中のshopを$requestで指定された件数まで取得する
         return $shops;
     } //withはリレーション先を読み込む
 }
