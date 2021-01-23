@@ -50,6 +50,11 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Query\Builder|Shop withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Shop withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FirebaseDishes[] $firebaseDish
+ * @property-read int|null $firebase_dish_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FirebaseKeywords[] $firebaseKeyword
+ * @property-read int|null $firebase_keyword_count
+ * @property-read bool $now_public
  */
 class Shop extends Model
 {
