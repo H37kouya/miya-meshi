@@ -3,11 +3,15 @@
 namespace App\Http\Requests\Api\Client\Shop;
 
 use App\Enum\PeriodOfTime;
+use App\Http\Requests\Traits\JsonRequest;
+use App\Support\Arr;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class SearchShopFormRequest extends FormRequest
 {
+    use JsonRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,7 +29,7 @@ class SearchShopFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return Arr::camel_keys([
             'limit'                  => 'integer|nullable',
             'firebase_keyword_ids'   => 'array|nullable',
             'firebase_keyword_ids.*' => 'string',
@@ -34,13 +38,9 @@ class SearchShopFormRequest extends FormRequest
             'can_takeout'            => 'boolean|nullable',
             'can_gotoeat'            => 'boolean|nullable',
             'period_of_time'         => [
-                'array',
-                'nullable',
-            ],
-            'period_of_time.*'       => [
                 'string',
-                Rule::in(PeriodOfTime::getAll())
+                'nullable',
             ]
-        ];
+        ]);
     }
 }

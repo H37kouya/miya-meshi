@@ -228,7 +228,7 @@ class ShopInformation extends Model
 
         $newSearchPeriodOfTimes = (new Collection($searchPeriodOfTimes))->unique()->values()->toArray();
         $query->when(count($newSearchPeriodOfTimes) > 0, function ($query) use ($newSearchPeriodOfTimes) {{
-            $query->wherePeriodOfTime($newSearchPeriodOfTimes);
+            $query->whereIn('period_of_time', $newSearchPeriodOfTimes);
         }});
     }
 }

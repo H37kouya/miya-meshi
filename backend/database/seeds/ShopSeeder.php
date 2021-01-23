@@ -16,7 +16,7 @@ class ShopSeeder extends Seeder
      */
     public function run()
     {
-        $limit = 10;
+        $limit = 100;
         $now = Carbon::now();
 
         DB::beginTransaction();
