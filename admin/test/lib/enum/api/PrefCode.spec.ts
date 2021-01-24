@@ -1,4 +1,4 @@
-import * as TestFunc from '@/enum/PrefCode'
+import * as TestFunc from '@/lib/enum/api/PrefCode'
 
 describe('Enum PrefCode', () => {
   it('isHokkaidou', () => {
