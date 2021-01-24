@@ -1,4 +1,4 @@
-import * as TestFunc from '@/enum/ContentMode'
+import * as TestFunc from '@/lib/enum/api/ContentMode'
 
 describe('Enum ContentMode', () => {
   it('isNormal', () => {

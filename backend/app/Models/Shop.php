@@ -114,7 +114,7 @@ class Shop extends Model
             return true;
         }
 
-        if ($publish_to && $publish_to->gt($now) && $publish_to && $publish_from->lt($now)) {
+        if ($publish_to && $publish_to->gt($now) && $publish_from && $publish_from->lt($now)) {
             return true;
         }
 
@@ -176,26 +176,6 @@ class Shop extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
-    }
-
-    public function scopeImageLink($query)
-    {
-        $query->images->whereImageableName(ShopModel::image_link);
-    }
-
-    public function scopeSubImageLink($query)
-    {
-        $query->images->whereImageableName(ShopModel::sub_image_link);
-    }
-
-    public function scopeMenuImageLink($query)
-    {
-        $query->images->whereImageableName(ShopModel::menu_image_link);
-    }
-
-    public function scopeAppearanceImageLink($query)
-    {
-        $query->images->whereImageableName(ShopModel::appearance_image_link);
     }
 
     public function firebaseShop(): HasOne

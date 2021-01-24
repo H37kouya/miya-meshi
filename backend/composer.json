@@ -14,11 +14,13 @@
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "grimzy/laravel-mysql-spatial": "^2.0",
+        "itsgoingd/clockwork": "^5.0",
         "lampager/lampager-laravel": "^0.4.6",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.8",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.9.1",
