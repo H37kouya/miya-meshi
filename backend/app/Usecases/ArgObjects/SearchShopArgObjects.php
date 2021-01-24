@@ -19,12 +19,17 @@ class SearchShopArgObjects
     {
         $newSearchShopArgObjects = new SearchShopArgObjects();
         $newSearchShopArgObjects->limit = Arr::get($inputs, 'limit');
-        $newSearchShopArgObjects->firebase_keyword_ids = Arr::get($inputs, 'firebase_keyword_ids');
-        $newSearchShopArgObjects->firebase_dish_ids = Arr::get($inputs, 'firebase_dish_ids');
+        $newSearchShopArgObjects->firebase_keyword_ids = is_string(Arr::get($inputs, 'firebase_keyword_ids'))
+            ? explode(',', Arr::get($inputs, 'firebase_keyword_ids'))
+            : null;
+        $newSearchShopArgObjects->firebase_dish_ids = is_string(Arr::get($inputs, 'firebase_dish_ids'))
+            ? explode(',', Arr::get($inputs, 'firebase_dish_ids'))
+            : null;
         $newSearchShopArgObjects->can_takeout = Arr::get($inputs, 'can_takeout');
         $newSearchShopArgObjects->can_gotoeat = Arr::get($inputs, 'can_gotoeat');
-        $period_of_time = Arr::get($inputs, '$period_of_time');
-        $newSearchShopArgObjects->period_of_time = is_array($period_of_time) || is_null($period_of_time) ? $period_of_time : [$period_of_time];
+        $newSearchShopArgObjects->period_of_time = is_string(Arr::get($inputs, 'period_of_time'))
+            ? explode(',', Arr::get($inputs, 'period_of_time'))
+            : null;
         return $newSearchShopArgObjects;
     }
 }

@@ -27,14 +27,13 @@ class SearchShopController extends Controller
      */
     public function __invoke(SearchShopFormRequest $request)
     {
-        $period_of_time = $request->getByCamelKey('period_of_time');
         $search = SearchShopArgObjects::of([
             'limit'                => $request->getByCamelKey('limit', 10),
             'firebase_keyword_ids' => $request->getByCamelKey('firebase_keyword_ids'),
             'firebase_dish_ids'    => $request->getByCamelKey('firebase_dish_ids'),
             'can_takeout'          => $request->getByCamelKey('can_takeout'),
             'can_gotoeat'          => $request->getByCamelKey('can_gotoeat'),
-            'period_of_time'       => explode(",", $period_of_time) || null,
+            'period_of_time'       => $request->getByCamelKey('period_of_time'),
         ]);
 
         $shops = $this->searchShopsUsecase->invoke($search);

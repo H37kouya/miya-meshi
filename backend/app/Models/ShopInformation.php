@@ -199,20 +199,21 @@ class ShopInformation extends Model
             $searchPeriodOfTimes[] = PeriodOfTime::ALL_TIME;
         }
 
-        if (in_array(
-            [PeriodOfTime::MORNING, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT],
-            $period_of_time,
-            true)
+        if (
+            in_array(PeriodOfTime::MORNING, $period_of_time, true) ||
+            in_array(PeriodOfTime::MORNING_AND_LUNCH, $period_of_time, true) ||
+            in_array(PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, $period_of_time, true)
         ) {
             $searchPeriodOfTimes[] =  PeriodOfTime::MORNING;
             $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH;
             $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT;
         }
 
-        if (in_array(
-            [PeriodOfTime::LUNCH, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::LUNCH_AND_NIGHT,  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT],
-            $period_of_time,
-            true)
+        if (
+            in_array(PeriodOfTime::LUNCH, $period_of_time,true) ||
+            in_array(PeriodOfTime::MORNING_AND_LUNCH, $period_of_time, true) ||
+            in_array(PeriodOfTime::LUNCH_AND_NIGHT, $period_of_time, true) ||
+            in_array(PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, $period_of_time, true)
         ) {
             $searchPeriodOfTimes[] =  PeriodOfTime::LUNCH;
             $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH;
@@ -220,10 +221,10 @@ class ShopInformation extends Model
             $searchPeriodOfTimes[] =  PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT;
         }
 
-        if (in_array(
-            [PeriodOfTime::NIGHT, PeriodOfTime::LUNCH_AND_NIGHT, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT],
-            $period_of_time,
-            true)
+        if (
+            in_array(PeriodOfTime::NIGHT, $period_of_time, true) ||
+            in_array(PeriodOfTime::LUNCH_AND_NIGHT, $period_of_time, true) ||
+            in_array(PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, $period_of_time, true)
         ) {
             $searchPeriodOfTimes[] =  PeriodOfTime::NIGHT;
             $searchPeriodOfTimes[] =  PeriodOfTime::LUNCH_AND_NIGHT;
@@ -231,6 +232,7 @@ class ShopInformation extends Model
         }
 
         $newSearchPeriodOfTimes = (new Collection($searchPeriodOfTimes))->unique()->values()->toArray();
+
         $query->when(count($newSearchPeriodOfTimes) > 0, function ($query) use ($newSearchPeriodOfTimes) {{
             $query->whereIn('period_of_time', $newSearchPeriodOfTimes);
         }});

@@ -31,16 +31,11 @@ class SearchShopFormRequest extends FormRequest
     {
         return Arr::camel_keys([
             'limit'                  => 'integer|nullable',
-            'firebase_keyword_ids'   => 'array|nullable',
-            'firebase_keyword_ids.*' => 'string',
-            'firebase_dish_ids'      => 'array|nullable',
-            'firebase_dish_ids.*'    => 'string',
+            'firebase_keyword_ids'   => 'string|nullable',
+            'firebase_dish_ids'      => 'string|nullable',
             'can_takeout'            => 'boolean|nullable',
             'can_gotoeat'            => 'boolean|nullable',
-            'period_of_time'         => [
-                'string',
-                'nullable',
-            ]
+            'period_of_time'         => 'string|nullable',
         ]);
     }
 }
