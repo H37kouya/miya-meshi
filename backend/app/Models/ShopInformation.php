@@ -117,6 +117,10 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ShopInformation whereYoutubeLink($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FirebaseDishes[] $firebaseDishes
+ * @property-read int|null $firebase_dishes_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FirebaseKeywords[] $firebaseKeywords
+ * @property-read int|null $firebase_keywords_count
  */
 class ShopInformation extends Model
 {
