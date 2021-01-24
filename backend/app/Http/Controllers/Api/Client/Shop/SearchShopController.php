@@ -38,8 +38,6 @@ class SearchShopController extends Controller
 
         $shops = $this->searchShopsUsecase->invoke($search);
 
-        return [
-            'data' => Arr::camel_keys($shops),
-        ];
+        return Arr::camel_keys($shops);
     }
 }
