@@ -4,8 +4,8 @@
 
 use App\Enum\PrefCode;
 use App\Enum\PriceRange;
+use App\Enum\PeriodOfTime;
 use App\Models\ShopInformation;
-use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Faker\Generator as Faker;
 
 $factory->define(ShopInformation::class, fn (Faker $faker, array $attribute) => [
@@ -57,7 +57,7 @@ $factory->define(ShopInformation::class, fn (Faker $faker, array $attribute) => 
     'can_takeout'               => true,
     'can_gotoeat'               => false,
     'can_reservation'           => false,
-    'period_of_time'            => null,
+    'period_of_time'            => $attribute['id'] % 2 === 0 ? PeriodOfTime::NIGHT : PeriodOfTime::MORNING,
 
     'insta_number'              => $attribute['id'] % 5 !== 0 ? $attribute['id'] : null,
     'insta_shop_link'           => $attribute['id'] % 5 !== 0 ? 'https://example.com' : null,

@@ -1,4 +1,4 @@
-import * as TestFunc from '@/enum/PriceRange'
+import * as TestFunc from '@/lib/enum/api/PriceRange'
 
 describe('Enum PriceRange', () => {
   it('isUnder500', () => {

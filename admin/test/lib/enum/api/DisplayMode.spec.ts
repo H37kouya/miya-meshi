@@ -1,4 +1,4 @@
-import * as TestFunc from '@/enum/DisplayMode'
+import * as TestFunc from '@/lib/enum/api/DisplayMode'
 
 describe('Enum DisplayMode', () => {
   it('isNormal', () => {

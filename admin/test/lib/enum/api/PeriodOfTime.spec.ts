@@ -1,4 +1,4 @@
-import * as TestFunc from '@/enum/PeriodOfTime'
+import * as TestFunc from '@/lib/enum/api/PeriodOfTime'
 
 describe('Enum PeriodOfTime', () => {
   it('isMorning', () => {
