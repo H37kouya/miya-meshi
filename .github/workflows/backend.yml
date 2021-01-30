@@ -11,13 +11,24 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php-version: ['7.4']
+
     steps:
+    - name: Setup PHP ${{ matrix.php-version }}
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
     - uses: actions/checkout@v2
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       working-directory: ./backend
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+      working-directory: ./backend
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
       working-directory: ./backend
     - name: Generate key
       run: php artisan key:generate
