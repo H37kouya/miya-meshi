@@ -9,14 +9,13 @@ use Illuminate\Support\Carbon;
 
 class FetchInstaController extends Controller
 {
-    //以下どういう処理が流れてるの...?
     public function __invoke(Request $request)
     {
         $limit = $request->query('limit', '10');
         $shops = Shop::with([
             "shopInformation"
             => function ($query) {
-                $query->orderBy("insta_number", "desc")->get(); //instaNumberに関して降順で取得する
+                $query->orderBy("insta_number", "desc")->get(); //insta_numberに関して降順で取得する
             }, "images"
             => function ($query) {
                 $query->where("imageable_name", "image_link")->get();
