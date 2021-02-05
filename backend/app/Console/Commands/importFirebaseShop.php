@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Enum\importFirebasePeriodOfTime;
+use App\Enum\Models\FirebaseShopModel;
+use App\Enum\Models\ImageModel;
+use App\Enum\Models\ShopInformationModel;
+use App\Enum\Models\ShopModel;
 use App\Enum\PriceRange;
 use App\Models\FirebaseShop;
 use App\Models\Image;
@@ -15,11 +19,9 @@ use Log;
 
 class importFirebaseShop extends Command
 {
-    private  Shop $_shop;
-    private ShopInformation $_shopInformation;
-    private FirebaseShop $_firebaseShop;
-    private Image $_image;
     private $price_range;
+    private $canTakeout;
+
     /**
      * The name and signature of the console command.
      *
@@ -32,7 +34,7 @@ class importFirebaseShop extends Command
      *
      * @var string
      */
-    protected $description = 'import shop data from ';
+    protected $description = 'import shop data from Firebase';
 
     /**
      * Create a new command instance.
@@ -54,12 +56,11 @@ class importFirebaseShop extends Command
         $json = Storage::get("1611386237135_shop_list.json");
         $json = mb_convert_encoding($json, "UTF-8");
         $arr = json_decode($json, true); //jsonファイルを連想配列化できた
-        // 以下入力値をセットしてsave
         foreach ($arr as $shopinfos) {
-            $this->_firebaseShop->firebase_shop_id = $shopinfos["id"];
-            $this->_shopInformation->period_of_time = importFirebasePeriodOfTime::arr_to_string($shopinfos["timeZone"]);
-            $this->_shop->release = $shopinfos["public"];
-            if (isset($shopinfos["priceRange"])) {
+            FirebaseShop::create([FirebaseShopModel::id => $shopinfos["id"]]);
+            Shop::create([ShopModel::release => $shopinfos["public"]]);
+            // 以下はshopInformationにcreateする処理
+            if (isset($shopinfos["priceRange"])) { //このswitchブロックはcaseの表記に対応するjsonファイル中の値に表記ゆれを確認。要注意。
                 switch ($shopinfos["priceRange"]) {
                     case '~500円':
                         $this->price_range = PriceRange::UNDER_500;
@@ -86,29 +87,39 @@ class importFirebaseShop extends Command
                         throw new Exception("不正な価格帯名です");
                         break;
                 }
-                $this->_shopInformation->price_range = $this->price_range;
+            } else {
+                $this->price_range = null;
             }
+
+            ShopInformation::create([
+                ShopInformationModel::period_of_time => importFirebasePeriodOfTime::arr_to_string($shopinfos["timeZone"]),
+                ShopInformationModel::price_range => $this->price_range,
+            ]);
+            // 以下はImageに対するcreate
             foreach ($shopinfos["appearanceImageLink"] as $link) {
                 if ($link === "/no-image.png") {
                     continue;
                 } else {
-                    $this->_image->imageable_name = "appearance_image_link";
-                    $this->_image->url = $link;
-                    $this->_image->save();
+                    Image::create([
+                        ImageModel::imageable_name => "appearance_image_link",
+                        ImageModel::url => $link
+                    ]);
                 }
             }
             if ($shopinfos["imageLink"] !== "/no-image.png") {
-                $this->_image->imageable_name = "image_link";
-                $this->_image->url = $link;
-                $this->_image->save();
+                Image::create([
+                    ImageModel::imageable_name => "image_link",
+                    ImageModel::url => $link
+                ]);
             }
             foreach ($shopinfos["menuImageLink"] as $link) {
                 if ($link === "/no-image.png") {
                     continue;
                 } else {
-                    $this->_image->imageable_name = "menu_image_link";
-                    $this->_image->url = $link;
-                    $this->_image->save();
+                    Image::create([
+                        ImageModel::imageable_name => "menu_image_link",
+                        ImageModel::url => $link
+                    ]);
                 }
             }
         }

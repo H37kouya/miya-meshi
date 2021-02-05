@@ -1,6 +1,7 @@
 <?php
 
 use App\Enum\PeriodOfTime;
+use App\Enum\PriceRange;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,6 +15,7 @@ class CreateShopInformationTable extends Migration
      */
     // PeriodOfTimeに許す値を配列に格納する
     private $PeriodOfTime = [PeriodOfTime::MORNING, PeriodOfTime::LUNCH, PeriodOfTime::NIGHT, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::LUNCH_AND_NIGHT, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, PeriodOfTime::ALL_TIME];
+    private $priceRange = PriceRange::getAll();
     public function up()
     {
         Schema::create('shop_information', function (Blueprint $table) {
@@ -42,7 +44,7 @@ class CreateShopInformationTable extends Migration
             $table->string('youtube_link', 255)->nullable()->comment('Youtube URL');
             $table->string('gotoeat_link', 255)->nullable()->comment('Go To Eat URL');
 
-            $table->string('price_range', 255)->nullable()->comment('価格帯');
+            $table->enum('price_range', $this->priceRange)->nullable()->comment('価格帯');
 
             $table->time('business_start_hour1')->nullable()->comment('営業開始時間1');
             $table->time('business_end_hour1')->nullable()->comment('営業終了時間1');
