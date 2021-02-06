@@ -12,15 +12,16 @@ use App\Models\FirebaseShop;
 use App\Models\Image;
 use App\Models\Shop;
 use App\Models\ShopInformation;
+use App\Models\ShopMenu;
+use Arr;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
-use Log;
 
 class importFirebaseShop extends Command
 {
     private $price_range;
-    private $canTakeout;
+    private $twitterLink;
 
     /**
      * The name and signature of the console command.
@@ -57,11 +58,12 @@ class importFirebaseShop extends Command
         $json = mb_convert_encoding($json, "UTF-8");
         $arr = json_decode($json, true); //jsonファイルを連想配列化できた
         foreach ($arr as $shopinfos) {
-            FirebaseShop::create([FirebaseShopModel::id => $shopinfos["id"]]);
-            Shop::create([ShopModel::release => $shopinfos["public"]]);
-            // 以下はshopInformationにcreateする処理
-            if (isset($shopinfos["priceRange"])) { //このswitchブロックはcaseの表記に対応するjsonファイル中の値に表記ゆれを確認。要注意。
-                switch ($shopinfos["priceRange"]) {
+            unset($shopinfos["type"], $shopinfos["createdAt"], $shopinfos["updatedAt"]); // 無視すべき要素を落とす
+            Arr::snake_keys($shopinfos); //キーをスネークケースにする
+            FirebaseShop::create([FirebaseShopModel::firebase_shop_id => $shopinfos["id"]]);
+            Shop::create(array_merge([ShopModel::release => $shopinfos["public"]], $shopinfos));
+            if (isset($shopinfos["price_range"])) { //このswitchブロックはcaseの表記に対応するjsonファイル中の値に表記ゆれを確認。要注意。
+                switch ($shopinfos["price_range"]) {
                     case '~500円':
                         $this->price_range = PriceRange::UNDER_500;
                         break;
@@ -90,13 +92,14 @@ class importFirebaseShop extends Command
             } else {
                 $this->price_range = null;
             }
-
-            ShopInformation::create([
-                ShopInformationModel::period_of_time => importFirebasePeriodOfTime::arr_to_string($shopinfos["timeZone"]),
+            ShopInformation::create(array_merge([
+                ShopInformationModel::period_of_time => importFirebasePeriodOfTime::arr_to_string($shopinfos["time_zone"]),
                 ShopInformationModel::price_range => $this->price_range,
-            ]);
-            // 以下はImageに対するcreate
-            foreach ($shopinfos["appearanceImageLink"] as $link) {
+            ], $shopinfos));
+            ShopMenu::create(
+                $shopinfos
+            );
+            foreach ($shopinfos["appearance_image_link"] as $link) {
                 if ($link === "/no-image.png") {
                     continue;
                 } else {
@@ -106,13 +109,13 @@ class importFirebaseShop extends Command
                     ]);
                 }
             }
-            if ($shopinfos["imageLink"] !== "/no-image.png") {
+            if ($shopinfos["image_link"] !== "/no-image.png") {
                 Image::create([
                     ImageModel::imageable_name => "image_link",
                     ImageModel::url => $link
                 ]);
             }
-            foreach ($shopinfos["menuImageLink"] as $link) {
+            foreach ($shopinfos["menu_image_link"] as $link) {
                 if ($link === "/no-image.png") {
                     continue;
                 } else {
