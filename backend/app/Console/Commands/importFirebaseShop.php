@@ -17,6 +17,7 @@ use Arr;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class importFirebaseShop extends Command
 {
@@ -56,12 +57,13 @@ class importFirebaseShop extends Command
     {
         $json = Storage::get("1611386237135_shop_list.json");
         $json = mb_convert_encoding($json, "UTF-8");
-        $arr = json_decode($json, true); //jsonファイルを連想配列化できた
+        $arr = json_decode($json, true);
         foreach ($arr as $shopinfos) {
             unset($shopinfos["type"], $shopinfos["createdAt"], $shopinfos["updatedAt"]); // 無視すべき要素を落とす
             Arr::snake_keys($shopinfos); //キーをスネークケースにする
             FirebaseShop::create([FirebaseShopModel::firebase_shop_id => $shopinfos["id"]]);
-            Shop::create(array_merge([ShopModel::release => $shopinfos["public"]], $shopinfos));
+            $shop = Shop::create(array_merge([ShopModel::release => $shopinfos["public"]], $shopinfos));
+            Log::debug($shop->id); //laravel.logの内容を見てforeachの中身を直そう
             if (isset($shopinfos["price_range"])) { //このswitchブロックはcaseの表記に対応するjsonファイル中の値に表記ゆれを確認。要注意。
                 switch ($shopinfos["price_range"]) {
                     case '~500円':

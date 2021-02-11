@@ -15,10 +15,10 @@ class CreateShopInformationTable extends Migration
      */
     // PeriodOfTimeに許す値を配列に格納する
     private $PeriodOfTime = [PeriodOfTime::MORNING, PeriodOfTime::LUNCH, PeriodOfTime::NIGHT, PeriodOfTime::MORNING_AND_LUNCH, PeriodOfTime::LUNCH_AND_NIGHT, PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, PeriodOfTime::ALL_TIME];
-    private $priceRange = PriceRange::getAll();
     public function up()
     {
-        Schema::create('shop_information', function (Blueprint $table) {
+        $priceRange = PriceRange::getAll();
+        Schema::create('shop_information', function (Blueprint $table) use ($priceRange) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('shop_id');
             $table->string('name', 100)->comment('店舗名');
@@ -44,7 +44,7 @@ class CreateShopInformationTable extends Migration
             $table->string('youtube_link', 255)->nullable()->comment('Youtube URL');
             $table->string('gotoeat_link', 255)->nullable()->comment('Go To Eat URL');
 
-            $table->enum('price_range', $this->priceRange)->nullable()->comment('価格帯');
+            $table->enum('price_range', $priceRange)->nullable()->comment('価格帯');
 
             $table->time('business_start_hour1')->nullable()->comment('営業開始時間1');
             $table->time('business_end_hour1')->nullable()->comment('営業終了時間1');
