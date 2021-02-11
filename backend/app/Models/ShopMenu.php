@@ -70,7 +70,7 @@ class ShopMenu extends Model
         ShopMenuModel::can_takeout     => 'boolean',
     ];
 
-        /**
+    /**
      * 現在公開中かどうか
      *
      * @param boolean $release
@@ -138,15 +138,15 @@ class ShopMenu extends Model
                 $query->where(function ($query) use ($now) {
                     $query->where(ShopMenuModel::publish_from, '<', $now)->where(ShopMenuModel::publish_to, '>', $now);
                 })
-                ->orWhere(function($query) use($now) {
-                    $query->where(ShopMenuModel::publish_from, '<', $now)->whereNull(ShopMenuModel::publish_to);
-                })
-                ->orWhere(function($query) use($now) {
-                    $query->where(ShopMenuModel::publish_to, '>', $now)->whereNull(ShopMenuModel::publish_from);
-                })
-                ->orWhere(function($query) {
-                    $query->whereNull(ShopMenuModel::publish_from)->whereNull(ShopMenuModel::publish_to);
-                });
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where(ShopMenuModel::publish_from, '<', $now)->whereNull(ShopMenuModel::publish_to);
+                    })
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where(ShopMenuModel::publish_to, '>', $now)->whereNull(ShopMenuModel::publish_from);
+                    })
+                    ->orWhere(function ($query) {
+                        $query->whereNull(ShopMenuModel::publish_from)->whereNull(ShopMenuModel::publish_to);
+                    });
             });
     }
 

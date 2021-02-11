@@ -61,9 +61,9 @@ class importFirebaseShop extends Command
         foreach ($arr as $shopinfos) {
             unset($shopinfos["type"], $shopinfos["createdAt"], $shopinfos["updatedAt"]); // 無視すべき要素を落とす
             Arr::snake_keys($shopinfos); //キーをスネークケースにする
-            FirebaseShop::create([FirebaseShopModel::firebase_shop_id => $shopinfos["id"]]);
             $shop = Shop::create(array_merge([ShopModel::release => $shopinfos["public"]], $shopinfos));
-            Log::debug($shop->id); //laravel.logの内容を見てforeachの中身を直そう
+            $shopid = $shop->id;
+            FirebaseShop::create([FirebaseShopModel::shop_id => $shopid, FirebaseShopModel::firebase_shop_id => $shopinfos["id"]]); //犯人はこの行
             if (isset($shopinfos["price_range"])) { //このswitchブロックはcaseの表記に対応するjsonファイル中の値に表記ゆれを確認。要注意。
                 switch ($shopinfos["price_range"]) {
                     case '~500円':

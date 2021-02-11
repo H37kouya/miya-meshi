@@ -210,7 +210,7 @@ class ShopInformation extends Model
         }
 
         if (
-            in_array(PeriodOfTime::LUNCH, $period_of_time,true) ||
+            in_array(PeriodOfTime::LUNCH, $period_of_time, true) ||
             in_array(PeriodOfTime::MORNING_AND_LUNCH, $period_of_time, true) ||
             in_array(PeriodOfTime::LUNCH_AND_NIGHT, $period_of_time, true) ||
             in_array(PeriodOfTime::MORNING_AND_LUNCH_AND_NIGHT, $period_of_time, true)
@@ -233,8 +233,9 @@ class ShopInformation extends Model
 
         $newSearchPeriodOfTimes = (new Collection($searchPeriodOfTimes))->unique()->values()->toArray();
 
-        $query->when(count($newSearchPeriodOfTimes) > 0, function ($query) use ($newSearchPeriodOfTimes) {{
-            $query->whereIn('period_of_time', $newSearchPeriodOfTimes);
-        }});
+        $query->when(count($newSearchPeriodOfTimes) > 0, function ($query) use ($newSearchPeriodOfTimes) { {
+                $query->whereIn('period_of_time', $newSearchPeriodOfTimes);
+            }
+        });
     }
 }
