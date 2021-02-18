@@ -12,7 +12,6 @@ use App\Models\FirebaseShop;
 use App\Models\Image;
 use App\Models\Shop;
 use App\Models\ShopInformation;
-use App\Models\ShopMenu;
 use App\Support\Arr;
 use Exception;
 use Illuminate\Console\Command;
@@ -100,12 +99,6 @@ class importFirebaseShop extends Command
             ShopInformationModel::period_of_time => is_array(Arr::get($originalShopInfo, "time_zone")) ? importFirebasePeriodOfTime::arr_to_string(Arr::get($originalShopInfo, "time_zone")) : null,
             ShopInformationModel::price_range    => $priceRange,
         ], $originalShopInfo));
-        ShopMenu::create(
-            array_merge(
-                $originalShopInfo,
-                ['shop_id' => $shopId]
-            )
-        );
 
         foreach (Arr::get($originalShopInfo, "appearance_image_link", []) as $link) {
             if ($link === "/no-image.png") {
