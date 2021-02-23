@@ -86,7 +86,7 @@ class importFirebaseShop extends Command
         // FirebaseShopへの格納
         FirebaseShop::create([
             FirebaseShopModel::shop_id          => $shopId,
-            FirebaseShopModel::firebase_shop_id => $originalShopInfo["id"]
+            FirebaseShopModel::firebase_shop_id => Arr::get($originalShopInfo, "id"),
         ]); //犯人はこの行
 
         // priceRangeの取得
@@ -95,7 +95,7 @@ class importFirebaseShop extends Command
         // ShopInformationへの格納
         // TODO period_of_timeのenum化
         ShopInformation::create(array_merge([
-            'shop_id' => $shopId,
+            ShopInformationModel::shop_id => $shopId,
             ShopInformationModel::period_of_time => is_array(Arr::get($originalShopInfo, "time_zone")) ? importFirebasePeriodOfTime::arr_to_string(Arr::get($originalShopInfo, "time_zone")) : null,
             ShopInformationModel::price_range    => $priceRange,
         ], $originalShopInfo));
