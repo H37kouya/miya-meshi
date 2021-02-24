@@ -37,6 +37,6 @@ class ArrTest extends TestCase
                 $j++;
             }
             $i++;
-        }
+        } //ここまでがcamel_keysのテスト
     }
 }
