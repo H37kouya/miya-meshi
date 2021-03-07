@@ -36,10 +36,104 @@
               <v-card-subtitle class="py-2 py-sm-4">店舗公開設定</v-card-subtitle>
               <v-card-text class="pb-0">
                 <v-switch
-                  v-model="state.shop.public"
-                  :label="state.shop.public ? '公開' : '非公開'"
+                  v-model="state.shop.release"
+                  :label="state.shop.release ? '公開' : '非公開'"
                   class="mt-0"
                 />
+              </v-card-text>
+
+              <v-card-subtitle class="py-0">
+                公開時間
+              </v-card-subtitle>
+
+              <v-card-text>
+                <v-menu
+                  ref="menu_publishFrom"
+                  v-model="state.menu.publishFrom"
+                  :close-on-content-click="false"
+                  :return-value.sync="state.publishFrom"
+                  label="公開開始日時"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="state.publishFrom"
+                      :placeholder="state.shop.publishFrom"
+                      label="公開開始日時"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="state.publishFrom"
+                    no-title
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="state.menu.publishFrom = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.menu_publishFrom.save(state.publishFrom)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+
+                <v-menu
+                  ref="menu_publishTo"
+                  v-model="state.menu.publishTo"
+                  :close-on-content-click="false"
+                  :return-value.sync="state.publishTo"
+                  label="公開終了日時"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="state.publishTo"
+                      :placeholder="state.shop.publishTo"
+                      label="公開終了日時"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="state.publishTo"
+                    no-title
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="state.menu.publishTo = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.menu_publishTo.save(state.publishTo)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
               </v-card-text>
             </v-col>
 
@@ -117,8 +211,8 @@
                     </v-card-subtitle>
 
                     <v-switch
-                      v-model="state.shop.canGoToEat"
-                      :label="state.shop.canGoToEat ? '実施中' : '非実施'"
+                      v-model="state.shop.canGotoeat"
+                      :label="state.shop.canGotoeat ? '実施中' : '非実施'"
                       class="mt-0"
                     />
                   </v-col>
@@ -214,6 +308,21 @@
                 <DialogWithTimePicker
                   v-model="state.shop.businessLoHour2"
                   label="ラストオーダー2"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessStartHour3"
+                  label="営業開始時間3"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessEndHour3"
+                  label="営業終了時間3"
+                />
+
+                <DialogWithTimePicker
+                  v-model="state.shop.businessLoHour3"
+                  label="ラストオーダー3"
                 />
 
                 <RegularHolidayShopTextField
@@ -381,7 +490,7 @@
                 />
 
                 <LinkTextField
-                  v-model="state.shop.uberEatsLink"
+                  v-model="state.shop.ubereatsLink"
                   :label="ShopJa.UBER_EATS_LINK"
                   prepend-inner-icon="mdi-alpha-u-box-outline"
                 />
@@ -407,7 +516,7 @@
                 />
 
                 <LinkTextField
-                  v-model="state.shop.goToEatLink"
+                  v-model="state.shop.gotoeatLink"
                   label="Go To Eat"
                   prepend-inner-icon="mdi-alpha-g-box-outline"
                 />
@@ -477,6 +586,7 @@ type Props = {
   dishes: Dish[],
   keywords: Keyword[],
   priceRangeList: PriceRange[]
+  type: 'edit'|'create'
 }
 
 export default defineComponent({
@@ -498,6 +608,11 @@ export default defineComponent({
       }
     },
 
+    type: {
+      type: String,
+      default: 'edit'
+    },
+
     priceRangeList: {
       type: Array,
       default: []
@@ -505,59 +620,67 @@ export default defineComponent({
   },
 
   setup (props: Props, context: SetupContext) {
-    const state = reactive<ShopFormState>({
+    const state = reactive({
       shop: {
-        prefixName: undefined,
-        name: undefined,
-        description: undefined,
-        intro: undefined,
+        prefixName: '',
+        name: '',
+        description: '',
+        intro: '',
         imageLink: DEFAULT_IMAGE,
-        menuImageLink: [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE],
-        facebookLink: undefined,
-        homepageLink: undefined,
-        instaLink: undefined,
-        lineLink: undefined,
-        twitterLink: undefined,
-        uberEatsLink: undefined,
-        youtubeLink: undefined,
-        goToEatLink: undefined,
+        menuImageLink: [
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE,
+          DEFAULT_IMAGE
+        ],
+        facebookLink: '',
+        homepageLink: '',
+        instaLink: '',
+        lineLink: '',
+        twitterLink: '',
+        ubereatsLink: '',
+        youtubeLink: '',
+        gotoeatLink: '',
         priority: 3,
-        priceRange: undefined,
-        public: true,
-        address: undefined,
-        buildingName: undefined,
-        postal: undefined,
-        tel: undefined,
+        priceRange: '',
+        release: true,
+        address: '',
+        buildingName: '',
+        postal: '',
+        tel: '',
         canTakeout: true,
         instaNumber: 0,
-        instaShopLink: undefined,
-        businessHour1: undefined,
-        businessHour2: undefined,
-        businessStartHour1: undefined,
-        businessEndHour1: undefined,
-        businessLoHour1: undefined,
-        businessStartHour2: undefined,
-        businessEndHour2: undefined,
-        businessLoHour2: undefined,
-        parkingLot: undefined,
-        regularHoliday: undefined,
-        seat: undefined,
+        instaShopLink: '',
+        businessStartHour1: null,
+        businessEndHour1: null,
+        businessLoHour1: null,
+        businessStartHour2: null,
+        businessEndHour2: null,
+        businessLoHour2: null,
+        businessStartHour3: null,
+        businessEndHour3: null,
+        businessLoHour3: null,
+        parkingLot: '',
+        regularHoliday: '',
+        seat: '',
         dishes: [] as string[],
         keywords: [] as string[],
         latitude: 0,
         longitude: 0,
         timeZone: [],
-        nameKana: undefined,
-        access: undefined,
+        nameKana: '',
+        access: '',
         canReservation: true,
-        reservervationMaxNumber: undefined,
-        creditCard: undefined,
-        aboutSmoking: undefined,
-        electronicMoney: undefined,
-        totalNumberOfSeats: undefined,
-        privateRoom: undefined,
-        instaIframe: undefined,
-        canGoToEat: false,
+        reservervationMaxNumber: '',
+        creditCard: '',
+        aboutSmoking: '',
+        electronicMoney: '',
+        totalNumberOfSeats: '',
+        privateRoom: '',
+        instaIframe: '',
+        canGotoeat: false,
         appearanceImageLink: [
           DEFAULT_IMAGE,
           DEFAULT_IMAGE,
@@ -571,7 +694,15 @@ export default defineComponent({
           DEFAULT_IMAGE
         ],
         displayMode: DisplayMode.DEFAULT
-      }
+      } as Partial<Shop>,
+      publishFrom: null,
+      publishTo: null,
+      menu: {
+        publishFrom: '',
+        publishTo: ''
+      },
+      userChangedPublishFrom: false,
+      userChangedPublishTo: false
     })
 
     const uuid = {
@@ -649,7 +780,24 @@ export default defineComponent({
       state.shop = newVal ? newVal : state.shop
     })
 
-    const onSubmit = () => context.emit('submit', state.shop)
+    watch(() => state.publishFrom, () => { state.userChangedPublishFrom = true })
+    watch(() => state.publishTo, () => { state.userChangedPublishTo = true })
+
+    const onSubmit = () => {
+      if (props.type === 'create') {
+        state.shop.publishFrom = state.publishFrom
+        state.shop.publishTo = state.publishTo
+      } else {
+        if (state.userChangedPublishFrom) {
+          state.shop.publishFrom = state.publishFrom
+        }
+
+        if (state.userChangedPublishTo) {
+          state.shop.publishTo = state.publishTo
+        }
+      }
+      context.emit('submit', state.shop)
+    }
 
     return {
       DEFAULT_IMAGE,

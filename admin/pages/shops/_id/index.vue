@@ -28,7 +28,7 @@
 
     <v-row>
       <v-col cols="12">
-        <AdminMenuListCard :shopid="state.shop.id" :menus="state.menus" />
+        <AdminMenuListCard :shopid="state.id" :menus="state.menus" />
       </v-col>
     </v-row>
   </v-container>
@@ -37,7 +37,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted, computed } from '@vue/composition-api'
 import { Shop, Menu } from '@/lib'
-import { deleteShop, getShopByID } from '@/src/infra/firestore/Shop'
+import { deleteShop, getShopByID } from '@/src/infra/backend/Shop'
 import { deleteMultipleMenu, getMenuListByShopID } from '@/src/infra/firestore/Menu'
 
 export default defineComponent({
@@ -51,19 +51,14 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      const [shop, menus] = await Promise.all([
-        getShopByID(context.root.$fireStore, state.id),
-        getMenuListByShopID(context.root.$fireStore, state.id, 12, true)
-      ])
+      const shop = await getShopByID(state.id, context.root.$config.API_TOKEN, context.root.$axios)
       state.shop = shop
-      state.menus = menus
+      state.menus = shop.shopMenus
     })
 
     const onDelete = async () => {
-      const menuIDs = state.menus.map(menu => menu.id)
       await Promise.all([
-        deleteMultipleMenu(context.root.$fireStore, menuIDs),
-        deleteShop(context.root.$fireStore, state.id)
+        deleteShop(context.root.$config.API_TOKEN, state.id, context.root.$axios)
       ])
 
       await context.root.$router.push('/shops')

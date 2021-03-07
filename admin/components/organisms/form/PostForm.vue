@@ -324,7 +324,7 @@ import { v4 as createUUID } from 'uuid'
 import { filterShopsByAreas } from '~/src/utils/Shop'
 import { isString } from '~/src/utils/String'
 import { filterAreasByID } from '~/src/utils/Area'
-import { ContentMode } from '~/lib/enum/ContentMode'
+import { ContentMode } from '~/lib/enum/api/ContentMode'
 
 type State = {
   post: Partial<Post>
@@ -469,7 +469,7 @@ export default defineComponent({
     })))
 
     const shopSelectItems = computed(() => filterShops.value.map((shop: Shop) => ({
-      text: `${shop.name} - ${shop.prefixName}`,
+      text: `${shop.name} - ${shop.prefix_name}`,
       value: shop.id
     })))
 

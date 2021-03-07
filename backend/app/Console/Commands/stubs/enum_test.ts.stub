@@ -1,0 +1,5 @@
+import * as TestFunc from '@/enum/{{ $className }}'
+
+describe('Enum {{ $className }}', () => {
+{{ $test }}
+})

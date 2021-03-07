@@ -1,6 +1,8 @@
 FROM php:7.4-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
+ARG APCU_VERSION=5.1.19
+
 # timezone environment
 ENV TZ=UTC \
   # locale
@@ -18,7 +20,7 @@ ENV TZ=UTC \
   APP_EVENTS_CACHE=/tmp/cache/events.php \
   VIEW_COMPILED_PATH=/tmp/cache/views \
   SESSION_DRIVER=cookie \
-  LOG_CHANNEL=stderr \
+  LOG_CHANNEL=log \
   DB_CONNECTION=mysql \
   DB_HOST=db \
   DB_PORT=3306 \

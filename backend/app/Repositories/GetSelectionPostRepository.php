@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\SelectionPost;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 use Illuminate\Support\Carbon;
 
 class GetSelectionPostRepository

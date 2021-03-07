@@ -13,7 +13,7 @@ $factory->define(SelectionPost::class, function (Faker $faker) {
     return [
         'title'         => $faker->text(50),
         'description'   => $faker->text(50),
-        'contents'      => $faker->randomHtml(),
+        'contents'      => $faker->randomHtml(8, 8),
         'content_mode'  => $contentMode,
         'link'          => $link,
         'image'         => $faker->imageUrl(),

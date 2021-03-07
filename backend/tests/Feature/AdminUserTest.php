@@ -33,7 +33,7 @@ class AdminUserTest extends TestCase
         ]);
 
         $response
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJson([
                 'name'           => 'tester1',
                 'api_token'      => '1234567890aa',
@@ -53,6 +53,6 @@ class AdminUserTest extends TestCase
             'Authorization' => 'Bearer 1234567890bb'
         ]);
 
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 }

@@ -32,7 +32,7 @@ class ClientSelectionPostTest extends TestCase
     {
         $response = $this->getJson('/api/selection-post');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /**
@@ -44,6 +44,6 @@ class ClientSelectionPostTest extends TestCase
     {
         $response = $this->getJson('/api/selection-post?limit=3');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 }

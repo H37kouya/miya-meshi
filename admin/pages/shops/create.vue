@@ -15,6 +15,7 @@
         :dishes="state.dishes"
         :keywords="state.keywords"
         :price-range-list="state.priceRangeList"
+        type="create"
         @submit="createShop"
       />
     </v-row>
@@ -22,10 +23,11 @@
 </template>
 
 <script lang="ts">
+import { AxiosError } from 'axios'
 import { defineComponent, reactive, SetupContext, watchEffect } from '@vue/composition-api'
 import { ShopFormState } from '@/src/types/ShopFormState'
 import { MetaInfo } from 'vue-meta'
-import { createShop as createDBShop } from '@/src/infra/firestore/Shop'
+import { createShop as createDBShop } from '@/src/infra/backend/Shop'
 import { Dish, PriceRange, Keyword } from '@/lib'
 import { getPriceRangeList } from '@/src/infra/firestore/PriceRange'
 import { getDishList } from '@/src/infra/firestore/Dish'
@@ -38,13 +40,25 @@ export default defineComponent({
     const state = reactive({
       dishes: [] as Dish[],
       keywords: [] as Keyword[],
-      priceRangeList: [] as PriceRange[]
+      priceRangeList: [] as PriceRange[],
+      errors: {} as any
     })
 
     const createShop = async (shop: any) => {
-      await createDBShop(context.root.$fireStore, context.root.$fireStoreObj, shop)
+      try {
+        await createDBShop(shop, context.root.$config.API_TOKEN, context.root.$axios)
 
-      return await context.root.$router.push('/shops')
+        return await context.root.$router.push('/shops')
+      } catch (_e) {
+        const e = _e as AxiosError<any>
+
+        if (e.response && e.response.status === 422) {
+          state.errors = e.response.data
+          return
+        }
+
+        console.error(e)
+      }
     }
 
     watchEffect(async () => {

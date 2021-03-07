@@ -101,7 +101,7 @@ import { defineComponent, reactive, SetupContext, onMounted, computed } from '@v
 import { MetaInfo } from 'vue-meta'
 import VueScrollTo from 'vue-scrollto'
 import { Shop } from '@/lib'
-import { getShopList } from '@/src/infra/firestore/Shop'
+import { getShopList } from '@/src/infra/backend/Shop'
 import { isArray } from '@/src/utils/Array'
 import { isString } from '~/src/utils/String'
 
@@ -136,7 +136,10 @@ export default defineComponent({
     })
 
     onMounted(async () => {
-      state.shops = await getShopList(context.root.$fireStore, 0, true)
+      state.shops = await getShopList(
+        context.root.$config.API_TOKEN,
+        context.root.$axios
+      )
     })
 
     const filterShops = computed(() => {
@@ -161,7 +164,7 @@ export default defineComponent({
           return false
         }
 
-        if ((_public === true || _public === false) && shop.public !== _public) {
+        if ((_public === true || _public === false) && shop.release !== _public) {
           return false
         }
 

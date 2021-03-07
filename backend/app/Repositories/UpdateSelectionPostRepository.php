@@ -6,7 +6,7 @@ use App\Enum\ContentMode;
 use App\Models\SelectionPost;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 
 class UpdateSelectionPostRepository
 {
