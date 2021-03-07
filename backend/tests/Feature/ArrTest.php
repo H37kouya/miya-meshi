@@ -24,6 +24,10 @@ class ArrTest extends TestCase
             "four_four"   => 4,
             "five_five"   => 5,
             "six_six"     => 6,
+            7,
+            "日本語"=>"Japanese",
+            "English"=>"英語",
+            "みやメシ",
         ];
         $expected = [
             "oneOne" => 1,
@@ -32,6 +36,10 @@ class ArrTest extends TestCase
             "fourFour" => 4,
             "fiveFive" => 5,
             "sixSix" => 6,
+            7,
+            "日本語"=>"Japanese",
+            "English"=>"英語",
+            "みやメシ",
         ];
 
         // WHEN - テスト関数の実行
@@ -51,6 +59,10 @@ class ArrTest extends TestCase
             "fourFour" => 4,
             "fiveFive" => 5,
             "sixSix" => 6,
+            7,
+            "日本語"=>"Japanese",
+            "English"=>"英語",
+            "みやメシ",
         ];
         $expected = [
             "one_one"     => 1,
@@ -59,6 +71,10 @@ class ArrTest extends TestCase
             "four_four"   => 4,
             "five_five"   => 5,
             "six_six"     => 6,
+            7,
+            "日本語"=>"Japanese",
+            "English"=>"英語",
+            "みやメシ",
         ];
         // WHEN - テスト関数の実行
         $snakedArr = Arr::snake_keys($testCase);
