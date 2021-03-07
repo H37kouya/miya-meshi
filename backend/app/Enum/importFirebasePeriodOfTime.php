@@ -41,7 +41,7 @@ class importFirebasePeriodOfTime extends PeriodOfTime
 
     // 引数$arrはフロントからの入力値。ex.:$arr=["MORNING","LUNCH"]:MORNING_AND_LUNCH
     //DB入力に際して配列で受けた入力値を，文字列にする関数である
-    public static function arr_to_string(array $arr): string
+    public static function arr_to_string(array $arr): ?string
     {
         $isMorning = in_array("朝", $arr);
         $isLunch = in_array("昼", $arr);
@@ -59,8 +59,14 @@ class importFirebasePeriodOfTime extends PeriodOfTime
             return self::LUNCH_AND_NIGHT;
         }
 
-        if ($isMorning || $isLunch || $isNight) {
-            return $arr[0];
+        if ($isMorning) {
+            return self::MORNING;
+        }
+        if ($isLunch) {
+            return self::LUNCH;
+        }
+        if ($isNight) {
+            return self::NIGHT;
         }
 
         return null;

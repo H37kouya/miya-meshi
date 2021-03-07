@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enum\DisplayMode;
 use App\Enum\importFirebasePeriodOfTime;
 use App\Enum\Models\FirebaseShopModel;
 use App\Enum\Models\ImageModel;
@@ -79,26 +80,28 @@ class importFirebaseShop extends Command
             ShopModel::publish_from => Arr::get($originalShopInfo, "publish_from"),
             ShopModel::publish_to   => Arr::get($originalShopInfo, "publish_to"),
             ShopModel::priority     => Arr::get($originalShopInfo, "priority"),
-            ShopModel::display_mode => Arr::get($originalShopInfo, "display_mode"),
+            ShopModel::display_mode => Arr::get($originalShopInfo, "display_mode", DisplayMode::NORMAL),
         ]);
         $shopId = $shop->id;
 
         // FirebaseShopへの格納
-        FirebaseShop::create([
+        $firebaseShop = FirebaseShop::create([
             FirebaseShopModel::shop_id          => $shopId,
             FirebaseShopModel::firebase_shop_id => Arr::get($originalShopInfo, "id"),
         ]); //犯人はこの行
 
         // priceRangeの取得
         $priceRange = $this->formatPriceRange(Arr::get($originalShopInfo, 'price_range'), $shopId);
-
+        $period_of_time = is_array(Arr::get($originalShopInfo, "time_zone")) ? importFirebasePeriodOfTime::arr_to_string(Arr::get($originalShopInfo, "time_zone")) : null;
+        Log::debug("shop_id=$shopId,firebaseShopId={$firebaseShop->firebase_shop_id}");
+        Log::debug($period_of_time);
         // ShopInformationへの格納
         // TODO period_of_timeのenum化
         ShopInformation::create(array_merge([
             ShopInformationModel::shop_id => $shopId,
-            ShopInformationModel::period_of_time => is_array(Arr::get($originalShopInfo, "time_zone")) ? importFirebasePeriodOfTime::arr_to_string(Arr::get($originalShopInfo, "time_zone")) : null,
+            ShopInformationModel::period_of_time => $period_of_time,
             ShopInformationModel::price_range    => $priceRange,
-        ], $originalShopInfo));
+        ], Arr::except($originalShopInfo, ["price_range"])));
 
         foreach (Arr::get($originalShopInfo, "appearance_image_link", []) as $link) {
             if ($link === "/no-image.png") {
