@@ -21,20 +21,15 @@ class testCreateShopUsecase extends TestCase
     public function testCreateShopUsecase(CreateShopUsecase $_CreateShopUsecase)
     {
         // set
-        $insertDataToShop = factory(Shop::class)->create();
-        $shopId = $insertDataToShop->id;
-        $insertDataToShopInformation = factory(ShopInformation::class)->create([
-            "shop_id" => $shopId,
-        ]);
-        $insertDataToShop->shopInformation->save(factory(ShopInformation::class)->make());
-        $shopInformationId = $insertDataToShopInformation->id;
-        $insertDataToImage = factory(Image::class)->create();
-        $imageId = $insertDataToImage->id;
+        $shopInstance = factory(Shop::class)->create();
+        $shopAndShopInformationInstance = $shopInstance->shopInformation->save(factory(ShopInformation::class)->make());
+        $imageInstance = factory(Image::class)->create();
+        $imageId = $imageInstance->id;
         // exec
-        $_CreateShopUsecase->invoke(array_merge($insertDataToShop, $insertDataToShopInformation, $insertDataToImage));
+        $_CreateShopUsecase->invoke(array_merge($shopAndShopInformationInstance->toArray(), $imageInstance->toArray()));
         // comparison
-        $this->assertTrue(Shop::where("id", $shopId)->exists());
-        $this->assertTrue(ShopInformation::where("id", $shopInformationId)->exists());
+        $this->assertTrue(Shop::where("id", $shopAndShopInformationInstance->id)->exists());
+        $this->assertTrue(ShopInformation::where("id", $shopAndShopInformationInstance->shopInformation->id)->exists());
         $this->assertTrue(Image::where("id", $imageId)->exists());
     }
 }
