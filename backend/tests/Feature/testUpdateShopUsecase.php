@@ -2,8 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Enum\Models\ImageModel;
+use App\Enum\Models\ShopModel;
 use App\Models\Image;
-use App\Models\Shop;
 use App\Models\ShopInformation;
 use App\Usecases\CreateShopUsecase;
 use App\Usecases\UpdateShopUsecase;
@@ -14,8 +15,14 @@ use Tests\TestCase;
 class testUpdateShopUsecase extends TestCase
 {
     use RefreshDatabase;
-    private $updateShopAndShopInformationList = [];
-    private $updateImageList = [];
+    private $updateShopAndShopInformationList = [
+        ShopModel::priority => 4,
+        ShopModel::release => false,
+    ];
+    private $updateImageList = [
+        ImageModel::imageable_name => ShopModel::sub_image_link,
+        ImageModel::url => "https://newExample.jpeg",
+    ];
     /**
      * test on UpdateShopUsecase.php
      *
