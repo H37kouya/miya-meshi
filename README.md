@@ -56,6 +56,11 @@ $ npm run dev
 $ make init
 ```
 
+### DBの再マイグレーション
+``` shell
+$ docker-compose exec app php artisan migrate:fresh --seed
+```
+
 ### Windows
 
 - [Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
