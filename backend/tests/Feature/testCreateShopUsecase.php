@@ -6,13 +6,13 @@ use App\Models\Image;
 use App\Models\Shop;
 use App\Models\ShopInformation;
 use App\Usecases\CreateShopUsecase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class testCreateShopUsecase extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseLite;
     /**
      * test on CreateShopUsecase.php
      *

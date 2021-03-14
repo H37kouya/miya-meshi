@@ -12,18 +12,12 @@ use App\Usecases\UpdateShopUsecase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class testUpdateShopUsecase extends TestCase
 {
-    use RefreshDatabase;
-    private $updateShopAndShopInformationList = [
-        ShopModel::priority => 4,
-        ShopModel::release => false,
-    ];
-    private $updateImageList = [
-        ImageModel::imageable_name => ShopModel::sub_image_link,
-        ImageModel::url => "https://newExample.jpeg",
-    ];
+    use RefreshDatabaseLite;
+
     /**
      * test on UpdateShopUsecase.php
      *
@@ -43,8 +37,8 @@ class testUpdateShopUsecase extends TestCase
         $imageInsertInstance = factory(Image::class)->create();
         $imageId = $imageInsertInstance->id;
 
-        $shopAndShopInformationUpdateInstance = $shopAndShopInformationInsertInstance->create($this->updateShopAndShopInformationList);
-        $imageUpdateInstance = $imageInsertInstance->create($this->updateImageList);
+        $shopAndShopInformationUpdateInstance = $shopAndShopInformationInsertInstance->create($this->dummyUpdateShopAndShopInformationList());
+        $imageUpdateInstance = $imageInsertInstance->create($this->dummyUpdateImageList());
 
         // exec
         $_CreateShopUsecase->invoke(array_merge($shopAndShopInformationInsertInstance->toArray(), $imageInsertInstance->toArray()));
@@ -53,5 +47,18 @@ class testUpdateShopUsecase extends TestCase
         $this->assertTrue(Shop::where("id", $shopAndShopInformationUpdateInstance->id)->exists());
         $this->assertTrue(ShopInformation::where("id", $shopAndShopInformationUpdateInstance->shopInformation->id)->exists());
         $this->assertTrue(Image::where("id", $imageId)->exists());
+    }
+    private function dummyUpdateShopAndShopInformationList(): array
+    {
+        return [
+            ShopModel::priority => 4,
+            ShopModel::release => false,
+        ];
+    }
+    private function dummyUpdateImageList(): array
+    {
+        return [
+            ImageModel::url => "newExample.com"
+        ];
     }
 }
