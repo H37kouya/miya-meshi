@@ -10,7 +10,6 @@ use Illuminate\Support\Carbon;
 
 class FetchInstaController extends Controller
 {
-    //以下どういう処理が流れてるの...?
     public function __invoke(Request $request)
     {
         $limit = $request->query('limit', '10');
@@ -23,14 +22,14 @@ class FetchInstaController extends Controller
         ])
             ->nowPublicPosts(Carbon::now())
             ->select(
-                'shops.'.ShopModel::id,
-                'shops.'.ShopModel::release,
-                'shops.'.ShopModel::publish_from,
-                'shops.'.ShopModel::publish_to,
-                'shops.'.ShopModel::priority,
-                'shops.'.ShopModel::display_mode,
-                'shops.'.ShopModel::created_at,
-                'shops.'.ShopModel::updated_at,
+                'shops.' . ShopModel::id,
+                'shops.' . ShopModel::release,
+                'shops.' . ShopModel::publish_from,
+                'shops.' . ShopModel::publish_to,
+                'shops.' . ShopModel::priority,
+                'shops.' . ShopModel::display_mode,
+                'shops.' . ShopModel::created_at,
+                'shops.' . ShopModel::updated_at,
             )
             ->join('shop_information', 'shop_information.shop_id', '=', 'shops.id')
             ->orderBY('shop_information.insta_number', 'desc')

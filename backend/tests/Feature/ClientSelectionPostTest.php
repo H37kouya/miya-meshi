@@ -7,21 +7,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class ClientSelectionPostTest extends TestCase
 {
-    /**
-     * 各テスト実行前に呼ばれる。
-     *
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
+    use RefreshDatabaseLite;
 
-        // データベースマイグレーション
-        $this->artisan('migrate:refresh');
-        $this->artisan('db:seed');
-    }
+    protected $seed = true;
 
     /**
      * A basic feature test example.

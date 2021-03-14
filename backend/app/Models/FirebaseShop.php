@@ -26,6 +26,6 @@ class FirebaseShop extends Model
 {
     protected $fillable = [
         'shop_id',
-        'firebase_shop_id',
+        'firebase_shop_id'
     ];
 }
