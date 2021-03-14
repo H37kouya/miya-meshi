@@ -25,7 +25,7 @@ class CreateShopInformationTable extends Migration
             $table->string('name_kana', 100)->nullable()->comment('店舗名かな');
             $table->string('prefix_name', 100)->nullable()->comment('店舗肩書き');
             $table->string('description', 255)->nullable()->comment('一言紹介');
-            $table->string('intro', 255)->nullable()->comment('長文紹介');
+            $table->string('intro', 1000)->nullable()->comment('長文紹介');
 
             $table->unsignedInteger('pref_code')->nullable()->comment('都道府県コード');
             $table->string('address', 255)->nullable()->comment('住所');

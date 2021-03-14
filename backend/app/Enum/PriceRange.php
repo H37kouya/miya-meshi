@@ -46,6 +46,7 @@ class PriceRange
     {
         return [
             self::UNDER_500,
+            self::BETWEEN_500_AND_1000,
             self::BETWEEN_1000_AND_2000,
             self::BETWEEN_2000_AND_3000,
             self::BETWEEN_3000_AND_5000,
