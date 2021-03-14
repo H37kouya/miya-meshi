@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Enum\Models\ImageModel;
 use App\Enum\Models\ShopModel;
 use App\Models\Image;
+use App\Models\Shop;
 use App\Models\ShopInformation;
 use App\Usecases\CreateShopUsecase;
 use App\Usecases\UpdateShopUsecase;
