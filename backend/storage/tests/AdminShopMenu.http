@@ -1,0 +1,57 @@
+http://localhost:8000/api/admin/shop?limit=10
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/admin/shop/1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/admin/shop/2/menu
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+POST http://localhost:8000/api/admin/shop/25/menu HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "name": "testUser",
+    "description": "テスト投稿しました！",
+    "intro": "NORMAL",
+    "release": true,
+    "image_link": "ccc"
+}
+
+###
+POST http://localhost:8000/api/admin/shop/25/menu/2 HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+
+{
+    "_method": "PUT",
+    "name": "testUser3",
+    "description": "テスト投稿しました！",
+    "intro": "NORMAL",
+    "release": true,
+    "image_link": "ccc"
+}
+
+
+###
+POST http://localhost:8000/api/admin/shop/25/menu/2 HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "_method": "DELETE"
+}

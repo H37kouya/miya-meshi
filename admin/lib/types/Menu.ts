@@ -6,19 +6,21 @@ import {
 export type Menu = {
   type: Type.MENU,
   id: string,
-  shopID: string,
+  shopId: string,
   name?: string,
   description?: string,
   intro?: string,
   image?: string,
   price?: number,
-  public: boolean,
+  release: boolean,
   isTaxIncluded?: boolean,
   canTakeout?: boolean,
   priority: number,
   dishes: string[],
   keywords: string[],
-  timeZone?: string[],
+  periodOfTime?: string[],
+  publishFrom: string|null
+  publishTo: string|null
   createdAt?: Date|Object,
   updatedAt?: Date|Object,
   deletedAt?: Date|Object

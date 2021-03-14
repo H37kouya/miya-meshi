@@ -41,6 +41,15 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereTitle($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SelectionPostShop[] $selectionPostShops
  * @property-read int|null $selection_post_shops_count
+ * @property Carbon|null $publish_from 公開開始日時
+ * @property Carbon|null $publish_to 公開終了日時
+ * @property string $content_mode コンテンツモード
+ * @property string|null $link リンク
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost nowPublicPosts(\Illuminate\Support\Carbon $now)
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereContentMode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost wherePublishFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SelectionPost wherePublishTo($value)
  */
 class SelectionPost extends Model
 {

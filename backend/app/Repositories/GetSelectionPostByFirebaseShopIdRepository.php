@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\SelectionPost;
 use App\Models\SelectionPostArea;
 use App\Models\SelectionPostShop;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 

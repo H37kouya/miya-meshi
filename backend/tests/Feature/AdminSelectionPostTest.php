@@ -7,23 +7,15 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class AdminSelectionPostTest extends TestCase
 {
+    use RefreshDatabaseLite;
+
+    protected $seed = true;
+
     /**
-     * 各テスト実行前に呼ばれる。
-     *
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        // データベースマイグレーション
-        $this->artisan('migrate:refresh');
-        $this->artisan('db:seed');
-    }
-
-        /**
      * A basic feature test example.
      *
      * @return void
@@ -34,7 +26,7 @@ class AdminSelectionPostTest extends TestCase
             'Authorization' => 'Bearer 1234567890aa'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /**
@@ -48,7 +40,7 @@ class AdminSelectionPostTest extends TestCase
             'Authorization' => 'Bearer 1234567890aa'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /**
@@ -68,7 +60,7 @@ class AdminSelectionPostTest extends TestCase
             'Authorization' => 'Bearer 1234567890aa'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
 
         $this->assertTrue(
             DB::table('selection_posts')

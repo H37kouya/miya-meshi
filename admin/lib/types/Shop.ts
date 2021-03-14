@@ -6,8 +6,10 @@ export type Shop = {
   id: string,
   // 店舗名
   name?: string,
+  // 店名(かな)
+  nameKana: string,
   // 店舗肩書き
-  prefixName?: string,
+  prefix_name?: string,
   // 一言紹介
   description?: string,
   // 長文紹介
@@ -31,26 +33,25 @@ export type Shop = {
   instaLink?: string,
   lineLink?: string,
   twitterLink?: string,
-  uberEatsLink?: string,
+  ubereatsLink?: string,
   youtubeLink?: string,
   // Go To Eat用のリンク
-  goToEatLink?: string,
+  gotoeatLink?: string,
   // 優先度
   priority: number,
   // 価格帯
   priceRange?: string,
   // 公開設定
-  public: boolean,
-  // deprecated
-  businessHour1?: string,
-  // deprecated
-  businessHour2?: string,
-  businessStartHour1?: string|Date,
-  businessEndHour1?: string|Date,
-  businessLoHour1?: string|Date,
-  businessStartHour2?: string|Date,
-  businessEndHour2?: string|Date,
-  businessLoHour2?: string|Date,
+  release: boolean,
+  businessStartHour1?: string|Date|null,
+  businessEndHour1?: string|Date|null,
+  businessLoHour1?: string|Date|null,
+  businessStartHour2?: string|Date|null,
+  businessEndHour2?: string|Date|null,
+  businessLoHour2?: string|Date|null,
+  businessStartHour3?: string|Date|null,
+  businessEndHour3?: string|Date|null,
+  businessLoHour3?: string|Date|null,
   parkingLot?: string,
   regularHoliday?: string,
   seat?: string,
@@ -64,8 +65,6 @@ export type Shop = {
   dishes?: string[],
   timeZone?: string[],
   displayMode?: DisplayModeType,
-  // 店名(かな)
-  nameKana: string,
   // 交通
   access: string,
   // 予約可否
@@ -83,9 +82,11 @@ export type Shop = {
   // 個室
   privateRoom: string
   // GoToEat可能かどうか
-  canGoToEat: boolean
+  canGotoeat: boolean
   // インスタ埋め込み
   instaIframe: string
+  publishFrom: string|null
+  publishTo: string|null
   createdAt?: Date|Object,
   deletedAt?: Date|Object,
   updatedAt?: Date|Object

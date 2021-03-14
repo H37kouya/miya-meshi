@@ -6,7 +6,7 @@ use App\Repositories\UpdateSelectionPostAreaRepository;
 use App\Repositories\UpdateSelectionPostRepository;
 use App\Repositories\UpdateSelectionPostShopRepository;
 use Exception;
-use Illuminate\Support\Arr;
+use App\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

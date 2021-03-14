@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController')->name('top');
-
+Route::get('/shops', 'Api\Client\Shop\SearchShopController');
 Route::get('/home', 'HomeController')->name('home');
 
 Route::get('/health', 'HealthController')->name('health');

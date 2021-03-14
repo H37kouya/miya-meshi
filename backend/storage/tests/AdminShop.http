@@ -1,0 +1,78 @@
+http://localhost:8000/api/admin/shop?limit=10
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/admin/shop/1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+http://localhost:8000/api/admin/shop/25
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+###
+POST http://localhost:8000/api/admin/shop HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "name": "testUser",
+    "name_kana": "あいうえお",
+    "description": "テスト投稿しました！",
+    "display_mode": "NORMAL",
+    "release": true,
+    "image_link": "ccc",
+    "menu_image_link": [
+        "aaa",
+        "bbb",
+        "ddd"
+    ]
+}
+
+###
+POST http://localhost:8000/api/admin/shop/25 HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+
+{
+    "_method": "PUT",
+    "name": "testUser2",
+    "name_kana": "あいうえお",
+    "description": "テスト投稿しました！",
+    "display_mode": "NORMAL",
+    "release": true,
+    "image_link": "aaaa",
+    "sub_image_link": [
+        "ddd"
+    ],
+    "appearance_image_link": [
+        "aaa",
+        "bbb",
+        "ddd"
+    ],
+    "menu_image_link": [
+        "aaa",
+        "bbb",
+        "ddd"
+    ],
+    "firebase_shop_id": "aaaaa"
+}
+
+
+###
+POST http://localhost:8000/api/admin/shop/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer 1234567890aa
+Accept: application/json
+
+{
+    "_method": "DELETE"
+}

@@ -26,7 +26,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch } from '@vue/composition-api'
 import { Post } from '@/lib'
-import { ContentMode } from '@/lib/enum/ContentMode'
+import { ContentMode } from '@/lib/enum/api/ContentMode'
 
 type Props = {
   posts: Post[]

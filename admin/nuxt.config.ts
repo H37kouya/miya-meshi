@@ -100,7 +100,9 @@ const nuxtConfig: NuxtConfig  = {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {} as AxiosOptions,
+  axios: {
+    baseURL: process.env.API_URL || 'http://localhost:8000'
+  } as AxiosOptions,
   /*
   ** Firebase module configuration
   ** See https://firebase.nuxtjs.org/

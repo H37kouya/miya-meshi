@@ -5,21 +5,13 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Tests\Traits\RefreshDatabaseLite;
 
 class AdminUserTest extends TestCase
 {
-    /**
-     * 各テスト実行前に呼ばれる。
-     *
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
+    use RefreshDatabaseLite;
 
-        // データベースマイグレーション
-        $this->artisan('migrate:refresh');
-        $this->artisan('db:seed');
-    }
+    protected $seed = true;
 
     /**
      * A basic feature test example.
@@ -33,7 +25,7 @@ class AdminUserTest extends TestCase
         ]);
 
         $response
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJson([
                 'name'           => 'tester1',
                 'api_token'      => '1234567890aa',
@@ -53,6 +45,6 @@ class AdminUserTest extends TestCase
             'Authorization' => 'Bearer 1234567890bb'
         ]);
 
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 }
