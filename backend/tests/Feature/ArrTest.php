@@ -25,8 +25,8 @@ class ArrTest extends TestCase
             "five_five"   => 5,
             "six_six"     => 6,
             7,
-            "日本語"=>"Japanese",
-            "English"=>"英語",
+            "日本語" => "Japanese",
+            "english" => "英語",
             "みやメシ",
         ];
         $expected = [
@@ -37,8 +37,8 @@ class ArrTest extends TestCase
             "fiveFive" => 5,
             "sixSix" => 6,
             7,
-            "日本語"=>"Japanese",
-            "English"=>"英語",
+            "日本語" => "Japanese",
+            "english" => "英語",
             "みやメシ",
         ];
 
@@ -60,8 +60,8 @@ class ArrTest extends TestCase
             "fiveFive" => 5,
             "sixSix" => 6,
             7,
-            "日本語"=>"Japanese",
-            "English"=>"英語",
+            "日本語" => "Japanese",
+            "english" => "英語",
             "みやメシ",
         ];
         $expected = [
@@ -72,8 +72,8 @@ class ArrTest extends TestCase
             "five_five"   => 5,
             "six_six"     => 6,
             7,
-            "日本語"=>"Japanese",
-            "English"=>"英語",
+            "日本語" => "Japanese",
+            "english" => "英語",
             "みやメシ",
         ];
         // WHEN - テスト関数の実行
