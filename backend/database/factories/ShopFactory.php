@@ -11,5 +11,5 @@ $factory->define(Shop::class, fn (Faker $faker) => [
     'priority'     => $faker->boolean() ? 5 : ($faker->boolean() ? 3 : 1),
     'publish_from' => $faker->boolean(70) ? $faker->dateTimeBetween('-1 years', '+1 years') : null,
     'publish_to'   => $faker->boolean(70) ? $faker->dateTimeBetween('-1 years', '+1 years') : null,
-    'display_mode' => DisplayMode::NORMAL
+    'display_mode' => DisplayMode::NORMAL,
 ]);
